@@ -1,0 +1,39 @@
+<extend name="Common/base" />
+<block name="mainer">
+    <div class="container">
+        <div class="page-header">
+            <h1>绑定第三方帐号 <small></small></h1>
+        </div>
+        <table class="table table-hover">
+            <tbody>
+                <tr>
+                    <th width="28%" class="text-right">数字校园帐号</th>
+                    <td>
+                        <empty name="my.schoolid">
+                            <a href="{:U('Cas/bind')}">现在绑定</a>
+                            <else/>{$my.schoolid}
+                        </empty>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="28%" class="text-right">QQ帐号</th>
+                    <td>
+                        <empty name="my.qcid">
+                            <a href="{:U('Qc/index')}">现在绑定</a>
+                            <else/>{$qcinfo.nickname}
+                        </empty>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="28%" class="text-right">微博帐号</th>
+                    <td>
+                        <empty name="my.wbid">
+                            <a href="{:U('Weibo/index')}">现在绑定</a>
+                            <else/><a href="http://www.weibo.com/{$wbinfo.profile_url}" target="_blank">{$wbinfo.name}</a>
+                        </empty>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</block>

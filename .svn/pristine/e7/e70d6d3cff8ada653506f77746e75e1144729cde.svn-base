@@ -1,0 +1,64 @@
+<div style="width: 2200px">
+    <table class="table table-striped table-bordered table-hover table-condensed table-sheet" id="table" data-totalrows="{$page.totalrows}" data-totalpage="{$page.totalpage}" data-nowpage="{$page.nowpage}" style="width: 2500px;margin-bottom: 0px">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>所属大队</th>
+            <th>事故时间</th>
+            <th>事故地点</th>
+            <th>事故类型</th>
+            <th>事故后果</th>
+            <th>初查情况</th>
+            <th>姓名</th>
+            <th>交通方式</th>
+            <th>车牌号</th>
+            <th>违法行为</th>
+            <th>伤害程度</th>
+            <th>行政强制措施</th>
+            <th>事故责任</th>
+            <th>处罚</th>
+            <th>责任认定时间</th>
+            <th>调解</th>
+            <th>当前状态</th>
+            <th>办案人</th>
+        </tr>
+        </thead>
+        <tbody>
+        <foreach name="allArray" item="vo" key="i">
+            <tr>
+                <if condition="$allArray[$i - 1]['id'] neq $vo['id']">
+                    <td rowspan="{$vo.count}" class="sequence"></td>
+                    <td rowspan="{$vo.count}">{$vo.brigadeName}</td>
+                    <if condition="$vo['accidentTime'] eq 0 or $vo['accidentTime'] eq ''">
+                        <td rowspan="{$vo.count}">-</td>
+                        <else />
+                        <td rowspan="{$vo.count}">{$vo.accidentTime|date='Y-m-d H:i',###}</td>
+                    </if>
+                    <td rowspan="{$vo.count}">{$vo.accidentPlace}</td>
+                    <td rowspan="{$vo.count}">{$vo.accidentType}</td>
+                    <td rowspan="{$vo.count}">{$vo.result}</td>
+                    <td rowspan="{$vo.count}">{$vo.firstCognizance}</td>
+                </if>
+                <td>{$vo.name|default='-'}</td>
+                <td>{$vo.trafficType|default='-'}</td>
+                <td>{$vo.carNo|default='-'}</td>
+                <td>{$vo.law|default='-'}</td>
+                <td>{$vo.hurtType|default='-'}</td>
+                <td>{$vo.coerciveMeasure|default='-'}</td>
+                <td>{$vo.blameType|default='-'}</td>
+                <td>{$vo.punishStatus|default='-'}</td>
+                <if condition="$allArray[$i - 1]['id'] neq $vo['id']">
+                    <if condition="$vo['cognizanceTime'] eq 0 or $vo['cognizanceTime'] eq ''">
+                        <td rowspan="{$vo.count}">-</td>
+                        <else />
+                        <td rowspan="{$vo.count}">{$vo.cognizanceTime|date='Y-m-d H:i',###}</td>
+                    </if>
+                    <td rowspan="{$vo.count}">{$vo.mediateStatus}</td>
+                    <td rowspan="{$vo.count}">{$vo.status}</td>
+                    <td rowspan="{$vo.count}">{$vo.handleName}</td>
+                </if>
+            </tr>
+        </foreach>
+        </tbody>
+    </table>
+</div>

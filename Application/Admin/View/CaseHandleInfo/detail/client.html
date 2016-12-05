@@ -1,0 +1,12 @@
+<!-- 面板 -->
+<div class="panel panel-primary">
+    <!-- 面板标题 -->
+    <div class="panel-heading">当事人信息</div>
+    <!-- 面板内容 -->
+    <div class="list-group" style="height:204px;overflow:auto;">
+        <a href="{:U('CaseClient/add?case_id='.$info['id'])}" class="list-group-item list-group-item-info js-open js-end-refresh"><span class="glyphicon glyphicon-new-window"></span> 当事人信息 </a>
+        <volist name="caseClient" id="vo">
+            <a href="{:U('CaseClient/edit?case_id='.$info['id'].'&id='.$vo['id'])}" class="list-group-item js-open js-end-refresh">{$vo.name}：已扣车 已扣留驾驶证 酒驾 </a>
+        </volist>
+    </div>
+</div>

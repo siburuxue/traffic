@@ -1,0 +1,52 @@
+<extend name="Common/base" />
+<block name="title">未关注案件</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 搜索 -->
+        <!-- 列表面板 -->
+        <div class="panel panel-default">
+            <!-- 面板头 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">未关注案件列表</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板主体 -->
+            <div class="panel-body">
+                <!-- 搜索 -->
+                <include file="CaseAttention/pending/search" />
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-6"><span class="block-title"></span></div>
+                        <div class="col-xs-6 text-right" style="padding-right:0px;">
+                            <button type="button" class="btn btn-primary btn-sm" id="attention"><span class="glyphicon glyphicon-screenshot"></span> 关注</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- 表格 -->
+                <div class="table-responsive" id="table-content"></div>
+                <!-- 分页 -->
+                <include file="Inc/page" />
+            </div>
+        </div>
+        <!-- 表格 结束 -->
+    </div>
+    <!-- 页面主体 结束 -->
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.table = "{:U('pendingTable')}";
+    url.completed = "{:U('completed')}";
+    url.setAttention = "{:U('setAttention')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CaseAttention.pending?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

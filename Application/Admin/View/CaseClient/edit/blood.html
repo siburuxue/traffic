@@ -1,0 +1,84 @@
+<extend name="Common/base" />
+<block name="title">添加采血管编号</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 面板 -->
+        <div class="panel panel-default form-inline">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">添加采血管编号</span></div>
+                    <div class="col-xs-6 text-right">
+                        <div class="btn btn-primary btn-sm" id="add4"><span class="glyphicon glyphicon-plus"></span> 添加</div>
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed table-custom table-car">
+                    <thead id="head">
+                        <tr>
+                            <th>序号</th>
+                            <th>提取时间</th>
+                            <th>第一个</th>
+                            <th>第二个</th>
+                            <th style="width: 5%">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="template4" style="display: none">
+                        <tr>
+                            <td style="text-align: center;vertical-align: middle">1</td>
+                            <td>
+                                <input type="text" class="form-control input-sm form-datetime" name="used_time" maxlength="16" readonly="readonly">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-sm" name="code1" maxlength="255">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-sm" name="code2" maxlength="255" disabled>
+                            </td>
+                            <td>
+                                <div class="btn btn-warning btn-sm del4"><span class="glyphicon glyphicon-trash"></span> 删除</div>
+                                <input type="hidden" value="">
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody id="info4"></tbody>
+                </table>
+                <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-saved"></span> 提交</button>
+                <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="case_id" id="case_id" value="{$case['id']}" class="post-gather">
+    <input type="hidden" name="id" id="id" value="{$id}" class="post-gather">
+</block>
+<block name="head.ext">
+    <style>
+        #head th{text-align: center;}
+        #info{border:0px;}
+        #info td{text-align: center;}
+        .table-car .form-control {
+            min-width: auto;
+            width: 100%;
+        }
+    </style>
+    <script type="text/javascript">
+        // 定义URL地址
+        url.insert = "{:U('insertBlood')}";
+        url.getCode = "{:U('getCode')}";
+        var json = '{$json}';
+        if(json == ""){
+            json = [];
+        }else{
+            json = JSON.parse(json);
+        }
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CaseClient.blood?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

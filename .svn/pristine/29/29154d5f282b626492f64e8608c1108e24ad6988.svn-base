@@ -1,0 +1,19 @@
+<div class="panel-defualt">
+    <div class="panel panel-default form-inline">
+        <!-- 面板标题 -->
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-6"><span class="block-title">检验鉴定委托书</span></div>
+                <div class="col-xs-6 text-right">
+                    <a href="{:U('CasePhoto/index?case_id='.$archiveDataArray['case_info_id'].'&cate='.$archiveDataArray['newcate'].'&ext_ida='.$archiveDataArray['lend']['id'])}" class="btn btn-primary btn-sm js-open js-end-refresh" id="upload"><span class="glyphicon glyphicon-upload"></span> 上传</a>
+                    <button type="button" class="btn btn-primary btn-sm "><span class="glyphicon glyphicon-download" id="download"></span> 下载</button>
+                    <a href="javascript:;" class="btn btn-warning btn-sm " id="delete"><span class="glyphicon glyphicon-trash"></span> 删除</a>
+                </div>
+            </div>
+        </div>
+        <!-- 面板内容 -->
+        <div class="panel-body">
+            <include file="CaseCheckup/applyStepTwo/photoTable" />
+        </div>
+    </div>
+</div>

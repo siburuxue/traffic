@@ -1,0 +1,92 @@
+<?php
+namespace Admin\Model;
+
+use Think\Model\ViewModel;
+
+class CaseParkingStatisticsModel extends ViewModel
+{
+	public $viewFields = array(
+		'CaseClient' => array(
+			'id',
+			'case_id',
+			'name',
+			'sex',
+			'id_type',
+			'idno',
+			'age',
+			'tel',
+			'driver_licence_type',
+			'first_driver_licence_time',
+			'traffic_type',
+			'grade_type',
+			'car_no',
+			'blame_type',
+			'hurt_type',
+			'death_time',
+			'is_escape',
+			'escape_catch_man_time',
+			'escape_catch_car_time',
+			'address',
+			'is_checked_breath',
+			'breath_val',
+			'is_checked_blood',
+			'blood_time',
+			'is_checked_urine',
+			'urine_result',
+			'detain_time',
+			'detain_parking',
+			'detain_force_id',
+			'detain_driver_licence',
+			'detain_return_time',
+			'detain_return_user_id',
+			'punish_is_warning',
+			'punish_is_fine',
+			'punish_money',
+			'punish_score',
+			'punish_is_seize',
+			'punish_seize_time',
+			'punish_is_revoke',
+			'punish_revoke_time',
+			'punish_is_detain',
+			'punish_detain_time',
+			'criminal_case_type',
+			'criminal_measure',
+			'create_time',
+			'create_user_id',
+			'update_time',
+			'update_user_id',
+			'is_del',
+			'_type' => 'LEFT',
+		),
+		'CaseInfo'=>array(
+			'department_id'=>'case_department_id',
+			'accident_time' => 'case_accident_time',
+			'_on'=>'CaseClient.case_id=CaseInfo.id and CaseInfo.is_del=0',
+			'_table'=>'__CASE__',
+			'_type' => 'LEFT',
+		),
+		'Department' => array(
+			'name'=>'department_name',
+			'_on'=>'Department.id=CaseInfo.department_id',
+			'_type' => 'LEFT',
+		),
+		'CaseHandle'=>array(
+			'user_id' => 'case_handle_user_id',
+			'start_time' => 'case_handle_start_time',
+			'end_time' => 'case_handle_end_time',
+			'is_now' => 'case_handle_is_now',
+			'is_del' => 'case_handle_is_del',
+			'_on' => 'CaseInfo.id=CaseHandle.case_id and CaseHandle.is_now=1 and CaseHandle.is_del=0',
+			'_type' => 'LEFT',
+		),
+		'CaseHandleUser' => array( // 办案人信息
+			'user_name' => 'case_handle_user_name',
+			'true_name' => 'case_handle_true_name',
+			'_table' => '__USER__',
+			'_on' => 'CaseHandleUser.id=CaseHandle.user_id and CaseHandleUser.is_del=0',
+			'_type' => 'LEFT',
+		),
+
+	);
+
+}

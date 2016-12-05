@@ -1,0 +1,14 @@
+<ul class="nav nav-tabs nav-custom">
+    <if condition="$id eq ''">
+        <li><a href="javascript:;">呈请事故中止</a></li>
+        <else />
+        <li><a href="{:U('unCognizanceIndex?case_id='.$case['id'].'&action=accident_termination&report_id='.$id.'&id='.$stopId)}">呈请事故中止</a></li>
+    </if>
+    <li class="active"><a href="{:U('unCognizanceIndex?case_id='.$case['id'].'&action=investigation_report&id='.$id)}">调查报告</a></li>
+    <if condition="$id eq ''">
+        <li><a href="javascript:;">道路交通事故证明</a></li>
+        <else />
+        <li><a href="{:U('unCognizanceIndex?case_id='.$case['id'].'&action=road_traffic_accident_certificate&report_id='.$id.'&id='.$caseCognizanceProveId)}">道路交通事故证明</a></li>
+    </if>
+</ul>
+

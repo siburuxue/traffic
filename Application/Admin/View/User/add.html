@@ -1,0 +1,117 @@
+<extend name="Common/base" />
+<block name="title">新增人员</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 面板 -->
+        <div class="panel panel-default">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">新增人员</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed table-custom">
+                    <tr>
+                        <th width="15%">登录名</th>
+                        <td>
+                            <input type="text" class="form-control input-sm post-gather" name="user_name" maxlength="50">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>姓名</th>
+                        <td>
+                            <input type="text" class="form-control input-sm post-gather" name="true_name" maxlength="255">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>警号</th>
+                        <td>
+                            <input type="text" class="form-control input-sm post-gather" name="police_no" maxlength="255">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>队别</th>
+                        <td>
+                            <select name="department_id" class="form-control input-sm post-gather">
+                                <option value="">请选择</option>
+                                <volist name="department" id="vo">
+                                    <option value="{$vo.id}">{$vo._prefix}{$vo.name}</option>
+                                </volist>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>职务</th>
+                        <td>
+                            <div class="checkbox">
+                                <volist name="post" id="vo">
+                                    <label>
+                                        <input type="checkbox" name="post" value="{$vo.id}">{$vo.name}</label>&nbsp;&nbsp;
+                                </volist>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>用户角色</th>
+                        <td>
+                            <div class="checkbox">
+                                <volist name="role" id="vo">
+                                    <label>
+                                        <input type="checkbox" name="role" value="{$vo.id}">{$vo.name}</label>&nbsp;&nbsp;
+                                </volist>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>联系方式</th>
+                        <td>
+                            <input type="text" class="form-control input-sm post-gather" name="tel" maxlength="255">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>事故处理等级</th>
+                        <td>
+                            <select name="traffic_level_id" class="form-control input-sm post-gather">
+                                <option value="">请选择</option>
+                                <volist name="trafficLevel" id="vo">
+                                    <option value="{$vo.id}">{$vo.name}</option>
+                                </volist>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>密码</th>
+                        <td>
+                            <input type="password" class="form-control input-sm post-gather" name="password" maxlength="16">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>确认密码</th>
+                        <td>
+                            <input type="password" class="form-control input-sm post-gather" name="re_password" maxlength="16">
+                        </td>
+                    </tr>
+                </table>
+                <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-saved"></span> 提交</button>
+                <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.update = "{:U('insert')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.User.add?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

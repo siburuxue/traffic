@@ -1,0 +1,66 @@
+<table class="table table-bordered table-condensed table-form">
+    <tbody>
+        <tr>
+            <th width="15%">报警时间</th>
+            <td width="35%">{$info.alarm_time|date='Y-m-d H:i',###}</td>
+            <th width="15%">案件来源</th>
+            <td>{$info.case_source_name|default='-'}</td>
+        </tr>
+        <tr>
+            <th>报警人姓名</th>
+            <td>{$info.alarm_name}</td>
+            <th>单位及联系方式</th>
+            <td>{$info.contact}</td>
+        </tr>
+        <tr>
+            <th>报案人要求保密</th>
+            <td colspan="3">{$info['is_protect']?'是':'否'}</td>
+        </tr>
+        <tr>
+            <th>事故发生时间</th>
+            <td>{$info.accident_time|date='Y-m-d H:i',###}</td>
+            <th>事故地点</th>
+            <td>{$info.accident_place}</td>
+        </tr>
+        <tr>
+            <th>人员伤亡情况</th>
+            <td colspan="3">{$info.casualties|default='-'}</td>
+        </tr>
+        <tr>
+            <th>备注信息</th>
+            <td colspan="3">{$info.remark|default='-'}</td>
+        </tr>
+        <tr>
+            <th>处理状态</th>
+            <td>
+                <switch name="info.handle_type">
+                    <case value="0"><span class="text-danger">未处理</span></case>
+                    <case value="1"><span class="text-success">当事人自行处理</span></case>
+                    <case value="2"><span class="text-success">快赔中心处理</span></case>
+                    <case value="3"><span class="text-success">事故中队处理</span></case>
+                </switch>
+            </td>
+            <th>关联状态</th>
+            <td>
+                <eq name="info.is_link" value="1">
+                    <span class="text-success">已关联</span>
+                    <else/>
+                    <span class="text-danger">未关联</span>
+                </eq>
+            </td>
+        </tr>
+        <tr>
+            <th>作废状态</th>
+            <td>
+                <eq name="info.is_del" value="1">
+                    <span class="text-danger">已作废</span>
+                    <else/>
+                    <span class="text-success">正常</span>
+                </eq>
+            </td>
+            <th>作废缘由</th>
+            <td>{$info.del_reason|default='-'}</td>
+        </tr>
+    </tbody>
+</table>
+<hr>

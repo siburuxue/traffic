@@ -1,0 +1,122 @@
+<extend name="Common/base" />
+<block name="title">检验鉴定</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 面板 -->
+        <div class="panel panel-default form-inline1">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">检验鉴定</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <include file="ReCaseQueryCheckup/applyStepThree/top" />
+            <!-- stepstart-->
+            <eq name="caseCheckupReviewData.status" value="">
+                <include file="ReCaseQueryCheckup/applyStepThree/partOneForbiddenAll" />
+                <else/>
+                <include file="ReCaseQueryCheckup/applyStepThree/partOneCheckInfo" />
+            </eq>
+            <include file="ReCaseQueryCheckup/applyStepThree/partTwo" />
+        </div>
+        {:W('CasePhoto/index', array('检验鉴定委托书',$caseData['id'],39,$caseCheckupData['id'],0,0,$caseCheckupData['id']))}
+        <!-- 步骤three -->
+            <include file="ReCaseQueryCheckup/applyStepThree/partThreeForbidden" />
+        <!-- 步骤four -->
+        <include file="ReCaseQueryCheckup/applyStepThree/partFour" />
+        <!-- 步骤five -->
+        <include file="ReCaseQueryCheckup/applyStepThree/partFive" />
+        <include file="ReCaseQueryCheckup/applyStepThree/hiddenPart" />
+        <!-- steps end-->
+        <input id="is_submit" type="hidden" value="{$caseCheckupEntrustData.is_submit}">
+        <input id="is_finish" type="hidden" value="{$caseCheckupEntrustData.is_finish}">
+        <input name="case_id" id="case_id" type="hidden" value="{$caseData.id}">
+        <input name="case_checkup_id" id="case_checkup_id" type="hidden" value="{$caseCheckupData['id']}">
+        <input name="cate" id="photo_cate" type="hidden" value="39">
+    </div>
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    $(function(){
+        $('#case-photo-upload').attr('disabled','disabled')
+        $('#case-photo-delete').attr('disabled','disabled')
+        $('#case-photo-delete').attr('disabled','disabled')
+    });
+    // 定义URL地址
+    url.update = "{:U('applyStepThreeUpdate')}";
+    url.getTypeChild = "{:U('getTypeChild')}";
+    url.getClient = "{:U('getClient')}";
+    url.getOrgChild = "{:U('getOrgChild')}";
+    url.getClientInfo = "{:U('getClientInfo')}";
+    url.entrustInsert = "{:U('entrustInsert')}";
+    url.entrustSetSubmitFinish = "{:U('entrustSetSubmitFinish')}";
+    url.photoList = "{:U('photoList')}";
+    url.delete = "{:U('CasePhoto/delete')}";
+    url.photoDownload = "{:U('Common/download?ids=__IDS__')}";
+    url.reportInsert = "{:U('reportInsert')}";
+    url.msgInsert = "{:U('msgInsert')}";
+    url.getReportDetail = "{:U('getReportDetail')}";
+    url.reportBack = "{:U('reportBack')}";
+    url.reportBackStatus = "{:U('reportBackStatus')}";
+    url.ReCaseCheckup = "{:U('ReCaseCheckup/applyStepTop',array('case_checkup_id'=>$caseCheckupData['id'],'case_id'=>$caseCheckupData['case_id'],'case_checkup_id_pre'=>$caseCheckupData['id']))}";
+    </script>
+</block>
+<block name="foot.ext">
+    <div class="container-fluid" id="approval-box" style="display:none;margin-top:20px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">短信告知</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <input name="case_id" class="post-gather-msg" type="hidden" value="{$caseData.id}">
+                <input name="case_checkup_id" class="post-gather-msg" type="hidden" value="{$caseCheckupData['id']}">
+                <input name="case_client_id" class="post-gather-msg" type="hidden" value="{$caseCheckupData['case_client_id']}">
+                <table class="table table-bordered table-condensed table-custom">
+                    <tr>
+                        <th width="20%">选择当事人</th>
+                        <td>
+                            <foreach name="allName" item="co">
+                                <div class="checkbox">
+                                    <foreach name="co" item="vo">
+                                        <label>
+                                            <input type="checkbox" name="case_client_name" class="allselect" value="{$vo}、">{$vo}</label>&nbsp;&nbsp;&nbsp;
+                                    </foreach>
+                                </div>
+                            </foreach>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="20%">告知文件类型</th>
+                        <td>
+                            <select name="msg_type" class="form-control input-sm post-gather-msg">
+                                <option value="43" selecte="selected">检验鉴定结果告知书</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="20%">告知内容</th>
+                        <td>
+                            <textarea class="form-control input-sm post-gather-msg" name="msg_content" maxlength="16" style="width:100%;height:80px;outline:none;resize:none;"></textarea>
+                        </td>
+                    </tr>
+                </table>
+                <div style="margin:auto;width:100%;text-align:left;">
+                    <button type="button" class="btn btn-primary" id="approval-submit"><span class="glyphicon glyphicon-send"></span> 发送短信</button>
+                    <button type="button" class="btn btn-warning" id="approval-close"><span class="glyphicon glyphicon-off"></span> 重置</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <import file="js.ReCaseQueryCheckup.applyStepThree?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

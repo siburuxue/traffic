@@ -1,0 +1,39 @@
+<!-- 面板内容 -->
+<div class="panel-body">
+    <input type="hidden" class="post-gather-top"  name="case_id" value="{$Think.get.case_id}"/>
+    <input type="hidden" class="post-gather-top"  name="case_checkup_id" value="{$Think.get.case_checkup_id}"/>
+    <input type="hidden" class="post-gather-top"  name="again_id" value="{$Think.get.again_id}"/>
+    <input type="hidden" name="recheck_id" value="{$Think.get.recheck_id}"/>
+    <input type="hidden" name="review_id" value="{$Think.get.review_id}"/>
+    <table class="table table-bordered table-condensed table-custom">
+        <tr>
+            <th width="20%"><span class="text-danger">*</span>&nbsp;申请人</th>
+            <td>
+                <select name="from_user_id"  class="form-control input-sm post-gather-top" >
+                    <option value="">请选择</option>
+                    <volist name="allClientRelaterData" id="vo">
+                    <option value="{$vo.id}" <eq name="vo.id" value="$againData['from_user_id']">selected="selected"</eq> >{$vo.name}</option>
+                    </volist>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th><span class="text-danger"></span>&nbsp;申请理由</th>
+            <td>
+                <input type="text" class="form-control input-sm  post-gather-top"  name="again_content" maxlength="250"  value="{$againData['content']}" />
+            </td>
+        </tr>
+        <tr>
+            <th><span class="text-danger">*</span>&nbsp;书面材料</th>
+            <td>
+                <a href="{:U('checkupAgainPicNumber',array('case_id'=>$case_id,'cate'=>'38','case_checkup_id_pre'=>$case_checkup_id_pre))}" class="js-open js-end-refresh">
+              {:W('Public/getPicNumber',array('caseId'=>$case_id,'cate'=>'38','ext_ida'=>$case_checkup_id_pre,'ext_idb'=>$caseCheckupData['id']))}
+               </a>
+            </td>
+
+        </tr>
+    </table>
+    <button type="button" class="btn btn-primary  btn-sm-jimmy "  id="re-checkup"><span class="glyphicon glyphicon-saved"></span> 提请重新检验鉴定</button>
+<a href="{:U('CaseCheckCheckup/index',array('case_id'=>$caseCheckupData['case_id'],'cate'=>'3','case_checkup_id'=>$caseCheckupData['id']))}" class="btn btn-primary btn-sm-jimmy js-open js-end-refresh"><span class="glyphicon glyphicon-list-alt"> </span> 审批信息</a>
+
+</div>

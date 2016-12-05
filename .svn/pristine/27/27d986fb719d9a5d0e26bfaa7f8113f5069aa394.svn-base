@@ -1,0 +1,23 @@
+<input type="hidden" name="id" value="{$info.id}" class="auto-gather">
+<input type="hidden" name="case_id" value="{$info.case_id}">
+<input type="hidden" name="case_review_id" value="{$caseReview.id}">
+<table class="table table-bordered table-condensed table-form">
+    <tr>
+        <th width="15%"><span class="text-danger">*</span> 复核人基本情况</th>
+        <td>
+            <textarea class="form-control auto-gather" name="result_info" style="height:120px;resize:none;" disabled="disabled" >{$info.result_info}</textarea>
+        </td>
+    </tr>
+    <tr>
+        <th><span class="text-danger">*</span> 申请的基本事实、理由</th>
+        <td>
+            <textarea class="form-control auto-gather" name="result_reason" style="height:120px;resize:none;" disabled="disabled">{$info.result_reason}</textarea>
+        </td>
+    </tr>
+    <tr>
+        <th><span class="text-danger">*</span> 经本机关复核认为</th>
+        <td>
+            <textarea class="form-control auto-gather" name="result_content" style="height:120px;resize:none;" disabled="disabled">{$info.result_content}</textarea>
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,25 @@
+<table class="table table-striped table-bordered table-hover table-condensed table-sheet" id="table" data-totalrows="{$page.totalrows}" data-totalpage="{$page.totalpage}" data-nowpage="{$page.nowpage}">
+    <thead>
+    <tr>
+        <th width="25%">机构名称</th>
+        <th width="25%">可接受委托大队</th>
+        <th>可进行检验鉴定项目</th>
+        <th colspan="2">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+        <volist name="list" id="vo1">
+            <tr>
+                <td>{$vo1.name}</td>
+                <td>{$vo1.departments}</td>
+                <td>{$vo1.checknames}</td>
+                <td width="80">
+                    <a href="{:U('edit?id='.$vo1['id'])}" class="btn btn-info btn-sm js-open js-end-refresh">编辑</a>
+                </td>
+                <td width="80">
+                    <div data-id="{$vo1.id}" class="btn btn-warning btn-sm delete-btn">作废</div>
+                </td>
+            </tr>
+        </volist>
+    </tbody>
+</table>

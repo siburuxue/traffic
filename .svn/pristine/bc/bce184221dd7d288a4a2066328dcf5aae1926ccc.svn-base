@@ -1,0 +1,46 @@
+<extend name="Common/base" />
+<block name="title">审批</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 审批 -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">审批</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <include file="CaseCheckCaseReviewLeader/index/base" />
+            </div>
+        </div>
+        <!-- 信息 -->
+        <div class="panel panel-default">
+            <div class="panel-heading"><span class="block-title">信息</span></div>
+            <div class="panel-body">
+                <include file="CaseCheckCaseReviewLeader/index/info" />
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="is_death" value="{$caseReviewCheck.is_death}">
+    <input type="hidden" name="level" value="{$caseCheck.level}">
+    <input type="hidden" name="id" value="{$caseCheck.id}">
+</block>
+<block name="foot.html">
+    <include file="CaseCheckCaseReviewLeader/index/confirm" />
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+        url.applyCheck = "{:U('applyCheck')}";
+        url.refuse = "{:U('refuse')}";
+        url.resume = "{:U('resume')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CaseCheckCaseReviewLeader.index?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

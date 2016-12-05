@@ -1,0 +1,14 @@
+<!-- 面板 -->
+<div class="panel panel-primary">
+    <!-- 面板标题 -->
+    <div class="panel-heading">笔录材料</div>
+    <!-- 面板内容 -->
+    <div class="list-group" style="height:204px;overflow:auto;">
+        <a href="{:U('CaseRecordHandle/index?case_id='.$info['id'])}" class="list-group-item list-group-item-info js-open js-end-refresh"><span class="glyphicon glyphicon-new-window"></span> 询问笔录</a>
+        <volist name="caseRecord" id="vo">
+            <a href="{:U('CaseAlarmHandle/detail?case_id='.$case_id.'&id='.$vo['id'])}" class="list-group-item js-open js-end-refresh">
+            当事人：张三 询问笔录1次
+            </a>
+        </volist>
+    </div>
+</div>

@@ -1,0 +1,120 @@
+<extend name="Common/base" />
+<block name="title">集体研究制作</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 面板 -->
+        <div class="panel panel-default">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">集体研究制作</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed table-form">
+                    <tr>
+                        <th width="15%">事故地区</th>
+                        <td width="35%">
+                            <input type="text" class="form-control input-sm post-gather" name="accident_area" maxlength="255">
+                        </td>
+                        <th width="15%">研究时间</th>
+                        <td>
+                            <input type="text" class="form-control input-sm post-gather form-datetime" name="discuss_time" maxlength="16" readonly="readonly" value="{:date('Y-m-d H:i')}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>事故时间</th>
+                        <td>
+                            <input type="text" class="form-control input-sm post-gather" name="accident_time" readonly="readonly" value="{$case.accident_time|date='Y-m-d H:i',###}">
+                        </td>
+                        <th>事故地点</th>
+                        <td>
+                            <input type="text" class="form-control input-sm post-gather" name="accident_place" readonly="readonly" value="{$case.accident_place}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>参研人员</th>
+                        <td colspan="3">
+                            <table style="width:100%">
+                                <tr>
+                                    <td>
+                                        <input type="text" class="form-control input-sm" name="member" readonly="readonly">
+                                    </td>
+                                    <td width="70" class="text-center">
+                                        <button class="btn btn-primary btn-sm" id="select">选择</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>汇报人</th>
+                        <td>
+                            <table style="width:100%">
+                                <tr>
+                                    <td>
+                                        <input type="text" class="form-control input-sm" name="reporter" readonly="readonly">
+                                    </td>
+                                    <td width="70" class="text-center">
+                                        <button class="btn btn-primary btn-sm" id="select1">选择</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <th>记录人</th>
+                        <td>
+                            <table style="width:100%">
+                                <tr>
+                                    <td>
+                                        <input type="text" class="form-control input-sm" name="recorder" readonly="readonly">
+                                    </td>
+                                    <td width="70" class="text-center">
+                                        <button class="btn btn-primary btn-sm" id="select2">选择</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>简要案情及原因</th>
+                        <td colspan="3">
+                            <textarea name="case_summary" class="form-control post-gather" style="height:120px;resize:none;"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>研究意见（个人意见）</th>
+                        <td colspan="3">
+                            <textarea name="research_opinion" class="form-control post-gather" style="height:120px;resize:none;"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>结论</th>
+                        <td colspan="3">
+                            <textarea name="result" class="form-control post-gather" style="height:120px;resize:none;"></textarea>
+                        </td>
+                    </tr>
+                </table>
+                <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-saved"></span> 提交</button>
+                <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="case_id" value="{$case.id}" class="post-gather">
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.update = "{:U('insert')}";
+    url.selectUser = "{:U('User/select')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CaseDiscussLeader.add?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

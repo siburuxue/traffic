@@ -1,0 +1,5 @@
+<ul class="nav nav-tabs nav-custom">
+    <li class="active"><a href="{:U('unCognizanceIndex?case_id='.$case['id'].'&action=accident_termination&report_id='.$reportId.'&id='.$id)}">呈请事故中止</a></li>
+    <li><a href="{:U('unCognizanceIndex?case_id='.$case['id'].'&action=investigation_report&id='.$reportId)}">调查报告</a></li>
+    <li><a href="{:U('unCognizanceIndex?case_id='.$case['id'].'&action=road_traffic_accident_certificate&report_id='.$reportId.'&id='.$CaseCognizanceProveInfoId)}">道路交通事故证明</a></li>
+</ul>

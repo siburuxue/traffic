@@ -1,0 +1,104 @@
+<extend name="Common/base" />
+<block name="title">检验鉴定</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 面板 -->
+        <div class="panel panel-default form-inline1">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">检验鉴定</span></div>
+                    <div class="col-xs-6 text-right">
+                        <!-- <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button> -->
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" class="post-gather"  name="again_id" value="{$Think.get.again_id}"/>
+            <input type="hidden" class="post-gather"  name="recheck_id" value="{$Think.get.recheck_id}"/>
+            <input type="hidden" class="post-gather"  name="review_id" value="{$Think.get.review_id}"/>
+            <!-- stepstart-->
+            <in name="againReviewData.status" value="0,1">
+              <include file="ReCaseCheckup/applyStepOne/top" /> 
+            <else/>
+
+              <include file="ReCaseCheckup/applyStepOne/topRefuse" /> 
+              <include file="ReCaseCheckup/applyStepOne/applyCheckReviewAgain" /> 
+            </in> 
+
+            <eq name="caseCheckupData.is_delay" value="0">
+                <!-- case1不超期 不延期 -->
+                <!-- 00?步骤判断start1：不超期 不延期 则：步骤one不可操作 不可点提请击审批按钮  不可点击审批信息按钮 不可点击确认按钮 步骤two可操作-->
+                <include file="ReCaseCheckup/applyStepOne/partOne" />
+                    <eq name="caseCheckupData.finish_time" value="0">
+                    <include file="ReCaseCheckup/applyStepOne/partTwoForbidden" />
+                    <else/>
+                    <include file="ReCaseCheckup/applyStepOne/partTwo" />
+                   </eq>
+                <!-- 步骤判断end-->
+                <else/>
+                <!-- case2不超期 延期 -->
+                <eq name="caseCheckupReviewData.status" value="">
+                    <!-- 01null步骤判断start2：不超期 但是延期 而且无审批记录 则：步骤one不可操作 可点提请击审批按钮 可点击审批信息按钮 不可点击确认按钮 步骤two不可操作-->
+                    <include file="ReCaseCheckup/applyStepOne/partOneNoRecord" />
+                    <include file="ReCaseCheckup/applyStepOne/partTwoForbidden" />
+                    <!-- 步骤判断end-->
+                </eq>
+                <eq name="caseCheckupReviewData.status" value="0">
+                    <!-- 010步骤判断start3：不超期 但是延期 而且已经提请的审批状态是 待审核 则：步骤one不可操作 不可点提请击审批按钮  可点击审批信息按钮   不可点击确认按钮 步骤two不可操作-->
+                    <include file="ReCaseCheckup/applyStepOne/partOneCheckInfo" />
+                    <include file="ReCaseCheckup/applyStepOne/partTwoForbidden" />
+                    <!-- 步骤判断end-->
+                </eq>
+                <eq name="caseCheckupReviewData.status" value="1">
+                    <!-- 011步骤判断start4：不超期 但是延期 而且已经提请的审批状态是通过状态 则：步骤one不可操作  不可点提请击审批按钮 可点击审批信息按钮   不可点击确认按钮 步骤two可操作-->
+                    <include file="ReCaseCheckup/applyStepOne/partOneCheckInfo" />
+                    <include file="ReCaseCheckup/applyStepOne/partTwo" />
+                    <!-- 步骤判断end-->
+                </eq>
+                <eq name="caseCheckupReviewData.status" value="2">
+                    <!-- 012步骤判断start5：不超期 但是延期 而且已经提请的审批状态是  拒绝状态 则：步骤one不可操作 不可点提请击审批按钮 可点击审批信息按钮 可点击确认按钮 步骤two不可操作-->
+                    <if condition="($caseCheckupData.out_checked eq '0') and ($caseCheckupData.delay_checked eq '0')">
+                        <include file="ReCaseCheckup/applyStepOne/partOneForbidden" />
+                        <else/>
+                        <include file="ReCaseCheckup/applyStepOne/partOneCheckRefuse" />
+                    </if>
+                    <include file="ReCaseCheckup/applyStepOne/partTwoForbidden" />
+                    <!-- 步骤判断end-->
+                </eq>
+            </eq>
+                   
+        </div>
+        <include file="ReCaseCheckup/applyStepOne/photoUploadForbidden" />
+        <!-- 步骤three -->
+        <include file="ReCaseCheckup/applyStepOne/partThreeForbidden" />
+        <!-- 步骤four -->
+        <include file="ReCaseCheckup/applyStepOne/partFourForbidden" />
+        <!-- 步骤five -->
+        <include file="ReCaseCheckup/applyStepOne/partFiveForbidden" />
+        <!-- steps end-->
+        <input type="hidden" id="update_type" value="{$Think.get.update_type}"/>
+        <!-- <input id="entrust_cookie_data" value="{$entrust_cookie_data}"/> -->
+    </div>
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.update = "{:U('applyStepTwoUpdate')}";
+    url.getTypeChild = "{:U('getTypeChild')}";
+    url.getClient = "{:U('getClient')}";
+    url.getOrgChild = "{:U('getOrgChild')}";
+    url.getClientInfo = "{:U('getClientInfo')}";
+    url.entrustInsert = "{:U('entrustInsert')}";
+    url.setCookie = "{:U('setCookie')}";
+    url.againUpdate = "{:U('againUpdate')}";
+    var entrust_cookie_data = '{$entrust_cookie_data}';
+    </script>
+</block>
+<block name="foot.ext">
+
+    <import file="js.ReCaseCheckup.applyStepOne?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

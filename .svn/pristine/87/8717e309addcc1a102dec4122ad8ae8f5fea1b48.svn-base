@@ -1,0 +1,49 @@
+<!-- tab -->
+<include file="CaseCognizance/normal/accident_termination/tab" />
+<!-- 列表面板 -->
+<div class="panel panel-default">
+    <!-- 面板头 -->
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-6"><span class="block-title">呈请事故中止</span></div>
+            <div class="col-xs-6 text-right">
+                <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+            </div>
+        </div>
+    </div>
+    <!-- 面板主体 -->
+    <div class="panel-body">
+        <include file="CaseCognizance/normal/accident_termination/base" />
+    </div>
+    <div class="text-left" style="margin:0 0 15px 16px">
+        <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-floppy-disk"></span> 保存</button>
+        <button type="button" class="btn btn-primary" id="approval" <if condition="$id eq ''">disabled</if> ><span class="glyphicon glyphicon-pencil"></span> 呈请中止</button>
+        <button type="button" class="btn btn-primary" id="print" <if condition="$id eq ''">disabled</if> ><span class="glyphicon glyphicon-print"></span> 打印</button>
+        <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+    </div>
+</div>
+<input type="hidden" id="case_id" name="case_id" class="post-gather" value="{$case['id']}">
+<input type="hidden" id='id' name="id" class="post-gather" value="{$id}">
+<input type="hidden" id='report_id' name="report_id" class="post-gather" value="{$reportId}">
+<input type="hidden" id='case_cognizance_id' name="case_cognizance_id" class="post-gather" value="{$cognizanceId}">
+
+<if condition="count($checkList) neq 0">
+    <!-- 列表面板 -->
+    <div class="panel panel-default" style="margin-top: 20px;">
+        <!-- 面板头 -->
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-6"><span class="block-title">呈请事故中止记录</span></div>
+            </div>
+        </div>
+        <!-- 面板主体 -->
+        <div class="panel-body">
+            <include file="CaseCognizance/normal/accident_termination/historyList" />
+        </div>
+    </div>
+</if>
+{:W('CasePhoto/index', array('呈请报告列表',$case['id'],21,$id))}
+<script>
+    var is_submit = "{$stopInfo.is_submit}";
+    var is_back = "{$cognizanceInfo.is_back}";
+</script>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-type" content="text/html;charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <title>
+        <block name="title">{$Think.config.custom.sitename}</block>
+    </title>
+    <import file="bootstrap.css.bootstrap#min?" basepath="{$Think.SRC_COMMON_URL}" type='css' />
+    <import file="css.common?" basepath="{$Think.SRC_MODULE_URL}" type='css' />
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you viewInfo the page via file:// -->
+    <!--[if lt IE 9]>
+    <import file="jquery.html5shiv#min?" basepath="{$Think.SRC_COMMON_URL}" />
+    <import file="jquery.respond#min?" basepath="{$Think.SRC_COMMON_URL}" />
+    <![endif]-->
+    <import file="jquery.jquery-1#11#2#min?" basepath="{$Think.SRC_COMMON_URL}" />
+    <import file="layer.layer?" basepath="{$Think.SRC_COMMON_URL}" />
+    <import file="js.common?" basepath="{$Think.SRC_MODULE_URL}" />
+    <block name="header"></block>
+</head>
+
+<body>
+    <include file="Inc/topbar" />
+    <block name="mainer"></block>
+    <block name="footer"></block>
+    <p style="height:100px;"></p>
+    <import file="bootstrap.js.bootstrap#min?" basepath="{$Think.SRC_COMMON_URL}" />
+</body>
+
+</html>

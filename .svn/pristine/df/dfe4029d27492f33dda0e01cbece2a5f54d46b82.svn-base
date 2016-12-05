@@ -1,0 +1,30 @@
+<table class="table table-striped table-bordered table-hover table-condensed table-sheet" id="table" data-totalrows="{$page.totalrows}" data-totalpage="{$page.totalpage}" data-nowpage="{$page.nowpage}">
+    <thead>
+        <tr>
+            <th style="text-align:center">选项</th>
+            <th style="text-align:center">事故编号</th>
+            <th style="text-align:center">事故时间</th>
+            <th style="text-align:center">事故地点</th>
+            <th style="text-align:center">当事人</th>
+        </tr>
+    </thead>
+    <tbody>
+        <volist name="list" id="vo">
+            <tr>
+            <td style="text-align:center"><input type="radio" name="archive_case_id" value="{$vo.id}"/></td>
+            <td style="text-align:center"><a href="{:U('CaseInfo/detail?id='.$vo['id'])}" class="js-open">{$vo.code|default='-'}</a></td>
+            <td style="text-align:center">{$vo.accident_time|date='Y-m-d H:i',###}</td>
+            <td style="text-align:center">{$vo.accident_place|default='-'}</td>
+            <td style="text-align:center">
+            <volist name="vo.caseClient" id="co">
+                <if condition="$i lt '3'">
+                {$co.name|default='-'}&nbsp;
+                <else/>
+                  ...
+                </if>
+            </volist>
+            </td>
+            </tr>
+        </volist>
+    </tbody>
+</table>

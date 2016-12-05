@@ -1,0 +1,233 @@
+<extend name="Common/base" />
+<block name="title">处罚</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <div class="panel panel-default form-inline" style="margin-top: 20px;">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">处罚意见</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed table-custom">
+                    <tr>
+                        <td>
+                            <textarea class="form-control post-gather" id="opinion" name="opinion" disabled style="resize: none;height:200px;width:100%"></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div id="user-list" class="row" >
+            <div  class="col-xs-3" id="client-list">
+                <volist name="clientList" id="vo">
+                    <div class="panel panel-primary panel-alarm client-list-head" id="{$vo.id}">
+                        <div class="panel-heading" style="cursor: pointer">{$vo.name}</div>
+                        <ul class="list-group collapse" data-parent="#client-list">
+                            <li class="list-group-item">交通方式：{$vo.traffic_type}</li>
+                            <li class="list-group-item">伤害程度：{$vo.hurt_type}</li>
+                            <li class="list-group-item">车牌：{$vo.car_no}</li>
+                        </ul>
+                    </div>
+                </volist>
+            </div>
+            <div class="col-xs-9">
+                <!-- 面板 -->
+                <div class="panel panel-default form-inline1">
+                    <!-- 面板标题 -->
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-6"><span class="block-title">处罚</span></div>
+                        </div>
+                    </div>
+                    <!-- 面板内容 -->
+                    <div class="panel-body">
+                        <h3 class="row" style="margin-top: -7px;">
+                            <div class="col-xs-6"><span class="block-title">违法行为</span></div>
+                        </h3>
+                        <table class="table table-bordered table-condensed table-custom">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <textarea class="form-control post-gather" disabled id="illegal" name="illegal" style="resize: none;height:200px;"></textarea>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <h3 class="row">
+                            <div class="col-xs-6"><span class="block-title">行政处罚</span></div>
+                        </h3>
+                        <table class="table table-bordered table-condensed table-custom" id="administrative-sanction">
+                            <tr>
+                                <td width="3%" style="height:41px;vertical-align: middle;text-align: center">
+                                    <input type="checkbox" disabled class="post-gather-checkbox" name="punish_is_warning" id="punish_is_warning">
+                                </td>
+                                <th width="10%">警告</th>
+                                <th width="10%">警告时间</th>
+                                <td width="10%"><input type="text"  disabled id="punish_warning_time" name="punish_warning_time" class="post-gather form-control input-sm form-datetime" readonly disabled></td>
+                                <td width="10%"></td>
+                                <td width="10%"></td>
+                                <td width="10%"></td>
+                                <td width="10%"></td>
+                                <td width="10%"></td>
+                                <td width="5%"></td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align: middle;text-align: center"><input type="checkbox" disabled class="post-gather-checkbox" id="punish_is_fine" name="punish_is_fine"></td>
+                                <th>罚款</th>
+                                <th>罚款时间</th>
+                                <td><input type="text" id="punish_fine_time" name="punish_fine_time" class="post-gather form-control input-sm form-datetime" readonly disabled></td>
+                                <th>金额</th>
+                                <td><input type="number" class="form-control  input-sm post-gather" id="punish_fine_money" name="punish_fine_money" disabled max="99999999.99"></td>
+                                <th>扣分
+                                <td><input type="text" class="form-control  input-sm post-gather" name="punish_fine_score" id="punish_fine_score" disabled max="99999999.99"></td>
+                                <th>行政处罚决定书页数</th>
+                                <td style="text-align: center;vertical-align: middle"><a href="javascript:;" data-href="{:U('photoTable?case_id='.$case['id'].'&cate=25&id=')}" class="page-num js-open" id="punish-decision" data-cate="25">0</a></td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align: middle;text-align: center"><input disabled type="checkbox" class="post-gather-checkbox" name="punish_is_seize" id="punish_is_seize"></td>
+                                <th>暂扣</th>
+                                <th>暂扣时间</th>
+                                <td><input type="text" id="punish_seize_time" name="punish_seize_time" class="post-gather form-control input-sm form-datetime" readonly disabled></td>
+                                <th>暂扣时长</th>
+                                <td style="vertical-align: middle">
+                                    <input type="number" class="form-control input-sm post-gather" name="punish_seize_date" id="punish_seize_date" disabled max="99999999.99">
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align: middle;text-align: center"><input disabled type="checkbox" class="post-gather-checkbox" id="punish_is_revoke" name="punish_is_revoke"></td>
+                                <th>吊销</th>
+                                <th>执行时间</th>
+                                <td><input type="text" id="punish_revoke_time" name="punish_revoke_time" class="post-gather form-control input-sm form-datetime" readonly disabled></td>
+                                <th>吊销时长</th>
+                                <td style="vertical-align: middle">
+                                    <select class="form-control input-sm post-gather" name="punish_revoke_date" id="punish_revoke_date" disabled>
+                                        <option value="">请选择</option>
+                                        <volist name="revoke_years" id="vo">
+                                            <option value="{$key}">{$vo}</option>
+                                        </volist>
+                                    </select>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align: middle;text-align: center"><input disabled type="checkbox" class="post-gather-checkbox" id="punish_is_detain" name="punish_is_detain"></td>
+                                <th>拘留</th>
+                                <th>拘留时间</th>
+                                <td><input type="text" id="punish_detain_time" name="punish_detain_time" class="post-gather form-control input-sm form-datetime" readonly disabled></td>
+                                <th>拘留天数</th>
+                                <td><input type="number" class="form-control input-sm post-gather" name="punish_detain_date" id="punish_detain_date" disabled max="99999999.99"></td>
+                                <th>行政拘留回执页数</th>
+                                <td style="text-align: center;vertical-align: middle"><a href="javascript:;" data-href="{:U('photoTable?case_id='.$case['id'].'&cate=26&id=')}" class="page-num js-open" id="detention-receipt" data-cate="26">0</a></td>
+                                <td></td>
+                                <td></td>
+
+                            </tr>
+                        </table>
+                        <h3 class="row">
+                            <div class="col-xs-6"><span class="block-title">刑事处罚</span></div>
+                        </h3>
+                        <table class="table table-bordered table-condensed table-custom">
+                            <tr>
+                                <th width="25%">立案时间</th>
+                                <td width="25%">
+                                    <input type="text" disabled class="form-control post-gather input-sm form-datetime" id="criminal_time" name="criminal_time" readonly value="">
+                                </td>
+                                <th width="25%">案件类别</th>
+                                <td width="25%">
+                                    <select class="form-control input-sm post-gather" name="criminal_case_type" id="criminal_case_type" disabled>
+                                        <option value="">请选择</option>
+                                        <volist name="rights_obligations" id="vo">
+                                            <option value="{$key}">{$vo}</option>
+                                        </volist>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="table table-bordered table-condensed table-custom">
+                            <tr>
+                                <td style="text-align: center;width:3%;vertical-align: middle"><input type="checkbox" id="criminal_is_detain" name="criminal_is_detain" class="post-gather-checkbox" disabled></td>
+                                <th style="width: 20%">刑事拘留</th>
+                                <th style="width: 20%">刑事拘留时间</th>
+                                <td style="width: 20%">
+                                    <input type="text" id="criminal_detain_time" name="criminal_detain_time" class="form-datetime input-sm form-control post-gather" disabled readonly value="">
+                                </td>
+                                <th style="width: 20%">文书页数</th>
+                                <td style="text-align: center;vertical-align: middle"><a href="javascript:;" data-href="{:U('photoTable?case_id='.$case['id'].'&cate=27&id=')}" class="page-num js-open" id="criminal-custody" data-cate="27">0</a></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;width:3%;vertical-align: middle"><input disabled type="checkbox" id="criminal_is_arrest" name="criminal_is_arrest" class="post-gather-checkbox"></td>
+                                <th>逮捕</th>
+                                <th>逮捕时间</th>
+                                <td>
+                                    <input type="text" id="criminal_arrest_time" name="criminal_arrest_time" class="form-datetime input-sm form-control post-gather" disabled readonly value="">
+                                </td>
+                                <th>文书页数</th>
+                                <td style="text-align: center;vertical-align: middle"><a href="javascript:;" data-href="{:U('photoTable?case_id='.$case['id'].'&cate=28&id=')}" class="page-num js-open" id="arrest" data-cate="28">0</a></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;width:3%;vertical-align: middle"><input disabled type="checkbox" id="criminal_is_remand" name="criminal_is_remand" class="post-gather-checkbox"></td>
+                                <th>取保候审</th>
+                                <th>取保候审时间</th>
+                                <td>
+                                    <input type="text" id="criminal_remand_time" name="criminal_remand_time" class="form-datetime input-sm form-control post-gather" disabled readonly value="">
+                                </td>
+                                <th>文书页数</th>
+                                <td style="text-align: center;vertical-align: middle"><a href="javascript:;" data-href="{:U('photoTable?case_id='.$case['id'].'&cate=29&id=')}" class="page-num js-open" id="bail" data-cate="29">0</a></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;width:3%;vertical-align: middle"><input disabled type="checkbox" id="criminal_is_sue" name="criminal_is_sue" class="post-gather-checkbox"></td>
+                                <th>移送起诉</th>
+                                <th>移送起诉时间</th>
+                                <td>
+                                    <input type="text" id="criminal_sue_time" name="criminal_sue_time" class="form-datetime input-sm form-control post-gather" disabled readonly value="">
+                                </td>
+                                <th>文书页数</th>
+                                <td style="text-align: center;vertical-align: middle"><a href="javascript:;" data-href="{:U('photoTable?case_id='.$case['id'].'&cate=30&id=')}" class="page-num js-open" id="referral-prosecution" data-cate="30">0</a></td>
+                            </tr>
+                        </table>
+                        <input type="hidden" class="post-gather" id="case_id" name="case_id" value="{$case['id']}">
+                        <input type="hidden" class="post-gather" id="case_client_id" name="case_client_id">
+                        <input type="hidden" class="post-gather" id="id" name="id" value="{$id}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        {:W('CasePhoto/index', array('公安交通管理行政处罚决定书',$case['id'],24,$id))}
+    </div>
+</block>
+<block name="head.ext">
+    <style>
+        #administrative-sanction input,select{
+            min-width:auto!important;
+            width:100%!important;
+        }
+    </style>
+    <script>
+        url.getClientPunishInfo = "{:U('getClientPunishInfo')}";
+        url.save = "{:U('savePunishInfo')}";
+        url.photoList = "{:U('photoList')}";
+        url.getCount= "{:U('getCount')}";
+        url.download = "{:U('Common/download')}";
+        url.delete = "{:U('CasePhoto/delete')}";
+    </script>
+</block>
+<block name="foot.ext">
+
+    <import file="js.CasePunishHandleInfo.index?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

@@ -1,0 +1,52 @@
+<extend name="Common/base" />
+<block name="mainer">
+    <div class="container">
+        <div class="page-header">
+            <h1>编辑个人资料 <small><a href="{:U('index')}">返回</a></small></h1>
+        </div>
+        <div class="form">
+            <div class="form-group">
+                <label>* 姓名</label>
+                <input type="text" name="truename" class="form-control" id="truename" placeholder="姓名" maxlength="50" tabindex="1" value="{$my.truename}">
+            </div>
+            <div class="form-group">
+                <label>* 昵称</label>
+                <input type="text" name="nickname" class="form-control" id="nickname" placeholder="昵称" maxlength="50" tabindex="1" value="{$my.nickname}">
+                <p class="help-block">4-20字节，汉字占2字节，不区分大小写</p>
+            </div>
+            <div class="form-group">
+                <label>手机号码</label>
+                <input type="text" name="mobile" class="form-control" id="mobile" placeholder="手机号码" maxlength="50" tabindex="1" value="{$my.mobile}">
+            </div>
+            <button type="button" id="submit" class="btn btn-primary" tabindex="2">提交保存</button>
+        </div>
+    </div>
+</block>
+<block name="footer">
+    <script type="text/javascript">
+    url.update = "{:U('update')}";
+
+    $(function() {
+        // 提交
+        $('#submit').on('click', function() {
+            $.post(url.update, {
+                'truename': $('#truename').val(),
+                'nickname': $('#nickname').val(),
+                'mobile': $('#mobile').val()
+            }, function(msg) {
+
+                layer.alert(msg.info, function(index) {
+                    layer.close(index);
+                    if (msg.status == 1) {
+                        window.location.reload();
+                    }
+                    if (msg.url) {
+                        window.location.href = msg.url;
+                    }
+                });
+            });
+        });
+
+    });
+    </script>
+</block>

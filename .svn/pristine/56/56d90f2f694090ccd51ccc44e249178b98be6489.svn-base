@@ -1,0 +1,49 @@
+<extend name="Common/base" />
+<block name="mainer">
+    <div class="container">
+        <div class="page-header">
+            <h1>设置登录帐号 <small><a href="{:U('index')}">返回</a></small></h1>
+        </div>
+        <div class="form">
+            <div class="form-group">
+                <label>邮箱地址</label>
+                <input type="email" name="email" class="form-control" id="email" placeholder="邮箱地址" maxlength="50" tabindex="1">
+                <p class="help-block">我们将会发送验证邮件至此邮箱，请确保输入的邮箱地址有效</p>
+            </div>
+            <div class="form-group">
+                <label>密码</label>
+                <input type="password" name="password" class="form-control" id="password" placeholder="密码" maxlength="16" tabindex="2">
+                <p class="help-block">6-16位，数字、字母、符号，区分大小写</p>
+            </div>
+            <div class="form-group">
+                <label>重复密码</label>
+                <input type="password" name="repassword" class="form-control" id="repassword" placeholder="重复密码" maxlength="16" tabindex="3">
+            </div>
+            <button type="button" id="submit" class="btn btn-primary" tabindex="5">设置帐号</button>
+        </div>
+    </div>
+</block>
+<block name="footer">
+    <script type="text/javascript">
+    url.AccountUpdate = "{:U('AccountUpdate')}";
+
+    $(function() {
+        // 提交
+        $('#submit').on('click', function() {
+            $.post(url.AccountUpdate, {
+                'email': $('#email').val(),
+                'password': $('#password').val(),
+                'repassword': $('#repassword').val()
+            }, function(msg) {
+                layer.alert(msg.info, function(index) {
+                    layer.close(index);
+                    if (msg.url) {
+                        window.location.href = msg.url;
+                    }
+                });
+            });
+        });
+
+    });
+    </script>
+</block>

@@ -1,0 +1,61 @@
+<extend name="Common/base" />
+<block name="title">案件办理</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 案件信息 -->
+        <include file="CaseHandle/detail/case" />
+        <!-- 按钮 -->
+        <div style="margin-bottom:20px;">
+            <a href="{:U('CaseExtBase/add',array('case_id'=>$info['id']))}"  type="button" class="btn btn-primary js-open js-end-refresh"><span class="glyphicon glyphicon-equalizer"></span> 案件信息采集补录</a>
+            <a href="{:U('DocumentView/index?case_id='.$info['id'])}" type="button" class="btn btn-primary js-open js-end-refresh"><span class="glyphicon glyphicon-th-large"></span> 文书查看</a>
+            <a href="{:U('CaseReviewHandleInfo/detail?id=_case_review_id_')}" class="btn btn-primary js-open js-end-refresh" id="caseReviewDetail" style="display:none;"><span class="glyphicon glyphicon-retweet"></span> 案件已被复核点击查看</a>
+        </div>
+        <!-- 步骤按钮 -->
+        <include file="CaseHandle/detail/step" />
+        <!-- 布局 -->
+        <div class="row">
+            <div class="col-xs-4">
+                <include file="CaseHandle/detail/accept" />
+                <include file="CaseHandle/detail/record" />
+                <include file="CaseHandle/detail/cognizance" />
+                <include file="CaseHandle/detail/mediate" />
+            </div>
+            <div class="col-xs-4">
+                <include file="CaseHandle/detail/survey" />
+                <include file="CaseHandle/detail/checkup" />
+                <include file="CaseHandle/detail/punish" />
+                <include file="CaseHandle/detail/catalog" />
+            </div>
+            <div class="col-xs-4">
+                <include file="CaseHandle/detail/client" />
+                <include file="CaseHandle/detail/lawDoc" />
+                <include file="CaseHandle/detail/status" />
+                <include file="CaseHandle/detail/other" />
+            </div>
+        </div>
+        <include file="CaseHandle/detail/foot" />
+    </div>
+    <input type="hidden" name="case_id" value="{$info.id}">
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.getCaseInfo = "{:U('getCaseInfo')}";
+    url.caseAlarmHandleDetail = "{:U('CaseAlarmHandle/detail?case_id='.$info['id'].'&id=_alarm_id_')}";
+    url.caseAcceptHandleAdd = "{:U('CaseAcceptHandle/add?case_id='.$info['id'])}";
+    url.caseAcceptHandleEdit = "{:U('CaseAcceptHandle/edit?case_id='.$info['id'].'&id=_accept_id_')}";
+    url.caseClientEdit = "{:U('CaseClient/edit?case_id='.$info['id'].'&id=_client_id_')}";
+    url.caseRecordHandleEdit = "{:U('CaseRecordHandle/edit?case_id='.$info['id'].'&id=_record_id_')}";
+    url.caseCheckupEdit = "{:U('CaseCheckup/edit?case_id='.$info['id'].'&case_checkup_id=_checkup_id_')}";
+    url.casePunishHandleIndex = "{:U('CasePunishHandle/index?case_id='.$info['id'].'&id=_client_id_')}";
+    url.caseCognizanceSimpleIndex = "{:U('CaseCognizance/simpleIndex?case_id='.$info['id'].'&id=_cognizance_id_')}";
+    url.caseCognizanceNormalIndex = "{:U('CaseCognizance/normalIndex?case_id='.$info['id'].'&action=investigation_report&id=_cognizance_id_')}";
+    url.caseCognizanceUnCognizanceIndex = "{:U('CaseCognizance/unCognizanceIndex?case_id='.$info['id'].'&action=investigation_report&id=_cognizance_id_')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CaseHandle.detail?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

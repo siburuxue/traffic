@@ -1,0 +1,24 @@
+<!-- 面板 -->
+<div class="panel panel-primary">
+    <!-- 面板标题 -->
+    <div class="panel-heading">受案信息</div>
+    <!-- 面板内容 -->
+    <div class="list-group" style="height:204px;overflow:auto;">
+        <a href="{:U('CaseAlarmHandle/index?case_id='.$info['id'])}" class="list-group-item list-group-item-info js-open js-end-refresh"><span class="glyphicon glyphicon-new-window"></span> 报警记录</a>
+        <volist name="caseAlarmList" id="vo">
+            <a href="{:U('CaseAlarmHandle/detail?case_id='.$case_id.'&id='.$vo['alarm_id'])}" class="list-group-item js-open js-end-refresh">
+            报警人：{$vo.alarm_alarm_name|default='-'}&nbsp;&nbsp;&nbsp;&nbsp;报警时间：{$vo.alarm_alarm_time|date='Y-m-d H:i',###}
+            </a>
+        </volist>
+        <empty name="caseAccept">
+            <a href="{:U('CaseAcceptHandle/add?case_id='.$info['id'])}" class="list-group-item list-group-item-info js-open js-end-refresh">
+                <span class="glyphicon glyphicon-new-window"></span> 创建受案登记
+            </a>
+            <else/>
+            <a href="{:U('CaseAcceptHandle/edit?case_id='.$info['id'].'&id='.$caseAccept['id'])}" class="list-group-item list-group-item-info js-open js-end-refresh">
+                <span class="glyphicon glyphicon-new-window"></span> 编辑受案登记
+            </a>
+            <a href="{:U('CaseAcceptHandle/edit?case_id='.$info['id'].'&id='.$caseAccept['id'])}" class="list-group-item js-open js-end-refresh">案由：</a>
+        </empty>
+    </div>
+</div>

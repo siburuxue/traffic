@@ -1,0 +1,36 @@
+<table class="table table-bordered table-condensed table-custom" style="margin-bottom:0px">
+    <tbody>
+        <tr>
+            <th width="15%">事故时间</th>
+            <td width="35%">
+                <input type="text" disabled class="form-control input-sm" value="{$caseInfo.accident_time|date='Y-m-d H:i',###}">
+            </td>
+            <th width="15%">事故地点</th>
+            <td>
+                <input type="text" disabled class="form-control input-sm" value="{$caseInfo.accident_place}">
+            </td>
+        </tr>
+        <tr>
+            <th width="15%">当事人</th>
+            <td colspan="3">
+                <input type="text" disabled class="form-control input-sm" value="{$clientNames}">
+            </td>
+        </tr>
+    </tbody>
+    <tr>
+        <th colspan="2">短语</th>
+        <th colspan="2">编辑</th>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <textarea disabled class="form-control" style="height:400px;resize:none"></textarea>
+        </td>
+        <td colspan="2">
+            <textarea disabled class="form-control post-gather" name="final" style="height:400px;resize:none">{$info.final}</textarea>
+        </td>
+    </tr>
+    <tr>
+        <th colspan="1">调解终结时间</th>
+        <td colspan="3"><input type="text" disabled class="form-control input-sm form-datetime post-gather" name="final_time" value="{$info.final_time}"></td>
+    </tr>
+</table>

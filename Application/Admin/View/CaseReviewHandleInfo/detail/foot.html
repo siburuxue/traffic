@@ -1,0 +1,36 @@
+        <!-- 面板 -->
+        <div class="panel panel-default">
+            <!-- 面板主体 -->
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed table-sheet" style="margin-bottom:0;">
+                    <tr>
+                        <th width="15%">复核事项答复意见</th>
+                        <td style="text-align:left;" id="replyContent"></td>
+                        <td width="70"><a href="{:U('CaseReplyHandle/add?case_id='.$info['caseReview']['case_id'])}" class="btn btn-primary btn-sm js-open js-end-refresh">答复</a></td>
+                        <td width="70">
+                            <a href="{:U('CaseReplyHandle/index?case_id='.$info['caseReview']['case_id'])}" class="btn btn-primary btn-sm js-open js-end-refresh">查看</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>指示意见</th>
+                        <td style="text-align:left;word-break:break-all;" id="directiveContent"></td>
+                        <td>
+                            <a href="{:U('CaseDirectiveLeader/add?case_id='.$info['caseReview']['case_id'])}" class="btn btn-primary btn-sm js-open js-end-refresh">指示</a>
+                        </td>
+                        <td>
+                            <a href="{:U('CaseDirectiveLeader/index?case_id='.$info['caseReview']['case_id'])}" class="btn btn-primary btn-sm js-open js-end-refresh">查看</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>集体研究</th>
+                        <td style="text-align:left;word-break:break-all;"  id="discussContent"></td>
+                        <td>
+                            <a href="{:U('CaseDiscussLeader/add?case_id='.$info['caseReview']['case_id'])}" class="btn btn-primary btn-sm js-open js-end-refresh">发起</a>
+                        </td>
+                        <td>
+                            <a href="{:U('CaseDiscussLeader/index?case_id='.$info['caseReview']['case_id'])}" class="btn btn-primary btn-sm js-open js-end-refresh">查看</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>

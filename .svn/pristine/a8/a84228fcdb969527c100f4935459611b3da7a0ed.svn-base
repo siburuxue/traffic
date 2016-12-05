@@ -1,0 +1,75 @@
+<!-- grantDetachment.html -->
+<extend name="Common/base" />
+<block name="title">支队采血管派发</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 面板 -->
+        <div class="panel panel-default form-inline">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">支队采血管派发</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed table-custom">
+                    <tr>
+                        <th width="15%">采血管编号</th>
+                        <td width="35%">
+                            <table width="100%">
+                                <tr>
+                                    <td width="48%">
+                                        <input type="text" class="form-control input-sm post-gather" name="code_1" maxlength="250" style="width:100%;"/>
+                                    </td>
+                                    <td width="4%" align="center"> ~
+                                    </td>
+                                    <td width="48%">
+                                        <input type="text" class="form-control input-sm post-gather" name="code_2" maxlength="250"  style="width:100%;"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <th width="15%">派发时间</th>
+                        <td width="35%">
+                            <input type="text" class="form-control input-sm post-gather form-datetime" id="start-time" name="to_department_time" maxlength="16" readonly="readonly" value="{$nowtime|date='Y-m-d H:i',###}" style="width:100%;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>派发人</th>
+                        <td>
+                            <input type="text" class="form-control input-sm " maxlength="16" value="{$my.true_name}" readonly="readonly" style="width:100%;">
+                            <input type="hidden" class="form-control input-sm post-gather" name="to_department_user_id" value="{$my.id}" maxlength="16" style="width:100%;">
+                        </td>
+                        <th>派发大队</th>
+                        <td>
+                            <select name="target_department_id" class="form-control input-sm post-gather" id="select-department" style="width:100%;">
+                                <option value="">请选择</option>
+                                <volist name="department" id="vo">
+                                    <option value="{$vo.id}" <neq name="vo.cate" value="2">disabled="disabled" style="color:red;"</neq> >{$vo._prefix}{$vo.name}</option>
+                                </volist>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-saved"></span> 提交</button>
+                <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.update = "{:U('grantDetachmentInsert')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.BloodtubeCate.grantDetachment?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

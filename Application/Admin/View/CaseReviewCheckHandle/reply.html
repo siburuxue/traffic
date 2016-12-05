@@ -1,0 +1,52 @@
+<extend name="Common/base" />
+<block name="title">复核事项答复意见书</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 面板 -->
+        <div class="panel panel-default">
+            <!-- 面板头 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">复核事项答复意见书</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板主体 -->
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed table-sheet" style="margin-bottom:0;">
+                    <tr>
+                        <th width="33%">操作人</th>
+                        <th width="33%">时间</th>
+                        <th>处理意见</th>
+                    </tr>
+                    <volist name="caseCheck" id="vo">
+                        <tr>
+                            <td>{$vo.check_user_name}</td>
+                            <td>{$vo.check_time|date='Y-m-d H:i',###}</td>
+                            <td>
+                                {$vo['status']?'同意':'不同意'} {$vo.mark|default='未填写处理意见'}
+                            </td>
+                        </tr>
+                    </volist>
+                </table>
+            </div>
+        </div>
+        <!-- 面板 -->
+        {:W('CasePhoto/index', array('复核事项答复意见书列表',$caseReview['case_id'],52,$caseReview['id'],$info['id']))}
+        <!-- 表格 结束 -->
+    </div>
+    <!-- 页面主体 结束 -->
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CaseReviewCheckHandle.reply?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

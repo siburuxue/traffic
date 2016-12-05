@@ -1,0 +1,39 @@
+<extend name="Common/base" />
+<block name="title">事故认定书送达回执</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 页面主体 -->
+        <div class="row">
+            <div class="col-xs-3">
+                <!-- 当事人 -->
+                <include file="CaseReviewCheckNoticeHandle/index/client" />
+            </div>
+            <div class="col-xs-9">
+                <!-- 复核终止通知书 -->
+                <include file="CaseReviewCheckNoticeHandle/index/form" />
+            </div>
+        </div>
+        <!-- 复核终止通知书列表 -->
+        {:W('CasePhoto/index', array('送达回执列表',$caseReview['case_id'],50,$caseReview['id']))}
+    </div>
+    <!-- 页面主体 结束 -->
+    <input type="hidden" name="now_case_client_id" value="{$nowCaseClientId}">
+    <input type="hidden" name="case_id" value="{$caseReview.case_id}" class="auto-gather">
+    <input type="hidden" name="case_review_id" value="{$caseReview.id}" class="auto-gather">
+    <input type="hidden" name="case_review_check_id" value="{$caseReviewCheck.id}" class="auto-gather">
+    <input type="hidden" name="id" value="0" class="auto-gather">
+    <input type="hidden" name="case_client_id" value="" class="auto-gather">
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.getApplyer = "{:U('getApplyer')}";
+    url.update = "{:U('noticeUpdate')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CaseReviewCheckNoticeHandle.index?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

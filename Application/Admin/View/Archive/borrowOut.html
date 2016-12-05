@@ -1,0 +1,58 @@
+<extend name="Common/base" />
+<block name="title">提档</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 面板 -->
+        <div class="panel panel-default">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">提档</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed table-custom">
+                    <tr>
+                        <th>提档人</th>
+                        <td>
+                            <input type="hidden" class="form-control input-sm post-gather" name="archive_id" value="{$Think.get.id}" maxlength="50">
+                            <input type="hidden" class="form-control input-sm post-gather" name="cate" value="0" maxlength="50">
+                            <input type="hidden" class="form-control input-sm post-gather" name="user" value="{$my.id}" maxlength="50">
+                            <input type="text" class="form-control input-sm " value="{$my.true_name}" maxlength="50" readOnly="readOnly" id="select" title="点击选择提档人">
+                        </td>
+                        <th>提档时间</th>
+                        <td>
+                            <input type="text" class="form-control input-sm post-gather form-datetime" id="start-time" name="time" maxlength="16" readonly="readonly" value="{$nowtime|date='Y-m-d H:i',###}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>提档原因</th>
+                        <td colspan="3">
+                            <textarea class="form-control post-gather" name="content" maxlength="1000" style="outline:none;resize:none;height:200px;"></textarea>
+                        </td>
+                    </tr>
+                </table>
+                <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-saved"></span> 提交</button>
+                <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.update = "{:U('borrowOutInsert')}";
+    url.selectUser = "{:U('User/select')}";   
+    </script>
+</block>
+<block name="foot.ext">
+
+    <import file="js.Archive.borrowOut?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

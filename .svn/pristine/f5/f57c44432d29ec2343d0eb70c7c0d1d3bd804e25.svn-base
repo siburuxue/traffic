@@ -1,0 +1,184 @@
+<!-- 面板内容 -->
+<div class="panel-body">
+    <table class="table table-bordered table-condensed table-custom">
+        <!-- -->
+        <eq name="Think.get.save" value="1">
+            <input type="hidden" name="id" class="post-gather-re-entrust" value="{$Think.get.id}">
+        </eq>
+        <input type="hidden" name="case_id" class="post-gather-re-entrust" value="{$entrustData.case_id}">
+        <input type="hidden" name="case_checkup_id" class="post-gather-re-entrust" value="{$entrustData.case_checkup_id}">
+        <tr>
+            <th width="20%">委托鉴定单位</th>
+            <td width="30%">
+                <select name="from_department_id" class="form-control input-sm post-gather-re-entrust">
+                    <option value="">请选择</option>
+                    <volist name="department" id="vo">
+                        <option value="{$vo.id}" <notin name="vo.cate" value="1,2">disabled="disabled" style="color:red;"</notin>
+                            <eq name="Think.get.save" value="1">
+                                <eq name="vo.id" value="$entrustData.from_department_id">selected="selected"</eq>
+                                <else/>
+                                <eq name="vo.id" value="$brigadeId">selected="selected"</eq>
+                            </eq>>{$vo._prefix}{$vo.name}</option>
+                    </volist>
+                </select>
+            </td>
+            <th width="20%">委托时间</th>
+            <td width="30%">
+                <input type="text" class="form-control input-sm post-gather-re-entrust form-datetime" value="{$entrustData.case_checkup_finish_time|date='Y-m-d H:i',###}" name="entrust_time" maxlength="16" readonly="readonly" style="width:100%;">
+            </td>
+        </tr>
+        <!--  -->
+    </table>
+    <table class="table table-bordered table-condensed table-custom" style="margin-top:-21px;">
+        <!--  -->
+        <tr>
+            <th rowspan="4" width="5%">送检人</th>
+            <th colspan="2" width="15%">姓名</th>
+            <td width="15%">
+                <input type="text" class="form-control input-sm post-gather-re-entrust" name="carry_name_1" value="{$entrustData.carry_name_1}" maxlength="20" style="min-width:auto!important;">
+            </td>
+            <th width="15%">职务</th>
+            <td width="15%">
+                <input type="text" class="form-control input-sm post-gather-re-entrust" name="carry_post_1" value="{$entrustData.carry_post_1}" maxlength="50" style="min-width:auto!important;">
+            </td>
+            <th width="15%">证件名称及号码</th>
+            <td colspan="2" width="20%">
+                <input type="text" class="form-control input-sm post-gather-re-entrust" name="carry_idno_1" value="{$entrustData.carry_idno_1}" maxlength="50" style="min-width:auto!important;">
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2">姓名</th>
+            <td>
+                <input type="text" class="form-control input-sm post-gather-re-entrust" name="carry_name_2" value="{$entrustData.carry_name_2}" maxlength="20" style="min-width:auto!important;">
+            </td>
+            <th>职务</th>
+            <td>
+                <input type="text" class="form-control input-sm post-gather-re-entrust" name="carry_post_2" value="{$entrustData.carry_post_2}" maxlength="50" style="min-width:auto!important;">
+            </td>
+            <th>证件名称及号码</th>
+            <td colspan="2">
+                <input type="text" class="form-control input-sm post-gather-re-entrust" name="carry_idno_2" value="{$entrustData.carry_idno_2}" maxlength="250" style="min-width:auto!important;">
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2">通讯地址</th>
+            <td colspan="2">
+                <input type="text" class="form-control input-sm post-gather-re-entrust" name="carry_address" value="{$entrustData.carry_address}" maxlength="250" style="width:100%;">
+            </td>
+            <th colspan="2">邮政编码</th>
+            <td colspan="2">
+                <input type="text" class="form-control input-sm post-gather-re-entrust" name="carry_zip" value="{$entrustData.carry_zip}" maxlength="16" style="min-width:auto!important;">
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2">联系电话</th>
+            <td colspan="2">
+                <input type="text" class="form-control input-sm post-gather-re-entrust" name="carry_tel" value="{$entrustData.carry_tel}" maxlength="16" style="min-width:auto!important;">
+            </td>
+            <th colspan="2">传真号码</th>
+            <td colspan="2">
+                <input type="text" class="form-control input-sm post-gather-re-entrust" name="carry_fax" value="{$entrustData.carry_fax}" maxlength="16" style="min-width:auto!important;">
+            </td>
+        </tr>
+        <!--  -->
+    </table>
+    <table class="table table-bordered table-condensed table-custom" style="margin-top:-21px;">
+        <!--  -->
+        <tr>
+            <th colspan="3" width="20%">鉴定机构名称</th>
+            <td colspan="6" width="80%">
+                <input type="hidden" class="form-control input-sm post-gather-re-entrust" name="to_checkup_org_name" maxlength="16" value="{$entrustData.checkuporg_name}"  style="min-width:auto!important;">
+                <select name="to_checkup_org_id" class="form-control input-sm post-gather-re-entrust" id="to_checkup_org_id">
+                    <option value="">请选择</option>
+                    <volist name="orgData" id="vo">
+                        <option value="{$vo.id}" <eq name="vo.name" value="$entrustData.to_checkup_org_name">selected="selected"</eq>>{$vo.name}</option>
+                    </volist>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="3" width="20%">案（事）件名称</th>
+            <td colspan="2" width="30%">
+                <input type="text" class="form-control input-sm post-gather-re-entrust" name="case_name" value="{$entrustData.case_name}" maxlength="50" style="min-width:auto!important;">
+            </td>
+            <th width="20%">案件编号</th>
+            <td colspan="3" width="30%">
+                <input type="text" class="form-control input-sm post-gather-re-entrust" name="case_code" value="{$caseData.code}" readOnly="readOnly" maxlength="50" style="min-width:auto!important;">
+            </td>
+        </tr>
+        <!--  -->
+    </table>
+    <table class="table table-bordered table-condensed table-custom" style="margin-top:-21px;width:99.9%">
+        <!--  -->
+        <tr>
+            <th rowspan="2" width="10%">被鉴定人的情况</th>
+            <th width="10%">姓名</th>
+            <td width="15%">
+                <input type="hidden" name="target_client_id" class="post-gather-re-entrust" id="case_client_id" value="{$entrustData.target_client_id}">
+                <input type="text" class="form-control input-sm post-gather-re-entrust" name="target_name" id="target_name" readOnly="readOnly" value="{$entrustData.target_name}" maxlength="16" style="min-width:auto!important;">
+            </td>
+            <th width="7.5%">性别</th>
+            <td width="7.5%">
+                <if condition="$entrustData.target_sex eq '0'">
+                    <assign name="sexForRead" value="女" />
+                </if>
+                <if condition="$entrustData.target_sex eq '1'">
+                    <assign name="sexForRead" value="男" />
+                </if>
+                <input type="hidden" class="form-control input-sm post-gather-re-entrust" name="target_sex" id="target_sex" value="{$entrustData.target_sex}" maxlength="10">
+                <input type="text" class="form-control input-sm " id="sex_read" readOnly="readOnly" value="{$sexForRead}" style="min-width:auto!important;">
+            </td>
+            <th width="10%">年龄</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather-re-entrust" name="target_age" value="{$entrustData.target_age}" id="target_age" maxlength="10" readOnly="readOnly" style="min-width:auto!important;">
+            </td>
+            <th width="10%">电话</th>
+            <td width="17.5%">
+                <input type="text" class="form-control input-sm post-gather-re-entrust" name="target_tel" id="target_tel" value="{$entrustData.target_tel}" maxlength="250" readOnly="readOnly" style="min-width:auto!important;">
+            </td>
+        </tr>
+        <tr>
+            <th>单位</th>
+            <td colspan="3">
+                <input type="text" class="form-control input-sm post-gather-re-entrust" name="target_company" id="target_company" value="{$entrustData.target_company}" readonly="readonly" maxlength="250" style="min-width:auto!important;">
+            </td>
+            <th>现住址</th>
+            <td colspan="3">
+                <input type="text" class="form-control input-sm post-gather-re-entrust" name="target_address" value="{$entrustData.target_address}" id="target_address" maxlength="250" readOnly="readOnly" style="min-width:auto!important;">
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2" width="20%">简要案情</th>
+            <td colspan="7">
+                <textarea class="form-control input-sm post-gather-re-entrust" name="summary" style="width:100%;height:80px;outline:none;resize:none;" maxlength="65530">{$entrustData.summary}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2">原鉴定情况</th>
+            <td colspan="7">
+                <textarea class="form-control input-sm post-gather-re-entrust" name="old_result" style="width:100%;height:80px;outline:none;resize:none;" maxlength="65530">{$entrustData.old_result}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2">送检材料</th>
+            <td colspan="7">
+                <textarea class="form-control input-sm post-gather-re-entrust" name="checkup_doc" style="width:100%;height:80px;outline:none;resize:none;" maxlength="65530">{$entrustData.checkup_doc}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2">委托鉴定单位的鉴定要求和诚信声明</th>
+            <td colspan="7">
+                <textarea class="form-control input-sm post-gather-re-entrust" name="remark" style="width:100%;height:80px;outline:none;resize:none;" maxlength="65530">{$entrustData.remark}</textarea>
+            </td>
+        </tr>
+    </table>
+    <a class="btn btn-primary " id="submit"><span class="glyphicon glyphicon-saved"></span> 保存</a>
+    <notempty name="Think.get.save">
+    <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span> 打印司法鉴定委托书</button>
+    <else/>
+    <button type="button" class="btn btn-primary" disabled="disabled"><span class="glyphicon glyphicon-print"></span> 打印司法鉴定委托书</button>
+
+    </notempty>
+    <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+   
+</div>

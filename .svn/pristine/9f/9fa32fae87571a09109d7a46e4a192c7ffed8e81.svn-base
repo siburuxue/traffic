@@ -1,0 +1,48 @@
+<extend name="Common/base" />
+<block name="mainer">
+    <div class="container">
+        <div class="page-header">
+            <h1>修改密码 <small><a href="{:U('index')}">返回</a></small></h1>
+        </div>
+        <div class="form">
+            <div class="form-group">
+                <label>原密码</label>
+                <input type="password" name="oldpassword" class="form-control" id="oldpassword" placeholder="原密码" maxlength="16" tabindex="1">
+            </div>
+            <div class="form-group">
+                <label>新密码</label>
+                <input type="password" name="newpassword" class="form-control" id="newpassword" placeholder="新密码" maxlength="16" tabindex="2">
+                <p class="help-block">6-16位，数字、字母、符号，区分大小写</p>
+            </div>
+            <div class="form-group">
+                <label>重复密码</label>
+                <input type="password" name="repassword" class="form-control" id="repassword" placeholder="重复密码" maxlength="16" tabindex="3">
+            </div>
+            <button type="button" id="submit" class="btn btn-primary" tabindex="4">提交保存</button>
+        </div>
+    </div>
+</block>
+<block name="footer">
+    <script type="text/javascript">
+    url.passwordUpdate = "{:U('passwordUpdate')}";
+
+    $(function() {
+        // 提交
+        $('#submit').on('click', function() {
+            $.post(url.passwordUpdate, {
+                'oldpassword': $('#oldpassword').val(),
+                'newpassword': $('#newpassword').val(),
+                'repassword': $('#repassword').val()
+            }, function(msg) {
+                layer.alert(msg.info, function(index) {
+                    layer.close(index);
+                    if (msg.url) {
+                        window.location.href = msg.url;
+                    }
+                });
+            });
+        });
+
+    });
+    </script>
+</block>

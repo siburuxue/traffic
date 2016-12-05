@@ -1,0 +1,5 @@
+<volist name="list" id="vo">
+    <a href="{:U('CaseAlarmHandle/detail?case_id='.$case_id.'&id='.$vo['alarm_id'])}" class="list-group-item js-open js-end-refresh">
+    	当事人：张三 询问笔录1次
+    </a>
+</volist>

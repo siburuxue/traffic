@@ -1,0 +1,40 @@
+<extend name="Common/base" />
+<block name="title">不予受理</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 不予受理时间 -->
+        <include file="CaseReviewAcceptHandleInfo/refuseNotice/time" />
+        <!-- 页面主体 -->
+        <div class="row">
+            <div class="col-xs-3">
+                <!-- 当事人列表 -->
+                <include file="CaseReviewAcceptHandleInfo/refuseNotice/client" />
+            </div>
+            <div class="col-xs-9">
+                <!-- 表单 -->
+                <include file="CaseReviewAcceptHandleInfo/refuseNotice/form" />
+            </div>
+        </div>
+        <!-- 受理时间 -->
+        {:W('CasePhoto/detail', array('复核不予受理通知书列表',$caseReview['case_id'],47,$caseReview['id']))}
+    </div>
+    <!-- 页面主体 结束 -->
+    <input type="hidden" name="now_case_review_apply_id" value="{$nowCaseReviewApplyId}">
+    <input type="hidden" name="case_id" value="{$caseReview.case_id}">
+    <input type="hidden" name="case_review_id" value="{$caseReview.id}">
+    <input type="hidden" name="id" value="0" class="auto-gather">
+    <input type="hidden" name="case_review_apply_id" value="" class="auto-gather">
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.getApplyer = "{:U('getRefuseApplyer')}";
+    url.update = "{:U('updateRefuseNotice')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CaseReviewAcceptHandleInfo.refuseNotice?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

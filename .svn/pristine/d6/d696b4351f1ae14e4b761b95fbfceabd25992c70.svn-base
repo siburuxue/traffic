@@ -1,0 +1,46 @@
+<!-- tab -->
+<include file="CaseCognizanceInfo/normal/investigation_report/tab" />
+<!-- 列表面板 -->
+<div class="panel panel-default">
+    <!-- 面板头 -->
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-6"><span class="block-title">调查报告</span></div>
+            <div class="col-xs-6 text-right">
+                <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+            </div>
+        </div>
+    </div>
+    <!-- 面板主体 -->
+    <div class="panel-body">
+        <include file="CaseCognizanceInfo/normal/investigation_report/base" />
+    </div>
+    <div  class="text-left" style="margin:0 0 15px 16px">
+        <button type="button" class="btn btn-primary" id="print" <if condition="$info['id'] eq '' or $normalCognizanceInfo['check_status'] eq 2" >disabled</if> ><span class="glyphicon glyphicon-print"></span> 打印调查报告书</button>
+    </div>
+</div>
+<input type="hidden" id="case_id" name="case_id" class="post-gather" value="{$case['id']}">
+<input type="hidden" id="id" name="id" class="post-gather" value="{$info['id']}">
+
+<if condition="count($backList) neq 0 or count($historyList) neq 0">
+    <!-- 列表面板 -->
+    <div class="panel panel-default" style="margin-top: 20px;">
+        <!-- 面板头 -->
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-6"><span class="block-title">历史调查报告</span></div>
+            </div>
+        </div>
+        <!-- 面板主体 -->
+        <div class="panel-body">
+            <include file="CaseCognizanceInfo/normal/investigation_report/historyList" />
+        </div>
+    </div>
+</if>
+{:W('CasePhoto/index', array('调查报告列表',$case['id'],18,$info['case_cognizance_id']))}
+<script>
+    var is_back = "{$normalCognizanceInfo['is_back']}";
+    var is_submit = "{$normalCognizanceInfo['is_submit']}";
+    var check_status = "{$normalCognizanceInfo['check_status']}";
+    var review_count = "{count($reviewList)}";
+</script>

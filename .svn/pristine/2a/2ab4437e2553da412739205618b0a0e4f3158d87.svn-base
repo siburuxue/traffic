@@ -1,0 +1,44 @@
+<table class="table table-striped table-bordered table-hover table-condensed table-sheet" id="table" data-totalrows="{$page.totalrows}" data-totalpage="{$page.totalpage}" data-nowpage="{$page.nowpage}"  data-orderfield="{$orderField}" data-ordersort="{$orderSort}">
+    <thead>
+        <tr>
+            <th class="sort" data-field="case_id">案件编号 <span class="glyphicon glyphicon-arrow-up" style="display: none;"></span></th>
+            <th class="sort" data-field="accident_time">事故发生时间 <span class="glyphicon glyphicon-arrow-up" style="display: none;"></span></th>
+            <th>地点</th>
+            <th>事故类型</th>
+            <th>所属大队</th>
+            <th>办案人</th>
+            <th>当前状态</th>
+            <th class="sort" data-field="time_limit">时限 <span class="glyphicon glyphicon-arrow-up" style="display: none;"></span></th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <volist name="list" id="vo">
+            <tr>
+                <td><a href="{:U('CaseInfo/detail?id='.$vo['id'])}" class="js-open js-end-refresh">{$vo.code|default='-'}</a></td>
+                <td>{$vo.accident_time|date='Y-m-d H:i',###}</td>
+                <td>{$vo.accident_place|default='-'}</td>
+                <td>{$vo.accident_type_name|default='-'}</td>
+                <td>{$vo.department_name|default='-'}</td>
+                <td>{$vo.case_user|default='-'}</td>
+                <td>{$vo.approve_name|default='-'}</td>
+                <if condition="$vo['time_status'] eq -1">
+                    <td style="color:orange">{$vo.timeLimit}</td>
+                    <elseif condition="$vo['time_status'] eq -2" />
+                    <td style="color:red">{$vo.timeLimit}</td>
+                    <else />
+                    <td>{$vo.timeLimit}</td>
+                </if>
+                <td>
+                    <switch name="vo.cate">
+                        <case value="0"><a href="{:U('CaseAcceptInfo?id='.$vo['check_id'])}" class="btn btn-info btn-sm js-open ">审批</a></case>
+                        <case value="2|4"><a href="{:U('reportInfo?id='.$vo['check_id'])}" class="btn btn-info btn-sm js-open">审批</a></case>
+                        <case value="3"><a href="{:U('terminationInfo?id='.$vo['check_id'])}" class="btn btn-info btn-sm js-open">审批</a></case>
+                        <case value="10|11|12|13"><a href="{:U('CaseCheckupInfo?id='.$vo['check_id'])}" class="btn btn-info btn-sm js-open js-end-refresh">审批</a></case>
+                        <case value="20"><a href="{:U('CaseCheckCaseReviewLeader/index?id='.$vo['check_id'])}" class="btn btn-info btn-sm js-open js-end-refresh">审批</a></case>
+                    </switch>
+                </td>
+            </tr>
+        </volist>
+    </tbody>
+</table>

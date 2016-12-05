@@ -1,0 +1,4 @@
+<ul class="nav nav-tabs nav-custom">
+    <li class="active"><a href="#">审批意见</a></li>
+    <li><a href="javascript:;" id="result">复核结论</a></li>
+</ul>

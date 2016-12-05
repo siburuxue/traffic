@@ -1,0 +1,89 @@
+<extend name="Common/base" />
+<block name="title">当事人责任无法判定</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <if condition="$action eq 'road_traffic_accident_certificate'">
+            <include file="CaseCognizance/unCognizance/road_traffic_accident_certificate"/>
+        <elseif condition="$action eq 'accident_termination'" />
+            <include file="CaseCognizance/unCognizance/accident_termination"/>
+        <elseif condition="$action eq 'investigation_report'" />
+            <include file="CaseCognizance/unCognizance/investigation_report"/>
+        </if>
+    </div>
+    <!-- 页面主体 结束 -->
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+        // 定义URL地址
+        //保存一般事故认定-调查报告
+        url.saveReportInfo = "{:U('saveReportInfo')}";
+        //保存一般事故认定-事故认定
+        url.saveCognizanceProve = "{:U('saveCognizanceProve')}";
+        //图片列表
+        url.photoList =  "{:U('photoList')}";
+        //审批
+        url.check = "{:U('caseCognizanceNormalAccidentIdentificationCheck')}";
+        //保存呈请事故中止
+        url.saveStopInfo = "{:U('saveStopInfo')}";
+        //呈请事故中止审批
+        url.saveStopCheck = "{:U('saveNormalCognizanceStopCheck')}";
+        //制作
+        url.make = "{:U('make')}";
+        //删除图片
+        url.delete = "{:U('CasePhoto/delete')}";
+        //提请审批check
+        url.approvalCheck = "{:U('approvalCheck')}";
+        url.download = "{:U('Common/download')}";
+    </script>
+</block>
+<block name="foot.html">
+    <div  id="approval-box" class="container-fluid" style="display:none;margin-top:20px;" >
+        <div class="panel panel-default form-inline1">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">审核人确认</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm" id="approval-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <div class="container-fluid">
+                    <table class="table table-bordered table-condensed table-custom" id="approval-list">
+                        <tr>
+                            <th width="15%">审核人</th>
+                            <if condition="count($list) neq '0'">
+                                <td>
+                                    <div class="checkbox">
+                                        <volist name="list" id="vo">
+                                            <div><label><input type="radio" name="check" value="{$vo.id}" <if condition="$i eq 1">checked</if>>{$vo.department_name}:{$vo.true_name}</label></div>
+                                        </volist>
+                                    </div>
+                                </td>
+                            <else />
+                                <td>尚无有效审核人</td>
+                            </if>
+                        </tr>
+                    </table>
+                    <button type="button" class="btn btn-primary" id="approval-submit" <if condition="count($list) eq '0'">disabled</if> ><span class="glyphicon glyphicon-saved"></span> 确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="foot.ext">
+
+    <if condition="$action eq 'road_traffic_accident_certificate'">
+        <import file="js.CaseCognizance.roadTrafficAccidentCertificate?" basepath="{$Think.SRC_MODULE_URL}" />
+    <elseif condition="$action eq 'accident_termination'" />
+        <import file="js.CaseCognizance.unAccidentTermination?" basepath="{$Think.SRC_MODULE_URL}" />
+    <elseif condition="$action eq 'investigation_report'" />
+        <import file="js.CaseCognizance.unInvestigationReport?" basepath="{$Think.SRC_MODULE_URL}" />
+    </if>
+
+</block>

@@ -1,0 +1,40 @@
+<extend name="Common/base" />
+<block name="title">字典属性维护</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 列表面板 -->
+        <div class="panel panel-default">
+            <!-- 面板头 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">“{$dict.title}”属性维护</span></div>
+                    <div class="col-xs-6 text-right">
+                        <a href="{:U('add?dict_id='.$dict['id'])}" class="btn btn-primary btn-sm js-open js-end-refresh"><span class="glyphicon glyphicon-plus"></span> 新增</a>
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板主体 -->
+            <div class="panel-body">
+                <!-- 表格 -->
+                <div class="table-responsive" id="table-content"></div>
+            </div>
+        </div>
+        <!-- 表格 结束 -->
+    </div>
+    <!-- 页面主体 结束 -->
+    <input type="hidden" name="dict_id" id="dict_id" value="{$dict.id}">
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.table = "{:U('indexTable')}";
+    url.train = "{:U('train')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.DictOption.index?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

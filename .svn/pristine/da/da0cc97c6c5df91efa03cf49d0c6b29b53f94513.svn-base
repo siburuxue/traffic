@@ -1,0 +1,51 @@
+<table class="table table-striped table-bordered table-hover table-condensed table-sheet" id="table" data-totalrows="{$page.totalrows}" data-totalpage="{$page.totalpage}" data-nowpage="{$page.nowpage}" data-orderfield="{$orderField}" data-ordersort="{$orderSort}">
+    <thead>
+        <tr>
+            <th class="sort" data-field="code">委托书编号 <span class="glyphicon glyphicon-arrow-up" style="display: none;"></span></th>
+            <th>委托人姓名</th>
+            <th class="sort" data-field="entrust_time">委托时间 <span class="glyphicon glyphicon-arrow-up" style="display: none;"></span></th>   
+            <th>委托内容</th>
+            <th>委托单位</th>
+            <!-- <th>委托事项</th> -->
+            <th>状态</th>
+            <!-- <th>时限</th> -->
+            <th width="150">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <volist name="list" id="vo">
+            <tr>
+                <td>
+                    <neq name="vo.code" value="0">{$vo.code|default='-'}
+                        <else/>-</neq>
+                </td>
+                <td>
+                    <if condition="($vo['carry_name_1'] neq '') and ($vo['carry_name_2'] neq '')">{$vo.carry_name_1}、{$vo.carry_name_2}
+                        <else/> 
+                        <if condition="($vo['carry_name_1'] eq '') and ($vo['carry_name_2'] eq '')">-
+                        <else/>
+                        {$vo.carry_name_1} {$vo.carry_name_2}
+                        </if>
+                    </if>
+                </td>
+                <td>{$vo.entrust_time|default='0'|date='Y-m-d H:i',###}</td>
+                <td>
+                    <eq name="vo.case_accident_type" value="1">财产损失事故</eq>
+                    <eq name="vo.case_accident_type" value="2">伤人事故</eq>
+                    <eq name="vo.case_accident_type" value="3">死亡事故</eq>
+                </td>
+                <td>{$vo.department_name|default='-'}</td>
+                <!-- <td>{$vo.role_name|default='-'}</td> -->
+                <td>
+                    <eq name="vo.status" value="1">已接收</eq>
+                    <eq name="vo.status" value="2">已委托其他单位</eq>
+                </td>
+                <!-- <td></td> -->
+                <td>
+                    <a href="{:U('detail?id='.$vo['id'].'&param=1')}" class="btn btn-info btn-sm js-open js-end-refresh">查看</a>
+                    <!-- <a href="{:U('delete?id='.$vo['id'])}" class="btn btn-warning btn-sm js-ajax js-confirm js-end-refresh">删除</a> -->
+                </td>
+            </tr>
+        </volist>
+    </tbody>
+</table>

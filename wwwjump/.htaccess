@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteCond %{HTTP_HOST} !^www.dalianke.com$ [NC]
+RewriteRule ^(.*)$ http://www.dalianke.com/$1 [L,R=301]

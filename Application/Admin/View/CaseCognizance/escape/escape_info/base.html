@@ -1,0 +1,30 @@
+<table class="table table-bordered table-condensed table-custom" style="margin-bottom: 0">
+    <tbody>
+        <tr>
+            <th>交通事故时间</th>
+            <td><input type="text" class="form-control input-sm" disabled value="{$caseInfo.accident_time|date='Y-m-d H:i',###}"></td>
+            <th width="18%">天气</th>
+            <td><input type="text" class="form-control input-sm" disabled value="{$weather}"></td>
+        </tr>
+        <tr>
+            <th>交通事故地点</th>
+            <td colspan="3"><input type="text" class="form-control input-sm" disabled value="{$caseInfo.accident_place}"></td>
+        </tr>
+        <tr>
+            <th width="18%"><span class="text-danger">*</span>当事人、车辆、道路和交通环境等基本情况</th>
+            <td colspan="3"><textarea type="text" name="base_info" class="form-control input-sm post-gather" style="height:113px;resize: none">{$info.base_info}</textarea></td>
+        </tr>
+        <tr>
+            <th><span class="text-danger">*</span>道路交通事故发生经过</th>
+            <td colspan="3"><textarea type="text" name="process" class="form-control input-sm post-gather" style="height:113px;resize: none">{$info.process}</textarea></td>
+        </tr>
+        <tr>
+            <th><span class="text-danger">*</span>道路交通事故证据及事故形成原因分析</th>
+            <td colspan="3"><textarea type="text" name="analyse" class="form-control input-sm post-gather" style="height:113px;resize: none">{$info.analyse}</textarea></td>
+        </tr>
+        <tr>
+            <th><span class="text-danger">*</span>当事人导致交通事故的过错及责任或者意外原因</th>
+            <td colspan="3"><textarea type="text" name="reason" class="form-control input-sm post-gather" style="height:113px;resize: none">{$info.reason}</textarea></td>
+        </tr>
+    </tbody>
+</table>

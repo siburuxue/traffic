@@ -1,0 +1,10 @@
+<div class="panel panel-primary" style="margin-bottom:0;">
+    <!-- 标题 -->
+    <div class="panel-heading">复核申请</div>
+    <!-- 内容 -->
+    <div class="list-group" style="height:204px;overflow:auto;">
+        <a href="{:U('CaseReviewApplyHandleInfo/index?case_review_id='.$info['caseReview']['id'])}" class="list-group-item js-open js-end-refresh" id="caseReviewApplyExist" style="display:none;"><span class="glyphicon glyphicon-new-window"></span> 复核申请列表</a>
+        <div class="list-group-item" id="caseReviewApplyEmpty" style="display:none;"><span class="glyphicon glyphicon-th"></span> 暂无复核申请</div>
+        <div class="list-group-item" style="display:none;"></div>
+    </div>
+</div>

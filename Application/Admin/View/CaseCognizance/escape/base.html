@@ -1,0 +1,17 @@
+<table class="table table-bordered table-condensed table-custom" style="margin-bottom: 0">
+    <tbody>
+        <tr>
+            <th width="15%"><span class="text-danger">*</span> 申请人</th>
+            <td width="35%">
+                <select type="text" class="form-control input-sm post-gather" name="case_client_id">
+                    <option value="">请选择</option>
+                    <volist name="clientList" id="vo">
+                        <option value="{$vo.id}">{$vo.name}</option>
+                    </volist>
+                </select>
+            </td>
+            <th width="15%"><span class="text-danger">*</span> 申请时间</th>
+            <td><input type="text" class="form-control input-sm form-datetime post-gather" maxlength="255" name="apply_time" readonly ></td>
+        </tr>
+    </tbody>
+</table>

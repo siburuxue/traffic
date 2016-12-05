@@ -1,0 +1,29 @@
+.vmc-photo-box {
+    margin-left: -8px;
+    margin-right: -8px;
+}
+
+.vmc-photo-item {
+    padding-right: 8px;
+    padding-left: 8px;
+}
+
+.vmc-photo-name {
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+    .vmc-photo-ext {
+        text-align: right;
+    }
+}
+
+.vmc-photo-ext {
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

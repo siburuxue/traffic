@@ -1,0 +1,10 @@
+[ 2016-11-09T06:17:17+08:00 ] 42.156.251.188 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000690s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.006424s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.006534s ]
+SQL: SHOW COLUMNS FROM `ts_config` [ RunTime:0.0010s ]
+SQL: SELECT `name`,`val` FROM `ts_config`  [ RunTime:0.0003s ]
+

@@ -1,0 +1,98 @@
+<extend name="Common/base" />
+<block name="title">简易事故认定</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 基础信息 -->
+        <div class="panel panel-default form-inline1">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">简易事故认定</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <include file="CaseCognizanceInfo/simple/base" />
+            </div>
+            <div class="text-left" style="margin:0 0 15px 16px">
+                <button type="button" class="btn btn-primary" id="print" <if condition="$id eq ''">disabled</if> ><span class="glyphicon glyphicon-print"></span> 打印简易事故认定书</button>
+                <button data-id="{$id}" data-msg="{$backMsg}" class="btn btn-primary" style="display: none" id="back"  <if condition="$isBack eq 1 or $case['is_del'] eq 1 ">disabled</if> ><span class="glyphicon glyphicon-arrow-left"></span> 退回</button>
+            </div>
+        </div>
+        <!-- 按钮 -->
+        <input type="hidden" id="case_id" name="case_id" class="post-gather" value="{$case['id']}">
+        <input type="hidden" id="id" name="case_cognizance_id" class="post-gather" value="{$simpleInfo['id']}">
+        <if condition="count($rejectList) neq 0">
+            <div class="panel panel-default form-inline" style="margin-top: 20px;">
+                <!-- 面板标题 -->
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-6"><span class="block-title">历史简易事故认定</span></div>
+                    </div>
+                </div>
+                <!-- 面板内容 -->
+                <div class="panel-body">
+
+                    <include file="CaseCognizanceInfo/simple/historyList" />
+                </div>
+            </div>
+        </if>
+        {:W('CasePhoto/index', array('简易事故认定文件',$case['id'],14,$simpleInfo['id']))}
+    </div>
+</block>
+<block name="foot.html">
+    <div class="container-fluid" id="delete-box" style="display:none;margin-top:20px;">
+        <table class="table table-bordered table-condensed table-form">
+            <tr>
+                <th width="30%">作废缘由</th>
+                <td>
+                    <textarea name="del_reason" class="form-control" style="height:80px;resize:none;"></textarea>
+                </td>
+            </tr>
+        </table>
+        <input type="hidden" name="id">
+        <button type="button" class="btn btn-primary" id="delete-submit"><span class="glyphicon glyphicon-remove"></span> 作废</button>
+        <button type="button" class="btn btn-danger" id="delete-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+    </div>
+    <div class="container-fluid" id="back-box" style="display:none;margin-top:20px;">
+        <table class="table table-bordered table-condensed table-form">
+            <tr>
+                <th width="30%">退回缘由</th>
+                <td>
+                    <textarea name="back_reason" class="form-control" style="height:80px;resize:none;"></textarea>
+                </td>
+            </tr>
+        </table>
+        <input type="hidden" name="id">
+        <button type="button" class="btn btn-primary" id="back-submit"><span class="glyphicon glyphicon-remove"></span> 退回</button>
+        <button type="button" class="btn btn-danger" id="back-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+    </div>
+</block>
+<block name="head.ext">
+    <style>
+        input[type=text]{min-width:auto!important;}
+    </style>
+    <script type="text/javascript">
+        var is_printed = "{$simpleInfo['is_printed']}";
+        var is_back = "{$simpleInfo['is_back']}";
+        // 定义URL地址
+        //保存简易事故认定信息
+        url.save = "{:U('saveSimpleInfo')}";
+        //图片地址
+        url.photoList = "{:U('photoList')}";
+        //删除图片
+        url.delete = "{:U('CasePhoto/delete')}";
+        //退回
+        url.back = "{:U('AccidentSearchLeader/back')}";
+    </script>
+</block>
+<block name="foot.ext">
+
+    <import file="js.CaseCognizanceInfo.simpleIndex?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

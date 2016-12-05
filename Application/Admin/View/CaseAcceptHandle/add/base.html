@@ -1,0 +1,84 @@
+<table class="table table-bordered table-condensed table-custom" style="margin-bottom:0px">
+    <tbody>
+        <tr>
+            <th colspan="2"><span class="text-danger">*</span> 案由</th>
+            <td>
+                <input type="text" class="form-control input-sm post-gather all" name="reason" maxlength="255">
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2"><span class="text-danger">*</span> 案件来源</th>
+            <td>
+                <select name="case_src" class="form-control input-sm post-gather">
+                    <option value="">请选择</option>
+                    <volist name="caseSource" id="vo">
+                        <if condition="$vo[id] eq $info['case_source']">
+                            <option value="{$vo.id}" selected >{$vo.name}</option>
+                        <else />
+                            <option value="{$vo.id}">{$vo.name}</option>
+                        </if>
+
+                    </volist>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2"><span class="text-danger">*</span> 报警时间</th>
+            <td>
+                <input type="text" class="form-control input-sm post-gather form-datetime" name="alarm_time" maxlength="16" readonly="readonly" value="{$info.alarm_time}">
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2"><span class="text-danger">*</span> 报警方式</th>
+            <td>
+                <input type="text" class="form-control input-sm post-gather all" name="alarm_type" maxlength="255">
+            </td>
+        </tr>
+        <tr>
+            <th rowspan="5" width="10%"> 报警人</th>
+            <th width="15%"><span class="text-danger">*</span> 姓名</th>
+            <td>
+                <input type="text" class="form-control input-sm post-gather all" name="reporter_name" maxlength="255" value="{$info.alarm_name}">
+            </td>
+        </tr>
+        <tr>
+            <th><span class="text-danger">*</span> 性别</th>
+            <td>
+                <select name="reporter_sex" class="form-control input-sm post-gather">
+                    <option value="1">男</option>
+                    <option value="0">女</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th><span class="text-danger">*</span> 报警（联系）电话</th>
+            <td>
+                <input type="text" class="form-control input-sm post-gather all" name="reporter_tel" maxlength="255">
+            </td>
+        </tr>
+        <tr>
+            <th><span class="text-danger">*</span> 住址（或单位）</th>
+            <td>
+                <input type="text" class="form-control input-sm post-gather all" name="reporter_address" maxlength="255" value="{$info.contact}">
+            </td>
+        </tr>
+        <tr>
+            <th><span class="text-danger">*</span> 附注</th>
+            <td>
+                <input type="text" class="form-control input-sm post-gather all" name="reporter_note" maxlength="255">
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2"><span class="text-danger">*</span> 报案内容</th>
+            <td>
+                <textarea class="form-control input-sm post-gather all" name="content" maxlength="255" style="resize: none;height:200px;"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2">受案人意见</th>
+            <td>
+                <input type="text" class="form-control input-sm post-gather all" name="officer_opinion" maxlength="255" value="经初查，该案属死亡事故，建议调查处理。经初查，此案不属我单位管辖，建议移送××××受理">
+            </td>
+        </tr>
+    </tbody>
+</table>

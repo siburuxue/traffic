@@ -1,0 +1,168 @@
+<?php
+namespace Admin\Controller;
+use \Lib\Page;
+
+/**
+ * 物品返还
+ */
+class CaseClientDetainController extends CommonController {
+
+	/**
+	 * 权限
+	 */
+	public function __construct() {
+		parent::__construct();
+		if (false === is_power($this->myPower, 'case_client_detain_0,case_client_detain_1,case_client_detain_2', 'or')) {
+			$this->error('没有权限');
+		}
+
+	}
+
+	/**
+	 * 待办工作
+	 */
+	public function pending() {
+		$this->assign('accidentType', get_custom_config('accident_type'));
+		if (true === is_power($this->myPower, 'case_client_detain_2')) {
+			// 部门
+			$department = $this->allDepartment;
+			$department = list_to_tree($department);
+			$department = tree_to_array($department);
+			$this->assign('department', $department);
+		} else {
+			//获取大队ID
+			$myBrigade = $this->getMyBrigade();
+			$pid = $myBrigade['id'];
+			// 部门
+			$department = $this->allDepartment;
+			//该部门以及该部门下所有子部门的主键id $allChild
+			$allChild = get_all_child($department, $pid);
+			// 部门人员
+			$map = array();
+			$map['is_del'] = 0;
+			if (true === is_power($this->myPower, 'case_client_detain_1')) {
+				//普通权限bloodcate_normal可选择被派发人员
+				$map['department_id'] = array('in', $allChild);
+			} else {
+				//低级权限bloodcate_low只能看到自己
+				$map['id'] = $this->my['id'];
+			}
+			$allUsers = M('User')->where($map)->select();
+			$this->assign('myBrigade', $myBrigade);
+			$this->assign('allUsers', $allUsers);
+		}
+		$this->assign('nowtime', time() + 300);
+		$this->display();
+	}
+
+	/**
+	 * 待办工作 表格
+	 */
+	public function pendingTable() {
+		// 当前用户所在大队
+		$myBrigade = $this->getMyBrigade();
+		if (empty($myBrigade)) {
+			$this->error('当前用户没有大队信息');
+		}
+		// 搜索条件
+		$map = array();
+		// 不显示作废案件
+		$map['detain_is_del'] = 0;
+		$map['is_del'] = 0;
+		$map['case_client_is_del'] = 0;
+		//非道路交通方式的当事人剔除
+		$map['case_client_traffic_type'] = array('neq', '8');
+		$condition = get_condition();
+		isset($condition['case_client_true_name']) && $map['case_client_true_name'] = $condition['case_client_true_name'];
+		isset($condition['case_client_idno']) && $map['case_client_idno'] = $condition['case_client_idno'];
+
+		if (is_time($condition['start_time']) && is_time($condition['end_time'])) {
+			$map['accident_time'] = array(array('egt', strtotime($condition['start_time'])), array('elt', strtotime($condition['end_time'])));
+		} else if (is_time($condition['end_time'])) {
+			$map['accident_time'] = array(array('elt', strtotime($condition['end_time'])));
+		} else if (is_time($condition['start_time'])) {
+			$map['accident_time'] = array(array('egt', strtotime($condition['start_time'])));
+		}
+		isset($condition['detain_status']) && $map['detain_status'] = $condition['detain_status'];
+		isset($condition['case_handle_user_id']) && $map['case_handle_user_id'] = $condition['case_handle_user_id'];
+		isset($condition['case_client_car_no']) && $map['case_client_car_no'] = $condition['case_client_car_no'];
+
+		//高级权限可筛选大队
+		if (true === is_power($this->myPower, 'case_client_detain_2')) {
+			isset($condition['department_id']) && $map['department_id'] = $condition['department_id'];
+		} else {
+			//普通权限不可筛选大队
+			$myBrigade = $this->getMyBrigade();
+			$map['department_id'] = $myBrigade['id'];
+
+		}
+		//低级权限只能看到派发给自己的处理的数据
+		if (true === is_power($this->myPower, 'case_client_detain_0') && false === is_power($this->myPower, 'case_client_detain_2') && false === is_power($this->myPower, 'case_client_detain_1')) {
+			$map['case_handle_user_id'] = $this->my['id'];
+		} else {
+			isset($condition['case_handle_user_id']) && $map['case_handle_user_id'] = $condition['case_handle_user_id'];
+
+		}
+
+		// 列表信息
+		$Model = D('CaseClientDetainView');
+		$count = $Model->where($map)->count('distinct CaseClientDetain.id');
+		$page = new Page($count, 15);
+		$list = $Model->where($map)->order('CaseClientDetain.id desc')->limit($page->firstrow . ',' . $page->rows)->group('CaseClientDetain.id')->select();
+		$this->assign('list', $list);
+
+		// 分页信息
+		$pageInfo = array(
+			'totalrows' => $count,
+			'totalpage' => $page->totalpages,
+			'nowpage' => $page->nowpage,
+		);
+		$this->assign('page', $pageInfo);
+
+		// 渲染
+		$this->display('CaseClientDetain/pending/table');
+	}
+
+	/**
+	 * ajax读取该大队下所有可选值班人员
+	 */
+	public function ajaxAllUsers() {
+		$pid = I('post.uid', '', 'int');
+
+		// 部门
+		$department = $this->allDepartment;
+		$this->assign('department', $department);
+
+		//该部门以及该部门下所有子部门的主键id $allChild
+		$allChild = get_all_child($department, $pid);
+
+		// 部门（大队）下所属人员
+		$map = array();
+		$map['is_del'] = 0;
+		$map['department_id'] = array('in', $allChild);
+		$allUsers = M('User')->where($map)->select();
+		$this->success($allUsers);
+
+	}
+
+	/**
+	 * ajax设置物品返还
+	 */
+	public function detainReturn() {
+		$id = I('post.detain_id', '', 'int');
+		$return_time = I('post.return_time', '', 'strip_tags');
+		$return_time = strtotime($return_time);
+		$data['id'] = $id;
+		$data['status'] = 1;
+		$data['return_time'] = $return_time;
+		$data['update_time'] = time();
+		$data['update_user_id'] = $this->my['id'];
+		$save = D('CaseClientDetain')->save($data);
+		if (!$save) {
+			$this->error('返还失败');
+		}
+		$this->success('返还成功');
+
+	}
+
+}

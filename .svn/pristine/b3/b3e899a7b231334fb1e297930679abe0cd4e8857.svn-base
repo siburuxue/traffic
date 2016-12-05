@@ -1,0 +1,48 @@
+<table class="table table-striped table-bordered table-hover table-condensed table-sheet" id="table" data-totalrows="{$page.totalrows}" data-totalpage="{$page.totalpage}" data-nowpage="{$page.nowpage}">
+    <thead>
+        <tr>
+            <th>事故编号</th>
+            <th>事故发生时间</th>
+            <th>地点</th>
+            <th>事故类型</th>
+            <th>当事人</th>
+            <th>办案人</th>
+            <th>现场形态</th>
+            <th>逃逸案件是否侦破</th>
+            <th>当前状态</th>
+            <th>时限</th>
+        </tr>
+    </thead>
+    <tbody>
+        <volist name="list" id="vo">
+            <tr>
+                <td><a href="{:U('CaseInfo/detail?id='.$vo['id'])}" class="js-open js-end-refresh">{$vo.code|default='-'}</a></td>
+                <td>{$vo.accident_time|date='Y-m-d H:i',###}</td>
+                <td>{$vo.accident_place|default='-'}</td>
+                <td>{$vo.accident_type_name|default='-'}</td>
+                <td title="{$vo.case_client_names}">{$vo.case_client_names|default='-'|left_str=###,20}</td>
+                <td>{$vo.case_handle_true_name|default='-'}</td>
+                <td>{$vo.case_survey_scene_state_name|default='-'}</td>
+                <td>
+                    <eq name="vo.is_escape" value="0">
+                        非逃逸事故
+                        <else/>
+                        <eq name="vo.is_catch" value="0">
+                            <span class="text-danger">未侦破</span>
+                            <else/>
+                            <span class="text-success">已侦破</span>
+                        </eq>
+                    </eq>
+                </td>
+                <td>{$vo.case_status|default='-'}</td>
+                <if condition="$vo['time_status'] eq -1">
+                    <td style="color:orange">{$vo.timeLimit}</td>
+                <elseif condition="$vo['time_status'] eq -2"/>
+                    <td style="color:red">{$vo.timeLimit}</td>
+                <else />
+                    <td>{$vo.timeLimit}</td>
+                </if>
+            </tr>
+        </volist>
+    </tbody>
+</table>

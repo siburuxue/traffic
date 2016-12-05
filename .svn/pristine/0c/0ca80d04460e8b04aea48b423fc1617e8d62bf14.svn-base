@@ -1,0 +1,61 @@
+<extend name="Common/base" />
+<block name="title">告知</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">告知</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 布局 -->
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <include file="CaseQueryCheckupNotice/edit/leftone" />
+                    </div>
+                    <div class="col-xs-9">
+                        <include file="CaseQueryCheckupNotice/edit/addtable" />
+                        <button type="button" class="btn btn-primary to-print" disabled="disabled"><span class="glyphicon glyphicon-print"></span>&nbsp;打印鉴定意见告知笔录</button>
+                        <button type="button" class="btn btn-primary" disabled="disabled"><span class="glyphicon glyphicon-floppy-disk"></span> 保存</button>
+                        <button type="button" class="btn btn-warning" disabled="disabled"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+                    </div>
+                </div>
+            </div>
+            <!--             <div class="panel-body" >
+                <button type="button" class="btn btn-primary to-print" id="print"><span class="glyphicon glyphicon-print"></span>打印鉴定意见告知笔录</button>
+                <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-floppy-disk"></span> 保存</button>
+                <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+            </div> -->
+        </div>
+    </div>
+    <div class="panel-default">
+        <include file="CaseQueryCheckupNotice/add/photoUpload" />
+        <input type="hidden" name="case_id" value="{$info.id}" />
+    </div>
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.insert = "{:U('insert')}";
+    url.update = "{:U('update')}";
+    url.getClientRelater = "{:U('getClientRelater')}";
+    url.photoList = "{:U('photoList')}";
+    url.delete = "{:U('CasePhoto/delete')}";
+    url.getNoticeInfo = "{:U('getNoticeInfo')}";
+    $(function() {
+        $('.post-gather').attr('disabled', 'disabled');
+        $('#case-photo-upload').attr('disabled', 'disabled');
+        $('#case-photo-delete').attr('disabled', 'disabled');
+    });
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CaseQueryCheckupNotice.edit?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

@@ -1,0 +1,13 @@
+<!-- 面板 -->
+<div class="panel panel-primary">
+    <!-- 面板标题 -->
+    <div class="panel-heading">事故认定</div>
+    <!-- 面板内容 -->
+    <div class="list-group" style="height:204px;overflow:auto;">
+        <a href="{:U('CaseCognizanceInfo/escapeIndex?case_id='.$info['id'])}" class="list-group-item list-group-item-info js-open js-end-refresh" id="cognizanceBtnEscape" style="display:none;"><span class="glyphicon glyphicon-new-window"></span> 逃逸事故认定</a>
+        <a href="{:U('CaseCognizanceInfo/simpleIndex?case_id='.$info['id'])}" class="list-group-item list-group-item-info js-open js-end-refresh" id="cognizanceBtnSimple" style="display:none;"><span class="glyphicon glyphicon-new-window"></span> 简易程序</a>
+        <a href="{:U('checkIsCanNormalCognizanceInfo?sure=1&case_id='.$info['id'])}" class="list-group-item list-group-item-info" id="cognizanceBtnNormal" style="display:none;"><span class="glyphicon glyphicon-new-window"></span> 一般程序</a>
+        <a href="{:U('checkIsCanNormalCognizanceInfo?sure=0&case_id='.$info['id'])}" class="list-group-item list-group-item-info" id="cognizanceBtnUn" style="display:none;"><span class="glyphicon glyphicon-new-window"></span> 一般程序</a>
+        <div id="caseCognizanceContent"></div>
+    </div>
+</div>

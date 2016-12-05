@@ -1,0 +1,49 @@
+<!-- 面板内容 -->
+<div class="panel-body">
+    <table class="table table-bordered table-condensed table-custom">
+        <tr>
+            <th width="20%"><span class="text-danger">*</span>&nbsp;鉴定对象</th>
+            <td>
+                <input name="case_id" type="hidden" id="case_id" value="{$Think.get.case_id}" class="post-gather" />
+                <select name="checkup_org_item_pid" id="car-people-other" class="form-control input-sm post-gather" disabled="disabled" style="min-width:150px;max-width:150px;float:left;">
+                    <option value="">请选择</option>
+                    <foreach name="case_checkup_obj_type" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+                <select name="target_case_client_id" id="car-people-other-child" class="form-control input-sm post-gather" disabled="disabled" style="min-width:100px;max-width:300px;float:left;">
+                    <option value="">请选择</option>
+                </select>
+                <input name="target_other" type="text" id="type_other" maxlength="250" class="form-control input-sm post-gather" eadonly="readonly" style="display:none;min-width:150px;max-width:300px;" />
+            </td>
+        </tr>
+        <tr>
+            <th><span class="text-danger">*</span>&nbsp;鉴定类型</th>
+            <td>
+                <select name="checkup_org_item_id" id="checktpye_child" class="form-control input-sm post-gather" disabled="disabled">
+                    <option value="">请选择</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th><span class="text-danger">*</span>&nbsp;鉴定机构名称</th>
+            <td>
+                <select name="checkup_org_id" id="org_type" class="form-control input-sm post-gather" disabled="disabled">
+                    <option value="">请选择</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th><span class="text-danger">*</span>&nbsp;约定完成时间</th>
+            <td>
+                <input type="text" class="form-control input-sm  post-gather" id="time-one" name="finish_time" maxlength="16" readonly="readonly" />
+            </td>
+        </tr>
+    </table>
+    <input type="hidden" class="form-control input-sm post-gather-two" id="ex_app" name="examine_approve" maxlength="30" />
+    <input type="hidden" class="form-control input-sm post-gather-two" id="case_checkup_id" name="case_checkup_id" maxlength="30" />
+    <button type="button" class="btn btn-primary  btn-sm-jimmy "   disabled="disabled"><span class="glyphicon glyphicon-saved"></span> 提请审批</button>
+    <button type="button" class="btn btn-primary btn-sm-jimmy "   disabled="disabled"><span class="glyphicon glyphicon-list-alt"></span> 审批信息</button>
+    <button type="button" class="btn btn-primary btn-sm-jimmy " disabled="disabled"><span class="glyphicon glyphicon-ok"></span> 确定</button>
+    <!-- <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button> -->
+</div>

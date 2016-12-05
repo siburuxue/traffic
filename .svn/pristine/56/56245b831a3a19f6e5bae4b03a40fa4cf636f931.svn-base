@@ -1,0 +1,75 @@
+<extend name="Common/base"/>
+<block name="title">车辆停放费用统计</block>
+<block name="main.html">
+	<!-- 页面主体 -->
+	<div class="container-fluid main">
+		<!-- 页头 -->
+		<div class="head-space"></div>
+		<!-- 列表面板 -->
+		<div class="panel panel-default">
+			<!-- 面板头 -->
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-xs-6"><span class="block-title">车辆停放费用统计</span></div>
+					<div class="col-xs-6 text-right">
+						<button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+					</div>
+				</div>
+			</div>
+			<!-- 面板主体 -->
+			<div class="panel-body">
+				<!-- 搜索 -->
+				<include file="Statistics/parking/search"/>
+				<!-- 表格 -->
+				<div class="table-responsive" id="table-content"></div>
+				<!-- 分页 -->
+				<include file="Inc/page"/>
+			</div>
+		</div>
+		<!-- 表格 结束 -->
+		<!-- 列表面板 -->
+		<div class="panel panel-default">
+			<!-- 面板头 -->
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-xs-6"><span class="block-title">合计</span></div>
+					<div class="col-xs-6 text-right">
+					</div>
+				</div>
+			</div>
+			<div class="panel-body">
+				<table class="table table-striped table-bordered table-hover table-condensed table-sheet">
+					<tr>
+						<th width="50">编号</th>
+						<th width="50%">车辆停放单位</th>
+						<th>台次</th>
+					</tr>
+					<volist name="park" id="vo">
+						<tr>
+							<td>{$key+1}</td>
+							<td>{$vo.name}</td>
+							<td>{$vo.count}</td>
+						</tr>
+					</volist>
+				</table>
+			</div>
+		</div>
+
+
+	</div>
+	<!-- 页面主体 结束 -->
+</block>
+<block name="foot.html">
+	<include file="Statistics/parking/options"/>
+</block>
+<block name="head.ext">
+	<script type="text/javascript">
+		// 定义URL地址
+		url.table = "{:U('parkingTable')}";
+		url.getHandle = "{:U('getHandle')}";
+	</script>
+</block>
+<block name="foot.ext">
+	<import file="jquery.vmc#select?" basepath="{$Think.SRC_COMMON_URL}"/>
+	<import file="js.Statistics.parking?" basepath="{$Think.SRC_MODULE_URL}"/>
+</block>

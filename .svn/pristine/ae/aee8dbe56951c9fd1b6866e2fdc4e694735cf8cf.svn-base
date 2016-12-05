@@ -1,0 +1,75 @@
+<extend name="Common/base" />
+<block name="title">不受理复核发送短信</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 列表面板 -->
+        <div class="panel panel-default">
+            <!-- 面板头 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">不受理复核发送短信</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板主体 -->
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed table-form">
+                    <tr>
+                        <th width="15%">选择告知对象</th>
+                        <td>
+                            <volist name="caseClient" id="vo">
+                                <div class="checkbox">
+                                    <label class="text-danger">
+                                        <input type="checkbox" name="receiver" data-client="{$vo.id}" data-relater="0" data-name="{$vo.name}" data-mobile="{$vo.tel}"> {$vo.name}
+                                    </label>&nbsp;&nbsp;&nbsp;
+                                    <volist name="vo.relater" id="co">
+                                        <label>
+                                            <input type="checkbox" name="receiver" data-client="{$vo.id}" data-relater="{$co.id}" data-name="{$co.name}" data-mobile="{$co.tel}"> {$co.name}
+                                        </label>&nbsp;&nbsp;&nbsp;
+                                    </volist>
+                                </div>
+                            </volist>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>告知文件类型</th>
+                        <td>
+                            <select name="msg_type" class="form-control post-gather" disabled="disabled">
+                                <option value="">请选择</option>
+                                <volist name="documentIssueType" id="vo">
+                                    <option value="{$key}" <eq name="key" value="5">selected="selected"</eq>>{$vo}</option>
+                                </volist>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>告知内容</th>
+                        <td>
+                            <textarea name="msg_content" class="form-control post-gather" style="height: 120px;"></textarea>
+                        </td>
+                    </tr>
+                </table>
+                <!-- 按钮 -->
+                <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-send"></span> 发送</button>
+                <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="case_id" value="{$caseReview.case_id}" class="post-gather">
+    <input type="hidden" name="case_review_id" value="{$caseReview.id}" class="post-gather">
+    <input type="hidden" name="cate" value="1" class="post-gather">
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.update = "{:U('sendSmsRefuse')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CaseReviewAcceptHandle.smsRefuse?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

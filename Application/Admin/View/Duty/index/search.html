@@ -1,0 +1,51 @@
+<div class="panel-body ">
+    <div class="table-responsive">
+        <table class="table table-bordered table-condensed table-custom">
+            <tr>
+                <th width="15%">值班日期</th>
+                <td width="35%">
+                    <table width="100%">
+                        <tr>
+                            <td width="48%">
+                                <input type="text" class="form-control input-sm search-auto form-datetime" id="start-time" name="condition_start_time" maxlength="16" readonly="readonly" style="min-width:auto;width:100%;">
+                            </td>
+                            <td width="4%" align="center"> ~
+                            </td>
+                            <td width="48%">
+                                <input type="text" class="form-control input-sm search-auto form-datetime" id="end-time" name="condition_end_time" maxlength="16" readonly="readonly" style="min-width:auto;width:100%;">
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <th width="15%">值班人</th>
+                <td width="35%">
+                    <input type="text" class="form-control input-sm search-auto" name="condition_true_name" maxlength="255" style="width:100%;">
+                </td>
+            </tr>
+            <tr>
+                <th>值班组别</th>
+                <td <if condition="is_power($myPower,'duty_advance') eq false ">colspan="3"</if>>
+                    <select name="condition_duty_group_id" class="form-control input-sm search-auto" style="width:100%;">
+                        <option value="">请选择</option>
+                        <foreach name="dutyGroupType" item="vo">
+                            <option value="{$key}">{$vo}</option>
+                        </foreach>
+                    </select>
+                </td>
+                <if condition="is_power($myPower,'duty_advance')">
+                    <th width="160">大队</th>
+                    <td>
+                        <select name="condition_department_id" class="form-control input-sm search-auto" style="width:100%;">
+                            <option value="">请选择</option>
+                            <volist name="department" id="vo">
+                                <option value="{$vo.id}" <neq name="vo.cate" value="2">disabled="disabled" style="color:red;"</neq> >{$vo._prefix}{$vo.name}</option>
+                            </volist>
+                        </select>
+                    </td>
+                </if>
+            </tr>
+        </table>
+    </div>
+    <button type="button" class="btn btn-primary" id="search-submit"><span class="glyphicon glyphicon-search"></span> 查询</button>
+    <button type="button" class="btn btn-warning" id="search-reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+</div>

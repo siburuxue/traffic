@@ -1,0 +1,63 @@
+<extend name="Common/base" />
+<block name="title">编辑自定义查询模板</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 面板 -->
+        <div class="panel panel-default">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">编辑自定义查询模板</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <div class="alert alert-success">在查询语句中包含类型字段时，需要在配置文件页面中找到对应类型的英文字段名，并以'_'为前缀、以'__汉字'为后缀作为字段别名。例如：accident_type as _accident_type__事故类型</div>
+                <table class="table table-bordered table-condensed table-custom">
+                    <tr>
+                        <th width="15%">模板名称</th>
+                        <td>
+                            <input type="text" class="form-control input-sm post-gather" name="name" maxlength="50" value="{$info.name}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>模板内容</th>
+                        <td>
+                            <textarea class="form-control input-sm post-gather" id="content" name="content" style="height:300px;resize:none;width:100%">{$info.content}</textarea>
+                        </td>
+                    </tr>
+                </table>
+                <input type="hidden" class="post-gather" name="id" value="{$info.id}">
+                <button type="button" class="btn btn-primary" id="execute"><span class="glyphicon glyphicon-saved"></span> 执行</button>
+                <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-saved"></span> 提交</button>
+                <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+            </div>
+
+        </div>
+        <div class="panel panel-default" style="display: none;" id="data-panel">
+            <!-- 面板主体 -->
+            <div class="panel-body">
+                <!-- 表格 -->
+                <div class="table-responsive" id="table-content"></div>
+                <!-- 分页 -->
+                <include file="Inc/page" />
+            </div>
+        </div>
+    </div>
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+        // 定义URL地址
+        url.update = "{:U('update')}";
+        url.table = "{:U('queryTable')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CustomSearchTemplateService.edit?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

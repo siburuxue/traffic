@@ -1,0 +1,578 @@
+<?php
+namespace Admin\Controller;
+use \Lib\Page;
+
+/**
+ * 指挥中心 报警信息
+ */
+class AlarmReceiveController extends CommonController {
+
+	/**
+	 * 构造函数
+	 */
+	public function __construct() {
+
+		parent::__construct();
+
+		/*if (false === is_power($this->myPower, 'alarm_receive')) {
+			$this->error('无权访问');
+		}*/
+
+	}
+
+	/**
+	 * 指挥中心 报警信息
+	 */
+	public function index() {
+		//案件来源
+		$this->assign('caseSource', get_dict('case_source'));
+
+		// 渲染
+		$this->display();
+	}
+
+	public function getDuty() {
+		$time = time();
+		//当前人员所在大队
+		$myBrigade = $this->getMyBrigade();
+
+		$dutyGroupType = get_custom_config('duty_group_type');
+		// 当前大队的值班组
+		$map = array();
+		$map['is_del'] = 0;
+		$map['department_id'] = $myBrigade['id'];
+		$dutyGroup = D('DutyGroupView')->where($map)->order('group_type asc')->select();
+
+		foreach ($dutyGroup as $key => &$value) {
+			$map = array();
+			$map['department_id'] = $myBrigade['id'];
+			$map['duty_group_id'] = $value['id'];
+			$map['start_time'] = array('elt', $time);
+			$map['end_time'] = array('egt', $time);
+			$map['is_del'] = 0;
+			$dutyUser = D('DutyView')->where($map)->group('Duty.id')->getField('true_name', true);
+
+			$value['user_name'] = empty($dutyUser) ? '-' : implode(',', $dutyUser);
+			$groupName = $dutyGroupType[$value['group_type']];
+			$value['group_type_name'] = empty($value['name']) ? $groupName : $value['name'];
+
+		}
+		unset($value);
+		$this->success($dutyGroup);
+	}
+
+	/**
+	 * 指挥中心 报警信息 表格
+	 * 基本条件：
+	 * 1 未作废的
+	 * 2 未处理的
+	 */
+	public function indexTable() {
+		// 搜索条件
+		$map = array();
+		$map['is_del'] = 0;
+		$map['handle_type'] = 0;
+		$condition = get_condition();
+		if (is_time($condition['start_time']) && is_time($condition['end_time'])) {
+			$map['alarm_time'] = array(array('egt', strtotime($condition['start_time'])), array('elt', strtotime($condition['end_time'])));
+		} else if (is_time($condition['end_time'])) {
+			$map['alarm_time'] = array(array('elt', strtotime($condition['end_time'])));
+		} else if (is_time($condition['start_time'])) {
+			$map['alarm_time'] = array(array('egt', strtotime($condition['start_time'])));
+		}
+		isset($condition['case_source']) && $map['case_source'] = $condition['case_source'];
+		isset($condition['alarm_name']) && $map['alarm_name'] = $condition['alarm_name'];
+
+		// 列表信息
+		$Model = D('AlarmView');
+		$count = $Model->where($map)->count('distinct Alarm.id');
+		$page = new Page($count, 8);
+		$list = $Model->where($map)->order('create_time desc,id desc')->limit($page->firstrow . ',' . $page->rows)->group('Alarm.id')->select();
+		$this->assign('list', $list);
+
+		// 分页信息
+		$pageInfo = array(
+			'totalrows' => $count,
+			'totalpage' => $page->totalpages,
+			'nowpage' => $page->nowpage,
+		);
+		$this->assign('page', $pageInfo);
+
+		// 渲染
+		$this->display('AlarmReceive/index/table');
+	}
+
+	/**
+	 * 指挥中心 全部报警信息
+	 */
+	public function search() {
+		// 案件来源
+		$this->assign('caseSource', get_dict('case_source'));
+
+		// 渲染
+		$this->display();
+	}
+
+	/**
+	 * 指挥中心 全部报警信息 表格
+	 * 编辑删除条件
+	 * 1 未作废的
+	 * 2 未关联的
+	 */
+	public function searchTable() {
+		// 搜索条件
+		$map = array();
+		$condition = get_condition();
+		if (is_time($condition['start_time']) && is_time($condition['end_time'])) {
+			$map['alarm_time'] = array(array('egt', strtotime($condition['start_time'])), array('elt', strtotime($condition['end_time'])));
+		} else if (is_time($condition['end_time'])) {
+			$map['alarm_time'] = array(array('elt', strtotime($condition['end_time'])));
+		} else if (is_time($condition['start_time'])) {
+			$map['alarm_time'] = array(array('egt', strtotime($condition['start_time'])));
+		}
+		isset($condition['case_source']) && $map['case_source'] = $condition['case_source'];
+		isset($condition['alarm_name']) && $map['alarm_name'] = $condition['alarm_name'];
+		isset($condition['receiver_true_name']) && $map['receiver_true_name'] = $condition['receiver_true_name'];
+		isset($condition['is_link']) && $map['is_link'] = $condition['is_link'];
+		isset($condition['is_del']) && $map['is_del'] = $condition['is_del'];
+
+		// 列表信息
+		$Model = D('AlarmView');
+		$count = $Model->where($map)->count('distinct Alarm.id');
+		$page = new Page($count, 15);
+		$list = $Model->where($map)->order('create_time desc,id desc')->limit($page->firstrow . ',' . $page->rows)->group('Alarm.id')->select();
+
+		foreach ($list as $key => $value) {
+			// 是否允许操作
+			$list[$key]['is_can_action'] = $value['is_del'] == 0 && $value['is_link'] == 0 ? 1 : 0;
+		}
+
+		$this->assign('list', $list);
+
+		// 分页信息
+		$pageInfo = array(
+			'totalrows' => $count,
+			'totalpage' => $page->totalpages,
+			'nowpage' => $page->nowpage,
+		);
+		$this->assign('page', $pageInfo);
+
+		// 渲染
+		$this->display('AlarmReceive/search/table');
+	}
+
+	/**
+	 * 指挥中心 报警信息 新增 界面
+	 */
+	public function add() {
+		//案件来源字典
+		$this->assign('caseSource', get_dict('case_source'));
+		//车辆类型字典
+		$this->assign('carType', get_dict('car_type'));
+		// 渲染
+		$this->display();
+	}
+
+	/**
+	 * 指挥中心 报警信息 新增 执行
+	 */
+	public function insert() {
+
+		// 实例化模型
+		$Model = D('Alarm');
+
+		// 创建数据
+		$data = $Model->create();
+		if (false === $data) {
+			$this->error($Model->getError());
+		}
+
+		// 转换时间格式
+		$data['alarm_time'] = strtotime($data['alarm_time']);
+		$data['accident_time'] = strtotime($data['accident_time']);
+
+		// 开启事务
+		$Model->startTrans();
+		$id = $Model->add($data);
+
+		// 数据保存失败
+		if (!$id) {
+			$Model->rollback();
+			$this->error('数据保存失败');
+		}
+
+		// 保存肇事车辆
+		$accidentModel = D('AlarmAccidentCar');
+		$accidentCar = I('post.accidentCar');
+		if (is_array($accidentCar) && count($accidentCar) > 0) {
+			$subData = array();
+			foreach ($accidentCar as $k => $v) {
+				$subItem = $accidentModel->create($v);
+				if ($subItem === false) {
+					$Model->rollback();
+					$this->error('肇事车辆第' . ($k + 1) . '行：' . $accidentModel->getError());
+				}
+				$subItem['alarm_id'] = $id;
+				$subData[] = $subItem;
+			}
+			$res = M('AlarmAccidentCar')->addAll($subData);
+
+			if (!$res) {
+				$Model->rollback();
+				$this->error('肇事车辆数据保存失败');
+			}
+		}
+
+		// 保存逃逸车辆
+		$escapeModel = D('AlarmEscapeCar');
+		$escapeCar = I('post.escapeCar');
+		if (is_array($escapeCar) && count($escapeCar) > 0) {
+			$subData = array();
+			foreach ($escapeCar as $k => $v) {
+				$subItem = $escapeModel->create($v);
+				if ($subItem === false) {
+					$Model->rollback();
+					$this->error('涉事逃逸车辆第' . ($k + 1) . '行：' . $escapeModel->getError());
+				}
+				$subItem['alarm_id'] = $id;
+				$subData[] = $subItem;
+			}
+			$res = M('AlarmEscapeCar')->addAll($subData);
+
+			if (!$res) {
+				$Model->rollback();
+				$this->error('涉事逃逸车辆数据保存失败');
+			}
+		}
+
+		// 成功
+		$Model->commit();
+		$this->success('新增成功', U('edit?id=' . $id));
+	}
+
+	/**
+	 * 指挥中心 报警信息 编辑
+	 */
+	public function edit() {
+		// 报警编号
+		$id = I('get.id', '', 'int');
+		if ($id === '') {
+			$this->error('非法操作');
+		}
+
+		// 报警信息
+		$info = M('Alarm')->getById($id);
+		if (empty($info)) {
+			$this->error('报警信息不存在');
+		}
+		if ($info['is_link'] == 1) {
+			$this->error('报警信息已关联案件，不可编辑');
+		}
+		if ($info['is_del'] == 1) {
+			$this->error('报警信息已作废，不可编辑');
+		}
+		$this->assign('info', $info);
+
+		// 案件来源字典
+		$this->assign('caseSource', get_dict('case_source'));
+
+		// 车辆类型字典
+		$this->assign('carType', get_dict('car_type'));
+
+		// 肇事车辆
+		$map = array();
+		$map['alarm_id'] = $id;
+		$alarmAccidentCar = M('AlarmAccidentCar')->where($map)->select();
+		foreach ($alarmAccidentCar as $key => &$value) {
+			foreach ($value as &$v) {
+				$v = is_string($v) ? htmlspecialchars_decode($v) : $v;
+			}
+			unset($v);
+		}
+		unset($value);
+		$alarmAccidentCarJson = json_encode($alarmAccidentCar);
+		$alarmAccidentCarJson = str_replace("'", "\u0027", $alarmAccidentCarJson);
+		$this->assign('alarmAccidentCar', $alarmAccidentCarJson);
+
+		// 逃逸车辆
+		$map = array();
+		$map['alarm_id'] = $id;
+		$alarmEscapeCar = M('AlarmEscapeCar')->where($map)->select();
+		foreach ($alarmEscapeCar as $key => &$value) {
+			foreach ($value as &$v) {
+				$v = is_string($v) ? htmlspecialchars_decode($v) : $v;
+			}
+			unset($v);
+		}
+		unset($value);
+		$alarmEscapeCarJson = json_encode($alarmEscapeCar);
+		$alarmEscapeCarJson = str_replace("'", "\u0027", $alarmEscapeCarJson);
+		$this->assign('alarmEscapeCar', $alarmEscapeCarJson);
+
+		// 现场处置
+		$map = array();
+		$map['alarm_id'] = $id;
+		$alarmProcess = M('AlarmProcess')->where($map)->select();
+		foreach ($alarmProcess as $key => &$value) {
+			$alarmProcess[$key]['process_time'] = date('Y-m-d H:i', $value['process_time']);
+			foreach ($value as &$v) {
+				$v = is_string($v) ? htmlspecialchars_decode($v) : $v;
+			}
+			unset($v);
+		}
+		unset($value);
+		$alarmProcessJson = json_encode($alarmProcess);
+		$alarmProcessJson = str_replace("'", "\u0027", $alarmProcessJson);
+		$this->assign('alarmProcess', $alarmProcessJson);
+
+		// 渲染
+		$this->display();
+	}
+
+	/**
+	 * 更新
+	 */
+	public function update() {
+		// 实例化模型
+		$Model = D('Alarm');
+
+		// 创建数据
+		$data = $Model->create();
+		if (false === $data) {
+			$this->error($Model->getError());
+		}
+
+		// 报警信息编号
+		$id = $data['id'];
+
+		// 报警信息
+		$info = M('Alarm')->getById($id);
+		if (empty($info)) {
+			$this->error('报警信息不存在');
+		}
+		if ($info['is_link'] == 1) {
+			$this->error('报警信息已关联案件，不可编辑');
+		}
+		if ($info['is_del'] == 1) {
+			$this->error('报警信息已作废，不可编辑');
+		}
+
+		// 转换时间格式
+		$data['alarm_time'] = strtotime($data['alarm_time']);
+		$data['accident_time'] = strtotime($data['accident_time']);
+
+		// 开启事务
+		$Model->startTrans();
+		$result = $Model->save($data);
+
+		// 数据保存失败
+		if (!$result) {
+			$Model->rollback();
+			$this->error('数据保存失败');
+		}
+
+		$map = array();
+		$map['alarm_id'] = $id;
+
+		// 删除原数据
+		M('AlarmAccidentCar')->where($map)->delete();
+		M('AlarmEscapeCar')->where($map)->delete();
+		M('AlarmProcess')->where($map)->delete();
+
+		// 保存肇事车辆
+		$accidentModel = D('AlarmAccidentCar');
+		$accidentCar = I('post.accidentCar');
+		if (is_array($accidentCar) && count($accidentCar) > 0) {
+			$subData = array();
+			foreach ($accidentCar as $k => $v) {
+				$subItem = $accidentModel->create($v);
+				if ($subItem === false) {
+					$Model->rollback();
+					$this->error('肇事车辆第' . ($k + 1) . '行：' . $accidentModel->getError());
+				}
+				$subItem['alarm_id'] = $id;
+				$subData[] = $subItem;
+			}
+			$res = M('AlarmAccidentCar')->addAll($subData);
+
+			if (!$res) {
+				$Model->rollback();
+				$this->error('肇事车辆数据保存失败');
+			}
+		}
+
+		// 保存逃逸车辆
+		$escapeModel = D('AlarmEscapeCar');
+		$escapeCar = I('post.escapeCar');
+		if (is_array($escapeCar) && count($escapeCar) > 0) {
+			$subData = array();
+			foreach ($escapeCar as $k => $v) {
+				$subItem = $escapeModel->create($v);
+				if ($subItem === false) {
+					$Model->rollback();
+					$this->error('涉事逃逸车辆第' . ($k + 1) . '行：' . $escapeModel->getError());
+				}
+				$subItem['alarm_id'] = $id;
+				$subData[] = $subItem;
+			}
+			$res = M('AlarmEscapeCar')->addAll($subData);
+
+			if (!$res) {
+				$Model->rollback();
+				$this->error('涉事逃逸车辆数据保存失败');
+			}
+		}
+
+		// 保存处警信息
+		$processModel = D('AlarmProcess');
+		$process = I('post.process');
+		if (is_array($process) && count($process) > 0) {
+			$subData = array();
+			foreach ($process as $k => $v) {
+				$subItem = $processModel->create($v);
+				if ($subItem === false) {
+					$Model->rollback();
+					$this->error('现场处置信息第' . ($k + 1) . '行：' . $processModel->getError());
+				}
+				$subItem['process_time'] = strtotime($subItem['process_time']);
+				$subItem['alarm_id'] = $id;
+				$subData[] = $subItem;
+			}
+			$res = M('AlarmProcess')->addAll($subData);
+
+			if (!$res) {
+				$Model->rollback();
+				$this->error('现场处置信息数据保存失败');
+			}
+		}
+
+		// 成功
+		$Model->commit();
+		$this->success('更新成功');
+	}
+
+	/**
+	 * 查看详细
+	 */
+	public function detail() {
+		// 报警编号
+		$id = I('get.id', '', 'int');
+		if ($id === '') {
+			$this->error('非法操作');
+		}
+
+		// 报警信息
+		$info = D('AlarmView')->getById($id);
+		if (empty($info)) {
+			$this->error('报警信息不存在');
+		}
+		$this->assign('info', $info);
+
+		// 肇事车辆
+		$map = array();
+		$map['alarm_id'] = $id;
+		$alarmAccidentCar = D('AlarmAccidentCarView')->where($map)->select();
+		$this->assign('alarmAccidentCar', $alarmAccidentCar);
+
+		// 逃逸车辆
+		$map = array();
+		$map['alarm_id'] = $id;
+		$alarmEscapeCar = D('AlarmEscapeCarView')->where($map)->select();
+		$this->assign('alarmEscapeCar', $alarmEscapeCar);
+
+		// 现场处置
+		$map = array();
+		$map['alarm_id'] = $id;
+		$alarmProcess = M('AlarmProcess')->where($map)->select();
+		$this->assign('alarmProcess', $alarmProcess);
+
+		// 渲染
+		$this->display();
+	}
+
+	/**
+	 * 处理
+	 */
+	public function handleType() {
+		// 实例化模型
+		$Model = D('Alarm');
+
+		// 创建数据
+		$data = $Model->create();
+		if (false === $data) {
+			$this->error($Model->getError());
+		}
+
+		$id = $data['id'];
+
+		// 报警信息
+		$info = M('Alarm')->getById($id);
+		if (empty($info)) {
+			$this->error('报警信息不存在');
+		}
+		if ($info['handle_type'] != 0) {
+			$this->error('报警信息已处理');
+		}
+		if ($info['is_link'] == 1) {
+			$this->error('报警信息已关联案件，不可编辑');
+		}
+		if ($info['is_del'] == 1) {
+			$this->error('报警信息已作废，不可编辑');
+		}
+
+		// 保存数据
+		$result = $Model->field('id,scene_end_time,handle_type,update_time,update_user_id')->save($data);
+
+		// 返回结果
+		if ($result) {
+			$this->success('操作成功');
+		} else {
+			$this->error('数据保存失败');
+		}
+	}
+
+	/**
+	 * 作废
+	 */
+	public function delete() {
+		// 获取编号
+		$id = I('post.id', '', 'int');
+		if ($id === '') {
+			$this->error('非法操作');
+		}
+		// 作废缘由
+		$delReason = I('post.del_reason', '', 'trim,htmlspecialchars');
+		if ($delReason === '') {
+			$this->error('作废缘由必须填写');
+		}
+
+		// 报警信息
+		$info = M('Alarm')->getById($id);
+		if (empty($info)) {
+			$this->error('报警信息不存在');
+		}
+		if ($info['is_link'] == 1) {
+			$this->error('报警信息已关联案件，不可作废');
+		}
+		if ($info['is_del'] == 1) {
+			$this->error('报警信息已作废');
+		}
+
+		// 更新数据
+		$data = array();
+		$data['id'] = $id;
+		$data['is_del'] = 1;
+		$data['del_reason'] = $delReason;
+		$data['update_time'] = time();
+		$data['update_user_id'] = $this->my['id'];
+
+		$result = M('Alarm')->field('id,is_del,del_reason,update_time,update_user_id')->save($data);
+
+		// 返回结果
+		if ($result) {
+			$this->success('作废成功');
+		} else {
+			$this->error('数据保存失败');
+		}
+	}
+}

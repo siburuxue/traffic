@@ -1,0 +1,84 @@
+<extend name="Common/base" />
+<block name="title">编辑现场勘查信息</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 基础信息 -->
+        <div class="panel panel-default form-inline1">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">编辑现场勘查信息</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed table-custom">
+                    <tbody>
+                    <tr>
+                        <th width="15%"><span class="text-danger">*</span> 现场勘查开始时间</th>
+                        <td>
+                            <input type="text" class="form-control input-sm post-gather form-datetime" id="start-time" name="start_time" maxlength="16" readonly="readonly" value="{$info.start_time|date='Y-m-d H:i',###}">
+                        </td>
+                        <th><span class="text-danger">*</span> 现场勘查结束时间</th>
+                        <td>
+                            <input type="text" class="form-control input-sm post-gather form-datetime" id="end-time" name="end_time" maxlength="16" readonly="readonly" value="{$info.end_time|date='Y-m-d H:i',###}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="15%"><span class="text-danger">*</span> 勘查人1</th>
+                        <td>
+                            <select name="first_user_id" class="form-control input-sm post-gather">
+                                <option value="">请选择</option>
+                                <volist name="userList" id="vo">
+                                    <if condition="$vo[id] eq $info['first_user_id']">
+                                        <option value="{$vo.id}" selected>{$vo.true_name}</option>
+                                        <else />
+                                        <option value="{$vo.id}">{$vo.true_name}</option>
+                                    </if>
+
+                                </volist>
+                            </select>
+                        </td>
+                        <th><span class="text-danger">*</span> 勘查人2</th>
+                        <td>
+                            <select name="second_user_id" class="form-control input-sm post-gather">
+                                <option value="">请选择</option>
+                                <volist name="userList" id="vo">
+                                    <if condition="$vo[id] eq $info['second_user_id']">
+                                        <option value="{$vo.id}" selected>{$vo.true_name}</option>
+                                        <else />
+                                        <option value="{$vo.id}">{$vo.true_name}</option>
+                                    </if>
+                                </volist>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div style="text-align: left">
+            <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-floppy-disk"></span> 保存</button>
+            <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+        </div>
+        <input type="hidden" id="case_id" name="case_id" class="post-gather" value="{$case['id']}">
+        <input type="hidden" id='id' name="id" class="post-gather" value="{$id}">
+    </div>
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+        // 定义URL地址
+        url.update = "{:U('update')}";
+    </script>
+</block>
+<block name="foot.ext">
+
+    <import file="js.CaseSurveyHandle.editInfo?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

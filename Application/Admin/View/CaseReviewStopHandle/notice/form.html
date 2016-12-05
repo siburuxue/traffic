@@ -1,0 +1,42 @@
+<div class="panel panel-default">
+    <!-- 面板头 -->
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-6"><span class="block-title">复核终止通知</span></div>
+            <div class="col-xs-6 text-right">
+                <a href="{:U('sms?case_review_id='.$caseReview['id'])}" class="btn btn-primary btn-sm js-open"><span class="glyphicon glyphicon-phone"></span> 短信通知</a>
+                <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+            </div>
+        </div>
+    </div>
+    <!-- 面板主体 -->
+    <div class="panel-body">
+        <table class="table table-bordered table-condensed table-form">
+            <tr>
+                <th width="15%">当事人</th>
+                <td>
+                    <input type="hidden" name="case_client_id" value="" class="auto-gather">
+                    <input type="text" name="case_client_name" class="form-control input-sm" readonly="readonly">
+                </td>
+            </tr>
+            <tr>
+                <th>申请人</th>
+                <td>
+                    <select name="case_client_relater_id" class="form-control input-sm auto-gather">
+                        <option value="">请选择</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>终止原因</th>
+                <td>
+                    <textarea name="reason" class="form-control input-sm auto-gather" style="height:200px;resize:none;"></textarea>
+                </td>
+            </tr>
+        </table>
+        <!-- 按钮 -->
+        <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-floppy-disk"></span> 保存</button>
+        <button type="button" class="btn btn-primary" id="print"><span class="glyphicon glyphicon-print"></span> 打印</button>
+        <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+    </div>
+</div>

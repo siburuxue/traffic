@@ -1,0 +1,29 @@
+<div class="table-responsive">
+    <table class="table table-bordered table-condensed table-custom">
+        <tr>
+            <th width="15%"><span class="text-danger">*</span>申请人</th>
+            <td width="35%">
+                <select class="form-control input-sm post-gather" name="case_client_id" id="case_client_id">
+                    <option value="">请选择</option>
+                    <volist name="clientList" id="vo">
+                        <option value="{$vo.id}" data-idno="{$vo.idno}">{$vo.name}</option>
+                    </volist>
+                </select>
+            </td>
+            <th width="15%">申请人证件号</th>
+            <td>
+                <input type="text" class="form-control input-sm post-gather" readonly id="apply_idno" name="apply_idno" maxlength="255">
+            </td>
+        </tr>
+        <tr>
+            <th><span class="text-danger">*</span>申请时间</th>
+            <td colspan="3">
+                <input type="text" class="form-control input-sm post-gather form-datetime" name="apply_time" readonly maxlength="255" value="{$now}">
+            </td>
+        </tr>
+    </table>
+</div>
+<div style="margin-bottom:20px;">
+    <button type="button" class="btn btn-primary" id="save"><span class="glyphicon glyphicon-floppy-disk"></span> 保存</button>
+    <button type="button" class="btn btn-primary" id="print"><span class="glyphicon glyphicon-print"></span> 打印调解申请书</button>
+</div>

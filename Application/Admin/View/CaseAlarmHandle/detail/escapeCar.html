@@ -1,0 +1,41 @@
+<h3 class="row">
+    <div class="col-xs-6"><span class="block-title">涉事逃逸车辆</span></div>
+    <div class="col-xs-6 text-right"></div>
+</h3>
+<table class="table table-bordered table-hover table-condensed table-custom">
+    <thead>
+        <tr>
+            <th width="15%">号牌</th>
+            <th width="15%">车辆类型</th>
+            <th width="15%">颜色</th>
+            <th width="15%">逃逸方向</th>
+            <th width="15%">其他特征</th>
+            <th>驾驶人体貌特征</th>
+        </tr>
+    </thead>
+    <tbody>
+        <volist name="alarmEscapeCar" id="vo">
+            <tr>
+                <td>
+                    <input type="text" class="form-control input-sm" value="{$vo.car_no}" readonly="readonly">
+                </td>
+                <td>
+                    <input type="text" class="form-control input-sm" value="{$vo.car_type_name}" readonly="readonly">
+                </td>
+                <td>
+                    <input type="text" class="form-control input-sm" value="{$vo.color}" readonly="readonly">
+                </td>
+                <td>
+                    <input type="text" class="form-control input-sm" value="{$vo.direction}" readonly="readonly">
+                </td>
+                <td>
+                    <input type="text" class="form-control input-sm" value="{$vo.other}" readonly="readonly">
+                </td>
+                <td>
+                    <input type="text" class="form-control input-sm" value="{$vo.body_des}" readonly="readonly">
+                </td>
+            </tr>
+        </volist>
+    </tbody>
+</table>
+<hr>

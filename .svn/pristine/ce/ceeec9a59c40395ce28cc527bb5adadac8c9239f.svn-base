@@ -1,0 +1,67 @@
+<extend name="Common/base" />
+<block name="title">工作记录</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 基础信息 -->
+        <div class="panel panel-default form-inline1">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">工作记录</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <include file="CaseFileHandle/index/base" />
+            </div>
+            <div class="text-left" style="margin:0 0 15px 16px">
+                <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-floppy-disk"></span> 保存</button>
+                <button type="button" class="btn btn-primary" id="make"><span class="glyphicon glyphicon-wrench"></span> 生成工作记录</button>
+                <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+            </div>
+        </div>
+        <input type="hidden" id='id' name="id" class="post-gather" value="{$info['id']}">
+        <input type="hidden" id="case_id" name="case_id" class="post-gather" value="{$case['id']}">
+        <!-- 按钮 -->
+        <div class="panel panel-default form-inline">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">工作记录</span></div>
+                    <if condition="$info['id'] neq ''">
+                        <div class="col-xs-6 text-right">
+                            <a href="{:U('CasePhoto/index?case_id='.$case['id'].'&cate=60&ext_ida='.$info['id'])}" class="btn btn-primary btn-sm js-open js-end-refresh" id="upload"><span class="glyphicon glyphicon-upload"></span> 上传</a>
+                            <button type="button" class="btn btn-primary btn-sm "><span class="glyphicon glyphicon-download" id="download"></span> 下载</button>
+                            <a href="javascript:;" class="btn btn-warning btn-sm" id="delete"><span class="glyphicon glyphicon-trash"></span> 删除</a>
+                        </div>
+                    </if>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <include file="CaseFileHandle/index/photoTable" />
+            </div>
+        </div>
+    </div>
+</block>
+<block name="head.ext">
+    <style>
+        /*.all{width:100%!important;}*/
+    </style>
+    <script type="text/javascript">
+        // 定义URL地址
+        url.save = "{:U('save')}";
+        url.photoList = "{:U('photoList')}";
+        url.delete = "{:U('CasePhoto/delete')}";
+        url.make = "{:U('make')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CaseFileHandle.index?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

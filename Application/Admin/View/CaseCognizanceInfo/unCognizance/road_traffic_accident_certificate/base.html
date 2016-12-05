@@ -1,0 +1,20 @@
+<table class="table table-bordered table-condensed table-custom" style="margin-bottom:0px">
+    <tbody>
+        <tr>
+            <th width="15%">交通事故时间</th>
+            <td><input disabled type="text" class="form-control input-sm" disabled value="{$caseInfo.accident_time|date='Y-m-d H:i',###}"></td>
+        </tr>
+        <tr>
+            <th>交通事故地点</th>
+            <td><input disabled type="text" class="form-control input-sm" disabled value="{$caseInfo.accident_place}"></td>
+        </tr>
+        <tr>
+            <th>当事方基本情况</th>
+            <td><textarea disabled type="text" class="form-control input-sm post-gather" id="base_info" name="base_info" style="height:200px;resize: none">{$info.base_info}</textarea></td>
+        </tr>
+        <tr>
+            <th>调查交通事故得到的事实</th>
+            <td><textarea disabled type="text" class="form-control input-sm post-gather" id="fact" name="fact" style="height:200px;resize: none">{$info.fact}</textarea></td>
+        </tr>
+    </tbody>
+</table>

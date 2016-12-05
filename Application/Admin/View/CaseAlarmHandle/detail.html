@@ -1,0 +1,49 @@
+<extend name="Common/base" />
+<block name="title">查看报警信息</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 基础信息 -->
+        <div class="panel panel-default">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">查看报警信息</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <include file="CaseAlarmHandle/detail/base" />
+                <include file="CaseAlarmHandle/detail/accidentCar" />
+                <include file="CaseAlarmHandle/detail/escapeCar" />
+                <include file="CaseAlarmHandle/detail/process" />
+            </div>
+        </div>
+        <!-- 按钮 -->
+        <div>
+            <eq name="info.is_link" value="1">
+                <button type="button" class="btn btn-danger" id="unlink-submit"><span class="glyphicon glyphicon-scissors"></span> 取消关联</button>
+                <else/>
+                <button type="button" class="btn btn-primary" id="link-submit"><span class="glyphicon glyphicon-link"></span> 关联</button>
+            </eq>
+            <button type="button" class="btn btn-info" id="print-submit"><span class="glyphicon glyphicon-print"></span> 打印</button>
+        </div>
+    </div>
+    <input type="hidden" name="id" value="{$info.id}">
+    <input type="hidden" name="case_id" value="{$case.id}">
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.link = "{:U('link')}";
+    url.unlink = "{:U('unlink')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CaseAlarmHandle.detail?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

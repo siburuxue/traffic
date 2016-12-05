@@ -1,0 +1,91 @@
+<extend name="Common/base" />
+<block name="title">综合分析、接处警分析</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 面板 -->
+        <include file="CaseExtReasonRead/add/tab" />
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">综合分析、接处警分析</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="panel panel-default">
+                    <!-- 面板标题 -->
+                    <div class="panel-heading" style="background:white;">
+                        <div class="row">
+                            <div class="col-xs-12 text-left"><span class="block-title">事故原因综合分析</span></div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <include file="CaseExtReasonRead/add/analyseInfo" />
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="panel panel-default">
+                    <!-- 面板标题 -->
+                    <div class="panel-heading" style="background:white;">
+                        <div class="row">
+                            <div class="col-xs-12 text-left"><span class="block-title">接处警信息</span></div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <include file="CaseExtReasonRead/add/alertInfo" />
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="panel panel-default">
+                    <!-- 面板标题 -->
+                    <div class="panel-heading" style="background:white;">
+                        <div class="row">
+                            <div class="col-xs-12 text-left"><span class="block-title">综合分析</span></div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <include file="CaseExtReasonRead/add/left" />
+                            </div>
+                            <div class="col-xs-10">
+                                <include file="CaseExtReasonRead/add/infoTable" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body" style="padding-top:0px;margin-top:-20px;">
+                <div class="row">
+                    <div class="col-xs-12 text-left">
+                        <button type="button" class="btn btn-primary" id="submit" disabled="disabled"><span class="glyphicon glyphicon-saved"></span> 提交</button>
+                        <button type="button" class="btn btn-warning" id="reset" disabled="disabled"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.insert = "{:U('insert')}";
+    url.update = "{:U('update')}";
+    url.getCaseExtReasonData = "{:U('getCaseExtReasonData')}";
+    url.getReasonTypeChildren = "{:U('getReasonTypeChildren')}";
+    url.getReasonTypeGrandChildren = "{:U('getReasonTypeGrandChildren')}";
+    url.setTrain = "{:U('setTrain')}";
+    var default_data = '{$data}';
+    var default_caseData = '{$caseDataJson}';
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CaseExtReasonRead.add?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

@@ -1,0 +1,29 @@
+<h3 class="row">
+    <div class="col-xs-6"><span class="block-title">涉事逃逸车辆</span></div>
+    <div class="col-xs-6 text-right"></div>
+</h3>
+<table class="table table-bordered table-hover table-condensed table-sheet">
+    <thead>
+        <tr>
+            <th width="15%">号牌</th>
+            <th width="15%">车辆类型</th>
+            <th width="15%">颜色</th>
+            <th width="15%">逃逸方向</th>
+            <th width="15%">其他特征</th>
+            <th>驾驶人体貌特征</th>
+        </tr>
+    </thead>
+    <tbody>
+        <volist name="alarmEscapeCar" id="vo">
+            <tr>
+                <td>{$vo.car_no|default='-'}</td>
+                <td>{$vo.car_type_name|default='-'}</td>
+                <td>{$vo.color|default='-'}</td>
+                <td>{$vo.direction|default='-'}</td>
+                <td>{$vo.other|default='-'}</td>
+                <td>{$vo.body_des|default='-'}</td>
+            </tr>
+        </volist>
+    </tbody>
+</table>
+<hr>

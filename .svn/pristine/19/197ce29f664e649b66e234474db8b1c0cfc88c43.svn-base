@@ -1,0 +1,115 @@
+<div>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs nav-custom" role="tablist">
+        <li role="presentation" class="active"><a href="#edit" data-toggle="tab">审批意见</a></li>
+        <li role="presentation"><a href="#result" data-toggle="tab">复核结论</a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div class="tab-pane active" id="edit">
+            <table class="table table-bordered table-condensed table-form">
+                <tr>
+                    <th rowspan="4" width="10%">复核人</th>
+                    <th width="10%">姓名</th>
+                    <td width="30%">
+                        <input type="text" class="form-control input-sm" value="{$caseReviewCheck.reviewer_name}" disabled="disabled">
+                    </td>
+                    <th width="15%">性别</th>
+                    <td>
+                        <select class="form-control input-sm" disabled="disabled">
+                            <option value="">请选择</option>
+                            <option value="男" <eq name="caseReviewCheck.reviewer_sex" value="男">selected="selected"</eq>>男</option>
+                            <option value="女" <eq name="caseReviewCheck.reviewer_sex" value="女">selected="selected"</eq>>女</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>年龄</th>
+                    <td>
+                        <input type="text" class="form-control input-sm" value="{$caseReviewCheck.reviewer_age}" disabled="disabled">
+                    </td>
+                    <th>职业</th>
+                    <td>
+                        <input type="text" class="form-control input-sm" value="{$caseReviewCheck.reviewer_job}" disabled="disabled">
+                    </td>
+                </tr>
+                <tr>
+                    <th>单位或住址</th>
+                    <td colspan="3">
+                        <input type="text" class="form-control input-sm" value="{$caseReviewCheck.reviewer_address}" disabled="disabled">
+                    </td>
+                </tr>
+                <tr>
+                    <th>身份证号码</th>
+                    <td>
+                        <input type="text" class="form-control input-sm" value="{$caseReviewCheck.reviewer_idno}" disabled="disabled">
+                    </td>
+                    <th>联系方式</th>
+                    <td>
+                        <input type="text" class="form-control input-sm" value="{$caseReviewCheck.reviewer_contact}" disabled="disabled">
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2">复核方式</th>
+                    <td>
+                        <input type="text" class="form-control input-sm" value="{$caseReviewCheck.review_type}" disabled="disabled">
+                    </td>
+                    <th>受理时间</th>
+                    <td>
+                        <input type="text" class="form-control input-sm" value="{$caseReviewCheck.review_time|date='Y-m-d H:i',###}" disabled="disabled">
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2">被复核部门民警</th>
+                    <td colspan="3">
+                        <input type="text" class="form-control input-sm" value="{$caseReviewCheck.police}" disabled="disabled">
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2">复核理由</th>
+                    <td colspan="3">
+                        <textarea class="form-control" style="height:60px;resize:none;" disabled="disabled">{$caseReviewCheck.reason}</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2">原办案单位处理意见</th>
+                    <td colspan="3">
+                        <textarea class="form-control" style="height:120px;resize:none;" disabled="disabled">{$caseReviewCheck.old_opinion}</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2">复核人意见</th>
+                    <td colspan="3">
+                        <select class="form-control input-sm" style="margin-bottom:5px;" disabled="disabled">
+                            <option value="0" <eq name="caseReviewCheck.reviewer_result" value="0">selected="selected"</eq>>撤销，重新认定</option>
+                            <option value="1" <eq name="caseReviewCheck.reviewer_result" value="1">selected="selected"</eq>>维持原认定结论</option>
+                        </select>
+                        <textarea class="form-control" style="height:120px;resize:none;" disabled="disabled">{$caseReviewCheck.reviewer_opinion}</textarea>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="tab-pane" id="result">
+            <table class="table table-bordered table-condensed table-form">
+                <tr>
+                    <th width="20%">复核人基本情况</th>
+                    <td>
+                        <textarea class="form-control" style="height:120px;resize:none;" disabled="disabled">{$caseReviewCheck.result_info}</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th>申请的基本事实、理由</th>
+                    <td>
+                        <textarea class="form-control" style="height:120px;resize:none;" disabled="disabled">{$caseReviewCheck.result_reason}</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th>经本机关复核认为</th>
+                    <td>
+                        <textarea class="form-control" style="height:120px;resize:none;" disabled="disabled">{$caseReviewCheck.result_content}</textarea>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

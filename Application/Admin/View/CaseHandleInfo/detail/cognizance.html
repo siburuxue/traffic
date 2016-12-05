@@ -1,0 +1,81 @@
+<!-- 面板 -->
+<div class="panel panel-primary">
+    <!-- 面板标题 -->
+    <div class="panel-heading">事故认定</div>
+    <!-- 面板内容 -->
+    <div class="list-group" style="height:204px;overflow:auto;" >
+        <select name="" class="list-group-item " style="width: 100%;" id="open-cognizance">
+            <option>-- 事故认定 --</option>
+            <option value="{:U('CaseCognizance/escapeIndex?case_id='.$info['id'].'&id=')}">逃逸事故认定</option>
+            <empty name="caseCognizance">
+                <option value="{:U('CaseCognizance/simpleIndex?case_id='.$info['id'].'&id=')}">简易程序</option>
+                <if condition='$cognizance_type eq 0'>
+                    <option value="{:U('CaseCognizance/normalIndex?case_id='.$info['id'].'&action=investigation_report&id=')}">一般程序</option>
+                <else/>
+                    <option value="{:U('CaseCognizance/unCognizanceIndex?case_id='.$info['id'].'&action=investigation_report&id=')}">一般程序</option>
+                </if>
+            </empty>
+        </select>
+        <div id="cognizance-list">
+            <volist id="vo" name="list">
+                <if condition="$vo['cognizance_type'] eq 0">
+                    <a href="{:U('CaseCognizance/simpleIndex?case_id='.$info['id'].'&id='.$vo['id'])}" class="list-group-item js-open js-end-refresh">简易事故认定 状态：<if condition="$vo['is_back'] eq 1">管理员退回<else />认定中</if> </a>
+                <else />
+                    <if condition='$cognizance_type eq 0'>
+                        <a href="{:U('CaseCognizance/normalIndex?case_id='.$info['id'].'&action=investigation_report&id='.$vo['id'])}" class="list-group-item js-open js-end-refresh">
+                            一般事故认定 状态：<if condition="$vo['is_back'] eq 1">
+                                                管理员退回
+                                            <elseif condition="$vo['check_status'] eq 2 and $vo['is_back'] eq 0" />
+                                                审核未通过
+                                            <elseif  condition="$vo['check_status'] eq 1" />
+                                                审核通过
+                                            <elseif condition="$vo['check_status'] eq 3 and $vo['is_back'] eq 0" />
+                                                复核科退回
+                                            <else/>
+                                                认定中
+                                            </if>
+                        </a>
+                    <else />
+                        <a href="{:U('CaseCognizance/unCognizanceIndex?case_id='.$info['id'].'&action=investigation_report&id='.$vo['id'])}" class="list-group-item js-open js-end-refresh">
+                            一般事故认定 状态：<if condition="$vo['is_back'] eq 1">
+                                                管理员退回
+                                            <elseif condition="$vo['check_status'] eq 2 and $vo['is_back'] eq 0" />
+                                                审核未通过
+                                            <elseif  condition="$vo['check_status'] eq 1" />
+                                                审核通过
+                                            <elseif condition="$vo['check_status'] eq 3 and $vo['is_back'] eq 0" />
+                                                复核科退回
+                                            <else/>
+                                                认定中
+                                            </if>
+                        </a>
+                    </if>
+                </if>
+            </volist>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+$(function() {
+    $('#open-cognizance').on('change', function() {
+        var url = $(this).val();
+        if (url == '') {
+            return false;
+        }
+        layer.open({
+            type: 2,
+            title: '',
+            closeBtn: 0,
+            shadeClose: false,
+            shade: 0.8,
+            scrollbar: false,
+            move: false,
+            area: ['100%', '100%'],
+            content: url,
+            end: function() {
+                window.location.reload();
+            }
+        });
+    });
+});
+</script>

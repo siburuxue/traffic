@@ -1,0 +1,65 @@
+<extend name="Common/base" />
+<block name="title">上传材料信息</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid ">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 面板 -->
+        <div class="panel panel-default">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">上传材料信息</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <form name="myform" action="{:U('upload')}" method="post" enctype="multipart/form-data">
+                    <div class="alert alert-success">
+                        支持 {$Think.config.UPLOAD_EXTS|implode='/',###} 格式文件上传，最大上传尺寸 {$Think.config.UPLOAD_MAXSIZE|byte_format}
+                    </div>
+                    <table class="table table-bordered table-condensed table-form">
+                        <tr>
+                            <th width="20%">文件名称</th>
+                            <td>
+                                <input type="file" class="form-control input-sm" name="file">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>文件类型</th>
+                            <td>
+                                <select name="cate" class="form-control input-sm">
+                                    <option value="5">方位照相</option>
+                                    <option value="6">概览照相</option>
+                                    <option value="7">局部照相</option>
+                                    <option value="8">元素照相</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-floppy-disk"></span> 保存</button>
+                    <input type="hidden" name="case_id" value="{$case.id}">
+                    <input type="hidden" name="ext_ida" value="{$ext_ida}">
+                    <input type="hidden" name="ext_idb" value="{$ext_idb}">
+                    <input type="hidden" name="ext_idc" value="{$ext_idc}">
+                    <input type="hidden" name="ext_idd" value="{$ext_idd}">
+                    <input type="hidden" name="ext_ide" value="{$ext_ide}">
+                </form>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.upload = "{:U('upload')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="jquery.jquery#form?" basepath="{$Think.SRC_COMMON_URL}" />
+    <import file="js.CasePhoto.index?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

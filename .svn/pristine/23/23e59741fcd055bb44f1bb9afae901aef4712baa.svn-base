@@ -1,0 +1,81 @@
+<table class="table table-bordered table-condensed table-custom" style="margin-bottom: 0">
+    <tbody>
+    <tr>
+        <th width="15%"><span class="text-danger">*</span>文书名称、文号</th>
+        <td>
+            <input type="text" class="form-control input-sm post-gather" name="code" maxlength="255" value="{$info.code}">
+        </td>
+    </tr>
+    <tr>
+        <th><span class="text-danger">*</span>送达时间</th>
+        <td>
+            <input type="text" class="form-control input-sm post-gather form-datetime" readonly name="post_time" maxlength="255" <if condition="$info['post_time'] neq ''">value="{$info.post_time|date='Y-m-d H:i',###}"</if>>
+        </td>
+    </tr>
+    <tr>
+        <th><span class="text-danger">*</span> 送达地点</th>
+        <td>
+            <input type="text" class="form-control input-sm post-gather" name="post_place" maxlength="255" value="{$info.post_place}">
+        </td>
+    </tr>
+    <tr>
+        <th><span class="text-danger">*</span>送达方式</th>
+        <td>
+            <input type="text" class="form-control input-sm post-gather" name="post_method" maxlength="255" value="{$info.post_method}">
+        </td>
+    </tr>
+    <tr>
+        <th><span class="text-danger">*</span>受送达人</th>
+        <td>
+            <select id="client-relater-list" class="form-control input-sm">
+                <option value="">请选择</option>
+                <volist name="allArray" id="vo">
+                    <option value="{$vo.id}" <if condition="$vo['name'] eq $info['target_user_name']">selected</if>>{$vo.name}</option>
+                </volist>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <th>代收人</th>
+        <td>
+            <input type="text" class="form-control input-sm post-gather" name="receiver" maxlength="255" value="{$info.receiver}">
+        </td>
+    </tr>
+    <tr>
+        <th>代收原因</th>
+        <td>
+            <input type="text" class="form-control input-sm post-gather" name="receiver_reason" maxlength="255" value="{$info.receiver_reason}">
+        </td>
+    </tr>
+    <tr>
+        <th>与受送达人关系</th>
+        <td>
+            <input type="text" class="form-control input-sm post-gather" name="receiver_relation" maxlength="16" value="{$info.receiver_relation}">
+        </td>
+    </tr>
+    <tr>
+        <th>送达人拒收原因</th>
+        <td>
+            <input type="text" class="form-control input-sm post-gather" name="rejection_reason" maxlength="16" value="{$info.rejection_reason}">
+        </td>
+    </tr>
+    <tr>
+        <th><span class="text-danger">*</span> 见证人</th>
+        <td>
+            <input type="text" class="form-control input-sm post-gather" name="witness" maxlength="255" value="{$info.witness}">
+        </td>
+    </tr>
+    <tr>
+        <th><span class="text-danger">*</span> 送达人</th>
+        <td>
+            <input type="text" class="form-control input-sm post-gather" name="sender" maxlength="255" value="{$info.sender}">
+        </td>
+    </tr>
+    <tr>
+        <th>备注</th>
+        <td>
+            <input type="text" class="form-control input-sm post-gather" name="remark" maxlength="255" value="{$info.remark}">
+        </td>
+    </tr>
+    </tbody>
+</table>

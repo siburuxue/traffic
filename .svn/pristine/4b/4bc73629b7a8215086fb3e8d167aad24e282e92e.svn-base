@@ -1,0 +1,88 @@
+<extend name="Common/base" />
+<block name="title">查看申请</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 面板 -->
+        <div class="panel panel-default">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">查看申请</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed table-form">
+                    <tr>
+                        <th width="15%"><span class="text-danger">*</span> 申请人</th>
+                        <td>
+                            <input type="text" name="name" class="form-control input-sm" value="{$info.name}" disabled="disabled">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><span class="text-danger">*</span> 性别</th>
+                        <td>
+                            <select name="sex" class="form-control input-sm post-gather" disabled="disabled">
+                                <option value="">请选择</option>
+                                <option value="1" <eq name="info.sex" value="1">selected="selected"</eq>>男</option>
+                                <option value="0" <eq name="info.sex" value="0">selected="selected"</eq>>女</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><span class="text-danger">*</span> 身份证号码</th>
+                        <td>
+                            <input type="text" class="form-control input-sm post-gather" name="idno" value="{$info.idno}" maxlength="255" disabled="disabled">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><span class="text-danger">*</span> 出生日期</th>
+                        <td>
+                            <input type="text" class="form-control input-sm post-gather" name="date_of_birth" value="{$info.date_of_birth}" maxlength="10" readonly="readonly">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><span class="text-danger">*</span> 交通方式</th>
+                        <td>
+                            <select name="traffic_type" class="form-control input-sm post-gather" disabled="disabled">
+                                <option value="">请选择</option>
+                                <volist name="trafficType" id="vo">
+                                    <option value="{$key}" <eq name="info.traffic_type" value="$key">selected="selected"</eq>>{$vo}</option>
+                                </volist>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><span class="text-danger">*</span> 与当事人关系</th>
+                        <td>
+                            <input type="text" class="form-control input-sm post-gather" name="relation" value="{$info.relation}" maxlength="255" disabled="disabled">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><span class="text-danger">*</span> 申请理由及事实</th>
+                        <td>
+                            <textarea name="content" class="form-control input-sm post-gather" readonly="readonly" style="height:200px;">{$info.content}</textarea>
+                        </td>
+                    </tr>
+                </table>
+                <input type="hidden" name="id" value="{$info.id}" class="post-gather">
+
+            </div>
+        </div>
+    </div>
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.update = "{:U('update')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CaseReviewApplyHandleInfo.edit?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

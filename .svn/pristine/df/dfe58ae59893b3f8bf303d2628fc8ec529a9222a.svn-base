@@ -1,0 +1,517 @@
+<?php
+namespace Admin\Controller;
+use \Lib\Page;
+
+/**
+ * 复核科
+ * 需要是已完成的案件才可以复核
+ */
+class CaseReviewHandleController extends CommonController {
+
+	/**
+	 * 待办工作
+	 */
+	public function pending() {
+		// 部门
+		$department = tree_to_array(list_to_tree($this->allDepartment));
+		$this->assign('department', $department);
+
+		// 事故类型
+		$this->assign('accidentType', get_custom_config('accident_type'));
+
+		// 交通方式
+		$this->assign('trafficType', get_custom_config('traffic_type'));
+
+		$this->display();
+	}
+
+	/**
+	 * 待办工作 表格
+	 */
+	public function pendingTable() {
+		//排序start
+		$orderField = I('post.field', '', 'trim,htmlspecialchars');
+		$orderSort = I('post.sort', '', 'int');
+
+		switch ($orderField) {
+		case 'accident_time':
+			$orderby = 'CaseInfo.accident_time';
+			break;
+		case 'case_id':
+			$orderby = 'CaseInfo.code';
+			break;
+		case 'time_limit':
+			$orderby = 'CaseInfo.create_time';
+			if ($orderSort == 1) {
+				$time_limit = 1;
+			} else {
+				$time_limit = 2;
+			}
+
+			break;
+		default:
+			$orderby = 'CaseInfo.create_time';
+			break;
+		}
+		if ($orderSort == 1) {
+			$orderby .= ' asc';
+		} else {
+			$orderby .= ' desc';
+		}
+		$this->assign('orderField', $orderField);
+		$this->assign('orderSort', $orderSort);
+		//排序end
+
+		// 搜索条件
+		$map = array();
+
+		$map['case_is_del'] = 0;
+		$map['is_over'] = 0;
+
+		$condition = get_condition();
+		isset($condition['department_id']) && $map['case_department_id'] = $condition['department_id'];
+		isset($condition['case_handle_true_name']) && $map['case_handle_true_name'] = $condition['case_handle_true_name'];
+
+		if (is_time($condition['accident_start_time']) && is_time($condition['accident_end_time'])) {
+			$map['case_accident_time'] = array(
+				array('egt', strtotime($condition['accident_start_time'])),
+				array('elt', strtotime($condition['accident_end_time'])),
+			);
+		} elseif (is_time($condition['accident_end_time'])) {
+			$map['case_accident_time'] = array(array('elt', strtotime($condition['accident_end_time'])));
+		} elseif (is_time($condition['accident_start_time'])) {
+			$map['case_accident_time'] = array(array('egt', strtotime($condition['accident_start_time'])));
+		}
+
+		isset($condition['case_accident_type']) && $map['case_accident_type'] = $condition['case_accident_type'];
+		isset($condition['case_client_true_name']) && $map['case_client_true_name'] = $condition['case_client_true_name'];
+		isset($condition['case_client_idno']) && $map['case_client_idno'] = $condition['case_client_idno'];
+		isset($condition['case_client_car_no']) && $map['case_client_car_no'] = $condition['case_client_car_no'];
+		isset($condition['case_client_traffic_type']) && $map['case_client_traffic_type'] = $condition['case_client_traffic_type'];
+		// 需要详细解决方案
+		isset($condition['qr_code']) && $map['qr_code'] = $condition['qr_code'];
+
+		// 列表信息
+		$Model = D('CaseReviewView');
+		$count = $Model->where($map)->count('distinct CaseReview.id');
+		$page = new Page($count, 15);
+		$list = $Model->where($map)->order($orderby)->limit($page->firstrow . ',' . $page->rows)->group('CaseReview.id')->select();
+
+		// 查询扩展信息
+		foreach ($list as $key => &$value) {
+			$value['accident_type_name'] = get_custom_config('accident_type.' . $value['case_accident_type']);
+			$map = array();
+			$map['case_id'] = $value['case_id'];
+			$map['is_del'] = 0;
+			$value['client'] = D('CaseClient')->where($map)->select();
+			// 案件状态
+			$caseStatus = new \Lib\CaseStatus($value['case_id']);
+			$value['case_status'] = $caseStatus->getStatus();
+		}
+		unset($key, $value);
+		$list = $this->calculateTimeLimit($list, 'case_id', $time_limit);
+		$this->assign('list', $list);
+		// dump($list);
+
+		// 分页信息
+		$pageInfo = array(
+			'totalrows' => $count,
+			'totalpage' => $page->totalpages,
+			'nowpage' => $page->nowpage,
+		);
+		$this->assign('page', $pageInfo);
+
+		// 渲染
+		$this->display('CaseReviewHandle/pending/table');
+	}
+
+	public function completed() {
+
+		// 部门
+		$department = tree_to_array(list_to_tree($this->allDepartment));
+		$this->assign('department', $department);
+
+		// 事故类型
+		$this->assign('accidentType', get_custom_config('accident_type'));
+
+		// 交通方式
+		$this->assign('trafficType', get_custom_config('traffic_type'));
+
+		$this->display();
+	}
+
+	/**
+	 * 待办工作 表格
+	 */
+	public function completedTable() {
+		//排序start
+		$orderField = I('post.field', '', 'trim,htmlspecialchars');
+		$orderSort = I('post.sort', '', 'int');
+
+		switch ($orderField) {
+		case 'accident_time':
+			$orderby = 'CaseInfo.accident_time';
+			break;
+		case 'case_id':
+			$orderby = 'CaseInfo.code';
+			break;
+		case 'time_limit':
+			$orderby = 'CaseInfo.create_time';
+			if ($orderSort == 1) {
+				$time_limit = 1;
+			} else {
+				$time_limit = 2;
+			}
+
+			break;
+		default:
+			$orderby = 'CaseInfo.create_time';
+			break;
+		}
+		if ($orderSort == 1) {
+			$orderby .= ' asc';
+		} else {
+			$orderby .= ' desc';
+		}
+		$this->assign('orderField', $orderField);
+		$this->assign('orderSort', $orderSort);
+		//排序end
+
+		//排序start
+		$orderField = I('post.field', '', 'trim,htmlspecialchars');
+		$orderSort = I('post.sort', '', 'int');
+
+		switch ($orderField) {
+		case 'accident_time':
+			$orderby = 'CaseInfo.accident_time';
+			break;
+		case 'case_id':
+			$orderby = 'CaseInfo.code';
+			break;
+		default:
+			$orderby = 'CaseInfo.create_time';
+			break;
+		}
+		if ($orderSort == 1) {
+			$orderby .= ' asc';
+		} else {
+			$orderby .= ' desc';
+		}
+		$this->assign('orderField', $orderField);
+		$this->assign('orderSort', $orderSort);
+		//排序end
+
+		// 搜索条件
+		$map = array();
+
+		$map['case_is_del'] = 0;
+		$map['is_over'] = 1;
+
+		$condition = get_condition();
+		isset($condition['department_id']) && $map['case_department_id'] = $condition['department_id'];
+		isset($condition['case_handle_true_name']) && $map['case_handle_true_name'] = $condition['case_handle_true_name'];
+
+		if (is_time($condition['accident_start_time']) && is_time($condition['accident_end_time'])) {
+			$map['case_accident_time'] = array(
+				array('egt', strtotime($condition['accident_start_time'])),
+				array('elt', strtotime($condition['accident_end_time'])),
+			);
+		} elseif (is_time($condition['accident_end_time'])) {
+			$map['case_accident_time'] = array(array('elt', strtotime($condition['accident_end_time'])));
+		} elseif (is_time($condition['accident_start_time'])) {
+			$map['case_accident_time'] = array(array('egt', strtotime($condition['accident_start_time'])));
+		}
+
+		isset($condition['case_accident_type']) && $map['case_accident_type'] = $condition['case_accident_type'];
+		isset($condition['case_client_true_name']) && $map['case_client_true_name'] = $condition['case_client_true_name'];
+		isset($condition['case_client_idno']) && $map['case_client_idno'] = $condition['case_client_idno'];
+		isset($condition['case_client_car_no']) && $map['case_client_car_no'] = $condition['case_client_car_no'];
+		isset($condition['case_client_traffic_type']) && $map['case_client_traffic_type'] = $condition['case_client_traffic_type'];
+		// 需要详细解决方案
+		isset($condition['qr_code']) && $map['qr_code'] = $condition['qr_code'];
+
+		// 列表信息
+		$Model = D('CaseReviewView');
+		$count = $Model->where($map)->count('distinct CaseReview.id');
+		$page = new Page($count, 15);
+		$list = $Model->where($map)->order($orderby)->limit($page->firstrow . ',' . $page->rows)->group('CaseReview.id')->select();
+
+		// 查询扩展信息
+		foreach ($list as $key => &$value) {
+			$value['accident_type_name'] = get_custom_config('accident_type.' . $value['case_accident_type']);
+			$map = array();
+			$map['case_id'] = $value['case_id'];
+			$map['is_del'] = 0;
+			$value['client'] = D('CaseClient')->where($map)->select();
+			// 案件状态
+			$caseStatus = new \Lib\CaseStatus($value['case_id']);
+			$value['case_status'] = $caseStatus->getStatus();
+		}
+		unset($key, $value);
+		$list = $this->calculateTimeLimit($list, 'case_id', $time_limit);
+		$this->assign('list', $list);
+		// dump($list);
+
+		// 分页信息
+		$pageInfo = array(
+			'totalrows' => $count,
+			'totalpage' => $page->totalpages,
+			'nowpage' => $page->nowpage,
+		);
+		$this->assign('page', $pageInfo);
+
+		// 渲染
+		$this->display('CaseReviewHandle/completed/table');
+
+	}
+
+	public function search() {
+
+		// 部门
+		$department = tree_to_array(list_to_tree($this->allDepartment));
+		$this->assign('department', $department);
+
+		// 事故类型
+		$this->assign('accidentType', get_custom_config('accident_type'));
+
+		// 交通方式
+		$this->assign('trafficType', get_custom_config('traffic_type'));
+
+		$this->display();
+	}
+
+	/**
+	 * 新增 案件搜索
+	 */
+	public function searchTable() {
+		//排序start
+		$orderField = I('post.field', '', 'trim,htmlspecialchars');
+		$orderSort = I('post.sort', '', 'int');
+
+		switch ($orderField) {
+		case 'accident_time':
+			$orderby = 'CaseInfo.accident_time';
+			break;
+		case 'case_id':
+			$orderby = 'CaseInfo.code';
+			break;
+		case 'time_limit':
+			$orderby = 'CaseInfo.create_time';
+			if ($orderSort == 1) {
+				$time_limit = 1;
+			} else {
+				$time_limit = 2;
+			}
+
+			break;
+		default:
+			$orderby = 'CaseInfo.create_time';
+			break;
+		}
+		if ($orderSort == 1) {
+			$orderby .= ' asc';
+		} else {
+			$orderby .= ' desc';
+		}
+		$this->assign('orderField', $orderField);
+		$this->assign('orderSort', $orderSort);
+		//排序end
+
+		// 搜索条件
+		$map = array();
+		// 不显示作废案件
+		$map['is_del'] = 0;
+		// 已完结的
+		$map['is_over'] = 1;
+		// 做了事故认定的
+		$map['cognizance_type'] = array('neq', 0);
+
+		$condition = get_condition();
+		isset($condition['department_id']) && $map['department_id'] = $condition['department_id'];
+		isset($condition['case_handle_true_name']) && $map['case_handle_true_name'] = $condition['case_handle_true_name'];
+		if (is_time($condition['accident_start_time']) && is_time($condition['accident_end_time'])) {
+			$map['accident_time'] = array(
+				array('egt', strtotime($condition['accident_start_time'])),
+				array('elt', strtotime($condition['accident_end_time'])),
+			);
+		} elseif (is_time($condition['accident_end_time'])) {
+			$map['accident_time'] = array(array('elt', strtotime($condition['accident_end_time'])));
+		} elseif (is_time($condition['accident_start_time'])) {
+			$map['accident_time'] = array(array('egt', strtotime($condition['accident_start_time'])));
+		}
+		isset($condition['accident_type']) && $map['accident_type'] = $condition['accident_type'];
+		isset($condition['case_client_true_name']) && $map['case_client_true_name'] = $condition['case_client_true_name'];
+		isset($condition['traffic_type']) && $map['traffic_type'] = $condition['traffic_type'];
+		isset($condition['case_client_car_no']) && $map['case_client_car_no'] = $condition['case_client_car_no'];
+
+		// 列表信息
+		$Model = D('CaseView');
+		$count = $Model->where($map)->count('distinct CaseInfo.id');
+		$page = new Page($count, 15);
+		$list = $Model->where($map)->order('create_time desc,id desc')->limit($page->firstrow . ',' . $page->rows)->group('CaseInfo.id')->select();
+
+		// 查询扩展信息
+		foreach ($list as $key => &$value) {
+			$value['accident_type_name'] = get_custom_config('accident_type.' . $value['accident_type']);
+			$value['traffic_type_name'] = get_custom_config('traffic_type.' . $value['traffic_type']);
+			$map = array();
+			$map['case_id'] = $value['id'];
+			$map['is_del'] = 0;
+			$value['client'] = D('CaseClient')->where($map)->select();
+			// 案件状态
+			$caseStatus = new \Lib\CaseStatus($value['id']);
+			$value['case_status'] = $caseStatus->getStatus();
+		}
+		unset($key, $value);
+		$list = $this->calculateTimeLimit($list, 'case_id', $time_limit);
+		$this->assign('list', $list);
+
+		// 分页信息
+		$pageInfo = array(
+			'totalrows' => $count,
+			'totalpage' => $page->totalpages,
+			'nowpage' => $page->nowpage,
+		);
+		$this->assign('page', $pageInfo);
+
+		// 渲染
+		$this->display('CaseReviewHandle/search/table');
+	}
+
+	/**
+	 * 执行受理复核
+	 */
+	public function review() {
+		$caseId = I('get.case_id', '', 'int');
+		$time = time();
+		$userId = $this->my['id'];
+
+		if ($caseId === '') {
+			$this->error('非法操作');
+		}
+
+		// 案件信息
+		$case = D('CaseView')->getById($caseId);
+		if (empty($case)) {
+			$this->error('案件不存在');
+		}
+
+		if ($case['is_del'] == 1) {
+			$this->error('案件已作废');
+		}
+
+		if ($case['is_over'] == 0) {
+			$this->error('案件尚未完结');
+		}
+
+		// 检查是否存在进行中的复核信息
+		$map = array();
+		$map['case_id'] = $caseId;
+		$caseReview = M('CaseReview')->where($map)->order('create_time desc')->find();
+
+		$flag = 0;
+		if (!empty($caseReview)) {
+			// 拒绝受理的
+			if ($caseReview['accept_status'] == 2) {
+				$flag = 1;
+			}
+			// 复核终止的
+			if ($flag == 0 && $caseReview['stop_status'] == 1) {
+				$flag = 1;
+			}
+			// 复核通过的
+			if ($flag == 0 && $caseReview['check_status'] == 1) {
+				$map = array();
+				$map['case_review_id'] = $caseReview['id'];
+				$caseReviewCheck = M('CaseReviewCheck')->where($map)->find();
+				if ($caseReviewCheck['status'] == 1) {
+					$flag = 1;
+				}
+			}
+		} else {
+			$flag = 1;
+		}
+		if ($flag == 0) {
+			$this->error('复核正在进行中');
+		}
+
+		$Model = M('CaseReview');
+
+		$Model->startTrans();
+
+		$data = array();
+		$data['case_id'] = $caseId;
+		$data['case_code'] = $case['code'];
+		$data['department_id'] = $case['department_id'];
+		$data['handle_user_id'] = $case['case_handle_user_id'];
+		$data['handle_name'] = $case['case_handle_true_name'];
+		$data['accident_time'] = $case['accident_time'];
+		$data['accident_type'] = $case['accident_type'];
+		$data['status'] = 0;
+		$data['is_stop'] = 0;
+		$data['accept_status'] = 0;
+		$data['create_time'] = $time;
+		$data['create_user_id'] = $userId;
+		$data['update_time'] = $time;
+		$data['update_user_id'] = $userId;
+		$res = $Model->add($data);
+		if (!$res) {
+			$Model->rollback();
+			$this->error('数据提交失败');
+		}
+
+		// 重置案件主表
+		$data = array();
+		$data['id'] = $caseId;
+		$data['review_submit_status'] = 0;
+		$data['review_accept_status'] = 0;
+		$data['review_result_status'] = 0;
+		$data['update_time'] = $time;
+		$data['update_user_id'] = $userId;
+		$res = M('Case')->save($data);
+		if (!$res) {
+			$Model->rollback();
+			$this->error('数据提交失败');
+		}
+
+		$Model->commit();
+		$this->success('提交成功');
+
+	}
+
+	/**
+	 * 详细
+	 */
+	public function detail() {
+		$id = I('get.id', '', 'int');
+		if ($id === '') {
+			$this->error('非法操作');
+		}
+		$map = array();
+		$map['id'] = $id;
+		$info = D('CaseReviewView')->where($map)->find();
+		if (empty($info)) {
+			$this->error('非法操作');
+		}
+		// dump($info);
+		$this->assign('info', $info);
+
+		$map = array();
+		$map['case_id'] = $info['case_id'];
+		$caseReply = D('CaseReplyView')->where($map)->order('create_time desc')->group('CaseReply.id')->find();
+		$this->assign('caseReply', $caseReply);
+
+		$map = array();
+		$map['case_id'] = $info['case_id'];
+		$caseDirective = D('CaseDirectiveView')->where($map)->order('create_time desc')->group('CaseDirective.id')->find();
+		$this->assign('caseDirective', $caseDirective);
+
+		$map = array();
+		$map['case_id'] = $info['case_id'];
+		$caseDiscuss = D('CaseDiscussView')->where($map)->order('create_time desc')->group('CaseDiscuss.id')->find();
+		$this->assign('caseDiscuss', $caseDiscuss);
+
+		$this->display();
+	}
+
+}

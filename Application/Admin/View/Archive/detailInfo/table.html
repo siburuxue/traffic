@@ -1,0 +1,55 @@
+<div class="panel panel-default">
+    <!-- 面板头 -->
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-6">
+                <span class="block-title">
+                {$keyword[$cate]}记录
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-sheet">
+                <tr>
+                    <th width="15%">{$keyword[$cate]}人</th>
+                    <td width="35%">
+                        <input type="text" class="form-control input-sm " value="{$archiveDataArray.lend.true_name}" maxlength="50" readOnly="readOnly">
+                    </td>
+                    <th width="15%">{$keyword[$cate]}时间</th>
+                    <td>
+                        <input type="text" class="form-control input-sm  form-datetime" name="time" id="start-time" maxlength="16" readonly="readonly" value="{$archiveDataArray.lend.time|date='Y-m-d H:i',###}">
+                    </td>
+                </tr>
+                <tr>
+                    <th>{$keyword[$cate]}目的</th>
+                    <td colspan="3">
+                        <textarea class="form-control  " name="content" maxlength="1000" style="height:200px;outline:none;resize:none;" readOnly="readOnly">{$archiveDataArray.lend.content}</textarea>
+                    </td>
+                </tr>
+            </table>
+            <input type="hidden" id="target_id" value="{$archiveDataArray.lend.id}" maxlength="50" readOnly="readOnly">
+            <input type="hidden" id="target_case_id" value="{$archiveDataArray.case_info_id}" maxlength="50" readOnly="readOnly">
+            <input type="hidden" id="target_cate" value="{$archiveDataArray.newcate}" maxlength="50" readOnly="readOnly">
+        </div>
+    </div>
+</div>
+<!-- <neq name="cate" value="1">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-6"><span class="block-title">相关文件</span></div>
+                <div class="col-xs-6 text-right">
+                    <button type="button" class="btn btn-primary btn-sm "><span class="glyphicon glyphicon-download" id="download"></span> 下载</button>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <include file="Archive/detailInfo/photoTable" />
+        </div>
+    </div>
+</neq> -->
+<neq name="cate" value="1">
+    {:W('CasePhoto/index', array('相关文件',$archiveDataArray['case_info_id'],$archiveDataArray['newcate'],$archiveDataArray['lend']['id'],0,0,0))}
+</neq>  

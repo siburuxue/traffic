@@ -1,0 +1,18 @@
+<div class="table-responsive">
+    <table class="table table-bordered table-condensed table-custom">
+        <tr>
+            <th width="160">节点名称</th>
+            <td>
+                <input type="text" class="form-control input-sm search-auto" name="condition_name" maxlength="255">
+            </td>
+            <th width="160">中文名称</th>
+            <td>
+                <input type="text" class="form-control input-sm search-auto" name="condition_title" maxlength="255">
+            </td>
+        </tr>
+    </table>
+</div>
+<div style="margin-bottom:20px;">
+    <button type="button" class="btn btn-primary" id="search-submit"><span class="glyphicon glyphicon-search"></span> 查询</button>
+    <button type="button" class="btn btn-warning" id="search-reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+</div>

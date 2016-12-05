@@ -1,0 +1,43 @@
+[ 2016-11-22T13:01:04+08:00 ] 101.226.35.225 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002398s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002604s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002696s ]
+NOTIC: [8] Undefined index: HTTP_HOST /alidata/www/traffic/Application/Common/Common/function.php 第 60 行.
+SQL: SHOW COLUMNS FROM `ts_config` [ RunTime:0.0009s ]
+SQL: SELECT `name`,`val` FROM `ts_config`  [ RunTime:0.0003s ]
+
+[ 2016-11-22T21:24:25+08:00 ] 71.6.146.186 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000369s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.007322s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.007414s ]
+SQL: SHOW COLUMNS FROM `ts_config` [ RunTime:0.0009s ]
+SQL: SELECT `name`,`val` FROM `ts_config`  [ RunTime:0.0002s ]
+
+[ 2016-11-22T21:24:27+08:00 ] 71.6.146.186 /index.php?m=Admin&c=Sign&a=login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000359s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000609s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000671s ]
+SQL: SHOW COLUMNS FROM `ts_config` [ RunTime:0.0010s ]
+SQL: SELECT `name`,`val` FROM `ts_config`  [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000064s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000146s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.155835s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.155977s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.004361s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004421s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002117s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002170s ]
+

@@ -1,0 +1,41 @@
+<div class="panel-default">
+    <div class="panel panel-default form-inline">
+        <!-- 面板标题 -->
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-6"><span class="block-title">检验鉴定结果列表</span></div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered table-condensed table-sheet">
+                <tr>
+                    <th width="10%">鉴定书编号</th>
+                    <th width="10%">鉴定完成时间</th>
+                    <th width="">鉴定结果</th>
+                    <th width="20%">鉴定结果文件张数</th>
+                    <th width="80">操作</th>
+                </tr>
+                <volist name="caseCheckupReportData" id="vo">
+                    <tr>
+                        <td>{$vo.code}</td>
+                        <td>{$vo.finish_time|date="Y-m-d H:i",###}</td>
+                        <td data-reportid="{$vo.id}" class="jimmy_report_result" style="cursor:pointer;">
+                            <assign name="result" value="$vo.result" />
+                            <if condition="strlen($result) egt 50">
+                                {$vo.result|default="-"|mb_substr=0,50,'utf8'}...
+                                <else/> {$vo.result|default="-"}
+                            </if>
+                        </td>
+                        <td>
+                            <a href="{:U('checkupResultPicNumber',array('case_id'=>$vo['case_id'],'case_checkup_id'=>$vo['case_checkup_id'],'case_checkup_report_id'=>$vo['id'],'cate'=>'44','is_cancel'=>'1'))}" class=" js-open js-end-refresh"> {$vo.pic_count|default="0"}</a>
+                        </td>
+                        <td>
+                            <a href="{:U('CaseQueryCheckupNotice/add',array('case_id'=>$vo['case_id'],'case_checkup_id'=>$vo['case_checkup_id'],'case_checkup_report_id'=>$vo['id']))}" class="btn btn-primary btn-sm js-open js-end-refresh ">告知</a>
+                        </td>
+                    </tr>
+                </volist>
+            </table>
+            <button type="button" class="btn btn-primary btn-sm-jimmy" disabled="disabled"><span class="glyphicon glyphicon-phone"></span> 短信通知</button>            
+        </div>
+    </div>
+</div>

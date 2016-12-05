@@ -1,0 +1,74 @@
+<div class="table-responsive">
+    <table class="table table-bordered table-condensed table-custom">
+        <tr>
+            <th width="15%">档案编号</th>
+            <td width="35%">
+                <input type="text" class="form-control input-sm search-auto" name="condition_code" maxlength="50">
+            </td>
+            <th width="15%">事故编号</th>
+            <td>
+                <input type="text" class="form-control input-sm search-auto" name="condition_case_info_code" maxlength="50">
+            </td>
+        </tr>
+        <tr>
+            <th>档案名称</th>
+            <td>
+                <input type="text" class="form-control input-sm search-auto" name="condition_name" maxlength="50">
+            </td>
+            <th>入库时间</th>
+            <td>
+                <table width="100%">
+                    <tr>
+                        <td width="48%">
+                            <input type="text" class="form-control input-sm search-auto form-datetime" id="start-time" name="condition_start_time" maxlength="16" readonly="readonly" style="min-width:auto;width:100%;">
+                        </td>
+                        <td width="4%" align="center"> ~
+                        </td>
+                        <td width="48%">
+                            <input type="text" class="form-control input-sm search-auto form-datetime" id="end-time" name="condition_end_time" maxlength="16" readonly="readonly" style="min-width:auto;width:100%;">
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            </tr>
+            <tr>
+                <th>办案人</th>
+                <td>
+                    <input type="text" class="form-control input-sm search-auto" name="condition_user_name" maxlength="50">
+                </td>
+                <th>所属大队</th>
+                <td>
+                    <select name="condition_department_id" class="form-control input-sm search-auto">
+                        <option value="">请选择</option>
+                        <volist name="department" id="vo">
+                            <option value="{$vo.id}" <neq name="vo.cate" value="2">disabled="disabled" style="color:red;"</neq> >{$vo._prefix}{$vo.name}</option>
+                        </volist>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>目录号</th>
+                <td>
+                    <input type="text" class="form-control input-sm search-auto" name="condition_catalog" maxlength="50">
+                </td>
+                <th>案卷号</th>
+                <td>
+                    <input type="text" class="form-control input-sm search-auto" name="condition_dossier" maxlength="50">
+                </td>
+            </tr>
+            <tr>
+                <th>当前状态</th>
+                <td colspan="3">
+                    <select name="condition_status" class="form-control input-sm search-auto">
+                        <option value="">请选择</option>
+                        <option value="0">正常</option>
+                        <option value="1">提档</option>
+                    </select>
+                </td>
+            </tr>
+    </table>
+</div>
+<div style="margin-bottom:20px;">
+    <button type="button" class="btn btn-primary" id="search-submit"><span class="glyphicon glyphicon-search"></span> 查询</button>
+    <button type="button" class="btn btn-warning search-reset-jimmy"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+</div>

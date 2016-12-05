@@ -1,0 +1,18 @@
+<table class="table table-striped table-bordered table-hover table-condensed table-sheet" id="table" data-totalrows="{$page.totalrows}" data-totalpage="{$page.totalpage}" data-nowpage="{$page.nowpage}">
+    <thead>
+    <tr>
+        <volist name="keys" id="vo">
+            <th>{$vo}</th>
+        </volist>
+    </tr>
+    </thead>
+    <tbody>
+    <volist name="list" id="vo">
+        <tr>
+            <foreach name="vo" key="k" item="v">
+                <td>{$v|default='-'}</td>
+            </foreach>
+        </tr>
+    </volist>
+    </tbody>
+</table>

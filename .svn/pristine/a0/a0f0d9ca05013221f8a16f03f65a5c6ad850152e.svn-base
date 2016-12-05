@@ -1,0 +1,51 @@
+<extend name="Common/base" />
+<block name="title">检验鉴定结果</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 面板 -->
+        <div class="panel panel-default form-inline1">
+            <div class="panel-body">
+                <div class="panel panel-default form-inline">
+                    <!-- 面板标题 -->
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-6"><span class="block-title">检验鉴定结果</span></div>
+                            <div class="col-xs-6 text-right">
+                                <neq name="Think.get.is_cancel" value="1">
+                                <a  class="btn btn-primary btn-sm " disabled="disabled"><span class="glyphicon glyphicon-upload"></span> 上传</a>
+                                <button type="button" class="btn btn-primary btn-sm "  id="download"><span class="glyphicon glyphicon-download"></span> 下载</button>
+                                <a href="javascript:;" class="btn btn-warning btn-sm " disabled="disabled"><span class="glyphicon glyphicon-trash"></span> 删除</a>
+                                </neq>
+                                <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden"  id="case_id" value="{$case_id}"/>
+                    <!-- 面板内容 -->
+                    <div class="panel-body">
+                        <include file="ReCaseQueryCheckup/checkupResultPicNumber/photoTable" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.delete = "{:U('CasePhoto/delete')}";
+
+    </script>
+</block>
+<block name="foot.ext">
+
+    <import file="js.ReCaseQueryCheckup.checkupResultPicNumber?" basepath="{$Think.SRC_MODULE_URL}" />
+    <script type="text/javascript">
+    // 定义URL地址
+    url.photoDownload = "{:U('Common/download?ids=__IDS__')}";
+    </script>   
+    <import file="js.ReCaseQueryCheckup.photoDownload?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

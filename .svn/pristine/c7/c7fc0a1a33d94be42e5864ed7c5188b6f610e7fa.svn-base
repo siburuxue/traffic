@@ -1,0 +1,12 @@
+<!-- 面板 -->
+<div class="panel panel-primary">
+    <!-- 面板标题 -->
+    <div class="panel-heading">协议书</div>
+    <!-- 面板内容 -->
+    <div class="list-group" style="height:204px;overflow:auto;">
+        <a href="{:U('FastAgreement/index?case_id='.$info['id'])}" class="list-group-item list-group-item-info js-open js-end-refresh" id="cognizanceBtnSimple"><span class="glyphicon glyphicon-new-window"></span> 协议书</a>
+        <div>
+            
+        </div>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+<?php
+namespace Admin\Model;
+use Think\Model\ViewModel;
+
+class CaseCheckupEntrustOrgViewModel extends ViewModel {
+	public $viewFields = array(
+		'CaseCheckupEntrust' => array(
+			'id',
+			'case_id',
+			'case_checkup_id',
+			'code',
+			'from_department_id',
+			'to_checkup_org_id',
+			'to_checkup_org_name',
+			'entrust_time',
+			'carry_name_1',
+			'carry_post_1',
+			'carry_idno_1',
+			'carry_name_2',
+			'carry_post_2',
+			'carry_idno_2',
+			'carry_address',
+			'carry_zip',
+			'carry_tel',
+			'carry_fax',
+			'case_name',
+			'case_code',
+			'case_name',
+			'target_client_id',
+			'target_name',
+			'target_sex',
+			'target_age',
+			'target_tel',
+			'target_company',
+			'target_address',
+			'summary',
+			'old_result',
+			'checkup_doc',
+			'remark',
+			'is_first',
+			'is_submit',
+			'is_finish',
+			'status',
+			'create_time',
+			'create_user_id',
+			'update_time',
+			'update_user_id',
+			'is_del',
+			'_type' => 'LEFT',
+		),
+		'CheckupOrg' => array(
+			'id' => 'checkuporg_id',
+			'name' => 'checkuporg_name',
+			'status' => 'checkuporg_status',
+			'is_end' => 'checkuporg_is_end',
+			'create_time' => 'checkuporg_create_time',
+			'is_del' => 'checkuporg_is_del',
+			'_on' => 'CheckupOrg.id=CaseCheckupEntrust.to_checkup_org_id',
+			'_type' => 'LEFT',
+		),
+	);
+}
+?>

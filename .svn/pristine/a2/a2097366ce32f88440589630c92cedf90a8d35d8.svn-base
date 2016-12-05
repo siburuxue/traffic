@@ -1,0 +1,99 @@
+<extend name="Common/base" />
+<block name="title">提请审批</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 面板 -->
+        <div class="panel panel-default">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">提请{$title}审批</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed table-custom">
+                    <tr>
+                        <th width="50%">短语模板</th>
+                        <th width="50%">报告内容</th>
+                    </tr>
+                    <tr>
+                        <td width="50%">
+                            <div style="height:41px;"></div>
+                            <assign name="case_id" value="$Think.get.case_id"/>
+                            <php>
+                                $data = array( 'caseid'=>$case_id, ); W('Short/index', array(10, 'textarea[name="content"]', $data));
+                            </php>
+
+                        </td>
+                        <td width="50%">
+                            <table class="table">
+                                <tr>
+                                    <td height="40" style="border:1px solid white;text-align:center;font-size:16px;font-weight:700;">检验鉴定委托-{$title}审批</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0;">
+                                        <textarea class="form-control post-gather" name="content" style="height:300px;"></textarea>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <input type="hidden" name="case_id" id="case_id" value="{$Think.get.case_id}" />
+                <input type="hidden" name="case_checkup_id" id="case_checkup_id" value="{$Think.get.case_checkup_id}" />
+                <input type="hidden" name="review_cate" class="post-gather" value="{$review_cate}" />
+                <input type="hidden" name="check_cate" class="post-gather" value="{$check_cate}" />
+                <button type="button" class="btn btn-primary" id="approval"><span class="glyphicon glyphicon-saved"></span> 提交</button>
+                <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.check = "{:U('insert')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <div class="container-fluid" id="approval-box" style="display:none;margin-top:20px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">提请审批</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm" id="js-close-jimmy"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed table-custom">
+                    <tr>
+                        <th width="20%">审核人</th>
+                        <td>
+                            <notempty name="list">
+                                <volist name="list" id="vo">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="radio" name="check_user_id" value="{$vo.id}" <if condition="$i eq 1">checked</if>>&nbsp;{$vo.department_name}:{$vo.true_name}</label>&nbsp;&nbsp;&nbsp;
+                                    </div>
+                                </volist>
+                                <else/> 尚无有效审核人
+                            </notempty>
+                        </td>
+                    </tr>
+                </table>
+                <button type="button" class="btn btn-primary" id="approval-submit"><span class="glyphicon glyphicon-saved"></span> 确定</button>
+                <!-- <button type="button" class="btn btn-warning" id="approval-close"><span class="glyphicon glyphicon-repeat"></span> 重置</button> -->
+            </div>
+        </div>
+    </div>
+    <import file="js.CaseCheckCheckup.add?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

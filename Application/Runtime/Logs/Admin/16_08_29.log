@@ -1,0 +1,579 @@
+[ 2016-08-29T11:34:09+08:00 ] 123.246.53.57 /index.php?m=Admin&c=Sign&a=login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000428s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000438s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000495s ]
+SQL: SHOW COLUMNS FROM `ts_config` [ RunTime:0.0009s ]
+SQL: SELECT `name`,`val` FROM `ts_config`  [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000063s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000117s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008060s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008132s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000161s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000206s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000520s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000573s ]
+
+[ 2016-08-29T11:34:19+08:00 ] 123.246.53.57 /index.php?m=Admin&c=Sign&a=loginCheck
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000627s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000482s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000541s ]
+SQL: SHOW COLUMNS FROM `ts_config` [ RunTime:0.0009s ]
+SQL: SELECT `name`,`val` FROM `ts_config`  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ts_user` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `ts_user` WHERE `user_name` = 'admin' AND `is_del` = 0 LIMIT 1   [ RunTime:0.0005s ]
+SQL: UPDATE `ts_user` SET `last_login_time`='1472441659',`last_login_ip`='123.246.53.57',`login_count`='244' WHERE `id` = 1 [ RunTime:0.0126s ]
+
+[ 2016-08-29T11:34:19+08:00 ] 123.246.53.57 /index.php?m=Admin&c=Index&a=index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000584s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000665s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000754s ]
+SQL: SHOW COLUMNS FROM `ts_config` [ RunTime:0.0009s ]
+SQL: SELECT `name`,`val` FROM `ts_config`  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ts_user` [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `ts_user_role` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ts_user_post` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ts_department` [ RunTime:0.0008s ]
+SQL: SELECT User.id AS id,User.user_name AS user_name,User.password AS password,User.salt AS salt,User.true_name AS true_name,User.police_no AS police_no,User.department_id AS department_id,User.tel AS tel,User.traffic_level_id AS traffic_level_id,User.last_login_time AS last_login_time,User.last_login_ip AS last_login_ip,User.login_count AS login_count,User.create_time AS create_time,User.create_user_id AS create_user_id,User.update_time AS update_time,User.update_user_id AS update_user_id,User.is_locked AS is_locked,User.is_del AS is_del,UserRole.role_id AS role_id,UserPost.post_id AS post_id,Department.name AS department_name,Department.cate AS department_cate,TrafficLevel.name AS traffic_level_name FROM ts_user User LEFT JOIN ts_user_role UserRole ON User.id=UserRole.user_id LEFT JOIN ts_user_post UserPost ON User.id=UserPost.user_id LEFT JOIN ts_department Department ON User.department_id=Department.id LEFT JOIN ts_dict_option TrafficLevel ON User.traffic_level_id=TrafficLevel.id WHERE User.id = '1' LIMIT 1   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ts_power` [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ts_role_power` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ts_role` [ RunTime:0.0006s ]
+SQL: SELECT Power.name AS name FROM ts_power Power LEFT JOIN ts_role_power RolePower ON Power.id=RolePower.power_id LEFT JOIN ts_role Role ON Role.id=RolePower.role_id and Role.is_del=0 LEFT JOIN ts_user_role UserRole ON UserRole.role_id=Role.id WHERE Power.is_del = 0 AND UserRole.user_id = '1' GROUP BY Power.id  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `ts_department` WHERE `is_del` = 0  [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000061s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000124s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015779s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015846s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000160s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000209s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000512s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000564s ]
+
+[ 2016-08-29T11:34:20+08:00 ] 123.246.53.57 /index.php?m=Admin&c=Index&a=main
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000393s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000455s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000515s ]
+SQL: SHOW COLUMNS FROM `ts_config` [ RunTime:0.0009s ]
+SQL: SELECT `name`,`val` FROM `ts_config`  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ts_user` [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `ts_user_role` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ts_user_post` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ts_department` [ RunTime:0.0007s ]
+SQL: SELECT User.id AS id,User.user_name AS user_name,User.password AS password,User.salt AS salt,User.true_name AS true_name,User.police_no AS police_no,User.department_id AS department_id,User.tel AS tel,User.traffic_level_id AS traffic_level_id,User.last_login_time AS last_login_time,User.last_login_ip AS last_login_ip,User.login_count AS login_count,User.create_time AS create_time,User.create_user_id AS create_user_id,User.update_time AS update_time,User.update_user_id AS update_user_id,User.is_locked AS is_locked,User.is_del AS is_del,UserRole.role_id AS role_id,UserPost.post_id AS post_id,Department.name AS department_name,Department.cate AS department_cate,TrafficLevel.name AS traffic_level_name FROM ts_user User LEFT JOIN ts_user_role UserRole ON User.id=UserRole.user_id LEFT JOIN ts_user_post UserPost ON User.id=UserPost.user_id LEFT JOIN ts_department Department ON User.department_id=Department.id LEFT JOIN ts_dict_option TrafficLevel ON User.traffic_level_id=TrafficLevel.id WHERE User.id = '1' LIMIT 1   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ts_power` [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ts_role_power` [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ts_role` [ RunTime:0.0006s ]
+SQL: SELECT Power.name AS name FROM ts_power Power LEFT JOIN ts_role_power RolePower ON Power.id=RolePower.power_id LEFT JOIN ts_role Role ON Role.id=RolePower.role_id and Role.is_del=0 LEFT JOIN ts_user_role UserRole ON UserRole.role_id=Role.id WHERE Power.is_del = 0 AND UserRole.user_id = '1' GROUP BY Power.id  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `ts_department` WHERE `is_del` = 0  [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000074s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000140s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014265s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014327s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000160s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000205s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000596s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000657s ]
+
+[ 2016-08-29T11:34:20+08:00 ] 123.246.53.57 /index.php?m=Admin&c=Index&a=side
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000249s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000662s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.004534s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004595s ]
+SQL: SHOW COLUMNS FROM `ts_config` [ RunTime:0.0009s ]
+SQL: SELECT `name`,`val` FROM `ts_config`  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ts_user` [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `ts_user_role` [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ts_user_post` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ts_department` [ RunTime:0.0007s ]
+SQL: SELECT User.id AS id,User.user_name AS user_name,User.password AS password,User.salt AS salt,User.true_name AS true_name,User.police_no AS police_no,User.department_id AS department_id,User.tel AS tel,User.traffic_level_id AS traffic_level_id,User.last_login_time AS last_login_time,User.last_login_ip AS last_login_ip,User.login_count AS login_count,User.create_time AS create_time,User.create_user_id AS create_user_id,User.update_time AS update_time,User.update_user_id AS update_user_id,User.is_locked AS is_locked,User.is_del AS is_del,UserRole.role_id AS role_id,UserPost.post_id AS post_id,Department.name AS department_name,Department.cate AS department_cate,TrafficLevel.name AS traffic_level_name FROM ts_user User LEFT JOIN ts_user_role UserRole ON User.id=UserRole.user_id LEFT JOIN ts_user_post UserPost ON User.id=UserPost.user_id LEFT JOIN ts_department Department ON User.department_id=Department.id LEFT JOIN ts_dict_option TrafficLevel ON User.traffic_level_id=TrafficLevel.id WHERE User.id = '1' LIMIT 1   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ts_power` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ts_role_power` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ts_role` [ RunTime:0.0006s ]
+SQL: SELECT Power.name AS name FROM ts_power Power LEFT JOIN ts_role_power RolePower ON Power.id=RolePower.power_id LEFT JOIN ts_role Role ON Role.id=RolePower.role_id and Role.is_del=0 LEFT JOIN ts_user_role UserRole ON UserRole.role_id=Role.id WHERE Power.is_del = 0 AND UserRole.user_id = '1' GROUP BY Power.id  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ts_department` WHERE `is_del` = 0  [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000190s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000258s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.026396s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.026459s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000167s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000214s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000502s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000557s ]
+
+[ 2016-08-29T11:34:20+08:00 ] 123.246.53.57 /index.php?m=Admin&c=CaseAttention&a=completedTable
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000430s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000474s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000530s ]
+SQL: SHOW COLUMNS FROM `ts_config` [ RunTime:0.0009s ]
+SQL: SELECT `name`,`val` FROM `ts_config`  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ts_user` [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `ts_user_role` [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ts_user_post` [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ts_department` [ RunTime:0.0007s ]
+SQL: SELECT User.id AS id,User.user_name AS user_name,User.password AS password,User.salt AS salt,User.true_name AS true_name,User.police_no AS police_no,User.department_id AS department_id,User.tel AS tel,User.traffic_level_id AS traffic_level_id,User.last_login_time AS last_login_time,User.last_login_ip AS last_login_ip,User.login_count AS login_count,User.create_time AS create_time,User.create_user_id AS create_user_id,User.update_time AS update_time,User.update_user_id AS update_user_id,User.is_locked AS is_locked,User.is_del AS is_del,UserRole.role_id AS role_id,UserPost.post_id AS post_id,Department.name AS department_name,Department.cate AS department_cate,TrafficLevel.name AS traffic_level_name FROM ts_user User LEFT JOIN ts_user_role UserRole ON User.id=UserRole.user_id LEFT JOIN ts_user_post UserPost ON User.id=UserPost.user_id LEFT JOIN ts_department Department ON User.department_id=Department.id LEFT JOIN ts_dict_option TrafficLevel ON User.traffic_level_id=TrafficLevel.id WHERE User.id = '1' LIMIT 1   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ts_power` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ts_role_power` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ts_role` [ RunTime:0.0006s ]
+SQL: SELECT Power.name AS name FROM ts_power Power LEFT JOIN ts_role_power RolePower ON Power.id=RolePower.power_id LEFT JOIN ts_role Role ON Role.id=RolePower.role_id and Role.is_del=0 LEFT JOIN ts_user_role UserRole ON UserRole.role_id=Role.id WHERE Power.is_del = 0 AND UserRole.user_id = '1' GROUP BY Power.id  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ts_department` WHERE `is_del` = 0  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ts_case_attention` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `ts_case_attention` WHERE `user_id` = 1 AND `is_del` = 0  [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: start_time /alidata/www/traffic/Application/Admin/Controller/CaseAttentionController.class.php 第 174 行.
+NOTIC: [8] Undefined index: end_time /alidata/www/traffic/Application/Admin/Controller/CaseAttentionController.class.php 第 176 行.
+NOTIC: [8] Undefined index: start_time /alidata/www/traffic/Application/Admin/Controller/CaseAttentionController.class.php 第 178 行.
+SQL: SHOW COLUMNS FROM `ts_case_handle` [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `ts_case_client` [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `ts_case_survey` [ RunTime:0.0007s ]
+SQL: SELECT COUNT(distinct CaseInfo.id) AS tp_count FROM ts_case CaseInfo LEFT JOIN ts_case_handle CaseHandle ON CaseInfo.id=CaseHandle.case_id and CaseHandle.is_now=1 and CaseHandle.is_del=0 LEFT JOIN ts_user CaseHandleUser ON CaseHandleUser.id=CaseHandle.user_id and CaseHandleUser.is_del=0 LEFT JOIN ts_case_client CaseClient ON CaseInfo.id=CaseClient.case_id and CaseClient.is_del=0 LEFT JOIN ts_department Brigade ON Brigade.id=CaseInfo.department_id and Brigade.is_del=0 and Brigade.cate=2 LEFT JOIN ts_dict_option PropertyLoss ON CaseInfo.property_loss=PropertyLoss.id LEFT JOIN ts_case_survey CaseSurvey ON CaseSurvey.case_id=CaseInfo.id WHERE CaseInfo.is_del = 0 AND CaseInfo.cate = 0 AND CaseInfo.department_id = '3' AND CaseHandle.user_id = '1' LIMIT 1   [ RunTime:0.0625s ]
+SQL: SELECT CaseInfo.id AS id,CaseInfo.code AS code,CaseInfo.num AS num,CaseInfo.cate AS cate,CaseInfo.accident_name AS accident_name,CaseInfo.accident_time AS accident_time,CaseInfo.accident_place AS accident_place,CaseInfo.lng AS lng,CaseInfo.lat AS lat,CaseInfo.death_num AS death_num,CaseInfo.hurt_num AS hurt_num,CaseInfo.property_loss AS property_loss,CaseInfo.accident_type AS accident_type,CaseInfo.first_cognizance AS first_cognizance,CaseInfo.department_id AS department_id,CaseInfo.accept_status AS accept_status,CaseInfo.accept_check_status AS accept_check_status,CaseInfo.survey_status AS survey_status,CaseInfo.client_status AS client_status,CaseInfo.record_status AS record_status,CaseInfo.checkup_status AS checkup_status,CaseInfo.law_doc_status AS law_doc_status,CaseInfo.cognizance_status AS cognizance_status,CaseInfo.cognizance_check_status AS cognizance_check_status,CaseInfo.cognizance_send_status AS cognizance_send_status,CaseInfo.punish_status AS punish_status,CaseInfo.punish_complete_status AS punish_complete_status,CaseInfo.mediate_status AS mediate_status,CaseInfo.mediate_complete_status AS mediate_complete_status,CaseInfo.catalog_status AS catalog_status,CaseInfo.review_submit_status AS review_submit_status,CaseInfo.review_accept_status AS review_accept_status,CaseInfo.review_result_status AS review_result_status,CaseInfo.create_time AS create_time,CaseInfo.create_user_id AS create_user_id,CaseInfo.update_time AS update_time,CaseInfo.update_user_id AS update_user_id,CaseInfo.agreement_status AS agreement_status,CaseInfo.is_del AS is_del,CaseInfo.del_reason AS del_reason,CaseInfo.is_over AS is_over,CaseInfo.cognizance_type AS cognizance_type,CaseHandle.user_id AS case_handle_user_id,CaseHandle.start_time AS case_handle_start_time,CaseHandle.end_time AS case_handle_end_time,CaseHandle.is_now AS case_handle_is_now,CaseHandle.is_del AS case_handle_is_del,CaseHandleUser.user_name AS case_handle_user_name,CaseHandleUser.true_name AS case_handle_true_name,CaseClient.name AS case_client_true_name,CaseClient.car_no AS case_client_car_no,CaseClient.idno AS case_client_idno,Brigade.name AS brigade_name,PropertyLoss.name AS property_loss_name,CaseSurvey.scene_state AS case_survey_scene_state FROM ts_case CaseInfo LEFT JOIN ts_case_handle CaseHandle ON CaseInfo.id=CaseHandle.case_id and CaseHandle.is_now=1 and CaseHandle.is_del=0 LEFT JOIN ts_user CaseHandleUser ON CaseHandleUser.id=CaseHandle.user_id and CaseHandleUser.is_del=0 LEFT JOIN ts_case_client CaseClient ON CaseInfo.id=CaseClient.case_id and CaseClient.is_del=0 LEFT JOIN ts_department Brigade ON Brigade.id=CaseInfo.department_id and Brigade.is_del=0 and Brigade.cate=2 LEFT JOIN ts_dict_option PropertyLoss ON CaseInfo.property_loss=PropertyLoss.id LEFT JOIN ts_case_survey CaseSurvey ON CaseSurvey.case_id=CaseInfo.id WHERE CaseInfo.is_del = 0 AND CaseInfo.cate = 0 AND CaseInfo.department_id = '3' AND CaseHandle.user_id = '1' GROUP BY CaseInfo.id ORDER BY CaseInfo.create_time desc,CaseInfo.id desc LIMIT 0,15   [ RunTime:0.0120s ]
+SQL: SELECT * FROM `ts_case_client` WHERE `case_id` = 9  [ RunTime:0.0124s ]
+SQL: SHOW COLUMNS FROM `ts_case` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `ts_case` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ts_case_check` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `ts_case_check` WHERE `case_id` = 9 AND `status` = 0  [ RunTime:0.0005s ]
+NOTIC: [8] Undefined index:  /alidata/www/traffic/Application/Common/Common/function.php 第 13 行.
+SQL: SELECT * FROM `ts_case_client` WHERE `case_id` = 8  [ RunTime:0.0004s ]
+SQL: SELECT * FROM `ts_case` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `ts_case_check` WHERE `case_id` = 8 AND `status` = 0  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ts_case_cognizance` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `ts_case_cognizance` WHERE `case_id` = 8 ORDER BY id desc LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index:  /alidata/www/traffic/Application/Common/Common/function.php 第 13 行.
+SQL: SELECT * FROM `ts_case_client` WHERE `case_id` = 7  [ RunTime:0.0004s ]
+SQL: SELECT * FROM `ts_case` WHERE `id` = 7 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `ts_case_check` WHERE `case_id` = 7 AND `status` = 0  [ RunTime:0.0004s ]
+SQL: SELECT * FROM `ts_case_cognizance` WHERE `case_id` = 7 ORDER BY id desc LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `ts_case_client` WHERE `case_id` = 5  [ RunTime:0.0004s ]
+SQL: SELECT * FROM `ts_case` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `ts_case_check` WHERE `case_id` = 5 AND `status` = 0  [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000074s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000150s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014397s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014457s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000156s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000198s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000489s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000535s ]
+
+[ 2016-08-29T11:34:20+08:00 ] 123.246.53.57 /index.php?m=Admin&c=CaseCheckLeader&a=pendingTable
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000396s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000448s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000503s ]
+SQL: SHOW COLUMNS FROM `ts_config` [ RunTime:0.0009s ]
+SQL: SELECT `name`,`val` FROM `ts_config`  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ts_user` [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `ts_user_role` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ts_user_post` [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ts_department` [ RunTime:0.0007s ]
+SQL: SELECT User.id AS id,User.user_name AS user_name,User.password AS password,User.salt AS salt,User.true_name AS true_name,User.police_no AS police_no,User.department_id AS department_id,User.tel AS tel,User.traffic_level_id AS traffic_level_id,User.last_login_time AS last_login_time,User.last_login_ip AS last_login_ip,User.login_count AS login_count,User.create_time AS create_time,User.create_user_id AS create_user_id,User.update_time AS update_time,User.update_user_id AS update_user_id,User.is_locked AS is_locked,User.is_del AS is_del,UserRole.role_id AS role_id,UserPost.post_id AS post_id,Department.name AS department_name,Department.cate AS department_cate,TrafficLevel.name AS traffic_level_name FROM ts_user User LEFT JOIN ts_user_role UserRole ON User.id=UserRole.user_id LEFT JOIN ts_user_post UserPost ON User.id=UserPost.user_id LEFT JOIN ts_department Department ON User.department_id=Department.id LEFT JOIN ts_dict_option TrafficLevel ON User.traffic_level_id=TrafficLevel.id WHERE User.id = '1' LIMIT 1   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ts_power` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ts_role_power` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ts_role` [ RunTime:0.0006s ]
+SQL: SELECT Power.name AS name FROM ts_power Power LEFT JOIN ts_role_power RolePower ON Power.id=RolePower.power_id LEFT JOIN ts_role Role ON Role.id=RolePower.role_id and Role.is_del=0 LEFT JOIN ts_user_role UserRole ON UserRole.role_id=Role.id WHERE Power.is_del = 0 AND UserRole.user_id = '1' GROUP BY Power.id  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ts_department` WHERE `is_del` = 0  [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: start_time /alidata/www/traffic/Application/Admin/Controller/CaseCheckLeaderController.class.php 第 48 行.
+NOTIC: [8] Undefined index: end_time /alidata/www/traffic/Application/Admin/Controller/CaseCheckLeaderController.class.php 第 50 行.
+NOTIC: [8] Undefined index: start_time /alidata/www/traffic/Application/Admin/Controller/CaseCheckLeaderController.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `ts_case_check` [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `ts_case_handle` [ RunTime:0.0006s ]
+SQL: SELECT COUNT(CaseInfo.id) AS tp_count FROM ts_case_check CaseCheck LEFT JOIN ts_case CaseInfo ON CaseInfo.id = CaseCheck.case_id  JOIN ts_case_handle CaseHandle ON CaseInfo.id = CaseHandle.case_id  JOIN ts_user CaseUser ON CaseUser.id = CaseHandle.user_id  JOIN ts_department Department ON Department.id = CaseInfo.department_id WHERE CaseInfo.is_del = 0 AND CaseCheck.status = 0 AND CaseCheck.check_user_id = '1' AND CaseCheck.is_del = 0 AND CaseHandle.is_now = 1 LIMIT 1   [ RunTime:0.0007s ]
+SQL: SELECT CaseCheck.id AS check_id,CaseCheck.item_id AS item_id,CaseCheck.check_user_id AS check_user_id,CaseCheck.cate AS cate,CaseCheck.level AS level,CaseInfo.id AS id,CaseInfo.code AS code,CaseInfo.accident_time AS accident_time,CaseInfo.accident_place AS accident_place,CaseInfo.accident_type AS accident_type,CaseInfo.department_id AS department_id,CaseInfo.create_user_id AS create_user_id,CaseInfo.update_time AS update_time,CaseHandle.is_now AS is_now,CaseHandle.user_id AS user_id,CaseUser.true_name AS case_user,Department.name AS department_name FROM ts_case_check CaseCheck LEFT JOIN ts_case CaseInfo ON CaseInfo.id = CaseCheck.case_id  JOIN ts_case_handle CaseHandle ON CaseInfo.id = CaseHandle.case_id  JOIN ts_user CaseUser ON CaseUser.id = CaseHandle.user_id  JOIN ts_department Department ON Department.id = CaseInfo.department_id WHERE CaseInfo.is_del = 0 AND CaseCheck.status = 0 AND CaseCheck.check_user_id = '1' AND CaseCheck.is_del = 0 AND CaseHandle.is_now = 1 ORDER BY CaseCheck.create_time desc,CaseCheck.id desc LIMIT 0,15   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `ts_case_survey` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ts_case_survey` WHERE `case_id` = 8 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ts_case_client` [ RunTime:0.0011s ]
+SQL: SELECT MAX(CASE WHEN escape_catch_man_time > escape_catch_car_time THEN escape_catch_man_time ELSE escape_catch_car_time END) AS tp_max FROM `ts_case_client` WHERE `case_id` = 8 AND `is_escape` = 1 LIMIT 1   [ RunTime:0.0038s ]
+SQL: SHOW COLUMNS FROM `ts_case_checkup` [ RunTime:0.0010s ]
+SQL: SELECT MAX(ts_case_checkup_report.create_time) AS tp_max FROM `ts_case_checkup`  LEFT JOIN ts_case_checkup_report on ts_case_checkup_report.case_checkup_id = ts_case_checkup.id  WHERE ts_case_checkup.case_id = '8' AND ts_case_checkup.is_cancel = 0 AND ts_case_checkup.is_del = 0 AND ts_case_checkup_report.is_back = 0 AND ts_case_checkup_report.is_del = 0 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ts_case_cognizance` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `ts_case_cognizance` WHERE `case_id` = 8 AND `cognizance_type` = 1 AND `is_back` = 0 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `ts_case_cognizance` WHERE `case_id` = 8 AND `cognizance_type` = 0 AND `is_back` = 0 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_case_survey` WHERE `case_id` = 5 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT MAX(CASE WHEN escape_catch_man_time > escape_catch_car_time THEN escape_catch_man_time ELSE escape_catch_car_time END) AS tp_max FROM `ts_case_client` WHERE `case_id` = 5 AND `is_escape` = 1 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT MAX(ts_case_checkup_report.create_time) AS tp_max FROM `ts_case_checkup`  LEFT JOIN ts_case_checkup_report on ts_case_checkup_report.case_checkup_id = ts_case_checkup.id  WHERE ts_case_checkup.case_id = '5' AND ts_case_checkup.is_cancel = 0 AND ts_case_checkup.is_del = 0 AND ts_case_checkup_report.is_back = 0 AND ts_case_checkup_report.is_del = 0 LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT * FROM `ts_case_cognizance` WHERE `case_id` = 5 AND `cognizance_type` = 1 AND `is_back` = 0 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_case_cognizance` WHERE `case_id` = 5 AND `cognizance_type` = 0 AND `is_back` = 0 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `ts_case_survey` WHERE `case_id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT MAX(CASE WHEN escape_catch_man_time > escape_catch_car_time THEN escape_catch_man_time ELSE escape_catch_car_time END) AS tp_max FROM `ts_case_client` WHERE `case_id` = 1 AND `is_escape` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT MAX(ts_case_checkup_report.create_time) AS tp_max FROM `ts_case_checkup`  LEFT JOIN ts_case_checkup_report on ts_case_checkup_report.case_checkup_id = ts_case_checkup.id  WHERE ts_case_checkup.case_id = '1' AND ts_case_checkup.is_cancel = 0 AND ts_case_checkup.is_del = 0 AND ts_case_checkup_report.is_back = 0 AND ts_case_checkup_report.is_del = 0 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `ts_case_cognizance` WHERE `case_id` = 1 AND `cognizance_type` = 1 AND `is_back` = 0 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `ts_case_cognizance` WHERE `case_id` = 1 AND `cognizance_type` = 0 AND `is_back` = 0 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: timestamp /alidata/www/traffic/Application/Admin/Controller/CommonController.class.php 第 542 行.
+SQL: SHOW COLUMNS FROM `ts_case` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `ts_case` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000067s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000127s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012885s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013004s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000172s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000216s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000493s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000543s ]
+
+[ 2016-08-29T11:34:26+08:00 ] 123.246.53.57 /index.php?m=Admin&c=CaseHandle&a=pending
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000444s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000510s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000574s ]
+SQL: SHOW COLUMNS FROM `ts_config` [ RunTime:0.0009s ]
+SQL: SELECT `name`,`val` FROM `ts_config`  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ts_user` [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `ts_user_role` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ts_user_post` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ts_department` [ RunTime:0.0008s ]
+SQL: SELECT User.id AS id,User.user_name AS user_name,User.password AS password,User.salt AS salt,User.true_name AS true_name,User.police_no AS police_no,User.department_id AS department_id,User.tel AS tel,User.traffic_level_id AS traffic_level_id,User.last_login_time AS last_login_time,User.last_login_ip AS last_login_ip,User.login_count AS login_count,User.create_time AS create_time,User.create_user_id AS create_user_id,User.update_time AS update_time,User.update_user_id AS update_user_id,User.is_locked AS is_locked,User.is_del AS is_del,UserRole.role_id AS role_id,UserPost.post_id AS post_id,Department.name AS department_name,Department.cate AS department_cate,TrafficLevel.name AS traffic_level_name FROM ts_user User LEFT JOIN ts_user_role UserRole ON User.id=UserRole.user_id LEFT JOIN ts_user_post UserPost ON User.id=UserPost.user_id LEFT JOIN ts_department Department ON User.department_id=Department.id LEFT JOIN ts_dict_option TrafficLevel ON User.traffic_level_id=TrafficLevel.id WHERE User.id = '1' LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `ts_power` [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ts_role_power` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ts_role` [ RunTime:0.0006s ]
+SQL: SELECT Power.name AS name FROM ts_power Power LEFT JOIN ts_role_power RolePower ON Power.id=RolePower.power_id LEFT JOIN ts_role Role ON Role.id=RolePower.role_id and Role.is_del=0 LEFT JOIN ts_user_role UserRole ON UserRole.role_id=Role.id WHERE Power.is_del = 0 AND UserRole.user_id = '1' GROUP BY Power.id  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `ts_department` WHERE `is_del` = 0  [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000091s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000168s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.046859s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.046923s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000164s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000210s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000513s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000575s ]
+
+[ 2016-08-29T11:34:26+08:00 ] 123.246.53.57 /index.php?m=Admin&c=CaseHandle&a=pendingTable
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000419s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000541s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000599s ]
+SQL: SHOW COLUMNS FROM `ts_config` [ RunTime:0.0009s ]
+SQL: SELECT `name`,`val` FROM `ts_config`  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ts_user` [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `ts_user_role` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ts_user_post` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ts_department` [ RunTime:0.0007s ]
+SQL: SELECT User.id AS id,User.user_name AS user_name,User.password AS password,User.salt AS salt,User.true_name AS true_name,User.police_no AS police_no,User.department_id AS department_id,User.tel AS tel,User.traffic_level_id AS traffic_level_id,User.last_login_time AS last_login_time,User.last_login_ip AS last_login_ip,User.login_count AS login_count,User.create_time AS create_time,User.create_user_id AS create_user_id,User.update_time AS update_time,User.update_user_id AS update_user_id,User.is_locked AS is_locked,User.is_del AS is_del,UserRole.role_id AS role_id,UserPost.post_id AS post_id,Department.name AS department_name,Department.cate AS department_cate,TrafficLevel.name AS traffic_level_name FROM ts_user User LEFT JOIN ts_user_role UserRole ON User.id=UserRole.user_id LEFT JOIN ts_user_post UserPost ON User.id=UserPost.user_id LEFT JOIN ts_department Department ON User.department_id=Department.id LEFT JOIN ts_dict_option TrafficLevel ON User.traffic_level_id=TrafficLevel.id WHERE User.id = '1' LIMIT 1   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ts_power` [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ts_role_power` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ts_role` [ RunTime:0.0007s ]
+SQL: SELECT Power.name AS name FROM ts_power Power LEFT JOIN ts_role_power RolePower ON Power.id=RolePower.power_id LEFT JOIN ts_role Role ON Role.id=RolePower.role_id and Role.is_del=0 LEFT JOIN ts_user_role UserRole ON UserRole.role_id=Role.id WHERE Power.is_del = 0 AND UserRole.user_id = '1' GROUP BY Power.id  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `ts_department` WHERE `is_del` = 0  [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: start_time /alidata/www/traffic/Application/Admin/Controller/CaseHandleController.class.php 第 45 行.
+NOTIC: [8] Undefined index: end_time /alidata/www/traffic/Application/Admin/Controller/CaseHandleController.class.php 第 47 行.
+NOTIC: [8] Undefined index: start_time /alidata/www/traffic/Application/Admin/Controller/CaseHandleController.class.php 第 49 行.
+SQL: SHOW COLUMNS FROM `ts_case_handle` [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ts_case_client` [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `ts_case_survey` [ RunTime:0.0007s ]
+SQL: SELECT COUNT(distinct CaseInfo.id) AS tp_count FROM ts_case CaseInfo LEFT JOIN ts_case_handle CaseHandle ON CaseInfo.id=CaseHandle.case_id and CaseHandle.is_now=1 and CaseHandle.is_del=0 LEFT JOIN ts_user CaseHandleUser ON CaseHandleUser.id=CaseHandle.user_id and CaseHandleUser.is_del=0 LEFT JOIN ts_case_client CaseClient ON CaseInfo.id=CaseClient.case_id and CaseClient.is_del=0 LEFT JOIN ts_department Brigade ON Brigade.id=CaseInfo.department_id and Brigade.is_del=0 and Brigade.cate=2 LEFT JOIN ts_dict_option PropertyLoss ON CaseInfo.property_loss=PropertyLoss.id LEFT JOIN ts_case_survey CaseSurvey ON CaseSurvey.case_id=CaseInfo.id WHERE CaseInfo.is_del = 0 AND CaseInfo.catalog_status = 0 AND CaseInfo.department_id = '3' AND CaseInfo.cate = 0 AND CaseHandle.user_id = '1' LIMIT 1   [ RunTime:0.0007s ]
+SQL: SELECT CaseInfo.id AS id,CaseInfo.code AS code,CaseInfo.num AS num,CaseInfo.cate AS cate,CaseInfo.accident_name AS accident_name,CaseInfo.accident_time AS accident_time,CaseInfo.accident_place AS accident_place,CaseInfo.lng AS lng,CaseInfo.lat AS lat,CaseInfo.death_num AS death_num,CaseInfo.hurt_num AS hurt_num,CaseInfo.property_loss AS property_loss,CaseInfo.accident_type AS accident_type,CaseInfo.first_cognizance AS first_cognizance,CaseInfo.department_id AS department_id,CaseInfo.accept_status AS accept_status,CaseInfo.accept_check_status AS accept_check_status,CaseInfo.survey_status AS survey_status,CaseInfo.client_status AS client_status,CaseInfo.record_status AS record_status,CaseInfo.checkup_status AS checkup_status,CaseInfo.law_doc_status AS law_doc_status,CaseInfo.cognizance_status AS cognizance_status,CaseInfo.cognizance_check_status AS cognizance_check_status,CaseInfo.cognizance_send_status AS cognizance_send_status,CaseInfo.punish_status AS punish_status,CaseInfo.punish_complete_status AS punish_complete_status,CaseInfo.mediate_status AS mediate_status,CaseInfo.mediate_complete_status AS mediate_complete_status,CaseInfo.catalog_status AS catalog_status,CaseInfo.review_submit_status AS review_submit_status,CaseInfo.review_accept_status AS review_accept_status,CaseInfo.review_result_status AS review_result_status,CaseInfo.create_time AS create_time,CaseInfo.create_user_id AS create_user_id,CaseInfo.update_time AS update_time,CaseInfo.update_user_id AS update_user_id,CaseInfo.agreement_status AS agreement_status,CaseInfo.is_del AS is_del,CaseInfo.del_reason AS del_reason,CaseInfo.is_over AS is_over,CaseInfo.cognizance_type AS cognizance_type,CaseHandle.user_id AS case_handle_user_id,CaseHandle.start_time AS case_handle_start_time,CaseHandle.end_time AS case_handle_end_time,CaseHandle.is_now AS case_handle_is_now,CaseHandle.is_del AS case_handle_is_del,CaseHandleUser.user_name AS case_handle_user_name,CaseHandleUser.true_name AS case_handle_true_name,CaseClient.name AS case_client_true_name,CaseClient.car_no AS case_client_car_no,CaseClient.idno AS case_client_idno,Brigade.name AS brigade_name,PropertyLoss.name AS property_loss_name,CaseSurvey.scene_state AS case_survey_scene_state FROM ts_case CaseInfo LEFT JOIN ts_case_handle CaseHandle ON CaseInfo.id=CaseHandle.case_id and CaseHandle.is_now=1 and CaseHandle.is_del=0 LEFT JOIN ts_user CaseHandleUser ON CaseHandleUser.id=CaseHandle.user_id and CaseHandleUser.is_del=0 LEFT JOIN ts_case_client CaseClient ON CaseInfo.id=CaseClient.case_id and CaseClient.is_del=0 LEFT JOIN ts_department Brigade ON Brigade.id=CaseInfo.department_id and Brigade.is_del=0 and Brigade.cate=2 LEFT JOIN ts_dict_option PropertyLoss ON CaseInfo.property_loss=PropertyLoss.id LEFT JOIN ts_case_survey CaseSurvey ON CaseSurvey.case_id=CaseInfo.id WHERE CaseInfo.is_del = 0 AND CaseInfo.catalog_status = 0 AND CaseInfo.department_id = '3' AND CaseInfo.cate = 0 AND CaseHandle.user_id = '1' GROUP BY CaseInfo.id ORDER BY CaseInfo.create_time desc,CaseInfo.id desc LIMIT 0,15   [ RunTime:0.0016s ]
+SQL: SELECT * FROM `ts_case_client` WHERE `case_id` = 9  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ts_case` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `ts_case` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ts_case_check` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `ts_case_check` WHERE `case_id` = 9 AND `status` = 0  [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index:  /alidata/www/traffic/Application/Common/Common/function.php 第 13 行.
+SQL: SELECT * FROM `ts_case_client` WHERE `case_id` = 8  [ RunTime:0.0004s ]
+SQL: SELECT * FROM `ts_case` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `ts_case_check` WHERE `case_id` = 8 AND `status` = 0  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ts_case_cognizance` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `ts_case_cognizance` WHERE `case_id` = 8 ORDER BY id desc LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index:  /alidata/www/traffic/Application/Common/Common/function.php 第 13 行.
+SQL: SELECT * FROM `ts_case_client` WHERE `case_id` = 7  [ RunTime:0.0004s ]
+SQL: SELECT * FROM `ts_case` WHERE `id` = 7 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `ts_case_check` WHERE `case_id` = 7 AND `status` = 0  [ RunTime:0.0004s ]
+SQL: SELECT * FROM `ts_case_cognizance` WHERE `case_id` = 7 ORDER BY id desc LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `ts_case_client` WHERE `case_id` = 5  [ RunTime:0.0004s ]
+SQL: SELECT * FROM `ts_case` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `ts_case_check` WHERE `case_id` = 5 AND `status` = 0  [ RunTime:0.0004s ]
+SQL: SELECT * FROM `ts_case_survey` WHERE `case_id` = 9 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT MAX(CASE WHEN escape_catch_man_time > escape_catch_car_time THEN escape_catch_man_time ELSE escape_catch_car_time END) AS tp_max FROM `ts_case_client` WHERE `case_id` = 9 AND `is_escape` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ts_case_checkup` [ RunTime:0.0009s ]
+SQL: SELECT MAX(ts_case_checkup_report.create_time) AS tp_max FROM `ts_case_checkup`  LEFT JOIN ts_case_checkup_report on ts_case_checkup_report.case_checkup_id = ts_case_checkup.id  WHERE ts_case_checkup.case_id = '9' AND ts_case_checkup.is_cancel = 0 AND ts_case_checkup.is_del = 0 AND ts_case_checkup_report.is_back = 0 AND ts_case_checkup_report.is_del = 0 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `ts_case_cognizance` WHERE `case_id` = 9 AND `cognizance_type` = 1 AND `is_back` = 0 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `ts_case_cognizance` WHERE `case_id` = 9 AND `cognizance_type` = 0 AND `is_back` = 0 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `ts_case_survey` WHERE `case_id` = 8 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT MAX(CASE WHEN escape_catch_man_time > escape_catch_car_time THEN escape_catch_man_time ELSE escape_catch_car_time END) AS tp_max FROM `ts_case_client` WHERE `case_id` = 8 AND `is_escape` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT MAX(ts_case_checkup_report.create_time) AS tp_max FROM `ts_case_checkup`  LEFT JOIN ts_case_checkup_report on ts_case_checkup_report.case_checkup_id = ts_case_checkup.id  WHERE ts_case_checkup.case_id = '8' AND ts_case_checkup.is_cancel = 0 AND ts_case_checkup.is_del = 0 AND ts_case_checkup_report.is_back = 0 AND ts_case_checkup_report.is_del = 0 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `ts_case_cognizance` WHERE `case_id` = 8 AND `cognizance_type` = 1 AND `is_back` = 0 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `ts_case_cognizance` WHERE `case_id` = 8 AND `cognizance_type` = 0 AND `is_back` = 0 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `ts_case_survey` WHERE `case_id` = 7 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT MAX(CASE WHEN escape_catch_man_time > escape_catch_car_time THEN escape_catch_man_time ELSE escape_catch_car_time END) AS tp_max FROM `ts_case_client` WHERE `case_id` = 7 AND `is_escape` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT MAX(ts_case_checkup_report.create_time) AS tp_max FROM `ts_case_checkup`  LEFT JOIN ts_case_checkup_report on ts_case_checkup_report.case_checkup_id = ts_case_checkup.id  WHERE ts_case_checkup.case_id = '7' AND ts_case_checkup.is_cancel = 0 AND ts_case_checkup.is_del = 0 AND ts_case_checkup_report.is_back = 0 AND ts_case_checkup_report.is_del = 0 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `ts_case_cognizance` WHERE `case_id` = 7 AND `cognizance_type` = 1 AND `is_back` = 0 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `ts_case_cognizance` WHERE `case_id` = 7 AND `cognizance_type` = 0 AND `is_back` = 0 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `ts_case_survey` WHERE `case_id` = 5 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT MAX(CASE WHEN escape_catch_man_time > escape_catch_car_time THEN escape_catch_man_time ELSE escape_catch_car_time END) AS tp_max FROM `ts_case_client` WHERE `case_id` = 5 AND `is_escape` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT MAX(ts_case_checkup_report.create_time) AS tp_max FROM `ts_case_checkup`  LEFT JOIN ts_case_checkup_report on ts_case_checkup_report.case_checkup_id = ts_case_checkup.id  WHERE ts_case_checkup.case_id = '5' AND ts_case_checkup.is_cancel = 0 AND ts_case_checkup.is_del = 0 AND ts_case_checkup_report.is_back = 0 AND ts_case_checkup_report.is_del = 0 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `ts_case_cognizance` WHERE `case_id` = 5 AND `cognizance_type` = 1 AND `is_back` = 0 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `ts_case_cognizance` WHERE `case_id` = 5 AND `cognizance_type` = 0 AND `is_back` = 0 LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000072s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000145s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018011s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018085s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000163s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000206s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000560s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000609s ]
+
+[ 2016-08-29T11:36:02+08:00 ] 180.163.2.116 /index.php?m=Admin&c=Sign&a=login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000434s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000468s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000526s ]
+SQL: SHOW COLUMNS FROM `ts_config` [ RunTime:0.0009s ]
+SQL: SELECT `name`,`val` FROM `ts_config`  [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000061s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000120s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008074s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008142s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000151s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000196s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000494s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000546s ]
+
+[ 2016-08-29T11:37:19+08:00 ] 180.163.2.116 /index.php?m=Admin&c=Index&a=side
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000420s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000465s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004599s ]
+SQL: SHOW COLUMNS FROM `ts_config` [ RunTime:0.0009s ]
+SQL: SELECT `name`,`val` FROM `ts_config`  [ RunTime:0.0003s ]
+
+[ 2016-08-29T11:37:19+08:00 ] 61.151.218.119 /index.php?m=Admin&c=Index&a=index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.012279s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000458s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000522s ]
+SQL: SHOW COLUMNS FROM `ts_config` [ RunTime:0.0008s ]
+SQL: SELECT `name`,`val` FROM `ts_config`  [ RunTime:0.0002s ]
+
+[ 2016-08-29T11:37:19+08:00 ] 101.226.102.97 /index.php?m=Admin&c=Index&a=main
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000406s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001068s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001137s ]
+SQL: SHOW COLUMNS FROM `ts_config` [ RunTime:0.0009s ]
+SQL: SELECT `name`,`val` FROM `ts_config`  [ RunTime:0.0003s ]
+
+[ 2016-08-29T11:37:19+08:00 ] 61.151.218.119 /index.php?m=Admin&c=Sign&a=login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000430s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000471s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000533s ]
+SQL: SHOW COLUMNS FROM `ts_config` [ RunTime:0.0009s ]
+SQL: SELECT `name`,`val` FROM `ts_config`  [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000070s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000136s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019489s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019567s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000161s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000207s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000502s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000555s ]
+
+[ 2016-08-29T11:37:19+08:00 ] 101.226.102.97 /index.php?m=Admin&c=Sign&a=login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000421s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000455s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000520s ]
+SQL: SHOW COLUMNS FROM `ts_config` [ RunTime:0.0006s ]
+SQL: SELECT `name`,`val` FROM `ts_config`  [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000065s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000133s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012800s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012862s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000167s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000213s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000479s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000532s ]
+
+[ 2016-08-29T11:37:19+08:00 ] 180.163.2.116 /index.php?m=Admin&c=Sign&a=login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000417s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000534s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000595s ]
+SQL: SHOW COLUMNS FROM `ts_config` [ RunTime:0.0009s ]
+SQL: SELECT `name`,`val` FROM `ts_config`  [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000074s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000146s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008580s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008644s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000169s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000215s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000518s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000572s ]
+
+[ 2016-08-29T11:37:20+08:00 ] 180.163.2.116 /index.php?m=Admin&c=CaseCheckLeader&a=pendingTable
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000460s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000477s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000540s ]
+SQL: SHOW COLUMNS FROM `ts_config` [ RunTime:0.0009s ]
+SQL: SELECT `name`,`val` FROM `ts_config`  [ RunTime:0.0021s ]
+
+[ 2016-08-29T11:37:20+08:00 ] 101.226.33.205 /index.php?m=Admin&c=CaseAttention&a=completedTable
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000444s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000463s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000525s ]
+SQL: SHOW COLUMNS FROM `ts_config` [ RunTime:0.0006s ]
+SQL: SELECT `name`,`val` FROM `ts_config`  [ RunTime:0.0002s ]
+
+[ 2016-08-29T11:37:20+08:00 ] 180.163.2.116 /index.php?m=Admin&c=Sign&a=login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000369s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000471s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000529s ]
+SQL: SHOW COLUMNS FROM `ts_config` [ RunTime:0.0010s ]
+SQL: SELECT `name`,`val` FROM `ts_config`  [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000065s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000141s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008524s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008584s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000169s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000214s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000533s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000599s ]
+
+[ 2016-08-29T11:37:20+08:00 ] 101.226.33.205 /index.php?m=Admin&c=Sign&a=login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000414s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000556s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000620s ]
+SQL: SHOW COLUMNS FROM `ts_config` [ RunTime:0.0009s ]
+SQL: SELECT `name`,`val` FROM `ts_config`  [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000063s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000150s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007368s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007431s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000155s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000201s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000619s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000672s ]
+
+[ 2016-08-29T11:37:25+08:00 ] 61.151.226.202 /index.php?m=Admin&c=CaseHandle&a=pending
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000508s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000450s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000506s ]
+SQL: SHOW COLUMNS FROM `ts_config` [ RunTime:0.0008s ]
+SQL: SELECT `name`,`val` FROM `ts_config`  [ RunTime:0.0003s ]
+
+[ 2016-08-29T11:37:25+08:00 ] 61.151.226.202 /index.php?m=Admin&c=Sign&a=login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000821s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000455s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000521s ]
+SQL: SHOW COLUMNS FROM `ts_config` [ RunTime:0.0009s ]
+SQL: SELECT `name`,`val` FROM `ts_config`  [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000061s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000124s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008184s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008244s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000152s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000197s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000491s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000546s ]
+

@@ -1,0 +1,38 @@
+<extend name="Common/base" />
+<block name="title">档案查询</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 基本信息 -->
+        <include file="Archive/detail/basicInfo" />
+        <!-- 搜索 -->
+        <include file="Archive/detail/search" />
+        <!-- 列表面板 -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="block-title" id="page-title">记录</span>
+            </div>
+            <!-- 面板主体 -->
+            <div class="panel-body">
+                <!-- 表格 -->
+                <div class="table-responsive" id="table-content"></div>
+                <!-- 分页 -->
+                <include file="Inc/page" />
+            </div>
+        </div>
+        <!-- 表格 结束 -->
+    </div>
+    <!-- 页面主体 结束 -->
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.table = "{:U('detailTable')}";
+    </script>
+</block>
+<block name="foot.ext">
+
+    <import file="js.Archive.detail?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

@@ -1,0 +1,18 @@
+<table class="table table-bordered table-condensed table-custom" style="margin-bottom: 0">
+    <tbody>
+        <tr>
+            <th>编号</th>
+            <td><input type="text" class="form-control input-sm" disabled value="{$caseInfo.code}"></td>
+            <th width="15%">交通事故时间</th>
+            <td><input type="text" class="form-control input-sm" disabled value="{$caseInfo.accident_time|date='Y-m-d H:i',###}"></td>
+            <th>交通事故地点</th>
+            <td><input type="text"  class="form-control input-sm" disabled value="{$caseInfo.accident_place}"></td>
+        </tr>
+        <tr>
+            <th width="15%"><span class="text-danger">*</span>记录内容</th>
+            <td colspan="5">
+                <textarea id="content" disabled name="content" class="form-control input-sm post-gather" style="height:400px;resize: none">{$info.content}</textarea>
+            </td>
+        </tr>
+    </tbody>
+</table>

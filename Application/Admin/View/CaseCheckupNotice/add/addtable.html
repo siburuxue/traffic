@@ -1,0 +1,80 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-6"><span class="block-title">告知信息</span></div>
+            <div class="col-xs-6 text-right">
+                <!-- <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button> -->
+            </div>
+        </div>
+    </div>
+    <table class="table table-bordered table-condensed table-custom">
+        <input type="hidden" class="post-gather" name="case_id" id="case_id" value="{$Think.get.case_id}" maxlength="255">
+        <input type="hidden" class="post-gather" name="case_client_id" id="case_client_id"  maxlength="255">
+        <input type="hidden" class="post-gather" name="case_checkup_id" id="case_checkup_id" value="{$Think.get.case_checkup_id}" maxlength="255">
+        <input type="hidden" class="post-gather" name="case_checkup_report_id" id="case_checkup_report_id" value="{$Think.get.case_checkup_report_id}" maxlength="255">
+        <input type="hidden" name="cate" id="photo_cate" value="43" />
+        <tr>
+            <th width="20%">告知单位</th>
+            <td>
+                <input type="text" class="form-control input-sm post-gather" name="notice_department" value="{$myBrigade['name']}" maxlength="255" readonly="readonly" />
+            </td>
+        </tr>
+        <tr>
+            <th>告知时间</th>
+            <td>
+                <input type="text" class="form-control input-sm post-gather form-datetime" name="notice_time" value="{$nowtime|date='Y-m-d H:i',###}" maxlength="16" readonly="readonly" id="start-time" />
+            </td>
+        </tr>
+        <tr>
+            <th>告知地点</th>
+            <td>
+                <input type="text" class="form-control input-sm post-gather" name="notice_place" maxlength="255">
+            </td>
+        </tr>
+        <tr>
+            <th>告知人</th>
+            <td>
+                <input type="text" class="form-control input-sm post-gather" value="{$my['true_name']}" name="notice_person" maxlength="255" readOnly="readOnly">
+            </td>
+        </tr>
+        <tr>
+            <th>被告知人</th>
+            <td>
+                <select name="target_person" id="target_person" class="form-control input-sm post-gather">
+                    <option value="">请选择</option>
+                </select>
+                <!--             <input type="text" class="form-control input-sm post-gather" id="target_person" name="target_person" maxlength="255" readonly="readonly"> -->
+            </td>
+        </tr>
+        <tr>
+            <th>告知内容</th>
+            <td>
+                <input type="text" class="form-control input-sm post-gather" name="content" maxlength="255">
+            </td>
+        </tr>
+        <tr>
+            <th>是否听清</th>
+            <td>
+                <select name="is_clear" class="form-control input-sm post-gather">
+                    <option value="">请选择</option>
+                    <option value="1" selected="selected">是</option>
+                    <option value="0">否</option>
+                </select>
+            </td>
+        </tr>
+        <neq name="caseCheckupData.pid" value="0">
+            <input name="is_again" type="hidden" class="post-gather" value="0">
+        <else/>
+        <tr>
+            <th>是否申请重新检验鉴定</th>
+            <td>
+                <select name="is_again" class="form-control input-sm post-gather">
+                    <option value="">请选择</option>
+                    <option value="1" <neq name="caseCheckupData.pid" value="0"> disabled="disabled" style="color:red;"</neq> >是</option> 
+                    <option value="0" selected="selected">否</option>
+                </select>
+            </td>
+        </tr>
+         </neq>
+    </table>
+</div>

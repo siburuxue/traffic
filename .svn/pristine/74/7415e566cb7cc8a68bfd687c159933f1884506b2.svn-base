@@ -1,0 +1,254 @@
+<extend name="Common/base" />
+<block name="title">编辑当事人</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <div id="user-list" class="row">
+            <div class="col-xs-3" id="client-list">
+                <volist name="clientList" id="vo">
+                    <div class="panel panel-primary panel-alarm client-list-head" id="{$vo.id}">
+                        <div class="panel-heading" style="cursor: pointer">{$vo.name}</div>
+                        <ul class="list-group collapse" data-parent="#client-list">
+                            <li class="list-group-item">交通方式：{$vo.traffic_type}</li>
+                            <li class="list-group-item">伤害程度：{$vo.hurt_type}</li>
+                            <li class="list-group-item">车牌：{$vo.car_no}</li>
+                        </ul>
+                    </div>
+                </volist>
+            </div>
+            <div class="col-xs-9">
+                <!-- 面板 -->
+                <div class="panel panel-default form-inline1">
+                    <!-- 面板标题 -->
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-6"><span class="block-title">编辑当事人</span></div>
+                            <div class="col-xs-6 text-right">
+                                <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 面板内容 -->
+                    <div class="panel-body">
+                        <table class="table table-bordered table-condensed table-custom">
+                            <thead>
+                            <th colspan="4">
+                                <div style="float: left;margin-top: 5px;">当事人信息</div>
+                                <div style="float: right">
+                                    <a href="{:U('add?case_id='.$case['id'])}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> 新增</a>
+                                </div>
+                            </th>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th width="15%"><span class="text-danger">*</span>姓名</th>
+                                <td width="35%">
+                                    <input type="text" class="form-control input-sm post-gather" id="name" name="name" maxlength="255">
+                                </td>
+                                <th width="15%">性别</th>
+                                <td width="35%">
+                                    <select class="form-control input-sm post-gather" name="sex">
+                                        <option value="1">男</option>
+                                        <option value="0">女</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>身份证件类型</th>
+                                <td>
+                                    <select id="id_type" name="id_type" class="form-control input-sm post-gather">
+                                        <option value="">请选择</option>
+                                        <volist name="certificate_type" id="vo">
+                                            <option value="{$key}">{$vo}</option>
+                                        </volist>
+                                    </select>
+                                </td>
+                                <th>身份证件号码</th>
+                                <td>
+                                    <input type="text" class="form-control input-sm post-gather" id="idno" name="idno" maxlength="255">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>年龄</th>
+                                <td>
+                                    <input type="text" class="form-control input-sm post-gather" id="age" name="age" maxlength="255">
+                                </td>
+                                <th>联系方式</th>
+                                <td>
+                                    <input type="text" class="form-control input-sm post-gather" id="tel" name="tel" maxlength="255">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>驾驶证种类</th>
+                                <td>
+                                    <select id="driver_licence_type" name="driver_licence_type" class="form-control input-sm post-gather">
+                                        <option value="">请选择</option>
+                                        <volist name="driver_licence_type" id="vo">
+                                            <option value="{$key}">{$vo}</option>
+                                        </volist>
+                                    </select>
+                                </td>
+                                <th>初次领证日期</th>
+                                <td>
+                                    <input type="text" class="form-control form-date input-sm post-gather" id="first_driver_licence_time" name="first_driver_licence_time" maxlength="16" readonly="readonly">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><span class="text-danger">*</span>交通方式</th>
+                                <td>
+                                    <select id="traffic_type" name="traffic_type" class="form-control input-sm post-gather">
+                                        <option value="">请选择</option>
+                                        <volist name="traffic_type" id="vo">
+                                            <option value="{$key}">{$vo}</option>
+                                        </volist>
+                                    </select>
+                                </td>
+                                <th>号牌种类</th>
+                                <td>
+                                    <select id="grade_type" name="grade_type" class="form-control input-sm post-gather">
+                                        <option value="">请选择</option>
+                                        <volist name="grade_type" id="vo">
+                                            <option value="{$key}">{$vo}</option>
+                                        </volist>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>车辆牌号</th>
+                                <td>
+                                    <input type="text" class="form-control input-sm post-gather" id="car_no" name="car_no" maxlength="255">
+                                </td>
+                                <th>事故责任</th>
+                                <td>
+                                    <select id="blame_type" name="blame_type" class="form-control input-sm post-gather">
+                                        <option value="">请选择</option>
+                                        <volist name="blame_type" id="vo">
+                                            <option value="{$key}">{$vo}</option>
+                                        </volist>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>行驶轨迹</th>
+                                <td>
+                                    <a href="javascript:;" class="btn btn-primary btn-sm">查看并标记</a>
+                                </td>
+                                <th>伤害程度</th>
+                                <td>
+                                    <select id="hurt_type" name="hurt_type" class="form-control input-sm post-gather">
+                                        <option value="">请选择</option>
+                                        <volist name="hurt_type" id="vo">
+                                            <option value="{$key}">{$vo}</option>
+                                        </volist>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>死亡时间</th>
+                                <td>
+                                    <input type="text" class="form-control form-datetime input-sm post-gather" id="death_time" name="death_time" maxlength="16" readonly="readonly">
+                                </td>
+                                <th>是否逃逸</th>
+                                <td>
+                                    <select class="form-control input-sm post-gather" name="is_escape">
+                                        <option value="0">否</option>
+                                        <option value="1">是</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>查获逃逸人时间</th>
+                                <td>
+                                    <input type="text" class="form-control form-datetime input-sm post-gather" id="escape_catch_man_time" name="escape_catch_man_time" maxlength="16" readonly="readonly">
+                                </td>
+                                <th>查获逃逸车辆时间</th>
+                                <td>
+                                    <input type="text" class="form-control form-datetime input-sm post-gather" id="escape_catch_car_time" name="escape_catch_car_time" maxlength="16" readonly="readonly">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>现住址</th>
+                                <td>
+                                    <input type="text" class="form-control input-sm post-gather" id="address" name="address" maxlength="255">
+                                </td>
+                                <th>权利义务告知</th>
+                                <td class="form-inline">
+                                    <select class="form-control  input-sm input-sm post-gather" id="rights_obligations" name="rights_obligations">
+                                        <option value="">请选择</option>
+                                        <volist name="rights_obligations" id="vo">
+                                            <option value="{$key}">{$vo}</option>
+                                        </volist>
+                                    </select>
+                                    <a href="javascript:;" class="btn btn-primary btn-sm">告知</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <h3 class="row">
+                            <div class="col-xs-6"><span class="block-title">违法行为及条款</span></div>
+                            <div class="col-xs-6 text-right">
+                                <div class="btn btn-primary btn-sm" id="add1"><span class="glyphicon glyphicon-plus"></span> 添加</div>
+                            </div>
+                        </h3>
+                        <table class="table table-striped table-bordered table-hover table-condensed table-sheet">
+                            <thead>
+                            <th width="45%">大类</th>
+                            <th width="47%">小类</th>
+                            <th width="5.4%">操作</th>
+                            </thead>
+                            <tbody id="tempalte1" style="display:none">
+                            <tr>
+                                <td>
+                                    <select name="law_pid" class="form-control">
+                                        <option value="">请选择</option>
+                                        <volist name="law_pid" id="vo">
+                                            <option value="{$vo.id}">{$vo.title}</option>
+                                        </volist>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="law_id" class="form-control">
+                                        <option value="">请选择</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div class="btn btn-warning btn-sm del1 js-confirm">删除</div>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tbody id="info1"></tbody>
+                        </table>
+                        <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-saved"></span> 提交</button>
+                        <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+                        <input type="hidden" class="post-gather" id="case_id" name="case_id" value="{$case['id']}">
+                        <input type="hidden" class="post-gather" id="id" name="id" value="{$id}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="head.ext">
+    <style>
+        #single-tr td{
+            text-align: center;
+        }
+        #force td{
+            line-height: 41px;
+            height:41px;
+            padding-bottom: 0;
+        }
+    </style>
+    <script type="text/javascript">
+        // 定义URL地址
+        url.update = "{:U('update')}";
+        url.getInfo = "{:U('getSubTitle')}";
+        url.getClientInfo = "{:U('getClientInfo')}"
+        var client_id = "{$id}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.FastCaseClient.edit?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

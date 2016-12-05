@@ -1,0 +1,45 @@
+<extend name="Common/base" />
+<block name="title">复核申请列表</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 列表面板 -->
+        <div class="panel panel-default">
+            <!-- 面板头 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">复核申请列表</span></div>
+                    <div class="col-xs-6 text-right">
+                        <if condition="$caseReview['check_status'] neq 0 or $caseReview['stop_status'] neq 0 or  $caseReview['accept_status'] eq 2">
+                            <button type="button" disabled="disabled" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> 新增</button>
+                            <else/>
+                            <a href="{:U('add?case_review_id='.$caseReview['id'])}" class="btn btn-primary btn-sm js-open js-end-refresh"><span class="glyphicon glyphicon-plus"></span> 新增</a>
+                        </if>
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板主体 -->
+            <div class="panel-body">
+                <!-- 表格 -->
+                <div class="table-responsive" id="table-content"></div>
+                <!-- 分页 -->
+                <include file="Inc/page" />
+            </div>
+        </div>
+        <!-- 表格 结束 -->
+    </div>
+    <!-- 页面主体 结束 -->
+    <input type="hidden" name="case_review_id" value="{$caseReview.id}">
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.table = "{:U('indexTable')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CaseReviewApplyHandle.index?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

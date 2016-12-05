@@ -1,0 +1,262 @@
+<table class="table table-bordered table-condensed table-custom">
+    <tr>
+        <th width="15%">所属大队</th>
+        <td width="35%">
+            <if condition="$type eq 'leader'">
+                <if condition="is_power($myPower,'leader_standing_book_height')">
+                    <select class="form-control input-sm search-auto" id="brigade" name="condition_brigade">
+                        <option value="">请选择</option>
+                        <volist name="brigadeList" id="vo">
+                            <option value="{$vo.id}">{$vo.name}</option>
+                        </volist>
+                    </select>
+                <else/>
+                    <select class="form-control input-sm search-auto" name="condition_brigade" disabled>
+                        <option value="">请选择</option>
+                        <volist name="brigadeList" id="vo">
+                            <option value="{$vo.id}" <if condition="$vo['id'] eq $brigade['id']">selected</if>  >{$vo.name}</option>
+                        </volist>
+                    </select>
+                </if>
+            <else/>
+                <if condition="is_power($myPower,'case_standing_book_height')">
+                    <select class="form-control input-sm search-auto" id="brigade" name="condition_brigade">
+                        <option value="">请选择</option>
+                        <volist name="brigadeList" id="vo">
+                            <option value="{$vo.id}">{$vo.name}</option>
+                        </volist>
+                    </select>
+                <else/>
+                    <select class="form-control input-sm search-auto" name="condition_brigade" disabled>
+                        <option value="">请选择</option>
+                        <volist name="brigadeList" id="vo">
+                            <option value="{$vo.id}" <if condition="$vo['id'] eq $brigade['id']">selected</if>  >{$vo.name}</option>
+                        </volist>
+                    </select>
+                </if>
+            </if>
+        </td>
+        <th width="15%" colspan="2">办案人</th>
+        <td>
+            <if condition="$type eq 'leader'">
+                <if condition="is_power($myPower,'leader_standing_book_height')">
+                    <select class="form-control input-sm search-auto" id="user" name="condition_user">
+                        <option value="">请选择</option>
+                    </select>
+                <elseif condition="is_power($myPower,'leader_standing_book_normal')" />
+                    <select class="form-control input-sm search-auto" name="condition_user">
+                        <option value="">请选择</option>
+                        <volist name="userList" id="vo">
+                            <option value="{$vo.id}">{$vo.true_name}</option>
+                        </volist>
+                    </select>
+                <else/>
+                    <select class="form-control input-sm search-auto" name="condition_user" disabled>
+                        <option value="">请选择</option>
+                        <volist name="userList" id="vo">
+                            <option value="{$vo.id}" <if condition="$vo['id'] eq $my['id']">selected</if> >{$vo.true_name}</option>
+                        </volist>
+                    </select>
+                </if>
+            <else/>
+                <if condition="is_power($myPower,'case_standing_book_height')">
+                    <select class="form-control input-sm search-auto" id="user" name="condition_user">
+                        <option value="">请选择</option>
+                    </select>
+                <elseif condition="is_power($myPower,'case_standing_book_normal')" />
+                    <select class="form-control input-sm search-auto" name="condition_user">
+                        <option value="">请选择</option>
+                        <volist name="userList" id="vo">
+                            <option value="{$vo.id}">{$vo.true_name}</option>
+                        </volist>
+                    </select>
+                <else/>
+                    <select class="form-control input-sm search-auto" name="condition_user" disabled>
+                        <option value="">请选择</option>
+                        <volist name="userList" id="vo">
+                            <option value="{$vo.id}" <if condition="$vo['id'] eq $my['id']">selected</if> >{$vo.true_name}</option>
+                        </volist>
+                    </select>
+                </if>
+            </if>
+
+        </td>
+    </tr>
+    <tr>
+        <th width="15%">事故时间</th>
+        <td width="35%">
+            <table width="100%">
+                <tr>
+                    <td><input type="text" class="form-control input-sm search-auto form-datetime" name="condition_start_time" readonly></td>
+                    <td width="30" class="text-center">~</td>
+                    <td><input type="text" class="form-control input-sm search-auto form-datetime" name="condition_end_time" readonly></td>
+                </tr>
+            </table>
+        </td>
+        <th width="15%" colspan="2">事故地点</th>
+        <td>
+            <input type="text" class="form-control input-sm search-auto" name="condition_accident_place">
+        </td>
+    </tr>
+    <tr>
+        <th width="15%">事故类型</th>
+        <td width="35%">
+            <select class="form-control input-sm search-auto" name="condition_accident_type">
+                <option value="">请选择</option>
+                <volist name="accidentType" id="vo">
+                    <option value="{$key}">{$vo}</option>
+                </volist>
+            </select>
+        </td>
+        <th rowspan="3">事故后果</th>
+        <th>死亡人数</th>
+        <td>
+            <table width="100%">
+                <tr>
+                    <td><input type="number" class="form-control input-sm search-auto" name="condition_death_num_min" max="99999999.99"></td>
+                    <td width="30" class="text-center">~</td>
+                    <td><input type="number" class="form-control input-sm search-auto" name="condition_death_num_max" max="99999999.99"></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+
+        <th width="15%">初查情况</th>
+        <td width="35%">
+            <select class="form-control input-sm search-auto" name="condition_first_result">
+                <option value="">请选择</option>
+                <volist name="firstCognizance" id="vo">
+                    <option value="{$vo.id}">{$vo.name}</option>
+                </volist>
+            </select>
+        </td>
+        <th>受伤人数</th>
+        <td>
+            <table width="100%">
+                <tr>
+                    <td><input type="number" class="form-control input-sm search-auto" name="condition_hurt_num_min" max="99999999.99"></td>
+                    <td width="30" class="text-center">~</td>
+                    <td><input type="number" class="form-control input-sm search-auto" name="condition_hurt_num_max" max="99999999.99"></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <th width="15%">姓名</th>
+        <td>
+            <input type="text" class="form-control input-sm search-auto" name="condition_name">
+
+        </td>
+        <th>财产损失</th>
+        <td>
+            <select class="form-control input-sm search-auto" name="condition_property_loss">
+                <option value="">请选择</option>
+                <volist name="property_loss" id="vo">
+                    <option value="{$vo.id}">{$vo.name}</option>
+                </volist>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <th width="15%">交通方式</th>
+        <td width="35%">
+            <select class="form-control input-sm search-auto" name="condition_traffic_type">
+                <option value="">请选择</option>
+                <volist name="trafficType" id="vo">
+                    <option value="{$key}">{$vo}</option>
+                </volist>
+            </select>
+        </td>
+        <th width="15%" colspan="2">车牌号</th>
+        <td>
+            <input type="text" class="form-control input-sm search-auto" name="condition_car_no">
+        </td>
+    </tr>
+    <tr>
+        <th width="15%">违法行为</th>
+        <td width="35%">
+            <select class="form-control input-sm search-auto" name="condition_law">
+                <option value="">请选择</option>
+                <volist name="lawList" id="vo">
+                    <option value="{$vo.id}">{$vo.title}</option>
+                </volist>
+            </select>
+        </td>
+        <th width="15%" colspan="2">伤害程度</th>
+        <td>
+            <select class="form-control input-sm search-auto" name="condition_hurt_type">
+                <option value="">请选择</option>
+                <volist name="hurtType" id="vo">
+                    <option value="{$key}">{$vo}</option>
+                </volist>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <th width="15%">行政强制措施</th>
+        <td width="35%">
+            <select class="form-control input-sm search-auto" name="condition_coercive_measure">
+                <option value="">请选择</option>
+                <option value="1">警告</option>
+                <option value="2">罚款</option>
+                <option value="3">暂扣</option>
+                <option value="4">吊销</option>
+                <option value="5">拘留</option>
+            </select>
+        </td>
+        <th width="15%" colspan="2">责任认定时间</th>
+        <td>
+            <table width="100%">
+                <tr>
+                    <td><input type="text" class="form-control input-sm search-auto form-datetime" name="condition_cognizance_start_time" readonly></td>
+                    <td width="30" class="text-center">~</td>
+                    <td><input type="text" class="form-control input-sm search-auto form-datetime" name="condition_cognizance_end_time" readonly></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <th width="15%">事故责任</th>
+        <td width="35%">
+            <select class="form-control input-sm search-auto" name="condition_blame_type">
+                <option value="">请选择</option>
+                <volist name="blameType" id="vo">
+                    <option value="{$key}">{$vo}</option>
+                </volist>
+            </select>
+        </td>
+        <th width="15%" colspan="2">处罚</th>
+        <td>
+            <select class="form-control input-sm search-auto" name="condition_punish_type">
+                <option value="">请选择</option>
+                <option value="1">已处罚</option>
+                <option value="2">未处罚</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <th width="15%">调解</th>
+        <td width="35%">
+            <select class="form-control input-sm search-auto" name="condition_mediate_type">
+                <option value="">请选择</option>
+                <option value="1">不调解</option>
+                <option value="2">调解</option>
+            </select>
+        </td>
+        <th width="15%" colspan="2">当前状态</th>
+        <td>
+            <select class="form-control input-sm search-auto" name="condition_status_type">
+                <option value="">请选择</option>
+                <volist name="statusType" id="vo">
+                    <option value="{$key}">{$vo}</option>
+                </volist>
+            </select>
+        </td>
+    </tr>
+</table>
+<div style="margin-bottom: 20px;">
+    <button type="button" class="btn btn-primary" id="search-submit"><span class="glyphicon glyphicon-search"></span> 查询</button>
+    <button type="button" class="btn btn-warning" id="search-reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+</div>
+

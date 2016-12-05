@@ -1,0 +1,48 @@
+<extend name="Common/base" />
+<block name="title">审批意见</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 标签 -->
+        <include file="CaseReviewCheckHandle/edit/tab" />
+        <!-- 列表面板 -->
+        <div class="panel panel-default">
+            <!-- 面板头 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">审批意见</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板主体 -->
+            <div class="panel-body">
+                <include file="CaseReviewCheckHandle/edit/base" />
+                <eq name="info.check_status" value="1">
+                    <button type="button" class="btn btn-primary" id="submit" disabled="disabled"><span class="glyphicon glyphicon-floppy-disk"></span> 保存</button>
+                    <else/>
+                    <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-floppy-disk"></span> 保存</button>
+                </eq>
+                <button type="button" class="btn btn-primary" id="print"><span class="glyphicon glyphicon-print"></span> 打印</button>
+                <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+            </div>
+        </div>
+        <!-- 表格 结束 -->
+        <!-- 受理时间 -->
+        {:W('CasePhoto/index', array('复核审批表列表',$caseReview['case_id'],48,$caseReview['id'],$info['id']))}
+        <!-- 表格 结束 -->
+    </div>
+    <!-- 页面主体 结束 -->
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.update = "{:U('update')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CaseReviewCheckHandle.edit?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

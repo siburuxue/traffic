@@ -1,0 +1,16 @@
+<div class="panel panel-primary">
+    <!-- 面板标题 -->
+    <div class="panel-heading">复核结论</div>
+    <!-- 面板内容 -->
+    <div class="list-group" style="height:204px;overflow:auto;">
+        <if condition="($info['check_status'] eq 0 and $info['stop_status'] eq 0) or $info['check_status'] eq 1">
+            <a href="{:U('CaseReviewCheckHandle/index?case_review_id='.$info['id'])}" class="list-group-item js-ajax-open js-no-alert js-end-refresh"><span class="glyphicon glyphicon-new-window"></span> 复核审批 </a>
+        </if>
+        <if condition="($info['check_status'] eq 0 and $info['stop_status'] eq 0) ">
+            <a href="{:U('CaseReviewStopHandle/index?case_review_id='.$info['id'])}" class="list-group-item js-ajax-open js-no-alert js-confirm js-end-refresh"><span class="glyphicon glyphicon-new-window"></span> 复核终止 </a>
+        </if>
+        <eq name="info.stop_status" value="1">
+            <a href="{:U('CaseReviewStopHandle/notice?case_review_id='.$info['id'])}" class="list-group-item js-open js-end-refresh"><span class="glyphicon glyphicon-new-window"></span> 终止通知书 </a>
+        </eq>
+    </div>
+</div>

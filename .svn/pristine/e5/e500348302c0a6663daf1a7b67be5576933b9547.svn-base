@@ -1,0 +1,26 @@
+
+    <div class="panel-body ">
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-custom">
+                <tr>
+                    <if condition="is_power($myPower,'duty_advance')">
+                        <th>大队</th>
+                        <td>
+                            <select name="condition_department_id" class="form-control input-sm search-auto" style="width:100%;">
+                                <option value="">请选择</option>
+                                <volist name="department" id="vo">
+                                    <option value="{$vo.id}" <neq name="vo.cate" value="2">disabled="disabled" style="color:red;"</neq> >{$vo._prefix}{$vo.name}</option>
+                                </volist>
+                            </select>
+                        </td>
+                    </if>
+                    <th width="15%">组别名称</th>
+                    <td width="35%">
+                        <input type="text" class="form-control input-sm search-auto" name="condition_name" maxlength="255"  style="width:100%;">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <button type="button" class="btn btn-primary" id="search-submit"><span class="glyphicon glyphicon-search"></span> 查询</button>
+        <button type="button" class="btn btn-warning" id="search-reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+    </div>

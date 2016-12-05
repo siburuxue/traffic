@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-type" content="text/html;charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <title>
+        <block name="title"></block>
+    </title>
+    <import file="bootstrap.css.bootstrap#min?" basepath="{$Think.SRC_COMMON_URL}" type='css' />
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you viewInfo the page via file:// -->
+    <!--[if lt IE 9]>
+    <import file="jquery.html5shiv#min?" basepath="{$Think.SRC_COMMON_URL}" />
+    <import file="jquery.respond#min?" basepath="{$Think.SRC_COMMON_URL}" />
+    <![endif]-->
+    <import file="css.common?" basepath="{$Think.SRC_MODULE_URL}" type='css' />
+    <import file="jquery.jquery-1#11#2#min?" basepath="{$Think.SRC_COMMON_URL}" />
+    <import file="layer.layer?" basepath="{$Think.SRC_COMMON_URL}" />
+    <import file="jquery.vmc#submit?" basepath="{$Think.SRC_COMMON_URL}" />
+    <import file="js.common?" basepath="{$Think.SRC_MODULE_URL}" />
+    <import file="bootstrap-treeview.js.bootstrap-treeview?" basepath="{$Think.SRC_COMMON_URL}" />
+    <block name="head.ext"></block>
+</head>
+
+<body>
+    <block name="main.html"></block>
+    <block name="foot.html"></block>
+    <div style="height:20px;"></div>
+
+    <import file="bootstrap.js.bootstrap#min?" basepath="{$Think.SRC_COMMON_URL}" />
+    <import type='css' file="bootstrap-datetimepicker.css.bootstrap-datetimepicker#min?" basepath="{$Think.SRC_COMMON_URL}" />
+    <import type='js' file="bootstrap-datetimepicker.js.bootstrap-datetimepicker?" basepath="{$Think.SRC_COMMON_URL}" />
+    <import type='js' file="bootstrap-datetimepicker.js.locales.bootstrap-datetimepicker#zh-CN?" basepath="{$Think.SRC_COMMON_URL}" />
+    <block name="foot.ext">    
+    </block>
+</body>
+
+</html>

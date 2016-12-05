@@ -1,0 +1,29 @@
+<extend name="Common/base" />
+<block name="title">{$title}</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 面板 -->
+        {:W('CasePhoto/index', array($title,$case['id'],$cate,$id))}
+    </div>
+</block>
+<block name="head.ext">
+    <style>
+        #administrative-sanction input,select{
+            min-width:auto!important;
+            width:100%!important;
+        }
+    </style>
+    <script>
+        url.photoList = "{:U('photoList')}";
+        //删除图片
+        url.delete = "{:U('CasePhoto/delete')}";
+        url.download = "{:U('Common/download')}";
+    </script>
+</block>
+<block name="foot.ext">
+
+    <import file="js.CasePunishHandle.photoTable?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

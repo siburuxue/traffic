@@ -1,0 +1,90 @@
+<extend name="Common/base" />
+<block name="header">
+    <import file="css.sign?" basepath="{$Think.SRC_MODULE_URL}" type='css' />
+</block>
+<block name="mainer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="page-header">
+                    <h2>登录 <small></small></h2>
+                </div>
+                <div class="form">
+                    <div class="form-group">
+                        <label>帐号</label>
+                        <input type="text" name="username" class="form-control" id="username" placeholder="帐号" maxlength="50" tabindex="1">
+                    </div>
+                    <div class="form-group">
+                        <label>密码</label>
+                        <input type="password" name="password" class="form-control" id="password" placeholder="密码" maxlength="16" tabindex="2">
+                        <p class="help-block"><a href="{:U('Sign/findPwd')}">忘记密码？</a></p>
+                    </div>
+                    <div class="form-group">
+                        <label>验证码</label>
+                        <input type="text" name="checkcode" class="form-control" id="checkCode" placeholder="验证码" maxlength="4" tabindex="3">
+                        <p class="help-block"><img id="checkCodeImg"><a href="javascript:;" id="checkCodeBtn">看不清楚？换一张</a></p>
+                    </div>
+                    <button type="button" id="submit" class="btn btn-primary" tabindex="4">立即登录</button>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12">
+
+            </div>
+        </div>
+    </div>
+</block>
+<block name="footer">
+    <script type="text/javascript">
+    url.loginCheck = "{:U('Sign/loginCheck')}";
+    url.checkCodeImg = "{:U('Public/checkCode',array('name'=>'login','no'=>'_randomstr_'))}";
+
+    $(function() {
+        // 防止重复提交标识
+        var submitStatus = false;
+
+        // 图形验证码
+        var changeCheckCode = function() {
+            var src = url.checkCodeImg.replace(/_randomstr_/, Math.random());
+            $('#checkCodeImg').attr('src', src);
+        };
+        $('#checkCodeImg,#checkCodeBtn').on('click', changeCheckCode);
+        changeCheckCode();
+
+        // 提交
+        $('#submit').on('click', function() {
+            submitStatus = true;
+            $.post(url.loginCheck, {
+                'email': $('#email').val(),
+                'password': $('#password').val(),
+                'checkcode': $('#checkCode').val()
+            }, function(msg) {
+                if (msg.status == 1) {
+                    submitStatus = false;
+                    window.location.href = msg.url;
+                } else {
+                    if (msg.url) {
+                        submitStatus = false;
+                        window.location.href = msg.url;
+                    } else {
+                        layer.alert(msg.info, function(index) {
+                            layer.close(index);
+                            submitStatus = false;
+                            changeCheckCode();
+                            $('#checkCode').val('');
+                        });
+                    }
+                }
+            });
+        });
+
+        // 回车执行
+        $(document).on('keypress', function(e) {
+            var keycode = (e.keyCode ? e.keyCode : e.which);
+            if (keycode == 13 && submitStatus === false) {
+                $('#submit').trigger('click');
+            }
+        });
+
+    });
+    </script>
+</block>

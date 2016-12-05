@@ -1,0 +1,84 @@
+<input type="hidden" name="id" value="{$info.id}" class="auto-gather">
+<input type="hidden" name="case_id" value="{$info.case_id}">
+<input type="hidden" name="case_review_id" value="{$caseReview.id}">
+<table class="table table-bordered table-condensed table-form">
+    <tr>
+        <th rowspan="4" width="10%">复核人</th>
+        <th width="10%"><span class="text-danger">*</span> 姓名</th>
+        <td width="30%">
+            <input type="text" name="reviewer_name" class="form-control input-sm auto-gather" value="{$info.reviewer_name}" maxlength="255"  disabled="disabled">
+        </td>
+        <th width="15%"><span class="text-danger">*</span> 性别</th>
+        <td>
+            <select name="reviewer_sex" class="form-control input-sm auto-gather" disabled="disabled">
+                <option value="">请选择</option>
+                <option value="男" <eq name="info.reviewer_sex" value="男">selected="selected"</eq>>男</option>
+                <option value="女" <eq name="info.reviewer_sex" value="女">selected="selected"</eq>>女</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <th>年龄</th>
+        <td>
+            <input type="text" name="reviewer_age" class="form-control input-sm auto-gather" value="{$info.reviewer_age}" maxlength="255" disabled="disabled">
+        </td>
+        <th>职业</th>
+        <td>
+            <input type="text" name="reviewer_job" class="form-control input-sm auto-gather" value="{$info.reviewer_job}" maxlength="255" disabled="disabled">
+        </td>
+    </tr>
+    <tr>
+        <th>单位或住址</th>
+        <td colspan="3">
+            <input type="text" name="reviewer_address" class="form-control input-sm auto-gather" value="{$info.reviewer_address}" maxlength="255" disabled="disabled">
+        </td>
+    </tr>
+    <tr>
+        <th><span class="text-danger">*</span> 身份证号码</th>
+        <td>
+            <input type="text" name="reviewer_idno" class="form-control input-sm auto-gather" value="{$info.reviewer_idno}" maxlength="18" disabled="disabled">
+        </td>
+        <th>联系方式</th>
+        <td>
+            <input type="text" name="reviewer_contact" class="form-control input-sm auto-gather" value="{$info.reviewer_contact}" maxlength="255" disabled="disabled">
+        </td>
+    </tr>
+    <tr>
+        <th colspan="2"><span class="text-danger">*</span> 复核方式</th>
+        <td>
+            <input type="text" name="review_type" class="form-control input-sm auto-gather" value="{$info.review_type}" maxlength="255" disabled="disabled">
+        </td>
+        <th><span class="text-danger">*</span> 受理时间</th>
+        <td>
+            <input type="text" name="review_time" class="form-control input-sm auto-gather form-datetime" value="{$info.review_time|date='Y-m-d H:i',###}" maxlength="16" readonly="readonly" disabled="disabled">
+        </td>
+    </tr>
+    <tr>
+        <th colspan="2"><span class="text-danger">*</span> 被复核部门民警</th>
+        <td colspan="3">
+            <input type="text" name="police" class="form-control input-sm auto-gather" value="{$info.police}" maxlength="255" disabled="disabled">
+        </td>
+    </tr>
+    <tr>
+        <th colspan="2"><span class="text-danger">*</span> 复核理由</th>
+        <td colspan="3">
+            <textarea class="form-control auto-gather" name="reason" style="height:60px;resize:none;" disabled="disabled">{$info.reason}</textarea>
+        </td>
+    </tr>
+    <tr>
+        <th colspan="2"><span class="text-danger">*</span> 原办案单位处理意见</th>
+        <td colspan="3">
+            <textarea class="form-control auto-gather" name="old_opinion" style="height:120px;resize:none;" disabled="disabled">{$info.old_opinion}</textarea>
+        </td>
+    </tr>
+    <tr>
+        <th colspan="2"><span class="text-danger">*</span> 复核人意见</th>
+        <td colspan="3">
+            <select name="reviewer_result" class="form-control input-sm auto-gather" style="margin-bottom:5px;" disabled="disabled">
+                <option value="0" <eq name="info.reviewer_result" value="0">selected="selected"</eq>>撤销，重新认定</option>
+                <option value="1" <eq name="info.reviewer_result" value="1">selected="selected"</eq>>维持原认定结论</option>
+            </select>
+            <textarea class="form-control auto-gather" name="reviewer_opinion" style="height:120px;resize:none;" disabled="disabled">{$info.reviewer_opinion}</textarea>
+        </td>
+    </tr>
+</table>

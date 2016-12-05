@@ -1,0 +1,58 @@
+<extend name="Common/base" />
+<block name="title">集体研究列表</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 面板 -->
+        <div class="panel panel-default">
+            <!-- 面板头 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">集体研究列表</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板主体 -->
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed table-sheet" style="margin-bottom:0;">
+                    <tr>
+                        <th width="20%">集体研究时间</th>
+                        <th width="20%">汇报人</th>
+                        <th>记录人</th>
+                        <th colspan="3">操作</th>
+                    </tr>
+                    <volist name="caseDiscuss" id="vo">
+                        <tr>
+                            <td>{$vo.discuss_time|date='Y-m-d H:i',###}</td>
+                            <td>{$vo.reporter_user_name}</td>
+                            <td>{$vo.recorder_user_name}</td>
+                            <td width="70">
+                                <a href="{:U('detail?id='.$vo['id'])}" class="btn btn-primary btn-sm js-open">查看</a>
+                            </td>
+                            <td width="70">
+                                <a href="{:U('edit?id='.$vo['id'])}" class="btn btn-primary btn-sm js-open js-end-refresh">编辑</a>
+                            </td>
+                            <td width="70">
+                                <a href="{:U('delete?id='.$vo['id'])}" class="btn btn-warning btn-sm js-ajax js-confirm js-end-refresh">删除</a>
+                            </td>
+                        </tr>
+                    </volist>
+                </table>
+            </div>
+        </div>
+        <!-- 表格 结束 -->
+    </div>
+    <!-- 页面主体 结束 -->
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CaseDiscussLeader.index?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

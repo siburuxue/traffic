@@ -1,0 +1,35 @@
+<div class="panel-default">
+    <div class="panel panel-default form-inline">
+        <!-- 面板标题 -->
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-6"><span class="block-title">检验鉴定结果</span></div>
+                <div class="col-xs-6 text-right">
+                    <button type="button" class="btn btn-primary btn-sm"  disabled="disabled"><span class="glyphicon glyphicon-floppy-disk"></span> 保存</button>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered table-condensed table-custom">
+                <tr>
+                    <th width="20%"><span class="text-danger">*</span>&nbsp;鉴定书编号</th>
+                    <td>
+                        <input type="text" class="form-control input-sm " id="read_code" readOnly="readOnly"  maxlength="30" style="min-width:100%;!important;">
+                    </td>
+                </tr>
+                <tr>
+                    <th><span class="text-danger">*</span>&nbsp;鉴定完成时间</th>
+                    <td>
+                        <input type="text" class="form-control input-sm " maxlength="16"  id="read_finish_time"  readonly="readonly" style="min-width:100%;!important;">
+                    </td>
+                </tr>
+                <tr>
+                    <th><span class="text-danger">*</span>&nbsp;鉴定结果</th>
+                    <td>
+                        <textarea class="form-control input-sm "  readOnly="readOnly" id="read_result" style="width:100%;height:80px;outline:none;resize:none;"></textarea>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

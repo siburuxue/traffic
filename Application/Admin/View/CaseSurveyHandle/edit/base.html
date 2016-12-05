@@ -1,0 +1,44 @@
+<table class="table table-bordered table-condensed table-custom" style="margin-bottom: 0">
+    <tbody>
+    <tr>
+        <th width="15%"><span class="text-danger">*</span> 现场勘查开始时间</th>
+        <td width="35%">
+            <input type="text" class="form-control input-sm post-gather form-datetime" disabled id="start-time" name="start_time" maxlength="16" readonly="readonly" value="{$info.start_time|date='Y-m-d H:i',###}">
+        </td>
+        <th width="15%"><span class="text-danger">*</span> 现场勘查结束时间</th>
+        <td>
+            <input type="text" class="form-control input-sm post-gather form-datetime" disabled id="end-time" name="end_time" maxlength="16" readonly="readonly" value="{$info.end_time|date='Y-m-d H:i',###}">
+        </td>
+    </tr>
+    <tr>
+        <th><span class="text-danger">*</span> 勘查人1</th>
+        <td>
+            <select name="first_user_id" class="form-control input-sm post-gather" disabled>
+                <option value="">请选择</option>
+                <volist name="userList" id="vo">
+                    <if condition="$vo[id] eq $info['first_user_id']">
+                        <option value="{$vo.id}" selected>{$vo.true_name}</option>
+                        <else />
+                        <option value="{$vo.id}">{$vo.true_name}</option>
+                    </if>
+
+                </volist>
+            </select>
+        </td>
+        <th><span class="text-danger">*</span> 勘查人2</th>
+        <td>
+            <select name="second_user_id" class="form-control input-sm post-gather" disabled>
+                <option value="">请选择</option>
+                <volist name="userList" id="vo">
+                    <if condition="$vo[id] eq $info['second_user_id']">
+                        <option value="{$vo.id}" selected>{$vo.true_name}</option>
+                        <else />
+                        <option value="{$vo.id}">{$vo.true_name}</option>
+                    </if>
+                </volist>
+            </select>
+        </td>
+    </tr>
+    <tr>
+    </tbody>
+</table>

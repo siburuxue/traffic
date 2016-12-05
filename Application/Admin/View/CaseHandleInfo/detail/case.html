@@ -1,0 +1,51 @@
+<!-- 面板 -->
+<div class="panel panel-default form-inline">
+    <!-- 面板标题 -->
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-6"><span class="block-title">案件办理</span></div>
+            <div class="col-xs-6 text-right">
+                <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+            </div>
+        </div>
+    </div>
+    <!-- 面板内容 -->
+    <div class="panel-body">
+        <table class="table table-bordered table-condensed table-custom">
+            <tr>
+                <th width="15%">事故编号</th>
+                <td width="35%">{$info.code|default='-'}</td>
+                <th width="15%">事故类型</th>
+                <td>{$info.accident_type_name|default='-'}</td>
+            </tr>
+            <tr>
+                <th>事故发生时间</th>
+                <td>{$info.accident_time|date='Y-m-d H:i',###}</td>
+                <th>事故发生地点</th>
+                <td>{$info.accident_place|default='-'}</td>
+            </tr>
+            <tr>
+                <th>事故后果</th>
+                <td colspan="3" style="padding: 0;">
+                    <table class="table table-condensed table-custom" style="margin:0;">
+                        <tr>
+                            <th width="15%" style="border-width:0;">死亡人数</th>
+                            <td width="15%" style="border-width:0;">{$info.death_num}</td>
+                            <th width="15%" style="border-width:0;">受伤人数</th>
+                            <td width="15%" style="border-width:0;">{$info.hurt_num}</td>
+                            <th width="15%" style="border-width:0;">财产损失</th>
+                            <td style="border-width:0;">{$info.property_loss_name|default='-'}</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <th>事故初查</th>
+                <td colspan="3">{$info.first_cognizance_name|default='-'}</td>
+            </tr>
+        </table>
+        <if condition="is_power($myPower,'case_edit_handle')">
+            <a href="{:U('edit?id='.$info['id'])}" class="btn btn-primary js-open js-end-refresh"><span class="glyphicon glyphicon-pencil"></span> 编辑</a>
+        </if>
+    </div>
+</div>

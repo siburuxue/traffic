@@ -1,0 +1,8 @@
+
+<ul class="nav nav-tabs nav-custom">
+    <li><a   href="{:U('CaseExtBaseRead/add',array('case_id'=>$caseData['id']))}">基本信息</a></li>
+    <li><a   href="{:U('CaseExtCarRead/add',array('case_id'=>$caseData['id']))}">车辆信息</a></li>
+    <li><a   href="{:U('CaseExtClientRead/add',array('case_id'=>$caseData['id']))}">当事人信息</a></li>
+    <li class="active"><a   href="{:U('CaseExtRoadRead/add',array('case_id'=>$caseData['id']))}">道路信息</a></li>
+    <li><a   href="{:U('CaseExtReasonRead/add',array('case_id'=>$caseData['id']))}">综合分析、接处警分析</a></li>
+</ul>

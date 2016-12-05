@@ -1,0 +1,35 @@
+<div class="panel panel-default ">
+    <!-- 面板标题 -->
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-6"><span class="block-title">已退回鉴定结果列表</span></div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered table-condensed table-sheet">
+            <tr>
+                <th width="10%">鉴定书编号</th>
+                <th width="10%">鉴定完成时间</th>
+                <th width="30%">鉴定结果</th>
+                <th width="20%">鉴定结果文件张数</th>
+                <th width="30%">退回缘由</th>
+            </tr>
+            <volist name="caseCheckupReportBackData" id="vo">
+                <tr>
+                    <td>{$vo.code}</td>
+                    <td>{$vo.finish_time|date="Y-m-d H:i",###}</td>
+                    <td>{$vo.result|default="-"}</td>
+                    <td>
+                        <a href="{:U('checkupResultPicNumber',array('case_id'=>$vo['case_id'],'case_checkup_id'=>$vo['case_checkup_id'],'case_checkup_report_id'=>$vo['id'],'cate'=>'44'))}" class=" js-open js-end-refresh"> {$vo.pic_count|default="0"}</a>
+                    </td>
+                    <td>
+                        {$vo.back_reason|mb_substr=0,30,'utf-8'}
+                    </td>
+                </tr>
+            </volist>
+        </table>    
+            <!-- <button type="button" class="btn btn-primary" disabled="disabled"><span class="glyphicon glyphicon-phone"></span> 短信通知</button> -->
+            <!-- <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-saved"></span> 返回</button> -->       
+    </div>
+</div>
+

@@ -1,0 +1,92 @@
+<div class="panel panel-default">
+    <!-- 面板头 -->
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-6"><span class="block-title">事故认定书送达回执</span></div>
+            <div class="col-xs-6 text-right">
+                <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+            </div>
+        </div>
+    </div>
+    <!-- 面板主体 -->
+    <div class="panel-body">
+        <table class="table table-bordered table-condensed table-form">
+            <tr>
+                <th width="15%"><span class="text-danger">*</span> 文书名称、文号</th>
+                <td>
+                    <input type="text" name="code" class="form-control input-sm auto-gather" maxlength="255" readonly="readonly">
+                </td>
+            </tr>
+            <tr>
+                <th><span class="text-danger">*</span> 送达时间</th>
+                <td>
+                    <input type="text" name="post_time" class="form-control input-sm auto-gather" maxlength="16" readonly="readonly">
+                </td>
+            </tr>
+            <tr>
+                <th><span class="text-danger">*</span> 送达地点</th>
+                <td>
+                    <input type="text" name="post_place" class="form-control input-sm auto-gather" maxlength="255" readonly="readonly">
+                </td>
+            </tr>
+            <tr>
+                <th><span class="text-danger">*</span> 送达方式</th>
+                <td>
+                    <input type="text" name="post_method" class="form-control input-sm auto-gather" maxlength="255" readonly="readonly">
+                </td>
+            </tr>
+            <tr>
+                <th><span class="text-danger">*</span> 受送达人</th>
+                <td>
+                    <select name="case_client_relater_id" class="form-control input-sm auto-gather" disabled="disabled">
+                        <option value="">请选择</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>代收人</th>
+                <td>
+                    <input type="text" name="receiver" class="form-control input-sm auto-gather" maxlength="255" readonly="readonly">
+                </td>
+            </tr>
+            <tr>
+                <th>代收原因</th>
+                <td>
+                    <input type="text" name="receiver_reason" class="form-control input-sm auto-gather" maxlength="255" readonly="readonly">
+                </td>
+            </tr>
+            <tr>
+                <th>与受送达人关系</th>
+                <td>
+                    <input type="text" name="receiver_relation" class="form-control input-sm auto-gather" maxlength="255" readonly="readonly">
+                </td>
+            </tr>
+            <tr>
+                <th>送达人拒收原因</th>
+                <td>
+                    <input type="text" name="rejection_reason" class="form-control input-sm auto-gather" maxlength="255" readonly="readonly">
+                </td>
+            </tr>
+            <tr>
+                <th><span class="text-danger">*</span> 见证人</th>
+                <td>
+                    <input type="text" name="witness" class="form-control input-sm auto-gather" maxlength="255" readonly="readonly">
+                </td>
+            </tr>
+            <tr>
+                <th><span class="text-danger">*</span> 送达人</th>
+                <td>
+                    <input type="text" name="sender" class="form-control input-sm auto-gather" maxlength="255" readonly="readonly">
+                </td>
+            </tr>
+            <tr>
+                <th>备注</th>
+                <td>
+                    <input type="text" name="remark" class="form-control input-sm auto-gather" maxlength="255" readonly="readonly">
+                </td>
+            </tr>
+        </table>
+        <!-- 按钮 -->
+        <button type="button" class="btn btn-primary" id="print"><span class="glyphicon glyphicon-print"></span> 打印事故认定书送达回执</button>
+    </div>
+</div>

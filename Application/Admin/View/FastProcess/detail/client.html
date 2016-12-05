@@ -1,0 +1,14 @@
+<!-- 面板 -->
+<div class="panel panel-primary" id="caseClient">
+    <!-- 面板标题 -->
+    <div class="panel-heading">当事人信息</div>
+    <!-- 面板内容 -->
+    <div class="list-group" style="height:204px;overflow:auto;">
+        <a href="{:U('FastCaseClient/add?case_id='.$info['id'])}" class="list-group-item list-group-item-info js-open js-end-refresh"><span class="glyphicon glyphicon-new-window"></span> 当事人信息 </a>
+        <div>
+			<volist name="clientList" id="vo">
+				<a href="{:U('FastCaseClient/edit?case_id='.$info['id'].'&id='.$vo['id'])}" class="js-open js-end-refresh list-group-item">{$vo.name}&nbsp;&nbsp;{$vo.detain_car_status}&nbsp;&nbsp;{$vo.detain_licence_status}&nbsp;&nbsp;{$vo.escape_status}</a>
+			</volist>
+        </div>
+    </div>
+</div>

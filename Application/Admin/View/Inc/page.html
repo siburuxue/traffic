@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-xs-6">
+        <div class="btn-group">
+            <button type="button" class="btn btn-default page-first" disabled="disabled"><span class="glyphicon glyphicon-fast-backward"></span></button>
+            <button type="button" class="btn btn-default page-prev" disabled="disabled"><span class="glyphicon glyphicon-backward"></span></button>
+            <button type="button" class="btn btn-default page-next" disabled="disabled"><span class="glyphicon glyphicon-forward"></span></button>
+            <button type="button" class="btn btn-default page-last" disabled="disabled"><span class="glyphicon glyphicon-fast-forward"></span></button>
+        </div>
+    </div>
+    <div class="col-xs-6 text-right">
+        <div class="form-inline">
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <button class="btn btn-default">共 <span id="page-totalrows">0</span> 条记录</button>
+                    <button class="btn btn-default">第 <span id="page-nowpage">0</span>/<span id="page-totalpage">0</span> 页</button>
+                </div>
+                <input type="text" class="form-control text-center" value="1" id="search-page" maxlength="10" style="width:60px;">
+                <div class="input-group-btn">
+                    <button class="btn btn-default" id="search-jump" disabled="disabled">跳转</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

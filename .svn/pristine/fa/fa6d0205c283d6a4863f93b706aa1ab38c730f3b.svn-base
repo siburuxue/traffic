@@ -1,0 +1,49 @@
+<table class="table table-bordered table-condensed table-custom">
+    <tr>
+        <th width="15%">案件编号</th>
+        <td width="35%">
+            <input type="text" class="form-control input-sm search-auto" name="condition_code" maxlength="50">
+        </td>
+        <th width="15%">当前状态</th>
+        <td>
+            <select name="condition_cate" class="form-control input-sm search-auto">
+                <option value="">请选择</option>
+                <volist name="checkType" id="vo">
+                    <option value="{$key}">{$vo}</option>
+                </volist>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <th>事故类型</th>
+        <td>
+            <select name="condition_accident_type" class="form-control input-sm search-auto">
+                <option value="">请选择</option>
+                <volist name="accidentType" id="vo">
+                    <option value="{$key}">{$vo}</option>
+                </volist>
+            </select>
+        </td>
+        <th>所属大队</th>
+        <td>
+            <select name="condition_department_id" class="form-control input-sm search-auto">
+                <option value="">请选择</option>
+                <volist name="departmentList" id="vo">
+                    <option value="{$vo.id}">{$vo.name}</option>
+                </volist>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <th width="15%">事故发生时间</th>
+        <td colspan="3">
+            <input type="text" class="form-control input-sm search-auto form-datetime" id="condition_start_name"  name="condition_start_name" maxlength="255" readonly style="min-width:auto!important;width:19.7%;display: inline-block">
+            ~
+            <input type="text" class="form-control input-sm search-auto form-datetime" id="condition_end_name" name="condition_end_name" maxlength="255" readonly style="min-width:auto!important;width:19.7%;display: inline-block">
+        </td>
+    </tr>
+</table>
+<div style="margin-bottom: 20px;">
+    <button type="button" class="btn btn-primary" id="search-submit"><span class="glyphicon glyphicon-search"></span> 查询</button>
+    <button type="button" class="btn btn-warning" id="search-reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+</div>

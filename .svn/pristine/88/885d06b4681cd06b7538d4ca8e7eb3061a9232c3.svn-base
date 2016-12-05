@@ -1,0 +1,14 @@
+<!-- 面板 -->
+<div class="panel panel-primary">
+    <!-- 面板标题 -->
+    <div class="panel-heading">受案信息</div>
+    <!-- 面板内容 -->
+    <div class="list-group" style="height:204px;overflow:hidden;">
+        <a href="{:U('CaseAlarmHandleInfo/index?case_id='.$info['id'])}" class="list-group-item list-group-item-info js-open js-end-refresh"><span class="glyphicon glyphicon-new-window"></span> 报警记录</a>
+        <div id="caseAlarmList" style="height:82px;overflow:auto;"></div>
+        <a class="list-group-item list-group-item-info js-open js-end-refresh" id="caseAccept">
+            <span class="glyphicon glyphicon-new-window"></span> <span id="caseAcceptBtn"></span>
+        </a>
+        <a class="list-group-item js-open js-end-refresh" id="caseAcceptContent"></a>
+    </div>
+</div>

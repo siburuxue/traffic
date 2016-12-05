@@ -1,0 +1,47 @@
+<table class="table table-bordered table-condensed table-custom" style="margin-bottom: 0">
+    <tbody>
+        <tr>
+            <th colspan="2"><span class="text-danger">*</span> 现场形态</th>
+            <td>
+                <select name="scene_state" class="form-control input-sm post-gather">
+                    <option value="">请选择</option>
+                    <volist name="sceneState" id="vo">
+                        <if condition="$key eq $info['scene_state']">
+                            <option value="{$key}" selected>{$vo}</option>
+                            <else />
+                            <option value="{$key}">{$vo}</option>
+                        </if>
+                    </volist>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th width="10%">道路</th>
+            <td width="10%">
+                <php>
+                    $data = array(
+                        'caseid'=>$info['case_id'],
+                    ); 
+                    W('Short/index', array(5, 'textarea[name="road_info"]', $data));
+                </php>
+            </td>
+            <td>
+                <textarea style="height:220px;" name="road_info" class="form-control post-gather">{$info.road_info}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <th width="10%">交通环境</th>
+            <td width="10%">
+                <php>
+                    $data = array(
+                        'caseid'=>$info['case_id'],
+                    );
+                    W('Short/index', array(6, 'textarea[name="traffic_info"]', $data));
+                </php>
+            </td>
+            <td>
+                <textarea style="height:220px;" name="traffic_info" class="form-control post-gather">{$info.traffic_info}</textarea>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,11 @@
+[ 2016-09-05T17:03:47+08:00 ] 14.215.176.20 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003361s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002149s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002252s ]
+NOTIC: [8] Undefined index: HTTP_HOST /alidata/www/traffic/Application/Common/Common/function.php 第 60 行.
+SQL: SHOW COLUMNS FROM `ts_config` [ RunTime:0.0086s ]
+SQL: SELECT `name`,`val` FROM `ts_config`  [ RunTime:0.0003s ]
+

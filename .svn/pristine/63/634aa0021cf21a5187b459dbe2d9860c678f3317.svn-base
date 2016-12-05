@@ -1,0 +1,56 @@
+<div class="panel panel-default">
+    <!-- 面板头 -->
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-6">
+                <span class="block-title">
+                {$keyword[$cate]}记录
+                </span>
+            </div>
+            <div class="col-xs-6 text-right">
+                <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered table-condensed table-sheet">
+            <input type="hidden" id="target_id" value="{$archiveDataArray.lend.id}" maxlength="50" readOnly="readOnly">
+            <input type="hidden" id="target_case_id" value="{$archiveDataArray.case_info_id}" maxlength="50" readOnly="readOnly">
+            <input type="hidden" id="target_cate" value="{$archiveDataArray.newcate}" maxlength="50" readOnly="readOnly">
+            <tr>
+                <th>{$keyword[$cate]}人</th>
+                <td>
+                    <input type="text" class="form-control input-sm " value="{$archiveDataArray.lend.true_name}" maxlength="50" readOnly="readOnly">
+                </td>
+                <th>{$keyword[$cate]}时间</th>
+                <td>
+                    <input type="text" class="form-control input-sm  form-datetime" name="time" id="start-time" maxlength="16" readonly="readonly" value="{$archiveDataArray.lend.time|date='Y-m-d H:i',###}">
+                </td>
+            </tr>
+            <tr>
+                <th>{$keyword[$cate]}目的</th>
+                <td colspan="3">
+                    <textarea class="form-control  " name="content" maxlength="1000" style="width:99%;height:200px;outline:none;resize:none;" readOnly="readOnly">{$archiveDataArray.lend.content}</textarea>
+                </td>
+            </tr>
+        </table>
+        <!--                 <div class="panel panel-default">
+            <neq name="cate" value="1">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">相关文件</span></div>
+                    <div class="col-xs-6 text-right">
+                        <a href="{:U('CasePhoto/index?case_id='.$archiveDataArray['case_info_id'].'&cate='.$archiveDataArray['newcate'].'&ext_ida='.$archiveDataArray['lend']['id'])}" class="btn btn-primary btn-sm js-open js-end-refresh" id="upload"><span class="glyphicon glyphicon-upload"></span> 上传</a>
+                        <button type="button" class="btn btn-primary btn-sm "><span class="glyphicon glyphicon-download" id="download"></span> 下载</button>
+                        <a href="javascript:;" class="btn btn-warning btn-sm " id="delete"><span class="glyphicon glyphicon-trash"></span> 删除</a>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <include file="Archive/detailInfo/photoTable" />
+            </div>
+        </div>
+        </neq> 
+        </div>-->
+    </div>
+

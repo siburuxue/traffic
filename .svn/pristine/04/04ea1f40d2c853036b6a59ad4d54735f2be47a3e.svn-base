@@ -1,0 +1,49 @@
+<h3 class="row">
+    <div class="col-xs-6"><span class="block-title">涉事逃逸车辆</span></div>
+    <div class="col-xs-6 text-right">
+        <div class="btn btn-primary btn-sm" id="add-escape-car"><span class="glyphicon glyphicon-plus"></span> 添加</div>
+    </div>
+</h3>
+<table class="table table-bordered table-hover table-condensed table-sheet">
+    <tr>
+        <th width="15%">号牌</th>
+        <th width="15%">车辆类型</th>
+        <th width="15%">颜色</th>
+        <th width="15%">逃逸方向</th>
+        <th width="15%">其他特征</th>
+        <th>驾驶人体貌特征</th>
+        <th width="80">操作</th>
+    </tr>
+    <tbody class="hide" id="escape-car-template">
+        <tr class="text-center">
+            <td>
+                <input type="text" class="form-control input-sm" name="car_no" maxlength="255">
+            </td>
+            <td>
+                <select name="car_type" class="form-control input-sm">
+                    <option value="">请选择</option>
+                    <volist name="carType" id="vo">
+                        <option value="{$vo.id}">{$vo.name}</option>
+                    </volist>
+                </select>
+            </td>
+            <td>
+                <input type="text" class="form-control input-sm" name="color" maxlength="255">
+            </td>
+            <td>
+                <input type="text" class="form-control input-sm" name="direction" maxlength="255">
+            </td>
+            <td>
+                <input type="text" class="form-control input-sm" name="other" maxlength="255">
+            </td>
+            <td>
+                <input type="text" class="form-control input-sm" name="body_des" maxlength="255">
+            </td>
+            <td>
+                <div class="btn btn-warning btn-sm del-escape-car">删除</div>
+            </td>
+        </tr>
+    </tbody>
+    <tbody id="escape-car-list"></tbody>
+</table>
+<hr>

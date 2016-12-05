@@ -1,0 +1,10 @@
+<div class="row photoTable">
+    <volist name="list5" id="vo">
+        <div class="col-xs-2">
+            <a href="{$vo.image_path}" class="thumbnail" target="_blank">
+                <img src="{$vo.thumb_path}">
+                <label style="display: block;text-align: center;margin-top: 9px;"><input type="checkbox" value="{$vo.id}"></label>
+            </a>
+        </div>
+    </volist>
+</div>

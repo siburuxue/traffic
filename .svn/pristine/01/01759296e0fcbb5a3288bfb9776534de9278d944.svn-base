@@ -1,0 +1,61 @@
+<div class="table-responsive">
+    <table class="table table-bordered table-condensed table-form">
+        <tr>
+            <th width="15%">报警时间</th>
+            <td width="35%">
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <input type="text" class="form-control input-sm search-auto form-datetime" name="condition_start_time" maxlength="16" readonly="readonly">
+                        </td>
+                        <td width="30" class="text-center">~</td>
+                        <td>
+                            <input type="text" class="form-control input-sm search-auto form-datetime" name="condition_end_time" maxlength="16" readonly="readonly">
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <th width="15%">案件来源</th>
+            <td>
+                <select name="condition_case_source" class="form-control input-sm search-auto">
+                    <option value="">请选择</option>
+                    <volist name="caseSource" id="vo">
+                        <option value="{$vo.id}">{$vo.name}</option>
+                    </volist>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>报警人姓名</th>
+            <td>
+                <input type="text" class="form-control input-sm search-auto" name="condition_alarm_name" maxlength="255">
+            </td>
+            <th>接警人姓名</th>
+            <td>
+                <input type="text" class="form-control input-sm search-auto" name="condition_receiver_true_name" maxlength="255">
+            </td>
+        </tr>
+        <tr>
+            <th>是否关联</th>
+            <td>
+                <select name="condition_is_link" class="form-control input-sm search-auto">
+                    <option value="">请选择</option>
+                    <option value="1">是</option>
+                    <option value="0">否</option>
+                </select>
+            </td>
+            <th>是否已作废</th>
+            <td>
+                <select name="condition_is_del" class="form-control input-sm search-auto">
+                    <option value="">请选择</option>
+                    <option value="1">是</option>
+                    <option value="0">否</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+</div>
+<div style="margin-bottom:20px;">
+    <button type="button" class="btn btn-primary" id="search-submit"><span class="glyphicon glyphicon-search"></span> 查询</button>
+    <button type="button" class="btn btn-warning" id="search-reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+</div>

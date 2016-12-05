@@ -1,0 +1,191 @@
+body {
+    font-family: "微软雅黑";
+    background: #E8F5FC;
+}
+
+.head-space {
+    height: 20px;
+    overflow: hidden;
+    clear: both;
+}
+
+.page-header {
+    margin: 20px 0;
+    border-color: #d1e9f6;
+}
+
+.page-header h4 {
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+    font-weight: normal;
+    color: #004e7a;
+}
+
+.main {
+    /*min-width: 980px;*/
+}
+
+@media screen and (max-width: 980px) {
+    .main {
+        width: 980px;
+    }
+}
+
+.block-title {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 30px;
+}
+
+textarea {
+    resize: none;
+}
+
+
+/************************************************************************/
+
+.table-custom {}
+
+.table-custom .form-control {
+    /*min-width: 300px;*/
+}
+
+@media screen and (max-width: 767px) {
+    .table-custom .form-control {
+        min-width: auto !important;
+        width: 100% !important;
+    }
+}
+
+.table-custom th {
+    color: #FFF;
+    background: #47A4D3;
+    vertical-align: middle !important;
+    text-align: center;
+}
+
+.table-custom>thead>tr>th {
+    text-align: left;
+}
+
+
+/************************************************************************/
+
+.table-sheet {}
+
+.table-sheet>thead>tr>th,
+.table-sheet>tbody>tr>th,
+.table-sheet>tr>th {
+    color: #FFF;
+    background: #47A4D3;
+    vertical-align: middle !important;
+    text-align: center;
+}
+
+.table-sheet>thead>tr>td,
+.table-sheet>tbody>tr>td,
+.table-sheet>tr>td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+
+/************************************************************************/
+
+.table-form {}
+
+.table-form>thead>tr>th,
+.table-form>tbody>tr>th,
+.table-form>tr>th {
+    color: #FFF;
+    background: #47A4D3;
+    vertical-align: middle !important;
+    text-align: center;
+}
+
+.table-form>thead>tr>td,
+.table-form>tbody>tr>td,
+.table-form>tr>td {
+    vertical-align: middle;
+    text-align: left;
+}
+
+
+/************************************************************************/
+
+.sub-table {
+    width: 100%;
+}
+
+.sub-table th,
+.sub-table td {
+    border: 1px solid #ddd;
+    padding: 5px;
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.sub-table td {
+    min-height: 40px;
+}
+
+.sub-table th:first-child,
+.sub-table td:first-child {
+    border-left: 0;
+}
+
+.sub-table th:last-child,
+.sub-table td:last-child {
+    border-right: 0;
+}
+
+.sub-table tr:first-child>th,
+.sub-table tr:first-child>td {
+    border-top: 0;
+}
+
+.sub-table tr:last-child>th,
+.sub-table tr:last-child>td {
+    border-bottom: 0;
+}
+
+
+/************************************************************************/
+
+.nav-custom {
+    margin-bottom: 20px;
+    border-bottom: 3px solid #47A4D3;
+}
+
+.nav-custom>li>a {
+    border-color: #DDD;
+    border-bottom-width: 0;
+    background: #FFF;
+}
+
+.nav-custom>li>a:hover,
+.nav-custom>li>a:focus {
+    border-color: #DDD;
+}
+
+.nav-custom>li.active>a,
+.nav-custom>li.active>a:hover,
+.nav-custom>li.active>a:focus {
+    border-color: #47A4D3;
+    background-color: #47A4D3;
+    color: #fff;
+}
+
+
+/************************************************************************/
+
+.panel-alarm>.list-group>.list-group-item {
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

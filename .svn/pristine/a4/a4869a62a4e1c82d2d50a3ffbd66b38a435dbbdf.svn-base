@@ -1,0 +1,44 @@
+<notempty name="noticeData.id">
+<!--     <div class="panel-body">
+        <div class="panel panel-default form-inline">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">鉴定结果告知文件</span></div>
+                    <div class="col-xs-6 text-right">
+                        <a href="{:U('CasePhoto/index?case_id='.$caseCheckupData['case_id'].'&cate=43&ext_ida='.$case_checkup_report_id)}" class="btn btn-primary btn-sm js-open js-end-refresh" id="upload"><span class="glyphicon glyphicon-upload"></span> 上传</a>
+                        <button type="button" class="btn btn-primary btn-sm "><span class="glyphicon glyphicon-download" id="download"></span> 下载</button>
+                        <a href="javascript:;" class="btn btn-warning btn-sm " id="delete"><span class="glyphicon glyphicon-trash"></span> 删除</a>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <include file="CaseQueryCheckupNotice/add/photoTable" />
+            </div>
+        </div>
+    </div> -->
+     <div class="panel-body">
+        {:W('CasePhoto/index', array('鉴定结果告知文件',$caseCheckupData['case_id'],43,$case_checkup_report_id,0,0,0))}
+    </div>
+
+
+<else/>
+<div class="panel-body">
+    <div class="panel panel-default form-inline">
+        <!-- 面板标题 -->
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-6"><span class="block-title">鉴定结果告知文件</span></div>
+                <div class="col-xs-6 text-right">
+                    <a  class="btn btn-primary btn-sm " disabled="disabled"><span class="glyphicon glyphicon-upload"></span> 上传</a>
+                    <button type="button" class="btn btn-primary btn-sm "  disabled="disabled"><span class="glyphicon glyphicon-download" ></span> 下载</button>
+                    <a href="javascript:;" class="btn btn-warning btn-sm "  disabled="disabled"><span class="glyphicon glyphicon-trash"></span> 删除</a>
+                </div>
+            </div>
+        </div>
+        <!-- 面板内容 -->
+        <div class="panel-body">
+            <include file="CaseQueryCheckupNotice/add/photoTable" />
+        </div>
+    </div>
+</div>
+</notempty>

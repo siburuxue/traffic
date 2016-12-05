@@ -1,0 +1,21 @@
+<div class="panel panel-default" style="position:absolute;z-index:9999;display:none;" id="select-department">
+    <div class="list-group" style="height:198px;overflow:auto;">
+        <volist name="department" id="vo">
+            <div class="list-group-item <neq name='vo.cate' value='2'>disabled</neq>" data-checked="0" data-id="{$vo.id}" data-name="{$vo.name}" style="padding:6px 10px;cursor:pointer;">
+                <span class="glyphicon glyphicon-unchecked sd-icon"></span>&nbsp; {$vo._prefix}{$vo.name}
+            </div>
+        </volist>
+    </div>
+    <div class="panel-footer">
+        <button class="btn btn-primary btn-sm sd-submit"><span class="glyphicon glyphicon-saved"></span> 确定</button>
+        <button class="btn btn-danger btn-sm sd-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+    </div>
+</div>
+<div class="panel panel-default" style="position:absolute;z-index:9999;display:none;" id="select-handle">
+    <div class="list-group" style="height:198px;overflow:auto;" id="select-handle-content">
+    </div>
+    <div class="panel-footer">
+        <button class="btn btn-primary btn-sm sd-submit"><span class="glyphicon glyphicon-saved"></span> 确定</button>
+        <button class="btn btn-danger btn-sm sd-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+    </div>
+</div>

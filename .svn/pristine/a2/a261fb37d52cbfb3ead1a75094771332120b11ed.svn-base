@@ -1,0 +1,61 @@
+<extend name="Common/base" />
+<block name="title">逃逸事故认定</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 基础信息 -->
+        <div class="panel panel-default form-inline1">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">申请填写</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <include file="CaseCognizance/escape/base" />
+            </div>
+            <div class="text-left" style="margin:0 0 15px 16px">
+                <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-floppy-disk"></span> 保存</button>
+                <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+            </div>
+        </div>
+        <!-- 按钮 -->
+        <input type="hidden" id="case_id" name="case_id" class="post-gather" value="{$case['id']}">
+
+        <div class="panel panel-default form-inline" style="margin-top: 20px;">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">申请记录</span></div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <include file="CaseCognizance/escape/list" />
+            </div>
+        </div>
+    </div>
+</block>
+<block name="head.ext">
+    <style>
+        input[type=text]{min-width:auto!important;}
+    </style>
+    <script type="text/javascript">
+        // 定义URL地址
+        url.save = "{:U('saveEscapeInfo')}";
+        url.list = "{:U('escapeList')}";
+        //删除图片
+        url.delete = "{:U('CasePhoto/delete')}";
+        url.download = "{:U('Common/download')}";
+    </script>
+</block>
+<block name="foot.ext">
+
+    <import file="js.CaseCognizance.escapeIndex?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

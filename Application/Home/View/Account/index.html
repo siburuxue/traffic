@@ -1,0 +1,150 @@
+<extend name="Common/base" />
+<block name="mainer">
+    <div class="container">
+        <div class="page-header">
+            <h1>我的帐号 <small></small></h1>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="well text-center">
+                    <h3><span class="glyphicon glyphicon-user"></span> 个人资料</h3>
+                    <p>编辑您的个人信息
+                        <br><a href="{:U('edit')}">完善资料</a></p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="well text-center">
+                    <h3><span class="glyphicon glyphicon-ok"></span> 修改密码</h3>
+                    <empty name="my.email">
+                        <p>修改密码需要先设置登录帐号
+                            <br><a href="{:U('setAccount')}">设置登录帐号</a></p>
+                        <else/>
+                        <p>变更登录密码
+                            <br><a href="{:U('password')}">立即修改</a></p>
+                    </empty>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="well text-center">
+                    <h3><span class="glyphicon glyphicon-magnet"></span> 绑定第三方帐号</h3>
+                    <p>绑定后可以使用第三方帐号登录
+                        <br><a href="{:U('bind')}">现在绑定</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="page-header">
+            <h3>帐号概况 <small></small></h3>
+        </div>
+        <table class="table table-hover">
+            <tr>
+                <th width="28%" class="text-right">帐号/邮箱</th>
+                <td>
+                    <empty name="my.email">
+                        尚未设置登录帐号，<a href="{:U('setAccount')}">立即设置</a>
+                        <else/> {$my.email}
+                        <eq name="my.emailchecked" value="1">
+                            <span class="text-success">已验证</span>
+                            <else/> 未验证，
+                            <a href="javascript:;" id="resend">重新发送验证邮件</a>
+                        </eq>
+                    </empty>
+                </td>
+            </tr>
+            <tr>
+                <th class="text-right">姓名</th>
+                <td>{$my.truename|default="-"}</td>
+            </tr>
+            <tr>
+                <th class="text-right">昵称</th>
+                <td>{$my.nickname|default="-"}</td>
+            </tr>
+            <tr>
+                <th class="text-right">手机号码</th>
+                <td>{$my.mobile|default="-"}</td>
+            </tr>
+            <tr>
+                <th class="text-right">数字校园帐号</th>
+                <td>
+                    <empty name="my.schoolid">
+                        未绑定，<a href="{:U('Cas/bind')}">现在绑定</a>
+                        <else/> {$my.schoolid}
+                    </empty>
+                </td>
+            </tr>
+            <tr>
+                <th class="text-right">身份认证</th>
+                <td>
+                    <eq name="my.ischecked" value="1">
+                        <span class="text-success">已认证</span>
+                        <else/> 未认证，
+                        <a href="{:U('Account/auth')}">立即认证</a>
+                    </eq>
+                </td>
+            </tr>
+            <tr>
+                <th class="text-right">注册日期</th>
+                <td>{$my.regdate|date="Y-m-d",###}</td>
+            </tr>
+            <tr>
+                <th class="text-right">登录次数</th>
+                <td>{$my.logincount}</td>
+            </tr>
+            <tr>
+                <th class="text-right">最后登录</th>
+                <td>
+                    <gt name="my.logincount" value="0">{$my.lastlogintime|date="Y-m-d H:i:s",###} ({$my.lastloginip|default='0.0.0.0'})
+                        <else/>-</gt>
+                </td>
+            </tr>
+        </table>
+    </div>
+</block>
+<block name="footer">
+    <script type="text/javascript">
+    url.reSendRegMail = "{:U('Sign/reSendRegMail')}";
+
+    $(function() {
+
+        var userid = "{$my.id}";
+        var spacetime = parseInt("{$Think.config.custom.emailSignSpace}");
+        var timer;
+        var status = 0;
+        var waitSend = function() {
+            var the = $('#resend');
+            var sendTime = new Date().getTime();
+            status = 1;
+            timer = setInterval(function() {
+                var curTime = new Date().getTime();
+                if (curTime - sendTime > spacetime * 1000) {
+                    clearInterval(timer);
+                    the.text('重新发送验证邮件');
+                    status = 0;
+                    window.location.reload();
+                } else {
+                    var leftTime = Math.floor((spacetime * 1000 - (curTime - sendTime)) / 1000);
+                    the.text(leftTime + '秒后可重新发送');
+                }
+            }, 100);
+        };
+
+        // 提交
+        $('#resend').on('click', function(e) {
+            e.preventDefault();
+            if (status == 1) {
+                return false;
+            }
+            $.post(url.reSendRegMail, {
+                'userid': userid
+            }, function(msg) {
+                layer.alert(msg.info, function(index) {
+                    layer.close(index);
+                });
+                if (msg.status == 1) {
+                    waitSend();
+                }
+            });
+        });
+
+    });
+    </script>
+</block>

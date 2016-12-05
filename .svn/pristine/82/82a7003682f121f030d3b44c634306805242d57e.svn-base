@@ -1,0 +1,18 @@
+<!-- 面板 -->
+<div class="panel panel-primary">
+    <!-- 面板标题 -->
+    <div class="panel-heading">其他法律文书</div>
+    <!-- 面板内容 -->
+    <div class="list-group">
+        <a href="#" class="list-group-item js-open js-end-refresh"><span class="glyphicon glyphicon-new-window"></span> 道路交通事故处理通知书 </a>
+        <a href="#" class="list-group-item js-open js-end-refresh"><span class="glyphicon glyphicon-new-window"></span> 勘验笔录 </a>
+        <a href="#" class="list-group-item js-open js-end-refresh"><span class="glyphicon glyphicon-new-window"></span> 辨认笔录 </a>
+        <a href="#" class="list-group-item js-open js-end-refresh"><span class="glyphicon glyphicon-new-window"></span> 提取笔录 </a>
+        <a href="#" class="list-group-item js-open js-end-refresh"><span class="glyphicon glyphicon-new-window"></span> 证据公开笔录 </a>
+        <a href="#" class="list-group-item js-open js-end-refresh"><span class="glyphicon glyphicon-new-window"></span> 送达回执 </a>
+        <a href="#" class="list-group-item js-open js-end-refresh"><span class="glyphicon glyphicon-new-window"></span> 通（告）知记录 </a>
+        <a href="#" class="list-group-item js-open js-end-refresh"><span class="glyphicon glyphicon-new-window"></span> 物品扣押 </a>
+        <a href="#" class="list-group-item js-open js-end-refresh"><span class="glyphicon glyphicon-new-window"></span> 尸体处理通知书 </a>
+        <a href="#" class="list-group-item js-open js-end-refresh"><span class="glyphicon glyphicon-new-window"></span> 其他法律文书 </a>
+    </div>
+</div>

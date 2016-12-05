@@ -1,0 +1,49 @@
+<extend name="Common/base" />
+<block name="title">复核结论</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 标签 -->
+        <include file="CaseReviewCheckHandleInfo/result/tab" />
+        <!-- 列表面板 -->
+        <div class="panel panel-default">
+            <!-- 面板头 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">复核结论</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板主体 -->
+            <div class="panel-body">
+                <include file="CaseReviewCheckHandleInfo/result/base" />
+       
+            <button type="button" data-url="{:U('CaseReviewCheckNoticeHandleInfo/index?case_review_id='.$caseReview['id'])}" class="btn btn-primary js-open" id="submita" <neq name="info.status" value="1">disabled="disabled"</neq>><span class="glyphicon glyphicon-import"></span> 复核结论下发</button>
+                <button type="button" class="btn btn-primary" id="print" <neq name="info.result_status" value="1">disabled="disabled"</neq>><span class="glyphicon glyphicon-print"></span> 打印</button>
+   
+            </div>
+        </div>
+        <!-- 表格 结束 -->
+        <!-- 受理时间 -->
+        {:W('CasePhoto/detail', array('复核结论列表',$caseReview['case_id'],49,$caseReview['id'],$info['id']))}
+        <!-- 表格 结束 -->
+    </div>
+    <!-- 页面主体 结束 -->
+</block>
+<block name="foot.html">
+    <include file="CaseReviewCheckHandleInfo/result/confirm" />
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.update = "{:U('resultUpdate')}";
+    url.applyCheck = "{:U('applyCheck')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CaseReviewCheckHandleInfo.result?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

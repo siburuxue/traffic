@@ -1,0 +1,14 @@
+
+<ul class="nav nav-tabs nav-custom">
+    <if condition="$id eq ''">
+        <li><a href="javascript:;">呈请事故中止</a></li>
+    <else />
+        <li><a href="{:U('normalIndex?case_id='.$case['id'].'&action=accident_termination&report_id='.$id.'&id='.$stopId)}">呈请事故中止</a></li>
+    </if>
+    <li class="active"><a href="{:U('normalIndex?case_id='.$case['id'].'&action=investigation_report&id='.$id)}">调查报告</a></li>
+    <if condition="$id eq ''">
+        <li><a href="javascript:;">事故认定</a></li>
+    <else />
+        <li><a href="{:U('normalIndex?case_id='.$case['id'].'&action=accident_identification&report_id='.$id.'&id='.$accidentIdentificationId)}">事故认定</a></li>
+    </if>
+</ul>

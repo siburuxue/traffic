@@ -1,0 +1,12 @@
+<!-- 面板 -->
+<div class="panel panel-primary">
+    <!-- 面板标题 -->
+    <div class="panel-heading">现场勘察信息</div>
+    <!-- 面板内容 -->
+    <div class="list-group" style="height:204px;overflow:auto;" >
+        <a href="{:U('CaseSurveyHandle/edit?case_id='.$info['id'].'&id='.$caseSurvey['id'].'#box1')}" class="list-group-item js-open js-end-refresh"><span class="glyphicon glyphicon-new-window"></span> 现场图 </a>
+        <a href="{:U('CaseSurveyHandle/edit?case_id='.$info['id'].'&id='.$caseSurvey['id'].'#box2')}" class="list-group-item js-open js-end-refresh"><span class="glyphicon glyphicon-new-window"></span> 现场照片 </a>
+        <a href="{:U('CaseSurveyHandle/edit?case_id='.$info['id'].'&id='.$caseSurvey['id'].'#box3')}" class="list-group-item js-open js-end-refresh"><span class="glyphicon glyphicon-new-window"></span> 现场勘查笔录 </a>
+        <a href="{:U('CaseSurveyHandle/edit?case_id='.$info['id'].'&id='.$caseSurvey['id'].'#box4')}" class="list-group-item js-open js-end-refresh"><span class="glyphicon glyphicon-new-window"></span> 现场遗留物品清单 </a>
+    </div>
+</div>

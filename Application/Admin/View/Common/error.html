@@ -1,0 +1,53 @@
+<extend name="Common/base" />
+<block name="title">错误信息提示</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 面板 -->
+        <div class="panel panel-default form-inline">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">错误信息提示</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> <span id="wait-close">{$waitSecond}</span>秒后关闭</button>
+                        <button type="button" class="btn btn-warning btn-sm js-back"><span class="glyphicon glyphicon-menu-left"></span> <span id="wait-jump">{$waitSecond}</span>秒后跳转</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">{$error}</div>
+        </div>
+    </div>
+</block>
+<block name="foot.ext">
+    <script type="text/javascript">
+    $(function() {
+        var wait = $.type(win_index) === 'undefined' ? $('#wait-jump') : $('#wait-close');
+        var href = "{$jumpUrl}";
+        var interval = setInterval(function() {
+            var time = wait.text();
+            time--;
+            wait.text(time);
+            if (time <= 0) {
+                clearInterval(interval);
+                if ($.type(win_index) === 'undefined') {
+                    window.location.href = href;
+                } else {
+                    parent.layer.close(win_index);
+                }
+            };
+        }, 1000);
+
+        if ($.type(win_index) !== 'undefined') {
+            $('.js-back').hide();
+        }
+
+        $('js-back').on('click', function() {
+            window.location.href = href;
+        });
+    });
+    </script>
+</block>

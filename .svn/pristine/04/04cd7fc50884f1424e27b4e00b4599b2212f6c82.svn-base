@@ -1,0 +1,20 @@
+<table class="table table-bordered table-condensed table-form">
+    <tr>
+        <th width="15%">审批意见</th>
+        <td width="15%">
+            <select id="status" name="status" class="form-control input-sm post-gather" <neq name="caseCheck.status" value="0">disabled="disabled"</neq>>
+                <option value="1" <eq name="caseCheck.status" value="1">selected="selected"</eq>>同意</option>
+                <option value="2" <eq name="caseCheck.status" value="2">selected="selected"</eq>>不同意</option>
+            </select>
+        </td>
+        <td>
+            <textarea class="form-control post-gather" style="height:80px;resize:none;" id="remark" name="remark" <neq name="caseCheck.status" value="0">disabled="disabled"</neq>>{$caseCheck.remark}</textarea>
+        </td>
+    </tr>
+</table>
+<div>
+    <a href="#" class="btn btn-primary js-open"><span class="glyphicon glyphicon-list-alt"></span> 案件详细信息</a>
+    <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-ok"></span> 确定</button>
+    <button type="button" class="btn btn-primary" id="apply"><span class="glyphicon glyphicon-ok"></span> 确定并提请审批</button>
+    <a href="{:U('table?case_review_id='.$caseReview['id'])}" class="btn btn-primary js-open"><span class="glyphicon glyphicon-list"></span> 审批信息</a>
+</div>

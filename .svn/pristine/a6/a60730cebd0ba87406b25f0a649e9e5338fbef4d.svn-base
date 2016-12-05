@@ -1,0 +1,7 @@
+<div class="panel panel-primary">
+    <div class="list-group">
+        <a href="{:U('LawRegulationInfo/index')}" class="list-group-item list-group-item-info js-open js-end-refresh">
+            <span class="glyphicon glyphicon-new-window"></span> 道路交通相关法律法规
+        </a>
+    </div>
+</div>

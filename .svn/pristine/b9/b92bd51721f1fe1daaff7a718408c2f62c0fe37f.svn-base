@@ -1,0 +1,55 @@
+<extend name="Common/base" />
+<block name="title">相关人员维护</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 页中 -->
+        <div class="row">
+            <div class="col-xs-3">
+                <include file="CaseClientRelaterCaseReviewHandle/index/client" />
+            </div>
+            <div class="col-xs-9">
+                <!-- 列表面板 -->
+                <div class="panel panel-default">
+                    <!-- 面板头 -->
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-6"><span class="block-title">相关人员维护</span></div>
+                            <div class="col-xs-6 text-right">
+                                <button type="button" class="btn btn-primary btn-sm" id="add"><span class="glyphicon glyphicon-plus"></span> 新增</button>
+                                <button type="button" class="btn btn-warning btn-sm" id="delete"><span class="glyphicon glyphicon-trash"></span> 删除</button>
+                                <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 面板主体 -->
+                    <div class="panel-body">
+                        <!-- 样本 -->
+                        <include file="CaseClientRelaterCaseReviewHandle/index/sample" />
+                        <!-- 列表 -->
+                        <div id="table-content"></div>
+                        <!-- 按钮 -->
+                        <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-search"></span> 保存</button>
+                        <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+                    </div>
+                </div>
+                <!-- 表格 结束 -->
+            </div>
+        </div>
+    </div>
+    <!-- 页面主体 结束 -->
+    <input type="hidden" name="case_id" value="{$caseId}">
+    <input type="hidden" name="now_case_client_id" value="{$nowCaseClientId}">
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.getCaseClientRelater = "{:U('getCaseClientRelater')}";
+    url.update = "{:U('update')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CaseClientRelaterCaseReviewHandle.index?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

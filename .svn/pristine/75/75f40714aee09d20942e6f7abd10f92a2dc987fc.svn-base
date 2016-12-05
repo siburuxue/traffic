@@ -1,0 +1,169 @@
+<extend name="Common/base" />
+<block name="title">编辑现场勘查信息</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 基础信息 -->
+        <div class="panel panel-default form-inline1">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">编辑现场勘查信息</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <include file="CaseSurveyHandle/edit/base" />
+            </div>
+            <div class="text-left" style="margin: 0 0 15px 16px">
+                <if condition="is_power($myPower,'case_survey_edit_edit')">
+                    <a href="{:U('editInfo?case_id='.$case['id'].'&id='.$id)}" class="btn btn-primary js-open"><span class="glyphicon glyphicon-pencil"></span> 编辑</a>
+                </if>
+            </div>
+        </div>
+        <div class="panel panel-default form-inline1" style="margin-top:20px;">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">现场勘查详细信息</span></div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <include file="CaseSurveyHandle/edit/advance" />
+            </div>
+            <div class="text-left" style="margin: 0 0 15px 16px">
+                <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-floppy-disk"></span> 保存</button>
+                <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+            </div>
+        </div>
+        <div class="panel panel-default form-inline photo-box" style="margin-top:20px;" id="3">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title" tabindex="1" id="box1">现场图</span></div>
+                    <div class="col-xs-6 text-right">
+                        <a href="{:U('CasePhoto/index?case_id='.$case['id'].'&cate=3&ext_ida='.$info['id'])}" class="btn btn-primary btn-sm js-open js-end-refresh upload"><span class="glyphicon glyphicon-upload"></span> 上传</a>
+                        <button type="button" class="btn btn-primary btn-sm download"><span class="glyphicon glyphicon-download"></span> 下载</button>
+                        <a href="javascript:;" class="btn btn-warning btn-sm delete js-confirm" style="margin-right: 15px;"><span class="glyphicon glyphicon-trash"></span> 删除</a>
+                        <a role="button" data-toggle="collapse" href="#collapseExample1" aria-expanded="false" aria-controls="collapseExample" style="margin-right: 15px;"><span class="glyphicon glyphicon-menu-up"></span></a>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body collapse in" id="collapseExample1">
+                <include file="CaseSurveyHandle/edit/photoTable1" />
+            </div>
+        </div>
+        <div class="panel panel-default form-inline photo-box" style="margin-top:20px;" id="list-all">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title" tabindex="2" id="box2">现场照片</span></div>
+                    <div class="col-xs-6 text-right">
+                        <a href="{:U('CasePhoto/index?case_id='.$case['id'].'&cate=9999&ext_ida='.$id.'&tpl=scene')}" class="btn btn-primary btn-sm js-open js-end-refresh upload-all"><span class="glyphicon glyphicon-upload"></span> 上传</a>
+                        <div class="btn btn-primary btn-sm download"><span class="glyphicon glyphicon-download"></span> 下载</div>
+                        <a href="javascript:;" class="btn btn-warning btn-sm delete js-confirm" style="margin-right: 15px;"><span class="glyphicon glyphicon-trash"></span> 删除</a>
+                        <a role="button" data-toggle="collapse" href="#collapseExample2" aria-expanded="false" aria-controls="collapseExample" style="margin-right: 15px;"><span class="glyphicon glyphicon-menu-up"></span></a>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body collapse in" id="collapseExample2">
+                <div class="photo-box" style="zoom:1;overflow: visible;" id="5">
+                    <h3 class="row">
+                        <div class="col-xs-6"><span class="block-title">方位照相</span></div>
+                    </h3>
+                    <div class="row panel-body photo-box" data-cate="5">
+                        <include file="CaseSurveyHandle/edit/photoTable3" />
+                    </div>
+                </div>
+                <div class="photo-box" style="zoom:1;overflow: visible;" id="6">
+                    <h3 class="row">
+                        <div class="col-xs-6"><span class="block-title">概览照相</span></div>
+                    </h3>
+                    <div class="row panel-body photo-box" data-cate="6">
+                        <include file="CaseSurveyHandle/edit/photoTable4" />
+                    </div>
+                </div>
+                <div class="photo-box" style="zoom:1;overflow: visible;" id="7">
+                    <h3 class="row">
+                        <div class="col-xs-6"><span class="block-title">局部照相</span></div>
+                    </h3>
+                    <div class="row panel-body photo-box" data-cate="7">
+                        <include file="CaseSurveyHandle/edit/photoTable5" />
+                    </div>
+                </div>
+                <div class="photo-box" style="zoom:1;overflow: visible;" id="8">
+                    <h3 class="row">
+                        <div class="col-xs-6"><span class="block-title">元素照相</span></div>
+                    </h3>
+                    <div class="row panel-body photo-box" data-cate="8">
+                        <include file="CaseSurveyHandle/edit/photoTable6" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default form-inline photo-box" style="margin-top:20px;" id="9">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title" tabindex="3" id="box3">现场勘查笔录</span></div>
+                    <div class="col-xs-6 text-right">
+                        <a href="{:U('CasePhoto/index?case_id='.$case['id'].'&cate=9&ext_ida='.$info['id'])}" class="btn btn-primary btn-sm js-open js-end-refresh upload"><span class="glyphicon glyphicon-upload"></span> 上传</a>
+                        <button type="button" class="btn btn-primary btn-sm download"><span class="glyphicon glyphicon-download"></span> 下载</button>
+                        <a href="javascript:;" class="btn btn-warning btn-sm delete js-confirm" style="margin-right: 15px;"><span class="glyphicon glyphicon-trash"></span> 删除</a>
+                        <a role="button" data-toggle="collapse" href="#collapseExample3" aria-expanded="false" aria-controls="collapseExample" style="margin-right: 15px;"><span class="glyphicon glyphicon-menu-up"></span></a>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body collapse in" id="collapseExample3">
+                <include file="CaseSurveyHandle/edit/photoTable7" />
+            </div>
+        </div>
+        <div class="panel panel-default form-inline photo-box" style="margin-top:20px;" id="10">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title" tabindex="4" id="box4">现场遗留物品清单</span></div>
+                    <div class="col-xs-6 text-right">
+                        <a href="{:U('CasePhoto/index?case_id='.$case['id'].'&cate=10&ext_ida='.$info['id'])}" class="btn btn-primary btn-sm js-open js-end-refresh upload"><span class="glyphicon glyphicon-upload"></span> 上传</a>
+                        <button type="button" class="btn btn-primary btn-sm download"><span class="glyphicon glyphicon-download"></span> 下载</button>
+                        <a href="javascript:;" class="btn btn-warning btn-sm delete js-confirm" style="margin-right: 15px;"><span class="glyphicon glyphicon-trash"></span> 删除</a>
+                        <a role="button" data-toggle="collapse" href="#collapseExample4" aria-expanded="false" aria-controls="collapseExample" style="margin-right: 15px;"><span class="glyphicon glyphicon-menu-up"></span></a>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body collapse in" id="collapseExample4">
+                <include file="CaseSurveyHandle/edit/photoTable8" />
+            </div>
+        </div>
+        <input type="hidden" id="case_id" name="case_id" class="post-gather" value="{$case['id']}">
+        <input type="hidden" id='id' name="id" class="post-gather" value="{$id}">
+    </div>
+</block>
+<block name="head.ext">
+    <style>
+        .block-title:focus{
+            outline-style: none;
+        }
+    </style>
+    <script type="text/javascript">
+        // 定义URL地址
+        url.update = "{:U('update')}";
+        url.photoList = "{:U('photoList')}";
+        url.download = "{:U('Common/download')}";
+        url.delete = "{:U('CasePhoto/delete')}";
+    </script>
+</block>
+<block name="foot.ext">
+
+    <import file="js.CaseSurveyHandle.edit?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

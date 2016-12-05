@@ -1,0 +1,30 @@
+<div class="btn-group btn-group-justified" id="caseStatus" style="margin-bottom: 20px;">
+    <div class="btn-group">
+		<if condition="$info['accept_status'] eq 1">
+			<button name="accept_status" class="btn btn-default btn-success">受案信息</button>
+		<else />
+			<button name="accept_status" class="btn btn-default">受案信息</button>
+		</if>
+    </div>
+    <div class="btn-group">
+		<if condition="$info['client_status'] eq 1">
+			<button name="client_status" class="btn btn-default btn-success">当事人信息</button>
+		<else />
+			<button name="client_status" class="btn btn-default ">当事人信息</button>
+		</if>
+    </div>
+    <div class="btn-group">
+		<if condition="$info['agreement_status'] eq 1">
+			<button name="agreement_status" class="btn btn-default btn-success">协议书</button>
+		<else />
+			<button name="agreement_status" class="btn btn-default">协议书</button>
+		</if>
+    </div>
+    <div class="btn-group">
+		<if condition="$info['cognizance_status'] eq 1">
+			<button name="cognizance_status" class="btn btn-default btn-success">事故认定</button>
+		<else />
+			<button name="cognizance_status" class="btn btn-default">事故认定</button>
+		</if>
+    </div>
+</div>

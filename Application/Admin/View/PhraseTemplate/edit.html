@@ -1,0 +1,58 @@
+<extend name="Common/base" />
+<block name="title">编辑短语模板</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 面板 -->
+        <div class="panel panel-default form-inline">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">编辑短语模板</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed table-custom">
+                    <tr>
+                        <th width="20%">模板分类</th>
+                        <td>
+                            <select name="cate" class="form-control input-sm post-gather" style="width:600px;">
+                                <option value="">请选择</option>
+                                <volist name="phrase_cate" id="vo">
+                                <option value="{$vo.id}" <eq name="vo.id" value="$info.cate">selected="selected"</eq> <in name="vo.id" value="$target_id">style="color:red;" disabled="disabled"</in>>{$vo._prefix}{$vo.name}</option>
+                                </volist>
+                            </select>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <th>模板内容</th>
+                        <td>
+                        <textarea  class="form-control post-gather " name="content" maxlength="1000" style="width:600px;height:200px;">{$info.content}</textarea>
+                        </td>
+                    </tr>
+
+                </table>
+                <input type="hidden" class="post-gather" name="id" value="{$info.id}">
+                <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-saved"></span> 提交</button>
+                <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.update = "{:U('update')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.PhraseTemplate.edit?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

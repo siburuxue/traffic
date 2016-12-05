@@ -1,0 +1,157 @@
+<extend name="Common/base" />
+<block name="title">审批受案登记信息</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 基础信息 -->
+        <div class="panel panel-default form-inline1">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">审批</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed table-custom" id="approval">
+                    <tr>
+                        <th style="width:15%">审批意见</th>
+                        <td style="width:15%;">
+                            <select name="status" class="form-control input-sm post-gather" style="margin-top: 12px;">
+                                <option value="1" <if condition="$checkRs['status'] eq 1">selected</if>>同意</option>
+                                <option value="2" <if condition="$checkRs['status'] eq 2">selected</if>>不同意</option>
+                            </select>
+                        </td>
+                        <td>
+                            <textarea class="form-control post-gather" style="resize: none;width:100%" name="remark">{$checkRs.remark}</textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <input type="hidden" name="id" value="{$id}" class="post-gather">
+        <input type="hidden" name="cate" value="0" class="post-gather">
+        <div style="text-align: left;padding-bottom: 15px;">
+            <a href="{:U('CaseInfo/detail?id='.$info['case_id'])}" class="btn btn-primary js-open"><span class="glyphicon glyphicon-repeat"></span> 案件详细信息</a>
+            <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-pencil"></span> 确定</button>
+            <a href="{:U('approvalList?id='.$id)}" class="btn btn-primary js-open"><span class="glyphicon glyphicon-print"></span> 审批信息</a>
+        </div>
+        <div class="panel panel-default form-inline1">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">受案登记信息</span></div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed table-custom" id="case-info">
+                    <tbody>
+                    <tr>
+                        <th colspan="2"><span class="text-danger">*</span> 案由</th>
+                        <td>
+                            <input type="text" class="form-control input-sm all" name="reason" maxlength="255" value="{$info.reason}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan="2"><span class="text-danger">*</span> 案件来源</th>
+                        <td>
+                            <select name="case_src" class="form-control input-sm">
+                                <option value="">请选择</option>
+                                <volist name="caseSource" id="vo">
+                                    <if condition="$vo[id] eq $info['case_src']">
+                                        <option value="{$vo.id}" selected >{$vo.name}</option>
+                                        <else />
+                                        <option value="{$vo.id}">{$vo.name}</option>
+                                    </if>
+
+                                </volist>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan="2"><span class="text-danger">*</span> 报警时间</th>
+                        <td>
+                            <input type="text" class="form-control form-datetime input-sm " name="alarm_time" maxlength="16" readonly="readonly" style="min-width:auto;width:260px;" value='{$info.alarm_time|date="Y-m-d H:i",###}'>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan="2"><span class="text-danger">*</span> 报警方式</th>
+                        <td>
+                            <input type="text" class="form-control input-sm all" name="alarm_type" maxlength="255" value="{$info.alarm_type}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th rowspan="5" width="10%"> 报警人</th>
+                        <th width="15%"><span class="text-danger">*</span> 姓名</th>
+                        <td>
+                            <input type="text" class="form-control input-sm all" name="reporter_name" maxlength="255" value="{$info.reporter_name}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><span class="text-danger">*</span> 性别</th>
+                        <td>
+                            <select name="reporter_sex" class="form-control input-sm">
+                                <option value="1" <if condition="$info.reporter_sex eq 1">selected</if> >男</option>
+                                <option value="0" <if condition="$info.reporter_sex eq 0">selected</if> >女</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><span class="text-danger">*</span> 报警（联系）电话</th>
+                        <td>
+                            <input type="text" class="form-control input-sm  all" name="reporter_tel" maxlength="255" value="{$info.reporter_tel}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><span class="text-danger">*</span> 住址（或单位）</th>
+                        <td>
+                            <input type="text" class="form-control input-sm  all" name="reporter_address" maxlength="255" value="{$info.reporter_address}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><span class="text-danger">*</span> 附注</th>
+                        <td>
+                            <input type="text" class="form-control input-sm  all" name="reporter_note" maxlength="255" value="{$info.reporter_note}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan="2"><span class="text-danger">*</span> 报案内容</th>
+                        <td>
+                            <textarea class="form-control input-sm  all" name="content" maxlength="255" style="resize: none;height:200px;">{$info.content}</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">受案人意见</th>
+                        <td>
+                            <input type="text" class="form-control input-sm  all" name="officer_opinion" maxlength="255" value="{$info.officer_opinion}">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+        url.check = "{:U('checkCaseInfo')}";
+        $(function(){
+            var action = "{$action}";
+            $('#case-info input,select,textarea').prop('disabled',true);
+            if(action == "view"){
+                $('#approval select,textarea').prop('disabled',true);
+                $('#submit').remove();
+            }else{
+                $('#approval select,textarea').prop('disabled',false);
+            }
+        });
+    </script>
+</block>
+<block name="foot.ext">
+
+    <import file="js.CaseCheckLeader.caseAcceptInfo?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

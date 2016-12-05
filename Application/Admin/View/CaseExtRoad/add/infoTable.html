@@ -1,0 +1,458 @@
+<!-- 面板内容 -->
+<div class="panel-body">
+    <table class="table table-bordered table-condensed table-custom">
+        <input type="hidden" class=" post-gather" name="case_id" value="{$caseData.id}" readOnly="readOnly" maxlength="50">
+        <tr>
+            <th width="12.2%" rowspan="2">道路类型</th>
+            <th width="12.2%"><label><input name="road_type_pid" value="1" type="radio"  checked="true"/> {$case_ext_road.road_type.1.name}</label></th>
+            <td width="25%" colspan="2">
+                <select name="road_type" class="form-control input-sm post-gather post-gather select_road_type select_road_type_1">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_road.road_type.1.value" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+            <th width="25%" colspan="2">公路行政等级</th>
+            <td width="25%" colspan="2">
+                <select name="highway_level" class="form-control input-sm post-gather post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_road.highway_level" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="12.2%"><label><input name="road_type_pid" value="2" type="radio"/> {$case_ext_road.road_type.2.name}</label></th>
+            <td width="25%" colspan="2">
+                <select name="road_type" class="form-control input-sm post-gather post-gather  select_road_type select_road_type_2">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_road.road_type.2.value" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+            <th width="25%" colspan="2">地形</th>
+            <td width="25%" colspan="2">
+                <select name="terrain" class="form-control input-sm post-gather post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_road.terrain" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+        </tr>
+        <!--  -->
+
+
+        <!--  -->
+        <tr>
+
+            <th width="12.5%" rowspan="2">路口路段类型</th>
+            <th width="12.5%" ><label><input name="intersection_type_pid" value="1" type="radio" checked="true"/> {$case_ext_road.intersection_type.1.name}</label></th>
+            <td width="25%" colspan="2">
+                <select name="intersection_type" class="form-control input-sm post-gather post-gather  select_intersection_type select_intersection_type_1">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_road.intersection_type.1.value" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+            <th width="25%" colspan="2">道路物理隔离</th>
+            <td width="25%" colspan="2">
+                <select name="physical_isolation" class="form-control input-sm post-gather post-gather ">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_road.physical_isolation" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+
+            <th width="12.5%" ><label><input name="intersection_type_pid" value="2" type="radio"/> {$case_ext_road.intersection_type.2.name}</label></th>
+            <td width="25%" colspan="2">
+                <select name="intersection_type" class="form-control input-sm post-gather post-gather select_intersection_type select_intersection_type_2">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_road.intersection_type.2.value" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+            <th width="25%" colspan="2">中央隔离设施</th>
+            <td width="25%" colspan="2">
+                <select name="isolation_facility" class="form-control input-sm post-gather post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_road.isolation_facility" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+
+        </tr>
+        <!--  -->
+
+
+        <!--  -->
+        <tr>
+            <th width="12.5%">道路线形</th>
+            <th width="12.5%">平面线形</th>
+            <td width="25%" colspan="2">
+                <select name="plane_alignment" class="form-control input-sm post-gather post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_road.plane_alignment" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+            <th width="12.5%">纵断面线形</th>
+            <td width="12.5%">
+                <select name="longitudinal_section" class="form-control input-sm post-gather post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_road.longitudinal_section" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+            <th width="12.5%">特殊</th>
+            <td width="12.5%">
+                <select name="special" class="form-control input-sm post-gather post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_road.special" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+        </tr>
+        <!--  -->
+
+        <!--  -->
+        <tr>
+            <th width="25%" colspan="2">路侧防护设施</th>
+            <td width="75%" colspan="6">
+                <select name="roadside_protection" class="form-control input-sm post-gather post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_road.roadside_protection" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="12.5%" rowspan="4">道路参数</th>
+            <th width="12.5%">行车道数（单向）</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="lanes1" placeholder="(条)" maxlength="255">
+            </td>
+            <th width="25%" colspan="2">行车道数（双向）</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="lanes2" placeholder="(条)" maxlength="255">
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="12.5%">行车道宽度</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="lane_width" placeholder="(m)" maxlength="255">
+            </td>
+            <th width="12.5%">非机动车道宽度</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="unvehicle_width" placeholder="(m)" maxlength="255">
+            </td>
+            <th width="12.5%">应急车道宽度</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="elane_width" placeholder="(m)" maxlength="255">
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="12.5%">路面宽度</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="road_width" placeholder="(m)" maxlength="255">
+            </td>
+            <th width="12.5%">曲率半径</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="radius_curvature" placeholder="" maxlength="255">
+            </td>
+            <th width="12.5%">路面附着系数</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="adhesion_coefficient" placeholder="" maxlength="255">
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="12.5%">纵向坡度</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="lon_gradien" placeholder="(%)" maxlength="255">
+            </td>
+            <th width="12.5%">横向坡度</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="lat_gradien" placeholder="(%)" maxlength="255">
+            </td>
+            <th width="12.5%">交通流量</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="traffic_flow" placeholder="" maxlength="255">
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="25%" colspan="2">路面材料</th>
+            <td width="25%" colspan="2">
+                <select name="pavement_material" class="form-control input-sm post-gather post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_road.pavement_material" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+            <th width="25%" colspan="2">路侧环境</th>
+            <td width="25%" colspan="2">
+                <select name="roadside_environment" class="form-control input-sm post-gather post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_road.roadside_environment" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="12.5%">道路限速值</th>
+            <th width="12.5%">小客车</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="car" placeholder="(km/h)" maxlength="255">
+
+            </td>
+            <th width="12.5%">大客车</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="bus" placeholder="(km/h)" maxlength="255">
+
+            </td>
+            <th width="12.5%">其他车辆</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="other_vehicles" placeholder="(km/h)" maxlength="255">
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="25%" colspan="2">道路限速标志设置情况</th>
+            <td width="25%" colspan="2">
+                <select name="speed_limit" class="form-control input-sm post-gather post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_road.speed_limit" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+            <th width="25%" colspan="2">危险认知速度</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="dangerous_cognitive" placeholder="(km/h)" maxlength="255">
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="12.5%" rowspan="4">桥梁情况</th>
+            <th width="12.5%">桥梁类型</th>
+            <td width="75%" colspan="6">
+                <select name="bridge_type" class="form-control input-sm post-gather post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_road.bridge_type" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="12.5%">桥梁长度</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="bridge_length" placeholder="(m)" maxlength="255">
+            </td>
+            <th width="12.5%">桥面宽度</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="bridge_width" placeholder="(m)" maxlength="255">
+
+            </td>
+            <th width="12.5%">桥栏杆高度</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="bridge_height" placeholder="(m)" maxlength="255">
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="12.5%">人行道高度</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="sidewalk_height" placeholder="(m)" maxlength="255">
+            </td>
+            <th width="12.5%">至水面距离</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="distance_wsurface" placeholder="(m)" maxlength="255">
+            </td>
+            <th width="12.5%">水深度</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="water_depth" placeholder="(m)" maxlength="255">
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="12.5%">事故发生点所处位置</th>
+            <td width="75%" colspan="6">
+                <select name="baccident_point" class="form-control input-sm post-gather post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_road.baccident_point" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="12.5%" rowspan="3">隧道情况</th>
+            <th width="12.5%">隧道长度</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="tunnel_length" placeholder="(m)" maxlength="255">
+            </td>
+            <th width="25%" colspan="2">净空高度</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="headroom" placeholder="(m)" maxlength="255">
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="12.5%">照明条件</th>
+            <td width="25%" colspan="2">
+                <select name="lighting_conditions" class="form-control input-sm post-gather post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_road.lighting_conditions" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+            <th width="25%" colspan="2">诱导标志</th>
+            <td width="25%" colspan="2">
+                <select name="induced_marker" class="form-control input-sm post-gather post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_road.induced_marker" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="12.5%">事故发生点所处位置</th>
+            <td width="75%" colspan="6">
+                <select name="taccident_point" class="form-control input-sm post-gather post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_road.taccident_point" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="25%" colspan="2">最近一次在事发路段执勤与事故发生间隔</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="lacc_interval" placeholder="(h)" maxlength="255">
+            </td>
+            <th width="25%" colspan="2">道路安全属性</th>
+            <td width="25%" colspan="2">
+                <select name="rsafety_attribute" class="form-control input-sm post-gather post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_road.rsafety_attribute" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="25%" colspan="2">道路安全隐患类型</th>
+            <td width="75%" colspan="6">
+                <table class=" hidden_danger_box_hidden" style="display:none;" data-rank="default_rank">
+                    <tr class="hidden_danger" data-rank="default_rank">
+                        <td width="30%">
+                            <select name="hidden_danger_pid" class="form-control input-sm post-gather post-gather hidden_danger_pid" data-rank="default_rank">
+                                <option value="">请选择</option>
+                                <foreach name="case_ext_road.hidden_danger_pid" item="vo">
+                                    <option value="{$key}">{$vo.name}</option>
+                                </foreach>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="hidden_danger_id" class="form-control input-sm post-gather post-gather hidden_danger_id" data-rank="default_rank">
+                                <option value="">请选择</option>
+                            </select>
+                        </td>
+                        <td width="120">&nbsp;
+                            <button type="button" class="btn btn-primary btn-sm danger_add" data-rank="default_rank"> 添加</button>
+                            <button type="button" class="btn btn-warning btn-sm danger_delete" data-rank="default_rank"> 删除</button>
+                        </td>
+                    </tr>
+                </table>
+                <table class=" hidden_danger_box" style="width:100%;">
+                    <tr class="hidden_danger" data-rank="1">
+                        <td width="30%">
+                            <select name="hidden_danger_pid" class="form-control input-sm post-gather post-gather hidden_danger_pid" data-rank="1">
+                                <option value="">请选择</option>
+                                <foreach name="case_ext_road.hidden_danger_pid" item="vo">
+                                    <option value="{$key}">{$vo.name}</option>
+                                </foreach>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="hidden_danger_id" class="form-control input-sm post-gather post-gather hidden_danger_id" data-rank="1">
+                                <option value="">请选择</option>
+                            </select>
+                        </td>
+                        <td width="120">&nbsp;
+                            <button type="button" class="btn btn-primary btn-sm danger_add" data-rank="1"> 添加</button>
+                            <button type="button" class="btn btn-warning btn-sm " data-rank="1" disabled="disabled"> 删除</button>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="25%" colspan="2">道路安全隐患督办等级</th>
+            <td width="75%" colspan="6">
+                <select name="supervision_level" class="form-control input-sm post-gather post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_road.supervision_level" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+        </tr>
+        <!--  -->
+    </table>
+    <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-saved"></span> 提交</button>
+    <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+</div>
+

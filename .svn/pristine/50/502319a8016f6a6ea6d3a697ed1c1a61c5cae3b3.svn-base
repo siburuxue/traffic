@@ -1,0 +1,28 @@
+<div class="table-responsive">
+    <table class="table table-bordered table-condensed table-form">
+        <tr>
+            <th width="15%">字段名</th>
+            <td width="35%">
+                <input type="text" class="form-control input-sm search-auto" name="condition_name" maxlength="255">
+            </td>
+            <th width="15%">中文名</th>
+            <td>
+                <input type="text" class="form-control input-sm search-auto" name="condition_title" maxlength="255">
+            </td>
+        </tr>
+        <tr>
+            <th>是否可编辑</th>
+            <td colspan="3">
+                <select name="condition_is_custom" class="form-control input-sm search-auto">
+                    <option value="">请选择</option>
+                    <option value="1">是</option>
+                    <option value="0">否</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+</div>
+<div style="margin-bottom:20px;">
+    <button type="button" class="btn btn-primary" id="search-submit"><span class="glyphicon glyphicon-search"></span> 查询</button>
+    <button type="button" class="btn btn-warning" id="search-reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+</div>

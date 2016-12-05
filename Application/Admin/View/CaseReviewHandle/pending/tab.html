@@ -1,0 +1,8 @@
+<ul class="nav nav-tabs nav-custom">
+	<if condition="is_power($myPower,'review_pending')">
+		<li class="active"><a href="javascript:;">待办工作</a></li>
+	</if>
+	<if condition="is_power($myPower,'review_completed')">
+		<li><a href="{:U('CaseReviewHandle/completed')}">已完成工作</a></li>
+	</if>
+</ul>

@@ -1,0 +1,9 @@
+<div style="width:100%;height:10px;float:left;"></div>
+<ul class="nav nav-tabs nav-custom">
+	<if condition="is_power($myPower,'checkup_pending')">
+		<li><a href="{:U('index')}">待办工作</a></li>
+	</if>
+	<if condition="is_power($myPower,'checkup_completed')">
+		<li class="active"><a href="{:U('finish')}">已完成工作</a></li>
+	</if>
+</ul>

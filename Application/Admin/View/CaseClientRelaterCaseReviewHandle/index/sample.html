@@ -1,0 +1,72 @@
+<div id="table-sample" style="display:none;">
+    <div class="table-responsive relater-item">
+        <table class="table table-bordered table-condensed table-form">
+            <tr>
+                <th rowspan="4" width="30">
+                    <input type="checkbox" name="selectone" value="0">
+                </th>
+                <th width="15%">姓名</th>
+                <td>
+                    <input type="text" class="form-control input-sm auto-gather" name="name" maxlength="255">
+                </td>
+                <th width="15%">性别</th>
+                <td width="35%">
+                    <select name="sex" class="form-control input-sm auto-gather">
+                        <option value="">请选择</option>
+                        <option value="1">男</option>
+                        <option value="0">女</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>年龄</th>
+                <td>
+                    <input type="text" class="form-control input-sm auto-gather" name="age" maxlength="10">
+                </td>
+                <th>身份证号</th>
+                <td>
+                    <input type="text" class="form-control input-sm auto-gather" name="idno" maxlength="18">
+                </td>
+            </tr>
+            <tr>
+                <th>联系方式</th>
+                <td>
+                    <input type="text" class="form-control input-sm auto-gather" name="tel" maxlength="255">
+                </td>
+                <th>现住址或单位</th>
+                <td>
+                    <input type="text" class="form-control input-sm auto-gather" name="address" maxlength="255">
+                </td>
+            </tr>
+            <tr>
+                <th>与当事人关系</th>
+                <td>
+                    <select name="relation" class="form-control input-sm">
+                        <option value="">请选择</option>
+                        <volist name="clientRelation" id="vo">
+                            <option value="{$key}">{$vo}</option>
+                        </volist>
+                    </select>
+                </td>
+                <th>权利义务告知</th>
+                <td>
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <select name="condition_traffic_type" class="form-control input-sm">
+                                    <option value="">请选择</option>
+                                    <volist name="rightsObligations" id="vo">
+                                        <option value="{$key}">{$vo}</option>
+                                    </volist>
+                                </select>
+                            </td>
+                            <td width="51" class="text-right">
+                                <button type="button" class="btn btn-info btn-sm">告知</button>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+<!-- 列表面板 -->
+<div class="panel panel-default">
+    <!-- 面板头 -->
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-6"><span class="block-title">受理复核</span></div>
+            <div class="col-xs-6 text-right">
+                <a href="{:U('smsAccept?case_review_id='.$caseReview['id'])}" class="btn btn-primary btn-sm js-open js-end-refresh"><span class="glyphicon glyphicon-phone"></span> 短信通知</a>
+                <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+            </div>
+        </div>
+    </div>
+    <!-- 面板主体 -->
+    <div class="panel-body">
+        <table class="table table-bordered table-condensed table-form">
+            <tr>
+                <th width="15%">当事人</th>
+                <td>
+                    <input type="hidden" name="case_client_id" value="" class="auto-gather">
+                    <input type="text" name="case_client_name" value="" class="form-control input-sm auto-gather" readonly="readonly">
+                </td>
+            </tr>
+            <tr>
+                <th>申请人</th>
+                <td>
+                    <select name="case_client_relater_id" class="form-control input-sm auto-gather">
+                        <option value="">请选择</option>
+                    </select>
+                    <input type="hidden" name="case_client_relater_name" value="" class="auto-gather">
+                </td>
+            </tr>
+            <tr>
+                <th>与当事人关系</th>
+                <td>
+                    <input type="text" name="relation" value="" class="form-control input-sm auto-gather" readonly="readonly">
+                </td>
+            </tr>
+            <tr>
+                <th>联系方式</th>
+                <td>
+                    <input type="text" name="contact" value="" class="form-control input-sm auto-gather" readonly="readonly">
+                </td>
+            </tr>
+            <tr>
+                <th>事故名称</th>
+                <td>
+                    <input type="text" class="form-control input-sm auto-gather" name="accident_name" maxlength="255">
+                </td>
+            </tr>
+        </table>
+        <!-- 按钮 -->
+        <if condition="$caseReview['check_status'] neq 0 or $caseReview['stop_status'] neq 0">
+            <button type="button" disabled="disabled" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> 保存</button>
+            <else/>
+            <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-floppy-disk"></span> 保存</button>
+        </if>
+        <button type="button" class="btn btn-primary" id="print"><span class="glyphicon glyphicon-print"></span> 打印</button>
+        <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+    </div>
+</div>
+<!-- 表格 结束 -->

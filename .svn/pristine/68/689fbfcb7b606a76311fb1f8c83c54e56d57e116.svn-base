@@ -1,0 +1,11 @@
+<table class="table table-bordered table-condensed table-form">
+    <tbody>
+        <tr>
+            <th width="15%"><span class="text-danger">*</span> 人员伤亡情况</th>
+            <td>
+                <textarea name="casualties" class="form-control post-gather" style="resize:none;width:100%;height:100px;">{$info.casualties}</textarea>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<hr>

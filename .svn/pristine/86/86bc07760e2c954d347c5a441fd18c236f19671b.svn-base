@@ -1,0 +1,14 @@
+<!-- 面板 -->
+<div class="panel panel-primary">
+    <!-- 面板标题 -->
+    <div class="panel-heading">受案信息</div>
+    <!-- 面板内容 -->
+    <div class="list-group" style="height:204px;overflow:hidden;">
+        <a href="{:U('FastCaseAlarmHandle/index?case_id='.$info['id'])}" class="list-group-item list-group-item-info js-open js-end-refresh"><span class="glyphicon glyphicon-new-window"></span> 受案登记</a>
+        <div>
+			<volist name="alarmList" id="vo">
+				<a href="{:U('FastCaseAlarmHandle/detail?case_id='.$info['id'].'&id='.$vo['alarm_id'])}" class="js-open js-end-refresh list-group-item">报警人姓名：{$vo.alarm_alarm_name} 报警时间：{$vo.alarm_alarm_time|date='Ymd',###}</a>
+			</volist>
+        </div>
+    </div>
+</div>

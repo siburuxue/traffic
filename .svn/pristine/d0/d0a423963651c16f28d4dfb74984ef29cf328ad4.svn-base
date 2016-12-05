@@ -1,0 +1,140 @@
+<extend name="Common/base" />
+<block name="title">检验鉴定</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 面板 -->
+        <div class="panel panel-default form-inline1">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">检验鉴定</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <!-- stepstart-->
+                <eq name="caseCheckupReviewData.status" value="">
+                    <include file="ReCaseCheckup/applyStepThree/partOneForbiddenAll" />
+                    <else/>
+                    <include file="ReCaseCheckup/applyStepThree/partOneCheckInfo" />
+                </eq>
+                <eq name="caseCheckupEntrustData.is_submit" value="0">
+                    <eq name="caseCheckupEntrustData.is_finish" value="0">
+                        <include file="ReCaseCheckup/applyStepThree/partTwoAgain" />
+                        <else/>
+                        <include file="ReCaseCheckup/applyStepThree/partTwo" />
+                    </eq>
+                    <else/>
+                    <include file="ReCaseCheckup/applyStepThree/partTwo" />
+                </eq>
+            </div>
+        </div>
+        <include file="ReCaseCheckup/applyStepThree/photoUpload" />
+        <!-- 步骤three -->
+        <if condition="($caseCheckupEntrustData.is_submit eq '1') or ($caseCheckupEntrustData.is_finish eq '1')">
+            <if condition="$caseCheckupEntrustData.status neq '0'">
+                <empty name="caseCheckupReportData">
+                    <include file="ReCaseCheckup/applyStepThree/partThree" />
+                <else/>
+                    <include file="ReCaseCheckup/applyStepThree/partThreeForbidden" />
+                </empty>
+            <else/>
+                <eq name="caseCheckupEntrustData.is_finish" value="1">
+                    <empty name="caseCheckupReportData">
+                        <include file="ReCaseCheckup/applyStepThree/partThree" />
+                    <else/>
+                        <include file="ReCaseCheckup/applyStepThree/partThreeForbidden" />
+                    </empty>
+                <else/>
+                    <include file="ReCaseCheckup/applyStepThree/partThreeForbidden" />
+                </eq>
+            </if>
+        <else/>
+
+            <include file="ReCaseCheckup/applyStepThree/partThreeForbidden" />
+        </if>
+        <!-- 步骤four -->
+        <include file="ReCaseCheckup/applyStepThree/partFour" />
+        <!-- 步骤five -->
+        <include file="ReCaseCheckup/applyStepThree/partFive" />
+        <!-- steps end-->
+        <input id="is_submit" type="hidden" value="{$caseCheckupEntrustData.is_submit}">
+        <input id="is_finish" type="hidden" value="{$caseCheckupEntrustData.is_finish}">
+        <input name="case_id" id="case_id" type="hidden" value="{$caseData.id}">
+        <input name="case_checkup_id" id="case_checkup_id" type="hidden" value="{$caseCheckupData['id']}">
+        <input name="cate" id="photo_cate" type="hidden" value="39">
+    </div>
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.update = "{:U('applyStepThreeUpdate')}";
+    url.getTypeChild = "{:U('getTypeChild')}";
+    url.getClient = "{:U('getClient')}";
+    url.getOrgChild = "{:U('getOrgChild')}";
+    url.getClientInfo = "{:U('getClientInfo')}";
+    url.entrustInsert = "{:U('entrustInsert')}";
+    url.entrustSetSubmitFinish = "{:U('entrustSetSubmitFinish')}";
+    url.photoList = "{:U('photoList')}";
+    url.delete = "{:U('CasePhoto/delete')}";
+    url.reportInsert = "{:U('reportInsert')}";
+    url.msgInsert = "{:U('msgInsert')}";
+    url.getReportDetail = "{:U('getReportDetail')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <div class="container-fluid" id="approval-box" style="display:none;margin-top:20px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">短信告知</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <input name="case_id" class="post-gather-msg" type="hidden" value="{$caseData.id}">
+                <input name="case_checkup_id" class="post-gather-msg" type="hidden" value="{$caseCheckupData['id']}">
+                <input name="case_client_id" class="post-gather-msg" type="hidden" value="{$caseCheckupData['case_client_id']}">
+                <table class="table table-bordered table-condensed table-custom">
+                    <tr>
+                        <th width="20%">选择当事人</th>
+                        <td>
+                            <foreach name="allName" item="vo">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="case_client_name" class="allselect" value="{$vo}、">{$vo}</label>&nbsp;&nbsp;&nbsp;
+                                </div>
+                            </foreach>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="20%">告知文件类型</th>
+                        <td>
+                            <select name="msg_type" class="form-control input-sm post-gather-msg">
+                                <option value="43" selecte="selected">检验鉴定结果告知书</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="20%">告知内容</th>
+                        <td>
+                            <textarea class="form-control input-sm post-gather-msg" name="msg_content" maxlength="16" style="width:100%;height:80px;outline:none;resize:none;"></textarea>
+                        </td>
+                    </tr>
+                </table>
+                <div style="margin:auto;width:100%;text-align:left;">
+                    <button type="button" class="btn btn-primary" id="approval-submit"><span class="glyphicon glyphicon-send"></span> 发送短信</button>
+                    <button type="button" class="btn btn-danger" id="approval-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <import file="js.ReCaseCheckup.applyStepThree?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

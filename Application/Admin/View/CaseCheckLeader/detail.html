@@ -1,0 +1,46 @@
+<extend name="Common/base" />
+<block name="title">案件办理</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 案件信息 -->
+        <include file="CaseCheckLeader/detail/case" />
+        <!-- 步骤按钮 -->
+        <include file="CaseCheckLeader/detail/step" />
+        <!-- 布局 -->
+        <div class="row">
+            <div class="col-xs-4">
+                <include file="CaseCheckLeader/detail/accept" />
+                <include file="CaseCheckLeader/detail/record" />
+                <include file="CaseCheckLeader/detail/cognizance" />
+                <include file="CaseCheckLeader/detail/mediate" />
+            </div>
+            <div class="col-xs-4">
+                <include file="CaseCheckLeader/detail/survey" />
+                <include file="CaseCheckLeader/detail/checkup" />
+                <include file="CaseCheckLeader/detail/punish" />
+                <include file="CaseCheckLeader/detail/catalog" />
+            </div>
+            <div class="col-xs-4">
+                <include file="CaseCheckLeader/detail/client" />
+                <include file="CaseCheckLeader/detail/lawDoc" />
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="case_id" value="{$info.id}">
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.getCaseInfo = "{:U('getCaseInfo')}";
+    url.alarmTopN = "{:U('alarmTopN')}";
+    url.getAcceptInfo = "{:U('getAcceptInfo')}";
+    url.recordTopN = "{:U('recordTopN')}";
+    </script>
+</block>
+<block name="foot.ext">
+
+    <import file="js.CaseCheckLeader.detail?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

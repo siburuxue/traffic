@@ -1,0 +1,31 @@
+<div class="panel panel-default short-box" style="overflow:auto;margin-bottom:0;" id="{$domId}">
+    <div class="list-group">
+        <volist name="template" id="vo">
+            <div class="list-group-item" data-templateid="{$vo.id}" <volist name="param" id="co">data-{$key}="{$co}" </volist>>{$vo.content}</div>
+        </volist>
+    </div>
+</div>
+<script type="text/javascript">
+$(function() {
+    url.getContent = "{:U('ParsePhraseTemplate/getContent')}";
+    var domId = '#{$domId}';
+    var domName = '{$targetDom}';
+
+    $(domId).height($(domName).height() + 12);
+
+    $(domId).find('.list-group-item').on('dblclick', function() {
+        var the = $(this);
+        if (the.closest('.short-box').hasClass('disabled')) {
+            return false;
+        }
+        var data = the.data();
+        $.post(url.getContent, data, function(msg) {
+            if (msg.status == 1) {
+                $(domName).insertContent(msg.info);
+            } else {
+                layer.alert(msg.info);
+            }
+        });
+    });
+});
+</script>

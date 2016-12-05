@@ -1,0 +1,83 @@
+<extend name="Common/base" />
+<block name="title">查看集体研究</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 面板 -->
+        <div class="panel panel-default">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">查看集体研究</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed table-form">
+                    <tr>
+                        <th width="15%">事故地区</th>
+                        <td width="35%">
+                            <input type="text" class="form-control input-sm" value="{$info.accident_area}" readonly="readonly">
+                        </td>
+                        <th width="15%">研究时间</th>
+                        <td>
+                            <input type="text" class="form-control input-sm" value="{$info.discuss_time|date='Y-m-d H:i',###}" readonly="readonly">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>事故时间</th>
+                        <td>
+                            <input type="text" class="form-control input-sm" value="{$info.accident_time|date='Y-m-d H:i',###}" readonly="readonly">
+                        </td>
+                        <th>事故地点</th>
+                        <td>
+                            <input type="text" class="form-control input-sm" value="{$info.accident_place}" readonly="readonly">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>参研人员</th>
+                        <td colspan="3">
+                            <input type="text" class="form-control input-sm" value="{$info.member|implode=',',###}" readonly="readonly">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>汇报人</th>
+                        <td>
+                            <input type="text" class="form-control input-sm" value="{$info.reporter_user_name}" readonly="readonly">
+                        </td>
+                        <th>记录人</th>
+                        <td>
+                            <input type="text" class="form-control input-sm" name="recorder" value="{$info.recorder_user_name}" readonly="readonly">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>简要案情及原因</th>
+                        <td colspan="3">
+                            <textarea class="form-control" style="height:120px;resize:none;" readonly="readonly">{$info.case_summary}</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>研究意见（个人意见）</th>
+                        <td colspan="3">
+                            <textarea class="form-control" style="height:120px;resize:none;" readonly="readonly">{$info.research_opinion}</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>结论</th>
+                        <td colspan="3">
+                            <textarea class="form-control" style="height:120px;resize:none;" readonly="readonly">{$info.result}</textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            
+        </div>
+        {:W('CasePhoto/index', array('集体研究记录列表',$info['case_id'],55,$info['id']))}
+    </div>
+</block>

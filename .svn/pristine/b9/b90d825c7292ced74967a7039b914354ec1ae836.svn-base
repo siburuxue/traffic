@@ -1,0 +1,186 @@
+<extend name="Common/base" />
+<block name="title">新增询问笔录</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 基础信息 -->
+        <div class="panel panel-default form-inline1">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">新增询问笔录</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed table-custom">
+                    <caption style="border: 1px solid #dddddd;">
+                        <label style="margin-left:10px;">请选择</label>
+                        <label style="margin-left:20px;"><input type="radio" name="type" value="0" checked>询问笔录</label>
+                        <label style="margin-left:20px;"><input type="radio" name="type" value="1">讯问笔录</label>
+                        <label style="margin-left:20px;"><input type="radio" name="type" value="2">谈话记录</label>
+                    </caption>
+                    <tbody>
+                        <tr>
+                            <th width="15%"><span class="change-span">询问</span>人</th>
+                            <td width="35%">
+                                <input type="text" class="form-control input-sm " name="inquirior" maxlength="255" disabled>
+                            </td>
+                            <th width="15%">工作单位</th>
+                            <td>
+                                <input type="text" class="form-control input-sm post-gather" name="inquirior_workplace" maxlength="255" >
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>记录人</th>
+                            <td>
+                                <input type="text" class="form-control input-sm" name="recorder" maxlength="255" disabled>
+                            </td>
+                            <th>工作单位</th>
+                            <td>
+                                <input type="text" class="form-control input-sm post-gather" name="recorder_workplace" maxlength="255">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><span class="text-danger">*</span>被<span class="change-span">询问</span>人姓名</th>
+                            <td>
+                                <table width="100%">
+                                    <tr>
+                                        <td width="50%">
+                                            <select id="name" name="name" class="form-control input-sm">
+                                                <option value="">请选择</option>
+                                                <volist name="client" id="vo">
+                                                    <option value="client{$vo.id}">{$vo.name}</option>
+                                                </volist>
+                                                <volist name="clientRelater" id="vo">
+                                                    <option value="clientRelater{$vo.id}">{$vo.name}</option>
+                                                </volist>
+                                                <volist name="witness" id="vo">
+                                                    <option value="witness{$vo.id}">{$vo.name}</option>
+                                                </volist>
+                                            </select>
+                                        </td>
+                                        <td><input type="text" class="form-control input-sm post-gather" name="witness_name" maxlength="255"></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <th><span class="text-danger">*</span><span class="change-span">询问</span>次数</th>
+                            <td>
+                                <input type="text" class="form-control input-sm post-gather" name="record_count" maxlength="255">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>性别</th>
+                            <td>
+                                <select name="sex" class="form-control input-sm post-gather info">
+                                    <option value="">请选择</option>
+                                    <option value="1">男</option>
+                                    <option value="0">女</option>
+                                </select>
+                            </td>
+                            <th>出生日期</th>
+                            <td>
+                                <input type="text" class="form-control form-date input-sm post-gather" name="date_of_birth" maxlength="16" readonly="readonly">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>户籍所在地</th>
+                            <td>
+                                <input type="text" class="form-control input-sm post-gather info" name="home_place" maxlength="255">
+                            </td>
+                            <th>现住址</th>
+                            <td>
+                                <input type="text" class="form-control input-sm post-gather info" name="address" maxlength="255">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>被<span class="change-span">询问</span>人身份证件种类及号码</th>
+                            <td>
+                                <table width="100%">
+                                    <tr>
+                                        <td width="50%">
+                                            <select name="id_type" class="form-control input-sm post-gather info">
+                                                <option value="">请选择</option>
+                                                <volist name="certificate_type" id="vo">
+                                                    <option value="{$key}">{$vo}</option>
+                                                </volist>
+                                            </select>
+                                        </td>
+                                        <td><input type="text" class="form-control input-sm post-gather info" name="idno" maxlength="255"></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <th>联系电话</th>
+                            <td>
+                                <input type="text" class="form-control input-sm post-gather info" name="tel" maxlength="255">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><span class="text-danger">*</span>开始时间</th>
+                            <td>
+                                <input type="text" class="form-control form-datetime input-sm post-gather" id="start-time" name="start_time" maxlength="16" readonly="readonly">
+                            </td>
+                            <th><span class="text-danger">*</span>结束时间</th>
+                            <td>
+                                <input type="text" class="form-control input-sm post-gather form-datetime" id="end-time" name="end_time" maxlength="16" readonly="readonly">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><span class="text-danger">*</span><span class="change-span">询问</span>地点</th>
+                            <td colspan="3">
+                                <input type="text" class="form-control input-sm post-gather" name="place" maxlength="255">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-bordered table-condensed table-custom" style="margin-bottom: 0">
+                    <tbody>
+
+                        <tr>
+                            <th  width="50%"><span class="change-span">询问</span>短语</th>
+                            <th ><span class="change-span">询问</span>内容</th>
+                        </tr>
+                        <tr>
+                            <td >
+                                <php>
+                                    $data = array(); 
+                                    W('Short/index', array(8, 'textarea[name="content"]', $data));
+                                </php>
+                            </td>
+                            <td >
+                                <textarea class="post-gather form-control" name="content"></textarea>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-left" style="margin: 0 0 15px 16px">
+                <input type="hidden" class="post-gather" name='case_id' value="{$case['id']}">
+                <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-floppy-disk"></span> 保存</button>
+                <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+            </div>
+        </div>
+        <!-- 按钮 -->
+
+    </div>
+</block>
+<block name="head.ext">
+    <style>
+        textarea{resize: none;width:100%!important;height:240px!important;;}
+    </style>
+    <script type="text/javascript">
+        // 定义URL地址
+        url.update = "{:U('insert')}";
+        url.info = "{:U('info')}";
+        var case_id = "{$case['id']}";
+    </script>
+</block>
+<block name="foot.ext">
+
+    <import file="js.CaseRecordHandle.add?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

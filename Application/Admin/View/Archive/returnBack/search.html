@@ -1,0 +1,47 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-custom">
+                <tr>
+                    <th width="15%">事故编号</th>
+                    <td width="35%">
+                        <input type="text" class="form-control input-sm search-auto" name="condition_code" maxlength="50">
+                    </td>
+                    <th width="15%">事故时间</th>
+                    <td class="form-inline">
+                        <table width="100%">
+                            <tr>
+                                <td width="48%">
+                                    <input type="text" class="form-control input-sm search-auto form-datetime" id="start-time" name="condition_start_time" maxlength="16" readonly="readonly" style="min-width:auto;width:100%;">
+                                </td>
+                                <td width="4%" align="center"> ~
+                                </td>
+                                <td width="48%">
+                                    <input type="text" class="form-control input-sm search-auto form-datetime" id="end-time" name="condition_end_time" maxlength="16" readonly="readonly" style="min-width:auto;width:100%;">
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <th>事故地点</th>
+                    <td>
+                        <input type="text" class="form-control input-sm search-auto" name="condition_accident_place" maxlength="50">
+                    </td>
+                    <th>当事人</th>
+                    <td>
+                        <input type="text" class="form-control input-sm search-auto" name="condition_case_client_name" maxlength="50">
+                    </td>
+                </tr>
+                <tr>
+                    <th>当事人证件号码</th>
+                    <td colspan="3">
+                        <input type="text" class="form-control input-sm search-auto" name="condition_case_client_idno" maxlength="50">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <button type="button" class="btn btn-primary" id="search-submit"><span class="glyphicon glyphicon-search"></span> 查询</button>
+        <button type="button" class="btn btn-warning search-reset-jimmy"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+    </div>
+</div>

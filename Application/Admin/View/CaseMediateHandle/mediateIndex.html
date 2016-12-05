@@ -1,0 +1,67 @@
+<extend name="Common/base" />
+<block name="title">调解通知书</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <div id="user-list" class="row">
+            <div class="col-xs-3" id="client-list">
+                <volist name="mediateClients" id="vo">
+                    <div class="panel panel-primary panel-alarm client-list-head" id="{$vo.id}">
+                        <div class="panel-heading" style="cursor: pointer">{$vo.name}</div>
+                        <ul class="list-group collapse" data-parent="#client-list">
+                            <li class="list-group-item">交通方式：{$vo.traffic_type}</li>
+                            <li class="list-group-item">伤害程度：{$vo.hurt_type}</li>
+                            <li class="list-group-item">车牌：{$vo.car_no}</li>
+                        </ul>
+                    </div>
+                </volist>
+            </div>
+            <div class="col-xs-9">
+                <!-- 列表面板 -->
+                <div class="panel panel-default">
+                    <!-- 面板头 -->
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-6"><span class="block-title">调解通知书</span></div>
+                            <div class="col-xs-6 text-right">
+                                <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 面板主体 -->
+                    <div class="panel-body">
+                        <include file="CaseMediateHandle/mediate/base" />
+                    </div>
+                    <div class="text-left" style="margin:0 0 15px 16px">
+                        <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-floppy-disk"></span> 保存</button>
+                        <button type="button" class="btn btn-primary" id="print"><span class="glyphicon glyphicon-print"></span> 打印</button>
+                        <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <input type="hidden" id="case_id" name="case_id" class="post-gather" value="{$case['id']}">
+        <input type="hidden" id="id" name="id" class="post-gather" value="">
+        <input type="hidden" id="client_id" name="client_id" class="post-gather" value="">
+        <input type="hidden" id="userId" name="userId" class="post-gather" value="{$userId}">
+        <input type="hidden" id="case_mediate_accept_id" name="case_mediate_accept_id" class="post-gather" value="{$caseMediateAcceptId}">
+        {:W('CasePhoto/index', array('调解通知书',$case['id'],56,$caseMediateAcceptId))}
+    </div>
+    <!-- 页面主体 结束 -->
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+        // 定义URL地址
+        url.photoList = "{:U('photoList')}";
+        url.saveNotice = "{:U('saveNotice')}";
+        url.delete = "{:U('CasePhoto/delete')}";
+        url.getClientInfo = "{:U('getClientInfo')}";
+        url.download = "{:U('Common/download')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CaseMediateHandle.mediateIndex?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

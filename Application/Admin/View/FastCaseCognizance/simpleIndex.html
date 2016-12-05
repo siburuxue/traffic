@@ -1,0 +1,88 @@
+<extend name="Common/base" />
+<block name="title">简易事故认定</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 基础信息 -->
+        <div class="panel panel-default form-inline1">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">简易事故认定</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <include file="FastCaseCognizance/simple/base" />
+            </div>
+            <div class="text-left" style="margin:0 0 15px 16px">
+                <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-floppy-disk"></span> 保存</button>
+                <button type="button" class="btn btn-primary" id="print" <if condition="$id eq ''">disabled</if> ><span class="glyphicon glyphicon-print"></span> 打印简易事故认定书</button>
+                <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+            </div>
+        </div>
+        <!-- 按钮 -->
+        <input type="hidden" id="case_id" name="case_id" class="post-gather" value="{$case['id']}">
+        <input type="hidden" id="id" name="case_cognizance_id" class="post-gather" value="{$simpleInfo['id']}">
+        <if condition="count($rejectList) neq 0">
+            <div class="panel panel-default form-inline" style="margin-top: 20px;">
+                <!-- 面板标题 -->
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-6"><span class="block-title">历史简易事故认定</span></div>
+                    </div>
+                </div>
+                <!-- 面板内容 -->
+                <div class="panel-body">
+
+                    <include file="FastCaseCognizance/simple/historyList" />
+                </div>
+            </div>
+        </if>
+        <div class="panel panel-default form-inline" style="margin-top: 20px;">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">简易事故认定文件</span></div>
+                    <div class="col-xs-6 text-right">
+                        <if condition="$simpleInfo['id'] neq '' or $simpleInfo['is_back'] eq 1">
+                            <a href="{:U('CasePhoto/index?case_id='.$case['id'].'&cate=14&ext_ida='.$simpleInfo['id'])}" class="btn btn-primary btn-sm js-open js-end-refresh" id="upload"><span class="glyphicon glyphicon-upload"></span> 上传</a>
+                            <button type="button" class="btn btn-primary btn-sm" id="download"><span class="glyphicon glyphicon-download"></span> 下载</button>
+                            <a href="javascript:;" class="btn btn-warning btn-sm delete js-confirm" id="delete"><span class="glyphicon glyphicon-trash"></span> 删除</a>
+                        </if>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <include file="FastCaseCognizance/simple/photoTable" />
+            </div>
+        </div>
+    </div>
+</block>
+<block name="head.ext">
+    <style>
+        input[type=text]{min-width:auto!important;}
+    </style>
+    <script type="text/javascript">
+        var is_printed = "{$simpleInfo['is_printed']}";
+        var is_back = "{$simpleInfo['is_back']}";
+        // 定义URL地址
+        //保存简易事故认定信息
+        url.save = "{:U('saveSimpleInfo')}";
+        //图片地址
+        url.photoList = "{:U('photoList')}";
+        //删除图片
+        url.delete = "{:U('CasePhoto/delete')}";
+        url.download = "{:U('Common/download')}";
+    </script>
+</block>
+<block name="foot.ext">
+
+    <import file="js.FastCaseCognizance.simpleIndex?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

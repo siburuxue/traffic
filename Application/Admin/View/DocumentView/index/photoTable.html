@@ -1,0 +1,13 @@
+<div class="row" id="photoTable">
+    <volist name="list" id="vo">
+        <div class="col-xs-2">
+            <div class="thumbnail" style="position: relative">
+                <label style="position:absolute;top:5px;left:8px;"><input type="checkbox" value="{$vo.id}"></label>
+                <a href="{$vo.image_path}"  target="_blank">
+                    <img src="{$vo.thumb_path}">
+                </a>
+                <input type="text" class="form-control input-sm number" value="{$vo.train}" style="margin-top: 4px">
+            </div>
+        </div>
+    </volist>
+</div>

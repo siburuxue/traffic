@@ -1,0 +1,73 @@
+<div class="panel panel-default" id="caseInfo">
+    <!-- 面板标题 -->
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-6"><span class="block-title">案件办理</span></div>
+            <div class="col-xs-6 text-right">
+                <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+            </div>
+        </div>
+    </div>
+    <!-- 面板内容 -->
+    <div class="panel-body">
+        <table class="table table-bordered table-condensed table-form">
+            <tr>
+                <th width="10%">事故编号</th>
+                <td width="15%">
+                    <input type="text" name="code" class="form-control input-sm" disabled="disabled">
+                </td>
+                <th width="10%">事故时间</th>
+                <td width="15%">
+                    <input type="text" name="accident_time" class="form-control input-sm" disabled="disabled">
+                </td>
+                <th width="10%">事故地点</th>
+                <td width="15%">
+                    <input type="text" name="accident_place" class="form-control input-sm" disabled="disabled">
+                </td>
+                <th width="10%">事故类型</th>
+                <td>
+                    <select name="accident_type" class="form-control input-sm" disabled="disabled">
+                        <option value="">请选择</option>
+                        <volist name="accidentType" id="vo">
+                            <option value="{$key}">{$vo}</option>
+                        </volist>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">事故后果</th>
+                <th>死亡人数</th>
+                <td>
+                    <input type="text" name="death_num" class="form-control input-sm" disabled="disabled">
+                </td>
+                <th>受伤人数</th>
+                <td>
+                    <input type="text" name="hurt_num" class="form-control input-sm" disabled="disabled">
+                </td>
+                <th>财产损失</th>
+                <td>
+                    <select name="property_loss" class="form-control input-sm" disabled="disabled">
+                        <option value="">请选择</option>
+                        <volist name="propertyLoss" id="vo">
+                            <option value="{$vo.id}">{$vo.name}</option>
+                        </volist>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">事故初查</th>
+                <td colspan="6">
+                    <div class="checkbox">
+                        <volist name="firstCognizance" id="vo">
+                            <label>
+                                <input type="checkbox" name="first_cognizance" value="{$vo.id}" disabled="disabled">{$vo.name}</label>&nbsp;&nbsp;
+                        </volist>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <if condition="is_power($myPower,'case_edit_handle')">
+            <a href="{:U('edit?id='.$info['id'])}" class="btn btn-primary js-open js-end-refresh"><span class="glyphicon glyphicon-pencil"></span> 编辑</a>
+        </if>
+    </div>
+</div>

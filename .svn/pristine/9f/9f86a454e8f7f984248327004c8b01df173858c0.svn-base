@@ -1,0 +1,69 @@
+<extend name="Common/base" />
+<block name="title">历史审批报告列表</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 列表面板 -->
+        <div class="panel panel-default">
+            <!-- 面板头 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">历史审批报告列表</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板主体 -->
+            <div class="panel-body">
+                <!-- 案件ID 用于向分类控制器 CaseCommon 传值 -->
+                <input name="case_id" id="case_id" type="hidden" value="{$Think.get.case_id}">
+                <input name="case_checkup_id" id="case_checkup_id" type="hidden" value="{$Think.get.case_checkup_id}">
+                <input name="cate" id="cate" type="hidden" value="{$cate}">
+                <input name="cate" id="photo_cate" type="hidden" value="{$photoCate}">
+                <!-- 表格 -->
+                <div class="table-responsive" id="table-content"></div>
+                <!-- 分页 -->
+                <include file="Inc/page" />
+                <br/>
+                <!--  <div class="panel panel-default form-inline">
+                   <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-6"><span class="block-title">相关文件</span></div>
+                            <div class="col-xs-6 text-right">
+                                <neq name="Think.get.is_cancel" value="1">
+                                    <a href="{:U('CasePhoto/index?case_id='.$caseCheckupData['case_id'].'&cate='.$photoCate.'&ext_ida='.$caseCheckupData['id'])}" class="btn btn-primary btn-sm js-open js-end-refresh" id="upload"><span class="glyphicon glyphicon-upload"></span> 上传</a>
+                                    <button type="button" class="btn btn-primary btn-sm "><span class="glyphicon glyphicon-download" id="download"></span> 下载</button>
+                                    <a href="javascript:;" class="btn btn-danger btn-sm " id="delete"><span class="glyphicon glyphicon-trash"></span> 删除</a>
+                                </neq>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <include file="CaseCheckCheckup/index/photoTable" />
+                    </div>
+                </div> -->
+
+
+            </div>
+        </div>
+        <!-- 表格 结束 -->
+            {:W('CasePhoto/index', array('相关文件',$caseCheckupData['case_id'],$photoCate,$caseCheckupData['id'],0,0,0))}
+
+        
+    </div>
+    <!-- 页面主体 结束 -->
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.table = "{:U('indexTable')}";
+    url.photoList = "{:U('photoList')}";
+    url.delete = "{:U('CasePhoto/delete')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CaseCheckCheckup.index?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

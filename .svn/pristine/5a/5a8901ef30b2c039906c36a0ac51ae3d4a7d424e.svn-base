@@ -1,0 +1,53 @@
+<extend name="Common/base" />
+<block name="main.html">
+    <div class="container" id="login">
+        <div class="form-signin">
+            <input type="text" id="user_name" id="user_name" placeholder="登录名" autofocus maxlength="20">
+            <input type="password" id="password" placeholder="密码" maxlength="16">
+            <input type="button" id="submit" value="">
+        </div>
+    </div>
+</block>
+<block name="head.ext">
+    <import file="css.sign?" basepath="{$Think.SRC_MODULE_URL}" type='css' />
+</block>
+<block name="foot.ext">
+    <script type="text/javascript">
+    url.loginCheck = "{:U('Sign/loginCheck')}";
+    if (window.top !== window.self) {
+        window.top.location = window.location;
+    }
+    $(function() {
+        var submitStatus = 0;
+        $(document).on('keypress', function(e) {
+            var keycode = (e.keyCode ? e.keyCode : e.which);
+            if (keycode == 13) {
+                $('#submit').trigger('click');
+            }
+        });
+
+        $('#submit').on('click', function() {
+            if (submitStatus == 1) {
+                return false;
+            }
+            submitStatus = 1;
+            $.post(url.loginCheck, {
+                user_name: $('#user_name').val(),
+                password: $('#password').val()
+            }, function(msg) {
+
+                if (msg.status == 1) {
+                    submitStatus = 0;
+                    window.location.href = msg.url;
+                } else {
+                    layer.alert(msg.info, function(index) {
+                        layer.close(index);
+                        submitStatus = 0;
+                    });
+                }
+
+            });
+        });
+    });
+    </script>
+</block>

@@ -1,0 +1,145 @@
+<table class="table table-bordered table-condensed table-custom" style="margin-bottom: 0">
+    <tbody>
+    <tr>
+        <th colspan="2">事故时间</th>
+        <td width="16%">
+            <input type="text" class="form-control input-sm" disabled value="{$caseInfo.accident_time|date='Y-m-d H:i',###}">
+        </td>
+        <th width="16%">事故地点</th>
+        <td>
+            <input type="text" class="form-control input-sm" disabled value="{$caseInfo.accident_place}">
+        </td>
+        <th width="16%">天气</th>
+        <td>
+            <input type="text" class="form-control input-sm" disabled value="{$weather}">
+        </td>
+    </tr>
+    <tr>
+        <th rowspan="3" width="6%">交通事故当事人、车辆、道路的基本情况</th>
+        <th width="10%"><span class="text-danger">*</span>当事人情况</th>
+        <td width="7%">
+            <php>
+                $data = array(
+                'caseid'=>$case['id'],
+                );
+                W('Short/index', array(16, 'textarea[name="base_info_client"]', $data));
+            </php>
+        </td>
+        <td colspan="6">
+            <textarea type="text" class="form-control post-gather" name="base_info_client" style="height:113px;">{$info.base_info_client}</textarea>
+        </td>
+    </tr>
+    <tr>
+        <th><span class="text-danger">*</span>车辆情况</th>
+        <td>
+            <php>
+                $data = array(
+                'caseid'=>$case['id'],
+                );
+                W('Short/index', array(17, 'textarea[name="base_info_car"]', $data));
+            </php>
+        </td>
+        <td colspan="6">
+            <textarea type="text" class="form-control post-gather" name="base_info_car" style="height:113px;">{$info.base_info_car}</textarea>
+        </td>
+    </tr>
+    <tr>
+        <th><span class="text-danger">*</span>道路情况</th>
+        <td>
+            <php>
+                $data = array(
+                'caseid'=>$case['id'],
+                );
+                W('Short/index', array(18, 'textarea[name="base_info_road"]', $data));
+            </php>
+        </td>
+        <td colspan="6">
+            <textarea type="text" class="form-control post-gather" name="base_info_road" style="height:113px;">{$info.base_info_road}</textarea>
+        </td>
+    </tr>
+    <tr>
+        <th colspan="2"><span class="text-danger">*</span>交通事故的基本事实</th>
+        <td>
+            <php>
+                $data = array(
+                'caseid'=>$case['id'],
+                );
+                W('Short/index', array(19, 'textarea[name="fact"]', $data));
+            </php>
+        </td>
+        <td colspan="6">
+            <textarea type="text" class="form-control post-gather" name="fact" style="height:113px;">{$info.fact}</textarea>
+        </td>
+    </tr>
+    <tr>
+        <th colspan="2"><span class="text-danger">*</span>交通事故的证据、检验、鉴定结论</th>
+        <td>
+            <php>
+                $data = array(
+                'caseid'=>$case['id'],
+                );
+                W('Short/index', array(20, 'textarea[name="desc"]', $data));
+            </php>
+        </td>
+        <td colspan="6">
+            <textarea type="text" class="form-control post-gather" name="desc" style="height:113px;">{$info.desc}</textarea>
+        </td>
+    </tr>
+    <tr>
+        <th colspan="2"><span class="text-danger">*</span>道路交通事故成因分析</th>
+        <td>
+            <php>
+                $data = array(
+                'caseid'=>$case['id'],
+                );
+                W('Short/index', array(21, 'textarea[name="reason"]', $data));
+            </php>
+        </td>
+        <td colspan="6">
+            <textarea type="text" class="form-control post-gather" name="reason" style="height:113px;">{$info.reason}</textarea>
+        </td>
+    </tr>
+    <tr>
+        <th colspan="2"><span class="text-danger">*</span>责任认定</th>
+        <td>
+            <php>
+                $data = array(
+                'caseid'=>$case['id'],
+                );
+                W('Short/index', array(22, 'textarea[name="cognizance"]', $data));
+            </php>
+        </td>
+        <td colspan="6">
+            <textarea type="text" class="form-control post-gather" name="cognizance" style="height:113px;">{$info.cognizance}</textarea>
+        </td>
+    </tr>
+    <tr>
+        <th colspan="2"><span class="text-danger">*</span>处罚意见</th>
+        <td>
+            <php>
+                $data = array(
+                'caseid'=>$case['id'],
+                );
+                W('Short/index', array(23, 'textarea[name="punish"]', $data));
+            </php>
+        </td>
+        <td colspan="6">
+            <textarea type="text" class="form-control post-gather" name="punish" style="height:113px;">{$info.punish}</textarea>
+        </td>
+    </tr>
+    <tr>
+        <th colspan="2"><span class="text-danger">*</span>整改措施</th>
+        <td>
+            <php>
+                $data = array(
+                'caseid'=>$case['id'],
+                );
+                W('Short/index', array(24, 'textarea[name="reform"]', $data));
+            </php>
+        </td>
+        <td colspan="6">
+            <textarea type="text" class="form-control post-gather" name="reform" style="height:113px;">{$info.reform}</textarea>
+        </td>
+    </tr>
+    </tbody>
+</table>

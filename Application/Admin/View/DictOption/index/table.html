@@ -1,0 +1,29 @@
+<table class="table table-striped table-bordered table-hover table-condensed table-sheet" id="table">
+    <thead>
+        <tr>
+            <th width="100">排序</th>
+            <th>属性值</th>
+            <th>属性名称</th>
+            <th>快捷代码</th>
+            <th colspan="2">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <volist name="list" id="vo">
+            <tr data-id="{$vo.id}">
+                <td>
+                    <input type="text" name="train" value="{$vo.train}" class="form-control input-sm text-center js-only-number" style="min-width:auto;width:100%;">
+                </td>
+                <td>{$vo.id}</td>
+                <td>{$vo.name|default='-'}</td>
+                <td>{$vo.code|default='-'}</td>
+                <td width="70">
+                    <a href="{:U('edit?id='.$vo['id'])}" class="btn btn-info btn-sm js-open js-end-refresh">编辑</a>
+                </td>
+                <td width="70">
+                    <a href="{:U('delete?id='.$vo['id'])}" class="btn btn-warning btn-sm js-ajax js-confirm js-end-refresh">删除</a>
+                </td>
+            </tr>
+        </volist>
+    </tbody>
+</table>

@@ -1,0 +1,122 @@
+<extend name="Common/base" />
+<block name="title">检验鉴定审批信息</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 基础信息 -->
+        <div class="panel panel-default form-inline1">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">审批</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed table-custom" id="approval">
+                    <tr>
+                        <th style="width:15%">审批意见</th>
+                        <td style="width:15%;">
+                            <select name="status" id="status" class="form-control input-sm post-gather read_only" style="margin-top: 12px;">
+                                <option value="1" <if condition="$checkRs['status'] eq 1">selected</if>>同意</option>
+                                <option value="2" <if condition="$checkRs['status'] eq 2">selected</if>>不同意</option>
+                            </select>
+                        </td>
+                        <td>
+                            <textarea class="form-control post-gather read_only" style="resize: none;width:100%" name="remark" id="remark">{$checkRs.remark}</textarea>
+                        </td>
+                    </tr>
+                </table>
+                <input type="hidden" name="origin_id" id="origin_id" class="post-gather" value="{$checkRs.origin_id}" />
+                <input type="hidden" name="id" id="id" value="{$checkRs.id}" class="post-gather">
+                <input type="hidden" name="cate" id="cate" value="{$checkRs.cate}" class="post-gather">
+                <div>
+                    <a href="javascript:;" class="btn btn-primary read_only"><span class="glyphicon glyphicon-repeat"></span> 案件详细信息</a>
+                    <if condition="$checkRs['cate'] neq 13">
+                        <button type="button" class="btn btn-primary read_only" id="submit" <if condition="$checkRs['level'] neq 2">disabled</if>><span class="glyphicon glyphicon-saved"></span> 确定</button>
+                        <if condition="$checkRs['level'] neq 2">
+                            <button type="button" class="btn btn-primary read_only" id="approval-sure"><span class="glyphicon glyphicon-saved"></span> 确定并提请审批</button>
+                        </if>
+                    <else/>
+                        <button type="button" class="btn btn-primary read_only" id="submit" <if condition="$checkRs['level'] neq 1">disabled</if>><span class="glyphicon glyphicon-saved"></span> 确定</button>
+                        <if condition="$checkRs['level'] neq 1">
+                            <button type="button" class="btn btn-primary read_only" id="approval-sure"><span class="glyphicon glyphicon-saved"></span> 确定并提请审批</button>
+                        </if>
+                    </if>
+                    <a href="{:U('approvalList?id='.$id)}" class="btn btn-primary js-open"><span class="glyphicon glyphicon-print"></span> 审批信息</a>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default form-inline1">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">检验鉴定委托信息</span></div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <!-- 审核内容 -->
+                <include file="CaseCheckLeader/Info/CaseCheckupInfo/reviewInfo" />
+            </div>
+        </div>
+    </div>
+</block>
+<block name="foot.html">
+    <div class="container-fluid" id="approval-box" style="display:none;margin-top:20px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">领导审核</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed table-custom">
+                    <tr>
+                        <th width="15%">审核人</th>
+                        <if condition="count($list) neq '0'">
+                            <td width="85%">
+                                <volist name="list" id="vo">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="radio" name="check" value="{$vo.id}" <if condition="$i eq 1">checked</if>>&nbsp;{$vo.department_name}:{$vo.true_name}&nbsp;&nbsp;&nbsp;
+                        </label>
+                        </div>
+                        </volist>
+                        </td>
+                        <else/>
+                        <td width="85%">尚无有效审核人</td>
+                        </if>
+                    </tr>
+                </table>
+                <button type="button" class="btn btn-primary" id="approval-submit"  ><span class="glyphicon glyphicon-saved"></span> 确定</button>
+                <!-- <button type="button" class="btn btn-warning" id="approval-close"><span class="glyphicon glyphicon-repeat"></span> 关闭</button> -->
+            </div>
+        </div>
+    </div>
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    url.check = "{:U('checkCaseInfo')}";
+    url.checkApprove = "{:U('checkApprove')}";
+    url.getTypeChild = "{:U('CaseCheckup/getTypeChild')}";
+    url.getClient = "{:U('CaseCheckup/getClient')}";
+    url.getOrgChild = "{:U('CaseCheckup/getOrgChild')}";
+    url.getClientInfo = "{:U('CaseCheckup/getClientInfo')}";
+
+
+    var level = "{$checkRs['level']}";
+    var status = "{$checkRs['status']}";
+
+    var type = '{$Think.get.type}';
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CaseCheckLeader.caseCheckupInfo?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

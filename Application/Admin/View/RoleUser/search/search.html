@@ -1,0 +1,68 @@
+<div class="table-responsive">
+    <table class="table table-bordered table-condensed table-custom">
+        <tr>
+            <th width="160">登录名</th>
+            <td>
+                <input type="text" class="form-control input-sm search-auto" name="condition_user_name" maxlength="50">
+            </td>
+            <th width="160">姓名</th>
+            <td>
+                <input type="text" class="form-control input-sm search-auto" name="condition_true_name" maxlength="255">
+            </td>
+        </tr>
+        <tr>
+            <th>警号</th>
+            <td>
+                <input type="text" class="form-control input-sm search-auto" name="condition_police_no" maxlength="255">
+            </td>
+            <th>队别</th>
+            <td>
+                <select name="condition_department_id" class="form-control input-sm search-auto">
+                    <option value="">请选择</option>
+                    <volist name="department" id="vo">
+                        <option value="{$vo.id}">{$vo._prefix}{$vo.name}</option>
+                    </volist>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>职务</th>
+            <td>
+                <select name="condition_post_id" class="form-control input-sm search-auto">
+                    <option value="">请选择</option>
+                    <volist name="post" id="vo">
+                        <option value="{$vo.id}">{$vo.name}</option>
+                    </volist>
+                </select>
+            </td>
+            <th>用户角色</th>
+            <td>
+                <select name="condition_role_id" class="form-control input-sm search-auto">
+                    <option value="">请选择</option>
+                    <volist name="role" id="vo">
+                        <option value="{$vo.id}">{$vo.name}</option>
+                    </volist>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>联系方式</th>
+            <td>
+                <input type="text" class="form-control input-sm search-auto" name="condition_tel" maxlength="255">
+            </td>
+            <th>事故处理等级</th>
+            <td>
+                <select name="condition_traffic_level_id" class="form-control input-sm search-auto">
+                    <option value="">请选择</option>
+                    <volist name="trafficLevel" id="vo">
+                        <option value="{$vo.id}">{$vo.name}</option>
+                    </volist>
+                </select>
+            </td>
+        </tr>
+    </table>
+</div>
+<div style="margin-bottom: 20px;">
+    <button type="button" class="btn btn-primary" id="search-submit"><span class="glyphicon glyphicon-search"></span> 查询</button>
+    <button type="button" class="btn btn-warning" id="search-reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+</div>

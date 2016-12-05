@@ -1,0 +1,32 @@
+<div class="btn-group btn-group-justified css-step" style="margin-bottom:20px;">
+    <div class="btn-group">
+        <button class="btn <eq name='info.accept_status' value='1'>btn-success<else/>btn-default</eq>">受案信息</button>
+    </div>
+    <div class="btn-group">
+        <button class="btn <eq name='info.survey_status' value='1'>btn-success<else/>btn-default</eq>">现场勘查信息</button>
+    </div>
+    <div class="btn-group">
+        <button class="btn <eq name='info.client_status' value='1'>btn-success<else/>btn-default</eq>">当事人信息</button>
+    </div>
+    <div class="btn-group">
+        <button class="btn <eq name='info.record_status' value='1'>btn-success<else/>btn-default</eq>">询问笔录</button>
+    </div>
+    <div class="btn-group">
+        <button class="btn <eq name='info.checkup_status' value='1'>btn-success<else/>btn-default</eq>">检验鉴定</button>
+    </div>
+    <div class="btn-group">
+        <button class="btn <eq name='info.law_doc_status' value='1'>btn-success<else/>btn-default</eq>">其他法律文书</button>
+    </div>
+    <div class="btn-group">
+        <button class="btn <eq name='info.cognizance_status' value='1'>btn-success<else/>btn-default</eq>">事故认定</button>
+    </div>
+    <div class="btn-group">
+        <button class="btn <eq name='info.punish_status' value='1'>btn-success<else/>btn-default</eq>">处罚</button>
+    </div>
+    <div class="btn-group">
+        <button class="btn <eq name='info.mediate_status' value='1'>btn-success<else/>btn-default</eq>">调解</button>
+    </div>
+    <div class="btn-group">
+        <button class="btn <eq name='info.catalog_status' value='1'>btn-success<else/>btn-default</eq>">归档</button>
+    </div>
+</div>

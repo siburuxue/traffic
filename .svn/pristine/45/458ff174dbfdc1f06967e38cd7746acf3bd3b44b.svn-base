@@ -1,0 +1,48 @@
+<extend name="Common/base" />
+<block name="title"> 道路交通事故损害赔偿调解终结书</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 列表面板 -->
+        <div class="panel panel-default">
+            <!-- 面板头 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title"> 道路交通事故损害赔偿调解终结书</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板主体 -->
+            <div class="panel-body">
+                <include file="CaseMediateHandle/mediateFinishBook/base" />
+            </div>
+            <div class="text-left" style="margin:0 0 15px 16px">
+                <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-floppy-disk"></span> 保存</button>
+                <button type="button" class="btn btn-primary" id="print" <if condition="$info['final'] eq ''">disabled</if> ><span class="glyphicon glyphicon-print"></span> 打印</button>
+                <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+            </div>
+        </div>
+        <input type="hidden" id="case_id" name="case_id" class="post-gather" value="{$case['id']}">
+        <input type="hidden" id="id" name="id" class="post-gather" value="{$info['id']}">
+        <input type="hidden" id="status" name="status" class="post-gather" value="2">
+        <input type="hidden" id="case_mediate_accept_id" name="case_mediate_accept_id" class="post-gather" value="{$caseMediateAcceptId}">
+        {:W('CasePhoto/index', array('道路交通事故损害赔偿调解终结书列表',$case['id'],59,$info['id']))}
+    </div>
+    <!-- 页面主体 结束 -->
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+        // 定义URL地址
+        url.photoList = "{:U('photoList')}";
+        url.saveMediateFinishBook = "{:U('saveMediateFinishBook')}";
+        url.delete = "{:U('CasePhoto/delete')}";
+        url.download = "{:U('Common/download')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CaseMediateHandle.mediateFinishBook?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

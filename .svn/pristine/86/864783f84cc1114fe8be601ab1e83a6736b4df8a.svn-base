@@ -1,0 +1,67 @@
+<extend name="Common/base" />
+<block name="title">委托检验鉴定</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 列表面板 -->
+        <div class="panel panel-default">
+            <!-- 面板头 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6">
+
+                        <span class="block-title">委托检验鉴定</span>
+                    </div>
+                    <div class="col-xs-6 text-right">
+                        <!-- <a href="{:U('CaseCheckup/applyStepOne?case_id='.$case_id)}" class="btn btn-primary btn-sm js-open js-end-refresh"><span class="glyphicon glyphicon-plus"></span> 新增委托检验鉴定</a> -->
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板主体 -->
+            <div class="panel-body">
+                <!-- 案件ID 用于向分类控制器 CaseCommon 传值 -->
+                <input name="case_id" id="case_id" type="hidden" value="{$Think.get.case_id}" />
+                <eq name="Think.get.is_cancel" value="1">
+                    <input name="is_cancel" id="is_cancel" type="hidden" value="1" />
+                    <include file="CaseCheckup/indexRead/tabCancel" />
+                    <else/>
+                    <input name="is_cancel" id="is_cancel" type="hidden" value="0" />
+                    <include file="CaseCheckup/indexRead/tab" />
+                </eq>
+                <!-- 表格 -->
+                <div class="table-responsive" id="table-content"></div>
+                <!-- 分页 -->
+                <include file="Inc/page" />
+            </div>
+        </div>
+        <!-- 表格 结束 -->
+    </div>
+    <!-- 页面主体 结束 -->
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.table = "{:U('indexReadTable')}";
+    url.caseCheckupCancel = "{:U('caseCheckupCancel')}";
+    url.caseCheckupCancelStatus = "{:U('caseCheckupCancelStatus')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <div class="container-fluid" id="approval-box" style="display:none;margin-top:20px;">
+        <table class="table table-bordered table-condensed table-custom">
+            <tr>
+                <th width="20%">作废原因</th>
+                <td>
+                    <textarea class="form-control input-sm " name="cancel_reason" id="cancel_reason" style="width:100%;height:80px;outline:none;resize:none;" maxlength="65530"></textarea>
+                </td>
+            </tr>
+        </table>
+        <button type="button" class="btn btn-primary" id="approval-submit"><span class="glyphicon glyphicon-saved"></span> 确定</button>
+        <button type="button" class="btn btn-danger" id="approval-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+    </div>
+
+    <import file="js.CaseCheckup.indexRead?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

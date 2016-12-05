@@ -1,0 +1,47 @@
+<extend name="Common/base" />
+<block name="title">审核记录</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 面板 -->
+        <div class="panel panel-default">
+            <!-- 面板头 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">审核记录</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板主体 -->
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed table-sheet" style="margin-bottom:0;">
+                    <tr>
+                        <th width="15%">提交人</th>
+                        <th width="15%">提交时间</th>
+                        <th width="15%">审核人</th>
+                        <th width="15%">审核时间</th>
+                        <th width="15%">审核结果</th>
+                        <th>备注</th>
+                    </tr>
+                    <volist name="caseCheck" id="vo">
+                        <tr>
+                            <td>{$vo.submit_user_name}</td>
+                            <td>{$vo.submit_time|date='Y-m-d H:i',###}</td>
+                            <td>{$vo.check_user_name}</td>
+                            <td>{$vo.check_time|date='Y-m-d H:i',###}</td>
+                            <td>{$vo['status'] ==1?'同意':'不同意'}</td>
+                            <td style="word-break:break-all; ">{$vo.remark|default='-'}</td>
+                        </tr>
+                    </volist>
+                </table>
+            </div>
+        </div>
+        <!-- 面板 -->
+        <!-- 表格 结束 -->
+    </div>
+    <!-- 页面主体 结束 -->
+</block>

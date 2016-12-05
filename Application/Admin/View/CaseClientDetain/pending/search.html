@@ -1,0 +1,84 @@
+<div class="table-responsive">
+    <table class="table table-bordered table-condensed table-form">
+        <tr>
+            <th width="15%">事故发生时间</th>
+            <td width="35%">
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <input type="text" class="form-control input-sm search-auto form-datetime" name="condition_start_time" readonly="readonly">
+                        </td>
+                        <td width="30" class="text-center">~</td>
+                        <td>
+                            <input type="text" class="form-control input-sm search-auto form-datetime" name="condition_end_time" readonly="readonly">
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <th width="15%">当事人身份证明号码</th>
+            <td>
+                <input type="text" class="form-control input-sm search-auto" name="condition_case_client_idno" maxlength="255">
+            </td>
+        </tr>
+        <tr>
+            <th>车牌号</th>
+            <td>
+                <input type="text" class="form-control input-sm search-auto" name="condition_case_client_car_no" maxlength="255">
+            </td>
+            <th>是否返还</th>
+            <td>
+                <select name="condition_detain_status" class="form-control input-sm search-auto">
+                    <option value="">请选择</option>
+                    <option value="1">是</option>
+                    <option value="0">否</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>所属大队</th>
+            <if condition="is_power($myPower,'case_client_detain_2')">
+                <td>
+                    <select name="condition_department_id" class="form-control input-sm search-auto" id="select-department">
+                        <option value="">请选择</option>
+                        <volist name="department" id="vo">
+                            <option value="{$vo.id}" <neq name="vo.cate" value="2">disabled="disabled" style="color:red;"</neq> >{$vo._prefix}{$vo.name}</option>
+                        </volist>
+                    </select>
+                </td>
+                <else/>
+                <td>
+                    <input type="hidden" name="condition_department_id" value="{$myBrigade.id}" class="form-control input-sm search-auto">
+                    <input type="text" name="condition_department_id" value="{$myBrigade.name}" class="form-control input-sm " readOnly="readOnly" style="width:100%;">
+                </td>
+            </if>
+            <th>办案人</th>
+            <if condition="is_power($myPower,'case_client_detain_2')">
+                <td>
+                    <select name="condition_case_handle_user_id" class="form-control input-sm search-auto" id="select-allUsers">
+                        <option value="">请选择</option>
+                    </select>
+                </td>
+                <else/>
+                <if condition="is_power($myPower,'case_client_detain_1')">
+                    <td>
+                        <select name="condition_case_handle_user_id" class="form-control input-sm search-auto">
+                            <option value="">请选择</option>
+                            <volist name="allUsers" id="vo">
+                                <option value="{$vo.id}">{$vo.true_name}</option>
+                            </volist>
+                        </select>
+                    </td>
+                    <else/>
+                    <td>
+                    <input type="hidden" name="condition_case_handle_user_id" value="{$my.id}" class="form-control input-sm search-auto">
+                    <input type="text" name="condition_case_handle_user_id" value="{$my.true_name}" class="form-control input-sm " readOnly="readOnly" style="width:100%;">
+                    </td>                    
+                </if>
+            </if>
+        </tr>
+    </table>
+</div>
+<div style="margin-bottom:20px;">
+    <button type="button" class="btn btn-primary" id="search-submit"><span class="glyphicon glyphicon-search"></span> 查询</button>
+    <button type="button" class="btn btn-warning" id="search-reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+</div>

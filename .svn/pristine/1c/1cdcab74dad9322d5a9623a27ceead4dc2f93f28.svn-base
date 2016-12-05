@@ -1,0 +1,61 @@
+<extend name="Common/base" />
+<block name="title">编辑快赔</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 基础信息 -->
+        <div class="panel panel-default form-inline1">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">编辑快赔</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed table-custom" style="margin-bottom:0px">
+                    <tbody>
+                        <tr>
+                            <th width="15%"><span class="text-danger">*</span> 事故发生时间</th>
+                            <td>
+                                <input type="text" class="form-control input-sm post-gather form-datetime" id="accident_time" name="accident_time" maxlength="16" readonly="readonly" value="{$info.accident_time|date='Y-m-d H:i',###}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><span class="text-danger">*</span> 事故发生地点</th>
+                            <td class="form-inline">
+                                <input type="text" class="form-control input-sm post-gather" id="accident_place" name="accident_place" maxlength="255" value="{$info.accident_place}">
+                                <div class="btn btn-default btn-sm">标记</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><span class="text-danger">*</span> 事故名称</th>
+                            <td>
+                                <input type="text" class="form-control input-sm post-gather" id="accident_name" name="accident_name" maxlength="255" value="{$info.accident_name}">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-left" style="margin:0 0 15px 16px">
+                <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-floppy-disk"></span> 保存</button>
+                <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+            </div>
+            <input type="hidden" name='id' class="post-gather" value="{$info.id}">
+        </div>
+    </div>
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+        // 定义URL地址
+        url.update = "{:U('update')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.FastProcess.edit?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

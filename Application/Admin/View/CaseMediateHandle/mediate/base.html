@@ -1,0 +1,65 @@
+<table class="table table-bordered table-condensed table-custom" style="margin-bottom:0px">
+    <tbody>
+        <tr>
+            <th width="15%"><span class="text-danger">*</span>当事人</th>
+            <td width="35%">
+                <select class="form-control input-sm post-gather" id="case_client_id" name="case_client_id" disabled>
+                    <option value="">请选择</option>
+                    <volist id="vo" name="mediateClients">
+                        <option value="{$vo.id}">{$vo.name}</option>
+                    </volist>
+                </select>
+            </td>
+            <th>代理人</th>
+            <td>
+                <select class="form-control input-sm post-gather" id="agent" name="agent">
+                    <option value="">请选择</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2">短语模板</th>
+            <th colspan="2"><span class="text-danger">*</span>文本</th>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <php>
+                    $data = array(
+                        'caseid'=>$case['id'],
+                        'casemediateacceptid'=>$caseMediateAcceptId,
+                    );
+                    W('Short/index', array(26, 'textarea[name="content"]', $data));
+                </php>
+            </td>
+            <td colspan="2">
+                <textarea class="form-control post-gather" style="height:400px;" id="content" name="content"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <th><span class="text-danger">*</span>办案人1</th>
+            <td>
+                <select class="form-control input-sm post-gather" id="handle_1" name="handle_1">
+                    <option value="">请选择</option>
+                    <volist name="userList" id="vo">
+                        <option value="{$vo.id}">{$vo.true_name}</option>
+                    </volist>
+                </select>
+            </td>
+            <th><span class="text-danger">*</span>办案人2</th>
+            <td>
+                <select class="form-control input-sm post-gather" id="handle_2" name="handle_2">
+                    <option value="">请选择</option>
+                    <volist name="userList" id="vo">
+                        <option value="{$vo.id}">{$vo.true_name}</option>
+                    </volist>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th><span class="text-danger">*</span>电话或通讯地址</th>
+            <td colspan="3">
+                <input type="text" class="form-control input-sm post-gather" id="contact" name="contact" maxlength="255" value="">
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,6 @@
+<div style="width:100%;height:10px;float:left;"></div>
+<ul class="nav nav-tabs nav-custom">
+
+    <li class="active"><a href="{:U('indexRead',array('case_id'=>$case_id,'is_cancel'=>'0'))}">委托中检验鉴定</a></li>
+    <li><a href="{:U('indexRead',array('case_id'=>$case_id,'is_cancel'=>'1'))}">已作废检验鉴定</a></li>
+</ul>

@@ -1,0 +1,22 @@
+<table class="table table-striped table-bordered table-hover table-condensed table-sheet" id="table1" data-totalrows="{$page1.totalrows}" data-totalpage="{$page1.totalpage}" data-nowpage="{$page1.nowpage}">
+    <thead>
+    <tr>
+        <th width="30%">被调解人</th>
+        <th>调解人</th>
+        <th>状态</th>
+        <th colspan="2">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+        <volist name="list" id="vo">
+            <tr>
+                <td>{$vo.names}</td>
+                <td>{$vo.true_name}</td>
+                <td>{$vo.statusName}</td>
+                <td width="80"><a href="{:U('mediateIndex?case_id='.$case['id'].'&id='.$vo['id'])}" class="btn btn-info btn-sm js-open notice">调解通知</a></td>
+                <td width="80"><a href="{:U('mediateRecord?case_id='.$case['id'].'&id='.$vo['id'])}" class="btn btn-info btn-sm js-open result js-end_refresh">调解记录</a></td>
+                <td style="display: none;"><input type="hidden" value="{$vo.id}"></td>
+            </tr>
+        </volist>
+    </tbody>
+</table>

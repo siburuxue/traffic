@@ -1,0 +1,192 @@
+<!-- 面板内容 -->
+<div class="panel-body">
+    <table class="table table-bordered table-condensed table-custom">
+        <input type="hidden" class=" post-gather" name="case_id" value="{$caseData.id}" readOnly="readOnly" maxlength="50">
+        <input type="hidden" class=" post-gather" name="id" value="" readOnly="readOnly" maxlength="50">
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="25%">人的原因</th>
+            <td width="75%">
+                <table class=" reason_man_box_hidden" style="display:none;border:0px solid white;" data-rank="default_rank">
+                    <tr class="reason_man" data-rank="default_rank">
+                        <td   width="30%">
+                            <select name="reason_man_pid" class="form-control input-sm post-gather post-gather reason_man_pid"  data-code="1"  data-rank="default_rank">
+                                <option value="">请选择</option>
+                                <foreach name="case_ext_reason.reason_type.1.value" item="vo">
+                                    <option value="{$key}">{$vo.name}</option>
+                                </foreach>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="reason_man_cid" class="form-control input-sm post-gather post-gather reason_man_cid" data-rank="default_rank">
+                                <option value="">请选择</option>
+                            </select>
+                        </td>
+                        <td width="120">&nbsp;
+                            <button type="button" class="btn btn-primary btn-sm reason_man_add" data-rank="default_rank" disabled="disabled"> 添加</button>
+                            <button type="button" class="btn btn-warning btn-sm reason_man_delete" data-rank="default_rank" disabled="disabled"> 删除</button>
+                        </td>
+                    </tr>
+                </table>
+                <table class=" reason_man_box" style="width:100%;">
+                    <tr class="reason_man" data-rank="1">
+                        <td  width="30%">
+                            <select name="reason_man_pid" class="form-control input-sm post-gather post-gather reason_man_pid" data-code="1" data-rank="1">
+                                <option value="">请选择</option>
+                                <foreach name="case_ext_reason.reason_type.1.value" item="vo">
+                                    <option value="{$key}">{$vo.name}</option>
+                                </foreach>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="reason_man_cid" class="form-control input-sm post-gather post-gather reason_man_cid" data-rank="1">
+                                <option value="">请选择</option>
+                            </select>
+                        </td>
+                        <td  width="120" >&nbsp;
+                            <button type="button" class="btn btn-primary btn-sm reason_man_add" data-rank="1" disabled="disabled"> 添加</button>
+                            <button type="button" class="btn btn-warning btn-sm " data-rank="1"  disabled="disabled"> 删除</button>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <!--  -->
+<!--  -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="25%">车辆原因</th>
+            <td width="75%">
+                <table class=" reason_car_box_hidden" style="display:none;border:0px solid white;" data-rank="default_rank">
+                    <tr class="reason_car" data-rank="default_rank">
+                        <td width="30%">
+                            <select name="reason_car_pid" class="form-control input-sm post-gather post-gather reason_car_pid"  data-code="2"  data-rank="default_rank">
+                                <option value="">请选择</option>
+                                <foreach name="case_ext_reason.reason_type.2.value" item="vo">
+                                    <option value="{$key}">{$vo.name}</option>
+                                </foreach>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="reason_car_cid" class="form-control input-sm post-gather post-gather reason_car_cid" data-code="2" data-rank="default_rank"  data-pid="0">
+                                <option value="">请选择</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="reason_car_id" class="form-control input-sm post-gather post-gather reason_car_id" data-rank="default_rank">
+                                <option value="">请选择</option>
+                            </select>
+                        </td>                        
+                        <td   width="120">&nbsp;
+                            <button type="button" class="btn btn-primary btn-sm reason_car_add" data-rank="default_rank" disabled="disabled"> 添加</button>
+                            <button type="button" class="btn btn-warning btn-sm reason_car_delete" data-rank="default_rank" disabled="disabled"> 删除</button>
+                        </td>
+                    </tr>
+                </table>
+                <table class=" reason_car_box" style="width:100%;">
+                    <tr class="reason_car" data-rank="1">
+                        <td width="30%">
+                            <select name="reason_car_pid" class="form-control input-sm post-gather post-gather reason_car_pid" data-code="2" data-rank="1">
+                                <option value="">请选择</option>
+                                <foreach name="case_ext_reason.reason_type.2.value" item="vo">
+                                    <option value="{$key}">{$vo.name}</option>
+                                </foreach>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="reason_car_cid" class="form-control input-sm  post-gather post-gather reason_car_cid" data-rank="1" data-code="2"  data-pid="0">
+                                <option value="">请选择</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="reason_car_id" class="form-control input-sm post-gather post-gather reason_car_id" data-rank="1">
+                                <option value="">请选择</option>
+                            </select>
+                        </td>                        
+                        <td  width="120">&nbsp;
+                            <button type="button" class="btn btn-primary btn-sm reason_car_add" data-rank="1" disabled="disabled"> 添加</button>
+                            <button type="button" class="btn btn-warning btn-sm " data-rank="1"  disabled="disabled"> 删除</button>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+<!--  -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="25%">道路环境原因</th>
+            <td width="75%">
+                <table class=" reason_road_box_hidden" style="display:none;border:0px solid white;" data-rank="default_rank">
+                    <tr class="reason_road" data-rank="default_rank">
+                        <td  width="30%">
+                            <select name="reason_road_pid" class="form-control input-sm post-gather post-gather reason_road_pid"  data-code="3"  data-rank="default_rank">
+                                <option value="">请选择</option>
+                                <foreach name="case_ext_reason.reason_type.3.value" item="vo">
+                                    <option value="{$key}">{$vo.name}</option>
+                                </foreach>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="reason_road_cid" class="form-control input-sm post-gather post-gather reason_road_cid" data-code="3" data-rank="default_rank"  data-pid="0">
+                                <option value="">请选择</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="reason_road_id" class="form-control input-sm post-gather post-gather reason_road_id" data-rank="default_rank">
+                                <option value="">请选择</option>
+                            </select>
+                        </td>                        
+                        <td  width="120">&nbsp;
+                            <button type="button" class="btn btn-primary btn-sm reason_road_add" data-rank="default_rank" disabled="disabled"> 添加</button>
+                            <button type="button" class="btn btn-warning btn-sm reason_road_delete" data-rank="default_rank" disabled="disabled"> 删除</button>
+                        </td>
+                    </tr>
+                </table>
+                <table class=" reason_road_box" style="width:100%;">
+                    <tr class="reason_road" data-rank="1">
+                        <td  width="30%">
+                            <select name="reason_road_pid" class="form-control input-sm post-gather post-gather reason_road_pid" data-code="3" data-rank="1">
+                                <option value="">请选择</option>
+                                <foreach name="case_ext_reason.reason_type.3.value" item="vo">
+                                    <option value="{$key}">{$vo.name}</option>
+                                </foreach>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="reason_road_cid" class="form-control input-sm  post-gather post-gather reason_road_cid" data-rank="1" data-code="3"  data-pid="0">
+                                <option value="">请选择</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="reason_road_id" class="form-control input-sm post-gather post-gather reason_road_id" data-rank="1">
+                                <option value="">请选择</option>
+                            </select>
+                        </td>                        
+                        <td width="120">&nbsp;
+                            <button type="button" class="btn btn-primary btn-sm reason_road_add" data-rank="1" disabled="disabled"> 添加</button>
+                            <button type="button" class="btn btn-warning btn-sm " data-rank="1" disabled="disabled"> 删除</button>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+
+    </table>
+
+</div>

@@ -1,0 +1,45 @@
+<h3 class="row">
+    <div class="col-xs-6"><span class="block-title">肇事车辆</span></div>
+    <div class="col-xs-6 text-right"></div>
+</h3>
+<table class="table table-bordered table-hover table-condensed table-sheet">
+    <thead>
+        <tr>
+            <th width="17%">号牌</th>
+            <th width="17%">车辆类型</th>
+            <th width="80">危险品</th>
+            <th width="17%">危险品描述</th>
+            <th width="80">客运车辆</th>
+            <th width="80">校车</th>
+            <th>备注</th>
+        </tr>
+    </thead>
+    <tbody>
+        <volist name="alarmAccidentCar" id="vo">
+            <tr>
+                <td>
+                    <input type="text" class="form-control input-sm" readonly="readonly" value="{$vo.car_no}">
+                </td>
+                <td>
+                    <input type="text" class="form-control input-sm" readonly="readonly" value="{$vo.car_type_name}">
+                </td>
+                <td>
+                    <input type="text" class="form-control input-sm" readonly="readonly" value="{$vo['is_danger']?'是':'否'}">
+                </td>
+                <td>
+                    <input type="text" class="form-control input-sm" readonly="readonly" value="{$vo.danger_info}">
+                </td>
+                <td>
+                    <input type="text" class="form-control input-sm" readonly="readonly" value="{$vo['is_bus']?'是':'否'}">
+                </td>
+                <td>
+                    <input type="text" class="form-control input-sm" readonly="readonly" value="{$vo['is_school']?'是':'否'}">
+                </td>
+                <td>
+                    <input type="text" class="form-control input-sm" readonly="readonly" value="{$vo.remark}">
+                </td>
+            </tr>
+        </volist>
+    </tbody>
+</table>
+<hr>

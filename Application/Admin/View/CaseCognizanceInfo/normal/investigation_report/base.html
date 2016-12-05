@@ -1,0 +1,67 @@
+<table class="table table-bordered table-condensed table-custom" style="margin-bottom: 0">
+    <tbody>
+        <tr>
+            <th colspan="2">事故时间</th>
+            <td width="16%"><input type="text" class="form-control input-sm" disabled value="{$caseInfo.accident_time|date='Y-m-d H:i',###}"></td>
+            <th width="16%">事故地点</th>
+            <td><input type="text" class="form-control input-sm" disabled value="{$caseInfo.accident_place}"></td>
+            <th width="16%">天气</th>
+            <td><input type="text" class="form-control input-sm" disabled value="{$weather}"></td>
+        </tr>
+        <tr>
+            <th rowspan="3" width="6%">交通事故当事人、车辆、道路的基本情况</th>
+            <th width="10%">当事人情况</th>
+            <td colspan="6">
+                <textarea disabled class="form-control input-sm post-gather" name="base_info_client" style="height:113px;resize: none">{$info.base_info_client}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <th>车辆情况</th>
+            <td colspan="6">
+                <textarea disabled class="form-control input-sm post-gather" name="base_info_car" style="height:113px;resize: none">{$info.base_info_car}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <th>道路情况</th>
+            <td colspan="6">
+                <textarea disabled class="form-control input-sm post-gather" name="base_info_road" style="height:113px;resize: none">{$info.base_info_road}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2">交通事故的基本事实</th>
+            <td colspan="6">
+                <textarea disabled class="form-control input-sm post-gather" name="fact" style="height:113px;resize: none">{$info.fact}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2">交通事故的证据、检验、鉴定结论</th>
+            <td colspan="6">
+                <textarea disabled class="form-control input-sm post-gather" name="desc" style="height:113px;resize: none">{$info.desc}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2">道路交通事故成因分析</th>
+            <td colspan="6">
+                <textarea disabled class="form-control input-sm post-gather" name="reason" style="height:113px;resize: none">{$info.reason}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2">责任认定</th>
+            <td colspan="6">
+                <textarea disabled class="form-control input-sm post-gather" name="cognizance" style="height:113px;resize: none">{$info.cognizance}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2">处罚意见</th>
+            <td colspan="6">
+                <textarea disabled class="form-control input-sm post-gather" name="punish" style="height:113px;resize: none">{$info.punish}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2">整改措施</th>
+            <td colspan="6">
+                <textarea disabled class="form-control input-sm post-gather" name="reform" style="height:113px;resize: none">{$info.reform}</textarea>
+            </td>
+        </tr>
+    </tbody>
+</table>

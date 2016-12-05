@@ -1,0 +1,59 @@
+<table class="table table-bordered table-condensed table-custom" style="margin-bottom:0px">
+    <tbody>
+        <tr>
+            <th width="15%">当事人</th>
+            <td>
+                <select class="form-control input-sm post-gather" id="case_client_id" name="case_client_id" disabled>
+                    <option value="">请选择</option>
+                    <volist id="vo" name="mediateClients">
+                        <option value="{$vo.id}">{$vo.name}</option>
+                    </volist>
+                </select>
+            </td>
+            <th>代理人</th>
+            <td>
+                <select class="form-control input-sm post-gather" id="agent" name="agent" disabled>
+                    <option value="">请选择</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2">短语模板</th>
+            <th colspan="2">文本</th>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <textarea disabled class="form-control post-gather" style="height:400px;resize: none" id="code" name="code"></textarea>
+            </td>
+            <td colspan="2">
+                <textarea disabled class="form-control post-gather" style="height:400px;resize: none" id="content" name="content"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <th>办案人1</th>
+            <td>
+                <select class="form-control input-sm post-gather" id="handle_1" name="handle_1" disabled>
+                    <option value="">请选择</option>
+                    <volist name="userList" id="vo">
+                        <option value="{$vo.id}">{$vo.true_name}</option>
+                    </volist>
+                </select>
+            </td>
+            <th>办案人2</th>
+            <td>
+                <select class="form-control input-sm post-gather" id="handle_2" name="handle_2" disabled>
+                    <option value="">请选择</option>
+                    <volist name="userList" id="vo">
+                        <option value="{$vo.id}">{$vo.true_name}</option>
+                    </volist>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>电话或通讯地址</th>
+            <td colspan="3">
+                <input type="text" class="form-control input-sm post-gather" id="contact" name="contact" maxlength="255" value="" disabled>
+            </td>
+        </tr>
+    </tbody>
+</table>

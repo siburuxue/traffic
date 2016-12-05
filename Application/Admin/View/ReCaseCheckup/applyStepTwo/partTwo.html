@@ -1,0 +1,180 @@
+<!-- 面板内容 -->
+<div class="panel-body">
+    <table class="table table-bordered table-condensed table-custom">
+        <input type="hidden" class="post-gather-entrust" name="case_id" value="{$caseData.id}" />
+        <input type="hidden" class="post-gather-entrust" name="case_checkup_id" value="{$caseCheckupData.id}" />
+        <!-- -->
+        <tr>
+            <th width="20%"><span class="text-danger">*</span>&nbsp;委托鉴定单位</th>
+            <td width="30%">
+                <input type="hidden" class="post-gather-entrust cookie-data" name="from_department_id" value="{$caseDealUserData.department_id}" />
+                <input type="text" class="form-control input-sm  cookie-data" name="department_name" value="{$caseDealUserData.department_name}" readonly="readonly" style="width:100%;">
+            </td>
+            <th width="20%"><span class="text-danger">*</span>&nbsp;委托时间</th>
+            <td width="30%">
+                <input type="text" class="form-control input-sm post-gather-entrust  cookie-data" value="{$caseCheckupData.create_time|date='Y-m-d H:i',###}" name="entrust_time" maxlength="16" readonly="readonly" style="width:100%;">
+            </td>
+        </tr>
+        <!--  -->
+    </table>
+    <table class="table table-bordered table-condensed table-custom" style="margin-top:-21px;">
+        <!--  -->
+        <tr>
+            <th rowspan="4" width="5%">送检人</th>
+            <th colspan="2" width="15%"><span class="text-danger">*</span>&nbsp;姓名</th>
+            <td width="15%">
+                <input type="text" class="form-control input-sm post-gather-entrust  cookie-data" name="carry_name_1" maxlength="20" style="min-width:auto!important;">
+            </td>
+            <th width="15%">职务</th>
+            <td width="15%">
+                <input type="text" class="form-control input-sm post-gather-entrust  cookie-data" name="carry_post_1" maxlength="50" style="min-width:auto!important;">
+            </td>
+            <th width="15%"><span class="text-danger">*</span>&nbsp;证件名称及号码</th>
+            <td colspan="2" width="20%">
+                <input type="text" class="form-control input-sm post-gather-entrust cookie-data" name="carry_idno_1" maxlength="50" style="min-width:auto!important;">
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2"><span class="text-danger">*</span>&nbsp;姓名</th>
+            <td>
+                <input type="text" class="form-control input-sm post-gather-entrust cookie-data" name="carry_name_2" maxlength="20" style="min-width:auto!important;">
+            </td>
+            <th>职务</th>
+            <td>
+                <input type="text" class="form-control input-sm post-gather-entrust cookie-data" name="carry_post_2" maxlength="50" style="min-width:auto!important;">
+            </td>
+            <th><span class="text-danger">*</span>&nbsp;证件名称及号码</th>
+            <td colspan="2">
+                <input type="text" class="form-control input-sm post-gather-entrust cookie-data" name="carry_idno_2" maxlength="250" style="min-width:auto!important;">
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2">通讯地址</th>
+            <td colspan="2">
+                <input type="text" class="form-control input-sm post-gather-entrust cookie-data" name="carry_address" maxlength="250" style="width:100%;">
+            </td>
+            <th colspan="2">邮政编码</th>
+            <td colspan="2">
+                <input type="text" class="form-control input-sm post-gather-entrust cookie-data" name="carry_zip" maxlength="16" style="min-width:auto!important;">
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2">联系电话</th>
+            <td colspan="2">
+                <input type="text" class="form-control input-sm post-gather-entrust cookie-data" name="carry_tel" maxlength="16" style="min-width:auto!important;">
+            </td>
+            <th colspan="2">传真号码</th>
+            <td colspan="2">
+                <input type="text" class="form-control input-sm post-gather-entrust cookie-data" name="carry_fax" maxlength="16" style="min-width:auto!important;">
+            </td>
+        </tr>
+        <!--  -->
+    </table>
+    <table class="table table-bordered table-condensed table-custom" style="margin-top:-21px;">
+        <!--  -->
+        <tr>
+            <th colspan="3" width="20%"><span class="text-danger">*</span>&nbsp;鉴定机构名称</th>
+            <td colspan="6" width="80%">
+                <input type="hidden" name="to_checkup_org_id" class="post-gather-entrust cookie-data" maxlength="16" value="{$caseCheckupData.checkuporg_id}" />
+                <input type="text" class="form-control input-sm post-gather-entrust cookie-data" name="to_checkup_org_name" maxlength="16" value="{$caseCheckupData.checkuporg_name}" readOnly="readOnly" style="min-width:auto!important;">
+            </td>
+        </tr>
+        <tr>
+            <th colspan="3" width="20%"><span class="text-danger">*</span>&nbsp;案（事）件名称</th>
+            <td colspan="2" width="30%">
+                <input type="text" class="form-control input-sm post-gather-entrust cookie-data" name="case_name" maxlength="50" style="min-width:auto!important;">
+            </td>
+            <th width="20%"><span class="text-danger">*</span>&nbsp;案件编号</th>
+            <td colspan="3" width="30%">
+                <input type="text" class="form-control input-sm post-gather-entrust cookie-data" name="case_code" value="{$caseData.code}" readOnly="readOnly" maxlength="50" style="min-width:auto!important;">
+            </td>
+        </tr>
+        <!--  -->
+    </table>
+    <table class="table table-bordered table-condensed table-custom" style="margin-top:-21px;width:99.9%">
+        <input type="hidden" class="checkup_org_item_pid" value="{$caseCheckupData['checkup_org_item_pid']}">
+        <!--  -->
+        <tr>
+            <th rowspan="2" width="10%">被鉴定人的情况</th>
+            <th width="10%">姓名</th>
+            <td width="15%">
+                <!-- 被鉴定人的情况  根据鉴定对象类别设定 -->
+                <if condition="$caseCheckupData.case_client_sex eq '0'">
+                    <assign name="sexForRead" value="女" />
+                </if>
+                <if condition="$caseCheckupData.case_client_sex eq '1'">
+                    <assign name="sexForRead" value="男" />
+                </if>
+                <if condition="$caseCheckupData['checkup_org_item_pid'] eq 1">
+                    <assign name="caseCheckupData_people" value="$caseCheckupData" />
+                    <assign name="sexForRead_people" value="$sexForRead" />
+                    <input type="hidden" name="target_client_id" class="post-gather-entrust   jimmy-cancel-entrust" id="case_client_id" value="{$caseCheckupData.case_client_id}">
+                    <input type="text" class="form-control input-sm post-gather-entrust   jimmy-cancel-entrust"  name="target_name" id="target_name" readOnly="readOnly" value="{$caseCheckupData.case_client_name}" maxlength="16" style="min-width:auto!important;">
+                    <else/>
+                    <select name="target_client_id" id="target_client_id_select" class="form-control input-sm post-gather-entrust">
+                        <option value="">请选择</option>
+                        <volist name="allValidClient" id="vo">
+                            <option value="{$vo.case_client_id}">{$vo.case_client_name}</option>
+                        </volist>
+                    </select>
+                    <input type="hidden" name="target_name" id="target_name_hidden" class="post-gather-entrust" />
+                </if>
+                <!-- 被鉴定人的情况  根据鉴定对象类别设定 -->
+            </td>
+            <th width="7.5%">性别</th>
+            <td width="7.5%">
+                <input type="hidden" class="form-control input-sm post-gather-entrust jimmy-cancel-entrust" name="target_sex" id="target_sex" value="{$caseCheckupData_people.case_client_sex}" maxlength="10">
+                <input type="text" class="form-control input-sm " id="sex_read" readOnly="readOnly" value="{$sexForRead_people}" style="min-width:auto!important;">
+            </td>
+            <th width="10%">年龄</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather-entrust jimmy-cancel-entrust" name="target_age" value="{$caseCheckupData_people.case_client_age}" id="target_age" maxlength="10" readOnly="readOnly" style="min-width:auto!important;">
+            </td>
+            <th width="10%">电话</th>
+            <td width="17.5%">
+                <input type="text" class="form-control input-sm post-gather-entrust jimmy-cancel-entrust" name="target_tel" id="target_tel" value="{$caseCheckupData_people.case_client_tel}" maxlength="250" readOnly="readOnly" style="min-width:auto!important;">
+            </td>
+        </tr>
+        <tr>
+            <th>单位</th>
+            <td colspan="3">
+                <input type="text" class="form-control input-sm post-gather-entrust jimmy-cancel-entrust" name="target_company" id="target_company" value="{$caseCheckupData.case_client_company}" maxlength="250" style="min-width:auto!important;">
+            </td>
+            <th>现住址</th>
+            <td colspan="3">
+                <input type="text" class="form-control input-sm post-gather-entrust jimmy-cancel-entrust" name="target_address" value="{$caseCheckupData_people.case_client_address}" id="target_address" maxlength="250" readOnly="readOnly" style="min-width:auto!important;">
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2" width="20%"><span class="text-danger">*</span>&nbsp;简要案情</th>
+            <td colspan="7">
+                <textarea class="form-control input-sm post-gather-entrust cookie-data" name="summary" style="width:100%;height:80px;outline:none;resize:none;" maxlength="65530"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2"><span class="text-danger">*</span>&nbsp;原鉴定情况</th>
+            <td colspan="7">
+                <textarea class="form-control input-sm post-gather-entrust cookie-data" name="old_result" style="width:100%;height:80px;outline:none;resize:none;" maxlength="65530"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2"><span class="text-danger">*</span>&nbsp;送检材料</th>
+            <td colspan="7">
+                <textarea class="form-control input-sm post-gather-entrust cookie-data" name="checkup_doc" style="width:100%;height:80px;outline:none;resize:none;" maxlength="65530"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2"><span class="text-danger">*</span>&nbsp;委托鉴定单位的鉴定要求和诚信声明</th>
+            <td colspan="7">
+                <textarea class="form-control input-sm post-gather-entrust cookie-data" name="remark" style="width:100%;height:80px;outline:none;resize:none;" maxlength="65530"></textarea>
+            </td>
+        </tr>
+    </table>
+    <button type="button" class="btn btn-primary btn-sm-jimmy " id="entrust-submit"><span class="glyphicon glyphicon-floppy-disk"></span> 保存</button>
+    <button type="button" class="btn btn-primary btn-sm-jimmy " disabled="disabled"><span class="glyphicon glyphicon-saved"></span> 提交</button>
+    <button type="button" class="btn btn-primary btn-sm-jimmy " disabled="disabled"><span class="glyphicon glyphicon-ok"></span> 呈请延期</button>
+    <button type="button" class="btn btn-primary btn-sm-jimmy " disabled="disabled"><span class="glyphicon glyphicon-list-alt"></span> 审批信息</button>
+    <button type="button" class="btn btn-primary btn-sm-jimmy " disabled="disabled"><span class="glyphicon glyphicon-print"></span> 打印司法鉴定委托书</button>
+    <button type="button" class="btn btn-primary btn-sm-jimmy " disabled="disabled"><span class="glyphicon glyphicon-retweet"></span> 重新委托检验鉴定</button>
+    <!-- <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-saved"></span> floppy-disk saved ok list-alt print retweet  确定</button> -->
+</div>

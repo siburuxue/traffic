@@ -1,0 +1,106 @@
+<extend name="Common/base" />
+<block name="title">更新受案登记信息</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 基础信息 -->
+        <div class="panel panel-default form-inline1">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">更新受案登记信息</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <include file="CaseAcceptHandle/viewInfo/base" />
+            </div>
+        </div>
+        <input type="hidden" id='id' name="id" class="post-gather" value="{$info['id']}">
+        <input type="hidden" id="case_id" name="case_id" class="post-gather" value="{$case['id']}">
+        <!-- 按钮 -->
+        <div style="text-align: left;padding-bottom: 15px;">
+            <button type="button" class="btn btn-primary" id="print"><span class="glyphicon glyphicon-print"></span> 打印受案登记表</button>
+        </div>
+        <div class="panel panel-default form-inline">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">审核记录</span></div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <include file="CaseAcceptHandle/viewInfo/checkTable" />
+            </div>
+        </div>
+        <div class="panel panel-default form-inline">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">受案登记</span></div>
+                    <div class="col-xs-6 text-right">
+                        <a href="{:U('CasePhoto/index?case_id='.$case['id'].'&cate=1&ext_ida='.$info['id'])}" class="btn btn-primary btn-sm js-open js-end-refresh" id="upload"><span class="glyphicon glyphicon-upload"></span> 上传</a>
+                        <button type="button" class="btn btn-primary btn-sm "><span class="glyphicon glyphicon-download" id="download"></span> 下载</button>
+                        <a href="javascript:;" class="btn btn-warning btn-sm " id="delete"><span class="glyphicon glyphicon-trash"></span> 删除</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <include file="CaseAcceptHandle/viewInfo/photoTable" />
+            </div>
+        </div>
+    </div>
+</block>
+<block name="foot.html">
+    <div class="container-fluid" id="approval-box" style="display:none;margin-top:20px;">
+        <table class="table table-bordered table-condensed table-custom">
+            <tr>
+                <th width="40%">审核人</th>
+                <if condition="count($list) neq '0'">
+                    <td>
+                        <volist name="list" id="vo">
+                            <div><label><input type="radio" name="check" value="{$vo.id}" <if condition="$i eq 1">checked</if>>{$vo.department_name}:{$vo.true_name}</label></div>
+                        </volist>
+                    </td>
+                <else />
+                    <td>无受案等级审批权限用户</td>
+                </if>
+            </tr>
+        </table>
+        <button type="button" class="btn btn-primary" id="approval-submit"><span class="glyphicon glyphicon-saved"></span> 确定</button>
+        <button type="button" class="btn btn-danger" id="approval-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+    </div>
+</block>
+<block name="head.ext">
+    <style>
+        /*.all{width:100%!important;}*/
+    </style>
+    <script type="text/javascript">
+        // 定义URL地址
+        url.update = "{:U('update?case_id='.$case['id'])}";
+        url.photoList = "{:U('photoList')}";
+        url.check = "{:U('caseSubmitCheck')}";
+        url.checkTable = "{:U('checkTable')}";
+        url.delete = "{:U('CasePhoto/delete')}";
+        url.inputCheck = "{:U('inputCheck')}";
+        $(function(){
+            var status = "{$info.status}";
+            //如果已经审批 画面不可编辑
+            if(status == "1"){
+                $('.panel-body:eq(0) input,select,textarea').prop('disabled',true);
+                $('#reset,#submit,#approval').prop('disabled',true);
+            }
+        });
+    </script>
+</block>
+<block name="foot.ext">
+
+    <import file="js.CaseAcceptHandle.viewInfo?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

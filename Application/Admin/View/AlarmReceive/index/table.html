@@ -1,0 +1,16 @@
+<div class="row" id="table" data-totalrows="{$page.totalrows}" data-totalpage="{$page.totalpage}" data-nowpage="{$page.nowpage}">
+    <volist name="list" id="vo">
+        <div class="col-xs-3">
+            <div class="panel panel-primary panel-alarm">
+                <div class="panel-heading"><a href="{:U('edit?id='.$vo['id'])}" class="js-open js-end-refresh" style="color:#FFF;">修改</a></div>
+                <ul class="list-group">
+                    <li class="list-group-item" title="{$vo.alarm_time|date='Y-m-d H:i',###}">报警时间：{$vo.alarm_time|date='Y-m-d H:i',###}</li>
+                    <li class="list-group-item" title="{$vo.accident_time|date='Y-m-d H:i',###}">事故时间：{$vo.accident_time|date='Y-m-d H:i',###}</li>
+                    <li class="list-group-item" title="{$vo.accident_place|default='-'}">地点：{$vo.accident_place|default='-'}</li>
+                    <li class="list-group-item" title="{$vo.alarm_name|default='-'}">报警人：{$vo.alarm_name|default='-'}</li>
+                    <li class="list-group-item" title="{$vo.casualties|default='-'}">人员伤亡情况：{$vo.casualties|default='-'}</li>
+                </ul>
+            </div>
+        </div>
+    </volist>
+</div>

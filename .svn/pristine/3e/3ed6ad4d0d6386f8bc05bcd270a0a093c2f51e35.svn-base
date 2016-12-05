@@ -1,0 +1,484 @@
+<extend name="Common/base" />
+<block name="title">当事人</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <div id="user-list" class="row">
+            <div class="col-xs-3" id="client-list">
+                <volist name="clientList" id="vo">
+                    <div class="panel panel-primary panel-alarm client-list-head" id="{$vo.id}">
+                        <div class="panel-heading" style="cursor: pointer">{$vo.name}</div>
+                        <ul class="list-group collapse" data-parent="#client-list">
+                            <li class="list-group-item">交通方式：{$vo.traffic_type}</li>
+                            <li class="list-group-item">伤害程度：{$vo.hurt_type}</li>
+                            <li class="list-group-item">车牌：{$vo.car_no}</li>
+                        </ul>
+                    </div>
+                </volist>
+            </div>
+            <div class="col-xs-9">
+                <!-- 面板 -->
+                <div class="panel panel-default form-inline1">
+                    <!-- 面板标题 -->
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-6"><span class="block-title">当事人</span></div>
+                            <div class="col-xs-6 text-right">
+                                <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 面板内容 -->
+                    <div class="panel-body">
+                        <table class="table table-bordered table-condensed table-custom">
+                            <thead>
+                            <th colspan="4">
+                                <div style="float: left;margin-top: 5px;">当事人信息</div>
+                            </th>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th width="15%">姓名</th>
+                                <td width="35%">
+                                    <input type="text" disabled class="form-control input-sm post-gather" id="name" name="name" maxlength="255">
+                                </td>
+                                <th width="15%">性别</th>
+                                <td width="35%">
+                                    <select class="form-control input-sm post-gather" name="sex" disabled>
+                                        <option value="1">男</option>
+                                        <option value="0">女</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>身份证件类型</th>
+                                <td>
+                                    <select id="id_type" name="id_type" class="form-control input-sm post-gather" disabled>
+                                        <option value="">请选择</option>
+                                        <volist name="certificate_type" id="vo">
+                                            <option value="{$key}">{$vo}</option>
+                                        </volist>
+                                    </select>
+                                </td>
+                                <th>身份证件号码</th>
+                                <td>
+                                    <input type="text" class="form-control input-sm post-gather" disabled id="idno" name="idno" maxlength="255">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>年龄</th>
+                                <td>
+                                    <input type="text" disabled class="form-control  input-sm post-gather" id="age" name="age" maxlength="255">
+                                </td>
+                                <th>联系方式</th>
+                                <td>
+                                    <input type="text" disabled class="form-control  input-sm post-gather" id="tel" name="tel" maxlength="255">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>驾驶证种类</th>
+                                <td>
+                                    <select id="driver_licence_type" name="driver_licence_type" class="form-control input-sm post-gather" disabled>
+                                        <option value="">请选择</option>
+                                        <volist name="driver_licence_type" id="vo">
+                                            <option value="{$key}">{$vo}</option>
+                                        </volist>
+                                    </select>
+                                </td>
+                                <th>初次领证日期</th>
+                                <td>
+                                    <input type="text" disabled class="form-control  form-date input-sm post-gather" id="first_driver_licence_time" name="first_driver_licence_time" maxlength="16" readonly="readonly">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>交通方式</th>
+                                <td>
+                                    <select id="traffic_type" name="traffic_type" class="form-control input-sm post-gather" disabled>
+                                        <option value="">请选择</option>
+                                        <volist name="traffic_type" id="vo">
+                                            <option value="{$key}">{$vo}</option>
+                                        </volist>
+                                    </select>
+                                </td>
+                                <th>号牌种类</th>
+                                <td>
+                                    <select id="grade_type" name="grade_type" class="form-control input-sm post-gather" disabled>
+                                        <option value="">请选择</option>
+                                        <volist name="grade_type" id="vo">
+                                            <option value="{$key}">{$vo}</option>
+                                        </volist>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>车辆牌号</th>
+                                <td>
+                                    <input type="text" class="form-control input-sm post-gather" id="car_no" name="car_no" maxlength="255" disabled>
+                                </td>
+                                <th>事故责任</th>
+                                <td>
+                                    <select id="blame_type" name="blame_type" class="form-control input-sm post-gather" disabled>
+                                        <option value="">请选择</option>
+                                        <volist name="blame_type" id="vo">
+                                            <option value="{$key}">{$vo}</option>
+                                        </volist>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>行驶轨迹</th>
+                                <td>
+                                    <a href="javascript:;" class="btn btn-primary btn-sm">查看并标记</a>
+                                </td>
+                                <th>伤害程度</th>
+                                <td>
+                                    <select id="hurt_type" name="hurt_type" class="form-control input-sm post-gather" disabled>
+                                        <option value="">请选择</option>
+                                        <volist name="hurt_type" id="vo">
+                                            <option value="{$key}">{$vo}</option>
+                                        </volist>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>死亡时间</th>
+                                <td>
+                                    <input type="text" disabled class="form-control form-datetime  input-sm post-gather" id="death_time" name="death_time" maxlength="16" readonly="readonly">
+                                </td>
+                                <th>是否逃逸</th>
+                                <td>
+                                    <select class="form-control input-sm post-gather" name="is_escape" disabled>
+                                        <option value="0">否</option>
+                                        <option value="1">是</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>查获逃逸人时间</th>
+                                <td>
+                                    <input type="text" disabled class="form-control  form-datetime input-sm post-gather" id="escape_catch_man_time" name="escape_catch_man_time" maxlength="16" readonly="readonly">
+                                </td>
+                                <th>查获逃逸车辆时间</th>
+                                <td>
+                                    <input type="text" disabled class="form-control  form-datetime input-sm post-gather" id="escape_catch_car_time" name="escape_catch_car_time" maxlength="16" readonly="readonly">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>现住址</th>
+                                <td>
+                                    <input type="text" disabled class="form-control  input-sm post-gather" id="address" name="address" maxlength="255">
+                                </td>
+                                <th>权利义务告知</th>
+                                <td class="form-inline">
+                                    <select class="form-control  input-sm input-sm post-gather" id="rights_obligations" name="rights_obligations">
+                                        <option value="">请选择</option>
+                                        <volist name="rights_obligations" id="vo">
+                                            <option value="{$key}">{$vo}</option>
+                                        </volist>
+                                    </select>
+                                    <a href="javascript:;" class="btn btn-primary btn-sm">告知</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <h3 class="row">
+                            <div class="col-xs-6"><span class="block-title">违法行为及条款</span></div>
+                        </h3>
+                        <table class="table table-striped table-bordered table-hover table-condensed table-sheet">
+                            <thead>
+                            <th width="45%">大类</th>
+                            <th width="47%">小类</th>
+                            </thead>
+                            <tbody id="tempalte1" style="display:none">
+                            <tr>
+                                <td>
+                                    <select name="law_pid" class="form-control" disabled>
+                                        <option value="">请选择</option>
+                                        <volist name="law_pid" id="vo">
+                                            <option value="{$vo.id}">{$vo.title}</option>
+                                        </volist>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="law_id" class="form-control" disabled>
+                                        <option value="">请选择</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tbody id="info1"></tbody>
+                        </table>
+                        <h3 class="row">
+                            <div class="col-xs-6"><span class="block-title">相关人员信息</span></div>
+                        </h3>
+                        <table class="table table-striped table-bordered table-hover table-condensed table-sheet">
+                            <thead>
+                            <tr>
+                                <th style="width: 12%">姓名</th>
+                                <th style="width: 9%">性别</th>
+                                <th style="width: 5%">年龄</th>
+                                <th style="width: 15%">身份证号</th>
+                                <th style="width: 12%">联系方式</th>
+                                <th style="width: 12%">现住址或单位</th>
+                                <th style="width: 8.3%">与当事人关系</th>
+                                <th style="width: 15.5%">权利义务</th>
+                                <th style="width: 4.2%">告知</th>
+                            </tr>
+                            </thead>
+                            <tbody id="template2" style="display: none">
+                            <tr>
+                                <td><input type="text" disabled class="form-control input-sm" name="relater_name" maxlength="255" style="min-width:auto!important;"></td>
+                                <td>
+                                    <select class="form-control input-sm" name="relater_sex" style="min-width:auto!important;" disabled>
+                                        <option value="1">男</option>
+                                        <option value="0">女</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" class="form-control input-sm" style="min-width: auto!important;" disabled name="relater_age" maxlength="255"></td>
+                                <td><input type="text" class="form-control input-sm" style="min-width: auto!important;" disabled name="relater_idno" maxlength="18"></td>
+                                <td><input type="text" class="form-control input-sm" style="min-width: auto!important;" disabled name="relater_tel" maxlength="255"></td>
+                                <td><input type="text" class="form-control input-sm" style="min-width: auto!important;text-align: left" disabled name="relater_address" maxlength="255"></td>
+                                <td>
+                                    <select class="form-control input-sm" name="relater_relation" style="min-width:auto!important;" disabled>
+                                        <option value="">请选择</option>
+                                        <volist name="client_relation" id="vo">
+                                            <option value="{$key}">{$vo}</option>
+                                        </volist>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-control input-sm" name="relater_rights_obligations" style="min-width:auto!important;">
+                                        <option value="">请选择</option>
+                                        <volist name="rights_obligations" id="vo">
+                                            <option value="{$key}">{$vo}</option>
+                                        </volist>
+                                    </select>
+
+                                </td>
+                                <td>
+                                    <a href="javascript:;" class="btn btn-primary btn-sm">告知</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tbody id="info2"></tbody>
+                        </table>
+                        <h3 class="row">
+                            <div class="col-xs-6"><span class="block-title">行政强制措施</span></div>
+                        </h3>
+                        <table class="table table-bordered table-condensed table-custom" id="force" style="margin-bottom: 0">
+                            <tbody style="border: 0px;">
+                            <tr>
+                                <th>呼吸气检</th>
+                                <th>数值</th>
+                                <th>提取血样</th>
+                                <th>提取时间</th>
+                                <th>采血管编号1</th>
+                                <th>采血管编号2</th>
+                                <th>操作</th>
+                                <th>尿样采集</th>
+                                <th>结论</th>
+                            </tr>
+                            <tr id="single-tr">
+                                <td>
+                                    <input type="checkbox" disabled class="post-gather-checkbox" name="is_checked_breath" id="is_checked_breath" maxlength="255">
+                                </td>
+                                <td>
+                                    <input type="number" disabled min="0" max="99999999.99" class="form-control input-sm small-text post-gather" name="breath_val" id="breath_val" disabled style="min-width:auto!important;">
+                                </td>
+                                <td>
+                                    <input type="checkbox" disabled class="post-gather-checkbox" name="is_checked_blood" id="is_checked_blood">
+                                </td>
+                                <td>
+                                    <input type="text" disabled class="form-control input-sm post-gather date form-datetime" id="blood_time" name="blood_time" maxlength="16" readonly="readonly" style="min-width:auto!important;">
+                                </td>
+                                <td>
+                                    <input type="text" disabled class="form-control input-sm small-text" id="code1" name="code1" readonly="readonly" style="min-width:auto!important;">
+                                </td>
+                                <td>
+                                    <input type="text" disabled class="form-control input-sm small-text" id="code2" name="code2" readonly="readonly" style="min-width:auto!important;">
+                                </td>
+                                <td>
+                                    <a href="javascript:;" class="btn btn-primary btn-sm">告知</a>
+                                </td>
+                                <td>
+                                    <input type="checkbox" disabled class="post-gather-checkbox" name="is_checked_urine" id="is_checked_urine">
+                                </td>
+                                <td>
+                                    <input type="text" disabled class="form-control input-sm small-text post-gather" name="urine_result" id="urine_result" disabled maxlength="255" style="min-width:auto!important;">
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-bordered table-condensed table-custom" style="margin-bottom: 0px;">
+                            <tbody style="border: 0px;">
+                            <tr>
+                                <th colspan="8" style="text-align: left">车辆扣留</th>
+                            </tr>
+                            <tr>
+                                <th width="15%" colspan="2">扣留时间</th>
+                                <td width="35%" colspan="2">
+                                    <input type="text" disabled class="form-control form-date input-sm post-gather" name="detain_time" id="detain_time" maxlength="16" readonly="readonly">
+                                </td>
+                                <th width="15%" colspan="2">停车场</th>
+                                <td width="35%" colspan="2">
+                                    <select class="form-control input-sm post-gather" name="detain_parking" id="detain_parking" disabled>
+                                        <option value="">请选择</option>
+                                        <volist name="parking_lot" id="vo">
+                                            <option value="{$key}">{$vo}</option>
+                                        </volist>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th colspan="2">强制措施凭证编号</th>
+                                <td colspan="2">
+                                    <input type="text" disabled class="form-control input-sm post-gather" maxlength="16" name="detain_force_id" id="detain_force_id" maxlength="255">
+                                </td>
+                                <td colspan="4"><label style="font-weight: normal"><input disabled type='checkbox'class="post-gather-checkbox" id="detain_driver_licence" name="detain_driver_licence">同时扣留行驶证</label></td>
+                            </tr>
+                            <tr>
+                                <th colspan="2">返还时间</th>
+                                <td colspan="6">
+                                    <input type="text" disabled class="form-control form-date input-sm post-gather" id="detain_return_time" name="detain_return_time" maxlength="16" readonly="readonly">
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-striped table-bordered table-hover table-condensed table-sheet">
+                            <thead>
+                            <tr>
+                                <th colspan="12" style="text-align: left">扣押物品列表</th>
+                            </tr>
+                            <tr>
+                                <th width="9%">物品编号</th>
+                                <th width="14%">物品名称</th>
+                                <th width="9%">规格</th>
+                                <th width="9%">特征</th>
+                                <th width="4%">数量</th>
+                                <th width="9%">所有人</th>
+                                <th width="9%">承办人</th>
+                                <th width="9%">扣押日期</th>
+                                <th width="9%">返还日期</th>
+                                <th width="9%">状态</th>
+                            </tr>
+                            </thead>
+                            <tbody style="border: 0px;" id="info3">
+
+                            </tbody>
+                        </table>
+                        <h3 class="row">
+                            <div class="col-xs-6"><span class="block-title">拟给予行政处罚</span></div>
+                        </h3>
+                        <table class="table table-bordered table-condensed table-custom" id="administrative-sanction">
+                            <tr>
+                                <td width="5%" style="height:41px;vertical-align: middle">
+                                    <center>
+                                        <input type="checkbox" class="post-gather-checkbox" name="punish_is_warning" disabled>
+                                    </center>
+                                </td>
+                                <th width="10%">警告</th>
+                                <td width="20%"></td>
+                                <td width="20%"></td>
+                                <td width="20%"></td>
+                                <td width="20%"></td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align: middle"><center><input disabled type="checkbox" class="post-gather-checkbox" name="punish_is_fine"></center></td>
+                                <th>罚款</th>
+                                <th>金额</th>
+                                <td><input type="number" disabled class="form-control  input-sm post-gather" id="punish_money" name="punish_money" disabled max="99999999.99" min="0"></td>
+                                <th>扣分
+                                <td><input type="number" disabled class="form-control  input-sm post-gather" name="punish_score" id="punish_score" disabled max="99999999.99" min="0"></td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align: middle"><center><input disabled type="checkbox" class="post-gather-checkbox" name="punish_is_seize"></center></td>
+                                <th>暂扣</th>
+                                <th>暂扣时长</th>
+                                <td style="vertical-align: middle">
+                                    <input type="number" disabled class="form-control input-sm post-gather" name="punish_seize_time" id="punish_seize_time" disabled max="99999999.99" min="0">
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align: middle"><center><input disabled type="checkbox" class="post-gather-checkbox" name="punish_is_revoke"></center></td>
+                                <th>吊销</th>
+                                <th>吊销时长</th>
+                                <td style="vertical-align: middle">
+                                    <select disabled class="form-control input-sm post-gather" name="punish_revoke_time" id="punish_revoke_time" disabled>
+                                        <option value="">请选择</option>
+                                        <volist name="revoke_years" id="vo">
+                                            <option value="{$key}">{$vo}</option>
+                                        </volist>
+                                    </select>
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align: middle"><center><input disabled type="checkbox" class="post-gather-checkbox" name="punish_is_detain"></center></td>
+                                <th>拘留</th>
+                                <th>拘留天数</th>
+                                <td><input type="number" disabled class="form-control input-sm post-gather" name="punish_detain_time" id="punish_detain_time" disabled max="99999999.99" min="0"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                        <h3 class="row">
+                            <div class="col-xs-6"><span class="block-title">拟给予刑事处罚</span></div>
+                        </h3>
+                        <table class="table table-bordered table-condensed table-custom">
+                            <tr>
+                                <th width="25%">案件类别</th>
+                                <td width="25%">
+                                    <select disabled class="form-control input-sm post-gather" name="criminal_case_type" id="criminal_case_type">
+                                        <option value="">请选择</option>
+                                        <volist name="rights_obligations" id="vo">
+                                            <option value="{$key}">{$vo}</option>
+                                        </volist>
+                                    </select>
+                                </td>
+                                <th width="25%">刑事强制措施</th>
+                                <td width="25%">
+                                    <select disabled class="form-control input-sm post-gather" name="criminal_measure" id="criminal_measure">
+                                        <option value="">请选择</option>
+                                        <volist name="criminal_coercive_measures" id="vo">
+                                            <option value="{$key}">{$vo}</option>
+                                        </volist>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                        <input type="hidden" class="post-gather" id="case_id" name="case_id" value="{$case['id']}">
+                        <input type="hidden" class="post-gather" id="id" name="id" value="{$id}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        {:W('CasePhoto/index', array('相关文件',$case['id'],2,$id))}
+    </div>
+</block>
+<block name="head.ext">
+    <style>
+        #single-tr td{
+            text-align: center;
+        }
+        #force td{
+            line-height: 41px;
+            height:41px;
+            padding-bottom: 0;
+        }
+    </style>
+    <script type="text/javascript">
+        // 定义URL地址
+        url.getClientInfo = "{:U('getClientInfo')}";
+        url.photoList = "{:U('photoList')}";
+        url.download = "{:U('Common/download')}";
+        var client_id = "{$id}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CaseClientInfo.detail?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

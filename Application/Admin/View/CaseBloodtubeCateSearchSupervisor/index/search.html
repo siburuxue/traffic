@@ -1,0 +1,116 @@
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-custom">
+                <tr>
+                    <if condition="is_power($myPower,'case_bloodtubecate_supervisor_advance')">
+                        <th>被派发大队</th>
+                        <td>
+                            <select name="condition_target_department_id" class="form-control input-sm search-auto" id="select-department" style="width:100%;">
+                                <option value="">请选择</option>
+                                <volist name="department" id="vo">
+                                    <option value="{$vo.id}" <neq name="vo.cate" value="2">disabled="disabled" style="color:red;"</neq> >{$vo._prefix}{$vo.name}</option>
+                                </volist>
+                            </select>
+                        </td>
+                        <th>被派发办案人</th>
+                        <td>
+                            <select name="condition_target_user_id" class="form-control input-sm search-auto" id="select-allUsers" style="width:100%;">
+                                <option value="">请选择</option>
+                            </select>
+                        </td>
+                        <else/>
+                        <th>被派发大队</th>
+                        <td>
+                            <input type="hidden" name="condition_target_department_id" value="{$myBrigade.id}" class="form-control input-sm search-auto">
+                            <input type="text" name="condition_target_department_id" value="{$myBrigade.name}" class="form-control input-sm " readOnly="readOnly" style="width:100%;">
+                        </td>
+                        <th>被派发办案人</th>
+                        <td>
+                            <if condition="is_power($myPower,'case_bloodtubecate_supervisor_normal')">
+                                <select name="condition_target_user_id" class="form-control input-sm search-auto" style="width:100%;">
+                                    <option value="">请选择</option>
+                                    <volist name="allUsers" id="vo">
+                                        <option value="{$vo.id}">{$vo.true_name}</option>
+                                    </volist>
+                                </select>
+                                <else/>
+                                <input type="hidden" name="condition_target_user_id" value="{$my['id']}" class="form-control input-sm search-auto">
+                                <input type="text" name="condition_target_user_id" value="{$my['true_name']}" class="form-control input-sm" readOnly="readOnly">
+                            </if>
+                        </td>
+                    </if>
+                </tr>
+                <tr>
+                    <th width="15%">派发时间</th>
+                    <td width="35%">
+                        <table width="100%">
+                            <tr>
+                                <td width="48%">
+                                    <input type="text" class="form-control input-sm search-auto form-datetime" id="start-time" name="condition_start_time" maxlength="16" readonly="readonly" style="min-width:auto;width:100%;">
+                                </td>
+                                <td width="4%" align="center"> ~
+                                </td>
+                                <td width="48%">
+                                    <input type="text" class="form-control input-sm search-auto form-datetime" id="end-time" name="condition_end_time" maxlength="16" readonly="readonly" style="min-width:auto;width:100%;">
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <th width="15%">事故编号</th>
+                    <td width="35%">
+                        <input type="number" class="form-control input-sm search-auto" name="condition_case_id" maxlength="250" style="width:100%;">
+                    </td>
+                    </tr>
+                    <tr>
+                        <th>事故时间</th>
+                        <td>
+                        <table width="100%">
+                            <tr>
+                                <td width="48%">
+                                    <input type="text" class="form-control input-sm search-auto form-datetime" id="start-time1" name="condition_case_start_time" maxlength="16" readonly="readonly" style="min-width:auto;width:100%;">
+                                </td>
+                                <td width="4%" align="center"> ~
+                                </td>
+                                <td width="48%">
+                                    <input type="text" class="form-control input-sm search-auto form-datetime" id="end-time1" name="condition_case_end_time" maxlength="16" readonly="readonly" style="min-width:auto;width:100%;">
+                                </td>
+                        </table>
+                        </td>
+                        <th>采血管编号</th>
+                        <td>
+                            <input type="text" class="form-control input-sm search-auto" name="condition_bloodtube_code" maxlength="250" style="width:100%;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>是否使用</th>
+                        <td>
+                            <select name="condition_is_used" class="form-control input-sm search-auto" style="width:100%;">
+                                <option value="">请选择</option>
+                                <option value="0">未使用</option>
+                                <option value="1">已使用</option>
+                            </select>
+                        </td>
+                        <th>是否回收</th>
+                        <td>
+                            <select name="condition_is_recover" class="form-control input-sm search-auto" style="width:100%;">
+                                <option value="">请选择</option>
+                                <option value="0">未回收</option>
+                                <option value="1">已回收</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>回收方式</th>
+                        <td colspan="3">
+                            <select name="condition_recover_type" class="form-control input-sm search-auto" style="width:100%;">
+                                <option value="">请选择</option>
+                                <foreach name="recover_type" item="vo">
+                                    <option value="{$key}">{$vo}</option>
+                                </foreach>
+                            </select>
+                        </td>
+                    </tr>
+            </table>
+        </div>
+        <button type="button" class="btn btn-primary" id="search-submit"><span class="glyphicon glyphicon-search"></span> 查询</button>
+        <button type="button" class="btn btn-warning" id="search-reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>

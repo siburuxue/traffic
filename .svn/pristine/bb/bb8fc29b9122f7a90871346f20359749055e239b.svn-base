@@ -1,0 +1,700 @@
+<!-- 面板内容 -->
+<div class="panel-body">
+    <table class="table table-bordered table-condensed table-custom">
+         <input type="hidden" class=" post-gather" name="case_id" value="{$caseData.id}"  readOnly="readOnly" maxlength="50">
+         <input type="hidden" class=" post-gather" name="id" value="{$data.id}"  readOnly="readOnly" maxlength="50">
+        <!--  -->
+        <tr>
+            <th width="25%" colspan="2">车辆种类</th>
+            <td width="25%" colspan="2">
+                <select name="car_type" class="form-control input-sm post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.car_type" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+            <th width="25%" colspan="2">号牌种类</th>
+            <td width="25%" colspan="2">
+                <select name="car_no_type" class="form-control input-sm post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.car_no_type" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="25%" colspan="2">号牌号码</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm" name="car_no" readOnly="readOnly" maxlength="255">
+            </td>
+            <th width="25%" colspan="2">车辆行驶状态</th>
+            <td width="25%" colspan="2">
+                <select name="travel_status" class="form-control input-sm post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.travel_status" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="25%" colspan="2">车辆行驶速度</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="speed" maxlength="255">
+            </td>
+            <th width="25%" colspan="2">车辆碰撞方位</th>
+            <td width="25%" colspan="2">
+                <select name="collision_position" class="form-control input-sm post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.collision_position" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="25%" colspan="2">在碰撞中角色</th>
+            <td width="25%" colspan="2">
+                <select name="character" class="form-control input-sm post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.character" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+            <th width="25%" colspan="2">碰撞后车辆形态</th>
+            <td width="25%" colspan="2">
+                <select name="collision_status" class="form-control input-sm post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.collision_status" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="12.5%" rowspan="2">车辆受损情况</th>
+            <th width="12.5%">在碰撞中角色</th>
+            <th width="12.5%">按部位区区分</th>
+            <td width="12.5%">
+                <select name="deform_position" class="form-control input-sm post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.deform_position" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+            <th width="25%" colspan="2">按功能区区分</th>
+            <td width="25%" colspan="2">
+                <select name="deform_features" class="form-control input-sm post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.deform_features" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="12.5%">其他损伤</th>
+            <td width="25%" colspan="2">
+                <select name="deform_other" class="form-control input-sm post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.deform_other" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+            <th width="25%" colspan="2"></th>
+            <td width="25%" colspan="2">
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="25%" colspan="2">车辆损坏程度</th>
+            <td width="25%" colspan="2">
+                <select name="damage_degree" class="form-control input-sm post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.damage_degree" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+            <th width="25%" colspan="2">车辆避让措施</th>
+            <td width="25%" colspan="2">
+                <select name="avoid_measures" class="form-control input-sm post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.avoid_measures" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="12.5%" rowspan="2">车辆变速器档位</th>
+            <th width="12.5%">
+                <label><input name="gears_type" value="1" type="radio" class="radio_gears_type" checked="true"/> {$case_ext_car.gears_type.1.name}</label></th>
+            <td width="25%" colspan="2">
+                <select name="gears" class="form-control input-sm post-gather select_gears_type select_gears_type_1" >
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.gears_type.1.value" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+            <th width="25%" colspan="2">车辆碰撞速度</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="collision_speed" maxlength="255">
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="12.5%">
+                <label><input name="gears_type" value="2" type="radio"  class="radio_gears_type"/> {$case_ext_car.gears_type.2.name}</label></th>
+            <td width="25%" colspan="2">
+                <select name="gears" class="form-control input-sm post-gather select_gears_type select_gears_type_2">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.gears_type.2.value" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+            <th width="25%" colspan="2">车辆转向灯状态</th>
+            <td width="25%" colspan="2">
+                <select name="steer_light" class="form-control input-sm post-gather  ">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.steer_light" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="25%" colspan="2">车辆照明灯状态</th>
+            <td width="25%" colspan="2">
+                <select name="light_state" class="form-control input-sm post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.light_state" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+            <th width="25%" colspan="2">车辆安全气囊状态</th>
+            <td width="25%" colspan="2">
+                <select name="airbag_state" class="form-control input-sm post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.airbag_state" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="12.5%" rowspan="5">车内不同位置死伤</th>
+            <th width="12.5%">驾驶位置乘员</th>
+            <th width="12.5%">乘员人数</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="drive_nums" maxlength="255">
+            </td>
+            <th width="12.5%">死亡人数</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="drive_death" maxlength="255">
+            </td>
+            <th width="12.5%">受伤人数</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="drive_hurt" maxlength="255">
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="12.5%">副驾驶位置乘员</th>
+            <th width="12.5%">乘员人数</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="drive_nums" maxlength="255">
+            </td>
+            <th width="12.5%">死亡人数</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="drive_death" maxlength="255">
+            </td>
+            <th width="12.5%">受伤人数</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="drive_hurt" maxlength="255">
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="12.5%">成员区左侧乘员</th>
+            <th width="12.5%">乘员人数</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="left_nums" maxlength="255">
+            </td>
+            <th width="12.5%">死亡人数</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="left_death" maxlength="255">
+            </td>
+            <th width="12.5%">受伤人数</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="left_hurt" maxlength="255">
+            </td>
+        </tr>
+        <!--  -->
+        <tr>
+            <th width="12.5%">成员区中侧乘员</th>
+            <th width="12.5%">乘员人数</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="middle_nums" maxlength="255">
+            </td>
+            <th width="12.5%">死亡人数</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="middle_death" maxlength="255">
+            </td>
+            <th width="12.5%">受伤人数</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="middle_hurt" maxlength="255">
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="12.5%">成员区右侧乘员</th>
+            <th width="12.5%">乘员人数</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="right_nums" maxlength="255">
+            </td>
+            <th width="12.5%">死亡人数</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="right_death" maxlength="255">
+            </td>
+            <th width="12.5%">受伤人数</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="right_hurt" maxlength="255">
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="12.5%" rowspan="3">车辆乘员抛出车外情况</th>
+            <th width="12.5%">死亡乘员</th>
+            <th width="12.5%">抛出人数</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="death_throw" maxlength="255">
+            </td>
+            <th width="25%" colspan="2">未抛出人数</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="drive_death" maxlength="255">
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="12.5%">受伤乘员</th>
+            <th width="12.5%">抛出人数</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="hurt_throw" maxlength="255">
+            </td>
+            <th width="25%" colspan="2">未抛出人数</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="hurt_unthrow" maxlength="255">
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="12.5%">未受伤乘员</th>
+            <th width="12.5%">抛出人数</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="unhurt_throw" maxlength="255">
+            </td>
+            <th width="25%" colspan="2">未抛出人数</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="unhurt_unthrow" maxlength="255">
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="25%" colspan="2">车辆类型</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="vehicle_kind" maxlength="255">
+            </td>
+            <th width="25%" colspan="2">车辆识别代号</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="vehicle_uniqueno" maxlength="255">
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="25%" colspan="2">生产厂家</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="manufacturer" maxlength="255">
+            </td>
+            <th width="25%" colspan="2">中文品牌</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="chinese_brand" maxlength="255">
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="25%" colspan="2">车辆型号</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="vehicle_model" maxlength="255">
+            </td>
+            <th width="25%" colspan="2">车辆安全装置配备情况</th>
+            <td width="25%" colspan="2">
+                <select name="safety" class="form-control input-sm post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.safety" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="25%" colspan="2">车辆安全装置失效情况</th>
+            <td width="25%" colspan="2">
+                <select name="safety_failure" class="form-control input-sm post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.safety_failure" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+            <th width="25%" colspan="2">爆胎轮胎规格</th>
+            <td width="25%" colspan="2">
+                 <input type="text" class="form-control input-sm post-gather" name="tyre_type" maxlength="255">
+               
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="25%" colspan="2">车辆已使用年数</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="vehicle_years" maxlength="255">
+            </td>
+            <th width="25%" colspan="2">车辆使用年限</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="vehicle_max" maxlength="255">
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="12.5%" rowspan="2">车辆形状</th>
+            <th width="12.5%"><label><input name="vehicle_shape_type" type="radio" value="1" checked="true"/> {$case_ext_car.vehicle_shape_type.1.name}</label></th>
+            <td width="25%" colspan="2">
+                <select name="vehicle_shape" class="form-control input-sm post-gather select_vehicle_shape_type select_vehicle_shape_type_1">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.vehicle_shape_type.1.value" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+            <th width="25%" colspan="2"><label><input name="vehicle_shape_type" type="radio" value="2"/> {$case_ext_car.vehicle_shape_type.2.name}</label></th>
+            <td width="25%" colspan="2">
+                <select name="vehicle_shape" class="form-control input-sm post-gather  select_vehicle_shape_type select_vehicle_shape_type_2">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.vehicle_shape_type.2.value" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="12.5%"><label><input name="vehicle_shape_type" type="radio" value="3"/> {$case_ext_car.vehicle_shape_type.3.name}</label></th>
+            <td width="25%" colspan="2">
+                <select name="vehicle_shape" class="form-control input-sm post-gather  select_vehicle_shape_type select_vehicle_shape_type_3">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.vehicle_shape_type.3.value" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+            <th width="25%" colspan="2"><label><input name="vehicle_shape_type" type="radio" value="4"/> {$case_ext_car.vehicle_shape_type.4.name}</label></th>
+            <td width="25%" colspan="2">
+                <select name="vehicle_shape" class="form-control input-sm post-gather  select_vehicle_shape_type select_vehicle_shape_type_4">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.vehicle_shape_type.4.value" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="25%" colspan="2">累计行驶里程</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="travel_mileage" maxlength="255">
+            </td>
+            <th width="25%" colspan="2"></th>
+            <td width="25%" colspan="2">
+            </td>
+        </tr>
+        <!--  -->
+        <tr>
+            <th width="25%" colspan="2">实载数</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="actual_load" maxlength="255">
+            </td>
+            <th width="25%" colspan="2">核载数</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="nuclear_load" maxlength="255">
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="25%" colspan="2">保险种类</th>
+            <td width="25%" colspan="2">
+                <select name="insurance_type" class="form-control input-sm post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.insurance_type" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+            <th width="25%" colspan="2">车辆合法状况</th>
+            <td width="25%" colspan="2">
+                <select name="legal_status" class="form-control input-sm post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.legal_status" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="12.5%" rowspan="2">车辆使用性质</th>
+            <th width="12.5%" ><label><input name="use_property_type" type="radio" value="1" checked="true"/> {$case_ext_car.use_property_type.1.name}</label></th>
+            <td width="25%" colspan="2">
+                <select name="use_property" class="form-control input-sm post-gather select_use_property_type select_use_property_type_1">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.use_property_type.1.value" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+            <th width="25%" colspan="2">车辆安全状况</th>
+            <td width="25%" colspan="2">
+                <select name="safty_status" class="form-control input-sm post-gather ">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.safty_status" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="12.5%" ><label><input name="use_property_type" type="radio" value="2" /> {$case_ext_car.use_property_type.2.name}</label></th>
+            <td width="25%" colspan="2">
+                <select name="use_property" class="form-control input-sm post-gather  select_use_property_type select_use_property_type_2">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.use_property_type.2.value" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+            <th width="25%" colspan="2"></th>
+            <td width="25%" colspan="2">
+                
+            </td>
+        </tr>
+        <!--  -->
+
+        <!--  -->
+        <tr>
+            <th width="25%" colspan="2">至事故发生已运行时间</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="runtime" maxlength="255">
+            </td>
+            <th width="25%" colspan="2">至事故发生已运行里程</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="run_mileage" maxlength="255">
+            </td>
+        </tr>
+        <!--  -->
+         <!--  -->
+        <tr>
+            <th width="25%" colspan="2">运载危险品种类</th>
+            <td width="25%" colspan="2">
+                <select name="dangerous" class="form-control input-sm post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.dangerous" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+            <th width="25%" colspan="2">有无危险品运输许可证</th>
+            <td width="25%" colspan="2">
+                <select name="is_transport" class="form-control input-sm post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.is_transport" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+        </tr>
+        <!--  --> 
+         <!--  -->
+        <tr>
+            <th width="12.5%" rowspan="4">车属单位</th>
+            <th width="12.5%">单位名称</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="company_name" maxlength="255">
+            </td>
+            <th width="25%" colspan="2">行政区划</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="regionalism" maxlength="255">
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="12.5%">经营规模</th>
+            <th width="12.5%">客运车辆数量</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="bus_num" maxlength="255">
+            </td>
+            <th width="25%" colspan="2">客运车辆驾驶人数量</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="bus_drivers" maxlength="255">
+            </td>
+        </tr>
+        <!--  --> 
+         <!--  -->
+        <tr>
+            <th width="12.5%">客运企业等级</th>
+            <td width="25%" colspan="2">
+                <select name="company_level" class="form-control input-sm post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.company_level" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+            <th width="25%" colspan="2">6个月内发生一次死亡三人以上事故起数</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="bad_accident" maxlength="255">
+            </td>
+        </tr>
+        <!--  -->
+         <!--  -->
+        <tr>
+            <th width="12.5%">企业性质</th>
+            <td width="25%" colspan="2">
+                <select name="enterprise_nature" class="form-control input-sm post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.enterprise_nature" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+            <th width="25%" colspan="2"></th>
+            <td width="25%" colspan="2">            
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="25%" colspan="2">线路经营性质</th>
+            <td width="25%" colspan="2">
+                <select name="manage_nature" class="form-control input-sm post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.manage_nature" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+            <th width="25%" colspan="2">客运区间里程数</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="all_mileage" maxlength="255">
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="25%" colspan="2">是否进站经营</th>
+            <td width="25%" colspan="2">
+                <select name="is_inbusiness" class="form-control input-sm post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.is_inbusiness" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+            <th width="25%" colspan="2">车辆出站安全检查</th>
+            <td width="25%" colspan="2">
+                <select name="security_check" class="form-control input-sm post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.security_check" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="12.5%">车辆载客情况</th>
+            <th width="12.5%">车辆出站时载客人数</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="load_nums" maxlength="255">
+            </td>
+            <th width="25%" colspan="2">沿途上/下客人数</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm post-gather" name="difference_nums" maxlength="255">
+            </td>
+        </tr>
+        <!--  --> 
+        <!--  -->
+        <tr>
+            <th width="25%" colspan="2">车辆二级维护</th>
+            <td width="75%" colspan="6">
+                <select name="maintenance" class="form-control input-sm post-gather">
+                    <option value="">请选择</option>
+                    <foreach name="case_ext_car.maintenance" item="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </foreach>
+                </select>
+            </td>
+
+        </tr>
+        <!--  -->
+
+    </table>
+    <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-saved"></span> 提交</button>
+    <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+</div>

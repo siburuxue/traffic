@@ -1,0 +1,40 @@
+<!-- tab -->
+<include file="CaseCognizance/unCognizance/road_traffic_accident_certificate/tab" />
+<!-- 列表面板 -->
+<div class="panel panel-default">
+    <!-- 面板头 -->
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-6"><span class="block-title">道路交通事故证明</span></div>
+            <div class="col-xs-6 text-right">
+                <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+            </div>
+        </div>
+    </div>
+    <!-- 面板主体 -->
+    <div class="panel-body">
+        <include file="CaseCognizance/unCognizance/road_traffic_accident_certificate/base" />
+    </div>
+    <div class="text-left" style="margin:0 0 15px 16px">
+        <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-floppy-disk"></span> 保存</button>
+        <button type="button" class="btn btn-primary" id="approval"><span class="glyphicon glyphicon-pencil"></span> 确定并提请审批</button>
+        <button type="button" class="btn btn-primary" id="make" <if condition="$cognizanceInfo['check_status'] neq '1' or $cognizanceInfo['is_make'] eq '1'">disabled</if> ><span class="glyphicon glyphicon-wrench"></span> 制作</button>
+        <button type="button" class="btn btn-primary" id="print" <if condition="$id eq '' or $cognizanceInfo['check_status'] eq 2">disabled</if> ><span class="glyphicon glyphicon-print"></span> 打印道路交通事故证明</button>
+        <if condition="$cognizanceInfo['is_make'] eq '0' or $cognizanceInfo['check_status'] eq 3">
+            <button class="btn btn-primary" disabled><span class="glyphicon glyphicon-arrow-down"></span> 下发</button>
+        <else />
+            <a href="{:U('issueIndex?case_id='.$case['id'].'&cognizance_id='.$cognizanceInfo['id'].'&type=unCognizance')}" id="issue" class="btn btn-primary js-open"><span class="glyphicon glyphicon-arrow-down"></span> 下发</a>
+        </if>
+        <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+    </div>
+</div>
+<input type="hidden" id="case_id" name="case_id" class="post-gather" value="{$case['id']}">
+<input type="hidden" id="case_cognizance_id" name="case_cognizance_id" class="post-gather" value="{$cognizanceInfo['id']}">
+<input type="hidden" id="case_cognizance_report_id" name="case_cognizance_report_id" class="post-gather" value="{$reportId}">
+<input type="hidden" id="id" name="id" class="post-gather" value="{$id}">
+{:W('CasePhoto/index', array('道路交通事故证明列表',$case['id'],22,$cognizanceInfo['id']))}
+<script>
+    var is_back = "{$cognizanceInfo['is_back']}";
+    var is_submit = "{$cognizanceInfo['is_submit']}";
+    var check_status = "{$cognizanceInfo['check_status']}";
+</script>

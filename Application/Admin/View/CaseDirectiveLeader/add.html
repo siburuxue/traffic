@@ -1,0 +1,57 @@
+<extend name="Common/base" />
+<block name="title">新增指示意见</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 面板 -->
+        <div class="panel panel-default">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">新增指示意见</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed table-form">
+                    <tr>
+                        <th width="15%">指示意见</th>
+                        <td>
+                            <textarea name="content" class="form-control post-gather" style="height:120px;resize:none;"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>时间</th>
+                        <td>
+                            <input type="text" class="form-control input-sm post-gather" name="directive_time" maxlength="16" readonly="readonly" value="{:date('Y-m-d H:i')}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>填报人</th>
+                        <td>
+                            <input type="text" class="form-control input-sm" name="directive_user_name" readonly="readonly" value="{$my.true_name}">
+                        </td>
+                    </tr>
+                </table>
+                <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-saved"></span> 提交</button>
+                <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="case_id" value="{$case.id}" class="post-gather">
+    <input type="hidden" name="directive_user_id" value="{$my.id}" class="post-gather">
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.update = "{:U('insert')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CaseDirectiveLeader.add?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

@@ -1,0 +1,78 @@
+<table class="table table-bordered table-condensed table-custom" style="margin-bottom:0px">
+    <tbody>
+    <tr>
+        <th width="15%"><span class="text-danger">*</span>文书名称、文号</th>
+        <td>
+            <input type="text" class="form-control input-sm post-gather" id="code" name="code" maxlength="255">
+        </td>
+    </tr>
+    <tr>
+        <th><span class="text-danger">*</span>送达时间</th>
+        <td>
+            <input type="text" class="form-control input-sm post-gather form-datetime" readonly name="post_time" id="post_time" maxlength="255">
+        </td>
+    </tr>
+    <tr>
+        <th><span class="text-danger">*</span> 送达地点</th>
+        <td>
+            <input type="text" class="form-control input-sm post-gather" name="post_place" id="post_place" maxlength="255">
+        </td>
+    </tr>
+    <tr>
+        <th><span class="text-danger">*</span>送达方式</th>
+        <td>
+            <input type="text" class="form-control input-sm post-gather" name="post_method" id="post_method" maxlength="255">
+        </td>
+    </tr>
+    <tr>
+        <th><span class="text-danger">*</span>受送达人</th>
+        <td>
+            <select id="client-relater-list" name="target_client_id" class="form-control input-sm post-gather">
+                <option value="">请选择</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <th>代收人</th>
+        <td>
+            <input type="text" class="form-control input-sm post-gather" name="receiver" id="receiver" maxlength="255">
+        </td>
+    </tr>
+    <tr>
+        <th>代收原因</th>
+        <td>
+            <input type="text" class="form-control input-sm post-gather" name="receiver_reason" id="receiver_reason" maxlength="255">
+        </td>
+    </tr>
+    <tr>
+        <th>与受送达人关系</th>
+        <td>
+            <input type="text" class="form-control input-sm post-gather" name="receiver_relation" id="receiver_relation" maxlength="16">
+        </td>
+    </tr>
+    <tr>
+        <th>送达人拒收原因</th>
+        <td>
+            <input type="text" class="form-control input-sm post-gather" name="rejection_reason" id="rejection_reason" maxlength="16">
+        </td>
+    </tr>
+    <tr>
+        <th><span class="text-danger">*</span> 见证人</th>
+        <td>
+            <input type="text" class="form-control input-sm post-gather" name="witness" id="witness" maxlength="255">
+        </td>
+    </tr>
+    <tr>
+        <th><span class="text-danger">*</span> 送达人</th>
+        <td>
+            <input type="text" class="form-control input-sm post-gather" name="sender" id="sender" maxlength="255">
+        </td>
+    </tr>
+    <tr>
+        <th>备注</th>
+        <td>
+            <input type="text" class="form-control input-sm post-gather" name="remark" id="remark" maxlength="255">
+        </td>
+    </tr>
+    </tbody>
+</table>

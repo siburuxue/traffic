@@ -1,0 +1,111 @@
+<extend name="Common/base" />
+<block name="title">更新受案登记信息</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 基础信息 -->
+        <div class="panel panel-default form-inline1">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">更新受案登记信息</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <include file="CaseAcceptHandle/edit/base" />
+            </div>
+            <div class="text-left" style="margin:0 0 15px 16px">
+                <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-floppy-disk"></span> 保存</button>
+                <button type="button" class="btn btn-primary" id="approval"><span class="glyphicon glyphicon-pencil"></span> 保存并提请审批</button>
+                <button type="button" class="btn btn-primary" id="print"><span class="glyphicon glyphicon-print"></span> 打印受案登记表</button>
+                <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+            </div>
+        </div>
+        <input type="hidden" id='id' name="id" class="post-gather" value="{$info['id']}">
+        <input type="hidden" id="case_id" name="case_id" class="post-gather" value="{$case['id']}">
+        <!-- 按钮 -->
+        <div class="panel panel-default form-inline">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">审核记录</span></div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <include file="CaseAcceptHandle/edit/checkTable" />
+            </div>
+        </div>
+        {:W('CasePhoto/index', array('受案登记',$case['id'],1,$info['id']))}
+    </div>
+</block>
+<block name="foot.html">
+    <div  id="approval-box" class="container-fluid" style="display:none;margin-top:20px;" >
+        <div class="panel panel-default form-inline1">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">审核人确认</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm" id="approval-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <div class="container-fluid">
+                    <table class="table table-bordered table-condensed table-custom" id="approval-list">
+                        <tr>
+                            <th width="15%">审核人</th>
+                            <if condition="count($list) neq '0'">
+                                <td>
+                                    <div class="checkbox">
+                                        <volist name="list" id="vo">
+                                            <div><label><input type="radio" name="check" value="{$vo.id}" <if condition="$i eq 1">checked</if>>{$vo.department_name}:{$vo.true_name}</label></div>
+                                        </volist>
+                                    </div>
+                                </td>
+                                <else />
+                                <td>尚无有效审核人</td>
+                            </if>
+                        </tr>
+                    </table>
+                    <button type="button" class="btn btn-primary" id="approval-submit" <if condition="count($list) eq '0'">disabled</if> ><span class="glyphicon glyphicon-saved"></span> 确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="head.ext">
+    <style>
+        /*.all{width:100%!important;}*/
+    </style>
+    <script type="text/javascript">
+        // 定义URL地址
+        url.update = "{:U('update?case_id='.$case['id'])}";
+        url.photoList = "{:U('photoList')}";
+        url.check = "{:U('caseSubmitCheck')}";
+        url.download = "{:U('Common/download')}";
+        url.checkTable = "{:U('checkTable')}";
+        url.delete = "{:U('CasePhoto/delete')}";
+        url.inputCheck = "{:U('inputCheck')}";
+        $(function(){
+            var status = "{$info.status}";
+            //如果已经审批 画面不可编辑
+            if(status == "1"){
+                $('.panel-body:eq(0) input,select,textarea').prop('disabled',true);
+                $('#reset,#submit,#approval').prop('disabled',true);
+            }
+        });
+    </script>
+</block>
+<block name="foot.ext">
+
+    <import file="js.CaseAcceptHandle.edit?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

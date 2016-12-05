@@ -1,0 +1,47 @@
+<div class="panel panel-default">
+    <!-- 面板头 -->
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-6"><span class="block-title">档案详情</span></div>
+            <div class="col-xs-6 text-right">
+                <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-custom">
+                <tr>
+                    <th width="15%">档案编号</th>
+                    <td width="35%">
+                        <span>{$archiveDataArray['code']}</span>
+                    </td>
+                    <th width="15%">档案名称</th>
+                    <td>
+                        {$archiveDataArray['name']}
+                    </td>
+                </tr>
+                <tr>
+                    <th>办案人</th>
+                    <td>
+                        {$archiveDataArray['true_name']}
+                    </td>
+                    <th>入库时间</th>
+                    <td>
+                        {$archiveDataArray.create_time|date='Y-m-d H:i',###}
+                    </td>
+                </tr>
+                <tr>
+                    <th>归档人</th>
+                    <td>
+                        {$archiveDataArray['return_man']['true_name']}
+                    </td>
+                    <th>所在位置</th>
+                    <td>
+                        {$archiveDataArray['place']}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

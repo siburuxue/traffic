@@ -1,0 +1,44 @@
+<div class="table-responsive">
+    <table class="table table-bordered table-condensed table-form">
+        <tr>
+            <th width="15%">所属大队</th>
+            <td colspan="3">
+                <input type="text" class="form-control input-sm <if condition="false===is_power($myPower,'statistics_blood_3')">disabled</if>" name="condition_department" readonly="readonly" data-target="#select-department" data-default="<if condition="false===is_power($myPower,'statistics_blood_3')">{$myBrigade.id}</if>">
+            </td>
+        </tr>
+        <tr>
+            <th width="15%">办案人</th>
+            <td width="35%">
+                <input type="text" class="form-control input-sm <if condition="false===is_power($myPower,'statistics_blood_2,statistics_blood_3','or')">disabled</if>" name="condition_handle" readonly="readonly" data-target="#select-handle" data-default="<if condition="false===is_power($myPower,'statistics_blood_2,statistics_blood_3','or')">{$my.id}</if>">
+            </td>
+            <th width="15%">事故时间</th>
+            <td>
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <input type="text" class="form-control input-sm search-auto form-datetime" name="condition_start_time" maxlength="16" readonly="readonly">
+                        </td>
+                        <td width="30" class="text-center">~</td>
+                        <td>
+                            <input type="text" class="form-control input-sm search-auto form-datetime" name="condition_end_time" maxlength="16" readonly="readonly">
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <th>事故地点</th>
+            <td>
+                <input type="text" class="form-control input-sm search-auto" name="condition_accident_place" maxlength="255">
+            </td>
+            <th>被提取人姓名</th>
+            <td>
+                <input type="text" class="form-control input-sm search-auto" name="condition_client_name" maxlength="255">
+            </td>
+        </tr>
+    </table>
+</div>
+<div style="margin-bottom:20px;">
+    <button type="button" class="btn btn-primary" id="search-submit"><span class="glyphicon glyphicon-search"></span> 查询</button>
+    <button type="button" class="btn btn-warning" id="search-reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+</div>

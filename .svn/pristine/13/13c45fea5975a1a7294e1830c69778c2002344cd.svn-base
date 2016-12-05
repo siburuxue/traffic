@@ -1,0 +1,30 @@
+<table class="table table-bordered table-condensed table-custom">
+    <tr>
+        <th width="15%">姓名</th>
+        <td width="35%">
+            <input type="text" class="form-control input-sm search-auto" name="condition_name" maxlength="255">
+        </td>
+        <th width="15%">笔录类型</th>
+        <td>
+            <select name="condition_record_type" class="form-control input-sm search-auto">
+                <option value="">请选择</option>
+                <volist name="record_type" id="vo">
+                    <option value="{$key}">{$vo}</option>
+                </volist>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <th>时间</th>
+        <td colspan="3">
+            <input type="text" class="form-control input-sm search-autoform-datetime" id="start-time" name="condition_start_time" maxlength="16" readonly="readonly" style="min-width:auto;width:200px;display: inline-block">
+            ~
+            <input type="text" class="form-control input-sm search-auto form-datetime" id="end-time" name="condition_end_time" maxlength="16" readonly="readonly" style="min-width:auto;width:200px;display: inline-block">
+        </td>
+    </tr>
+</table>
+<div style="margin-bottom: 20px;">
+    <button type="button" class="btn btn-primary" id="search-submit"><span class="glyphicon glyphicon-search"></span> 查询</button>
+    <button type="button" class="btn btn-warning" id="search-reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+</div>
+

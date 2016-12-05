@@ -1,0 +1,15 @@
+<div id="client-list">
+    <!-- 当事人列表 -->
+    <volist name="caseClient" id="vo">
+        <div class="panel panel-primary client-item" data-id="{$vo.id}" data-name="{$vo.name}" style="cursor:pointer;">
+            <!-- 面板标题 -->
+            <div class="panel-heading">{$vo.name|default='-'}</div>
+            <!-- 面板内容 -->
+            <div class="list-group collapse" data-parent="#client-list">
+                <div class="list-group-item">交通方式：{:get_custom_config('traffic_type.'.$vo['traffic_type'])}</div>
+                <div class="list-group-item">伤害程度：{:get_custom_config('hurt_type.'.$vo['hurt_type'])}</div>
+                <div class="list-group-item">车牌：{$vo.car_no|default='-'}</div>
+            </div>
+        </div>
+    </volist>
+</div>

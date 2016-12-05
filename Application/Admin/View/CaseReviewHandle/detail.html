@@ -1,0 +1,96 @@
+<extend name="Common/base" />
+<block name="title">待办工作</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 面板 -->
+        <div class="panel panel-default">
+            <!-- 面板头 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">待办工作</span></div>
+                    <div class="col-xs-6 text-right">
+                        <a href="{:U('CaseInfo/detail?id='.$info['case_id'])}" class="btn btn-primary btn-sm js-open js-end-refresh"><span class="glyphicon glyphicon-plus"></span> 案件详细信息</a>
+                        <a href="#" class="btn btn-primary btn-sm js-open js-end-refresh"><span class="glyphicon glyphicon-plus"></span> 通知调卷</a>
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板主体 -->
+            <div class="panel-body">
+                <!-- 步骤 -->
+                <include file="CaseReviewHandle/detail/step" />
+                <div class="row">
+                    <div class="col-xs-4">
+                        <!-- 复核申请 -->
+                        <include file="CaseReviewHandle/detail/apply" />
+                    </div>
+                    <div class="col-xs-4">
+                        <!-- 复核受理 -->
+                        <include file="CaseReviewHandle/detail/accept" />
+                    </div>
+                    <div class="col-xs-4">
+                        <!-- 复核结论 -->
+                        <include file="CaseReviewHandle/detail/result" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 面板 -->
+        <div class="panel panel-default">
+            <!-- 面板主体 -->
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed table-sheet" style="margin-bottom:0;">
+                    <tr>
+                        <th width="15%">复核事项答复意见</th>
+                        <td style="text-align:left;">
+                            {$caseReply.content|default='无'}
+                        </td>
+                        <td width="70">-</td>
+                        <td width="70">
+                            <a href="{:U('CaseReplyHandle/index?case_id='.$info['case_id'])}" class="btn btn-primary btn-sm js-open">查看</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>指示意见</th>
+                        <td style="text-align:left;word-break:break-all;">
+                            {$caseDirective.content|default='无'}
+                        </td>
+                        <td>
+                            <a href="{:U('CaseDirectiveLeader/add?case_id='.$info['case_id'])}" class="btn btn-primary btn-sm js-open js-end-refresh">指示</a>
+                        </td>
+                        <td>
+                            <a href="{:U('CaseDirectiveLeader/index?case_id='.$info['case_id'])}" class="btn btn-primary btn-sm js-open js-end-refresh">查看</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>集体研究</th>
+                        <td style="text-align:left;word-break:break-all;">
+                            <empty name="caseDiscuss">无
+                                <else/> {$caseDiscuss.discuss_time|date='Y-m-d H:i',###} 集体研究
+                            </empty>
+                        </td>
+                        <td>
+                            <a href="{:U('CaseDiscussLeader/add?case_id='.$info['case_id'])}" class="btn btn-primary btn-sm js-open js-end-refresh">发起</a>
+                        </td>
+                        <td>
+                            <a href="{:U('CaseDiscussLeader/index?case_id='.$info['case_id'])}" class="btn btn-primary btn-sm js-open js-end-refresh">查看</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <!-- 表格 结束 -->
+    </div>
+    <!-- 页面主体 结束 -->
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CaseReviewHandle.detail?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

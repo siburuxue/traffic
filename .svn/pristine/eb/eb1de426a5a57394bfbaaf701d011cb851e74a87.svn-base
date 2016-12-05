@@ -1,0 +1,2 @@
+<input type="hidden" class="form-control input-sm search-auto" name="condition_cate" value="{$cate}" maxlength="50">
+<input type="hidden" class="form-control input-sm search-auto" name="condition_archive_id" value="{$archive_id}" maxlength="50">

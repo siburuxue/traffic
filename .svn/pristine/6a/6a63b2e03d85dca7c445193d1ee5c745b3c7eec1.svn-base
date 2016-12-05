@@ -1,0 +1,32 @@
+<table class="table table-striped table-bordered table-hover table-condensed table-sheet" id="table" data-totalrows="{$page.totalrows}" data-totalpage="{$page.totalpage}" data-nowpage="{$page.nowpage}">
+    <thead>
+        <tr>
+            <th>案件编号</th>
+            <th>事故发生时间</th>
+            <th>地点</th>
+            <th>办案人</th>
+            <th>当事人</th>
+            <th>交通方式</th>
+            <th>车牌号</th>
+            <th>认定状态</th>
+        </tr>
+    </thead>
+    <tbody>
+        <foreach name="list" item="vo" key="i">
+            <tr>
+                <if condition="$list[$i - 1]['id'] neq $vo['id'] or $i eq 0">
+                    <td rowspan="{$vo['count']}"><a href="{:U('detail?case_id='.$vo['id'])}"  class="js-open js-end-refresh">{$vo.code}</a></td>
+                    <td rowspan="{$vo['count']}">{$vo.accident_time|date='Y-m-d H:i',###}</td>
+                    <td rowspan="{$vo['count']}">{$vo.accident_place}</td>
+                    <td rowspan="{$vo['count']}">{$vo.true_name}</td>
+                </if>
+                <td>{$vo.name|default='-'}</td>
+                <td>{$vo.traffic_type|default='-'}</td>
+                <td>{$vo.car_no|default='-'}</td>
+                <if condition="$list[$i - 1]['id'] neq $vo['id'] or $i eq 0">
+                    <td rowspan="{$vo['count']}">{$vo.cognizance_status}</td>
+                </if>
+            </tr>
+        </foreach>
+    </tbody>
+</table>

@@ -1,0 +1,65 @@
+<!-- grantDetachment.html -->
+<extend name="Common/base" />
+<block name="title">采血管回收</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 面板 -->
+        <div class="panel panel-default form-inline">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">采血管回收</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed table-custom">
+                    <tr>
+                        <th width="15%">回收方式</th>
+                        <td width="35%">
+                            <select name="recover_type" class="form-control input-sm post-gather" id="select-department" style="width:100%">
+                                <option value="">请选择</option>
+                                <foreach name="recover_type" item="vo">
+                                    <option value="{$key}">{$vo}</option>
+                                </foreach>
+                            </select>
+                        </td>
+                        <th width="15%">回收时间</th>
+                        <td width="35%">
+                            <input type="text" class="form-control input-sm post-gather form-datetime" id="start-time" name="recover_time" maxlength="16" value="{$nowtime|date='Y-m-d H:i',###}" readonly="readonly"  style="width:100%">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>采血管编号</th>
+                        <td>
+                            <input type="text" class="form-control input-sm post-gather" maxlength="250" name="code"  style="width:100%">
+                        </td>
+                        <th>回收人</th>
+                        <td>
+                            <input type="text" class="form-control input-sm " maxlength="16" value="{$my.true_name}" readonly="readonly"  style="width:100%">
+                            <input type="hidden" class="form-control input-sm post-gather" name="recover_user_id" value="{$my.id}" maxlength="16">
+                        </td>
+                    </tr>
+                </table>
+                <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-saved"></span> 提交</button>
+                <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.update = "{:U('recoverUpdate')}";
+    </script>
+</block>
+<block name="foot.ext">
+
+    <import file="js.BloodtubeCate.recover?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

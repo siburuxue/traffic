@@ -1,0 +1,49 @@
+<extend name="Common/base" />
+<block name="title">检验鉴定</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 面板 -->
+        <div class="panel panel-default form-inline1">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">检验鉴定</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm re-check-refresh"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- stepstart-->
+            <include file="ReCaseCheckup/applyStepTop/top" />
+            <!-- 步骤one -->
+            <include file="ReCaseCheckup/applyStepTop/partOne" />
+            <!-- 步骤two -->
+            <include file="ReCaseCheckup/applyStepTop/partTwo" />
+        </div>
+        <include file="ReCaseCheckup/applyStepTop/photoUpload" />
+        <!-- 步骤three -->
+        <include file="ReCaseCheckup/applyStepTop/partThree" />
+        <!-- 步骤four -->
+        <include file="ReCaseCheckup/applyStepTop/partFour" />
+        <!-- 步骤five -->
+        <include file="ReCaseCheckup/applyStepTop/partFive" />
+        <!-- step end-->
+    </div>
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.againInsert = "{:U('againInsert')}";
+    url.insert = "{:U('applyStepTopInsert')}";
+    url.getTypeChild = "{:U('getTypeChild')}";
+    url.getClient = "{:U('getClient')}";
+    url.getOrgChild = "{:U('getOrgChild')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <include file="ReCaseCheckup/applyStepTop/hiddenInfo" />
+    <import file="js.ReCaseCheckup.applyStepTop?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

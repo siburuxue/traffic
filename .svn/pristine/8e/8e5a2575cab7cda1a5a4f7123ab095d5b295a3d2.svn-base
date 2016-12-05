@@ -1,0 +1,11 @@
+<!-- 面板 -->
+<div class="panel panel-primary">
+    <!-- 面板标题 -->
+    <div class="panel-heading">结案归档</div>
+    <!-- 面板内容 -->
+    <div class="list-group" style="height:204px;overflow:auto;">
+        <a href="{:U('CaseCatalog/index?case_id='.$info['id'])}" class="list-group-item js-open js-end-refresh"><span class="glyphicon glyphicon-new-window"></span> 目录 </a>
+        <a href="{:U('CaseFileHandle/index?case_id='.$info['id'])}" class="list-group-item js-open js-end-refresh"><span class="glyphicon glyphicon-new-window"></span> 工作记录 </a>
+        <a href="{:U('Archive/caseToArchive?case_id='.$info['id'])}" class="list-group-item js-open js-end-refresh"><span class="glyphicon glyphicon-new-window"></span> 归档信息查看 </a>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="btn-group btn-group-justified" style="margin-bottom: 20px;">
+    <div class="btn-group">
+        <button class="btn btn-default" id="accept-status">受案信息</button>
+    </div>
+    <div class="btn-group">
+        <button class="btn btn-default" id="survey-status">现场勘查信息</button>
+    </div>
+    <div class="btn-group">
+        <button class="btn btn-default" id="client-status">当事人信息</button>
+    </div>
+    <div class="btn-group">
+        <button class="btn btn-default" id="record-status">询问笔录</button>
+    </div>
+    <div class="btn-group">
+        <button class="btn btn-default" id="checkup-status">检验鉴定</button>
+    </div>
+    <div class="btn-group">
+        <button class="btn btn-default" id="law-doc-status">其他法律文书</button>
+    </div>
+    <div class="btn-group">
+        <button class="btn btn-default" id="cognizance-status">事故认定</button>
+    </div>
+    <div class="btn-group">
+        <button class="btn btn-default" id="punish-status">处罚</button>
+    </div>
+    <div class="btn-group">
+        <button class="btn btn-default" id="mediate-status">调解</button>
+    </div>
+    <div class="btn-group">
+        <button class="btn btn-default" id="catalog-status">归档</button>
+    </div>
+</div>

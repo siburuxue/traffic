@@ -1,0 +1,51 @@
+<extend name="Common/base" />
+<block name="title">文书查看</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <div id="user-list" class="row">
+            <div class="col-xs-3" id="tree"></div>
+            <div class="col-xs-9">
+                <!-- 面板 -->
+                <div class="panel panel-default">
+                    <!-- 面板标题 -->
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-6"><span class="block-title">文件图片</span></div>
+                            <div class="col-xs-6 text-right">
+                                <button type="button" id="create-pdf" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-wrench"></span> 制作案卷文书</button>
+                                <a href="" data-href="{:U('CasePhoto/index')}" class="btn btn-primary btn-sm js-open js-end-refresh" disabled id="upload"><span class="glyphicon glyphicon-upload"></span> 上传</a>
+                                <div class="btn btn-primary btn-sm" id="download"><span class="glyphicon glyphicon-download"></span> 下载</div>
+                                <a href="javascript:;" class="btn btn-warning btn-sm " id="delete"><span class="glyphicon glyphicon-trash"></span> 删除</a>
+                                <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 面板内容 -->
+                    <div class="panel-body">
+                        <div class="row" id="photoTable"></div>
+                    </div>
+                </div>
+                <input type="hidden" id="case_id" name="case_id" value="{$case['id']}">
+                <input type="hidden" id="cate" name="cate" value="">
+                <input type="hidden" id="ids" name="ids" value="">
+            </div>
+        </div>
+    </div>
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+        // 定义URL地址
+        url.delete = "{:U('CasePhoto/delete')}";
+        url.photoList = "{:U('photoList')}";
+        url.changeTrain = "{:U('changeTrain')}";
+        url.download = "{:U('Common/download')}";
+        url.createPDf = "{:U('Common/createPDf')}";
+        url.check = "{:U('check?case_id=')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.DocumentView.index?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

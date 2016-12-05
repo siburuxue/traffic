@@ -1,0 +1,41 @@
+<extend name="Common/base" />
+<block name="title">报警记录</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 未关联报警信息 -->
+        <div class="panel panel-default">
+            <!-- 面板头 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">已关联报警信息</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板主体 -->
+            <div class="panel-body" id="linked-box">
+                <!-- 表格 -->
+                <div id="linked-table-content"></div>
+                <!-- 分页 -->
+                <include file="Inc/page" />
+            </div>
+        </div>
+    </div>
+    <!-- 页面主体 结束 -->
+    <input type="hidden" name="case_id" value="{$case.id}">
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+
+    url.linkedTable = "{:U('linkedTable')}";
+
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CaseAlarmHandleInfo.index?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

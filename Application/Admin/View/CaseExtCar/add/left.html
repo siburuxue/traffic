@@ -1,0 +1,20 @@
+<div class="panel-body ">
+    <span>车辆列表</span>
+    <table class="table table-bordered">
+        <select class="form-control  post-gather" name="car_no" id="car_no" size="15">
+            <volist name="allClient" id="vo">
+                <option value="{$vo.case_client_car_no}" dataId="{$vo.case_client_id}">{$vo.case_client_car_no}</option>
+            </volist>
+        </select>
+    </table>
+    <table class="table table-bordered">
+        <button type="button" class="btn btn-primary"  id="pre"><span class="glyphicon glyphicon-arrow-up"></span> 上&nbsp;&nbsp;&nbsp;&nbsp;移</button>&nbsp;
+        <button type="button" class="btn btn-primary" id="next"><span class="glyphicon glyphicon-arrow-down"></span> 下&nbsp;&nbsp;&nbsp;&nbsp;移</button>
+    </table>
+<!--     <table class="table table-bordered">
+        <button type="button" class="btn btn-warning"  id="select_up"><span class="glyphicon glyphicon-arrow-up"></span> 上一项</button>&nbsp;&nbsp;
+        <button type="button" class="btn btn-warning" id="select_down"><span class="glyphicon glyphicon-arrow-down"></span> 下一项</button>
+    </table> -->
+
+
+</div>

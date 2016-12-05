@@ -1,0 +1,27 @@
+<extend name="Common/base" />
+<block name="title">逃逸事故认定</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 基础信息 -->
+        {:W('CasePhoto/index', array('逃逸事故认定-书面申请材料',$case['id'],16,$id))}
+    </div>
+    <input type="hidden" id="case_id" name="case_id" class="post-gather" value="{$case['id']}">
+    <input type="hidden" id="id" name="id" class="post-gather" value="{$id}">
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+        //图片地址
+        url.photoList = "{:U('photoList')}";
+        //删除图片
+        url.delete = "{:U('CasePhoto/delete')}";
+        url.download = "{:U('Common/download')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CaseCognizance.escapePhotoTable?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>
+
+

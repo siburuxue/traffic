@@ -1,0 +1,33 @@
+<div class="panel-default">
+    <div class="panel panel-default form-inline">
+        <!-- 面板标题 -->
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-6"><span class="block-title">已退回鉴定结果列表</span></div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered table-condensed table-sheet">
+                <tr>
+                    <th width="10%">鉴定书编号</th>
+                    <th width="10%">鉴定完成时间</th>
+                    <th width="30%">鉴定结果</th>
+                    <th width="20%">鉴定结果文件张数</th>
+                    <th width="30%">退回缘由</th>
+                </tr>
+                <volist name="caseCheckupReportBackData" id="vo">
+                    <tr>
+                        <td>{$vo.code}</td>
+                        <td>{$vo.finish_time|date="Y-m-d H:i",###}</td>
+                        <td  style="word-wrap:break-word;word-break:break-all;"> {$vo.result|default="-"}</td>
+
+                        <td>
+                            <a href="{:U('CaseQueryCheckup/checkupResultPicNumber',array('case_id'=>$vo['case_id'],'case_checkup_id'=>$vo['case_checkup_id'],'case_checkup_report_id'=>$vo['id'],'cate'=>'44'))}" class=" js-open js-end-refresh"> {$vo.pic_count|default="0"}</a>
+                        </td>
+                        <td  style="word-wrap:break-word;word-break:break-all;"> {$vo.back_reason|default="-"}</td>
+                    </tr>
+                </volist>
+            </table>
+        </div>
+    </div>
+</div>

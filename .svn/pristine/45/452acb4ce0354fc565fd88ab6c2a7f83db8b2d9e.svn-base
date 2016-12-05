@@ -1,0 +1,32 @@
+<table class="table table-striped table-bordered table-hover table-condensed table-sheet" id="historyTable">
+    <thead>
+        <tr>
+            <th>序号</th>
+            <th>提交时间</th>
+            <th>状态</th>
+            <th width="80">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <volist name="backList" id="vo">
+            <tr>
+                <td>{$i}</td>
+                <td>{$vo.submit_time|date='Y-m-d H:i',###}</td>
+                <td>{$vo.true_name}退回</td>
+                <td><a href="{:U('reportBackView?case_id='.$case['id'].'&type=normal&id='.$vo['id'])}" class="btn btn-info btn-sm js-open">查看</a></td>
+            </tr>
+        </volist>
+        <volist name="historyList" id="vo">
+            <tr>
+                <td>{$i + count($backList)}</td>
+                <td>{$vo.create_time|date='Y-m-d H:i',###}</td>
+                <td>{$vo['status']}</td>
+                <if condition="$vo['check_status'] eq 3">
+                    <td><a href="{:U('reportReviewView?case_id='.$case['id'].'&type=normal&id='.$vo['id'])}" class="btn btn-info btn-sm js-open">查看</a></td>
+                <else />
+                    <td><a href="{:U('reportCheckView?case_id='.$case['id'].'&type=normal&id='.$vo['id'])}" class="btn btn-info btn-sm js-open">查看</a></td>
+                </if>
+            </tr>
+        </volist>
+    </tbody>
+</table>

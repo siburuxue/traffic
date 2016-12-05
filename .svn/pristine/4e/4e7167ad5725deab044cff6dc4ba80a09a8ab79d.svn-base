@@ -1,0 +1,10 @@
+body {
+    font-family: "微软雅黑";
+    font-size: 14px;
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 970px;
+    }
+}

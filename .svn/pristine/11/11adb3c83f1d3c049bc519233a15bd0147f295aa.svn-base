@@ -1,0 +1,117 @@
+<div class="panel panel-default" id="case-photo-box" data-caseid="{$param.case_id}" data-cate="{$param.cate}" data-ida="{$param.ext_ida}" data-idb="{$param.ext_idb}" data-idc="{$param.ext_idc}" data-idd="{$param.ext_idd}" data-ide="{$param.ext_ide}">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-6"><span class="block-title">{$title}</span></div>
+            <div class="col-xs-6 text-right">
+                <button type="button" class="btn btn-primary btn-sm disabled" style="display:none;" id="case-photo-upload"><span class="glyphicon glyphicon-upload"></span> 上传</button>
+                <button type="button" class="btn btn-primary btn-sm" id="case-photo-download"><span class="glyphicon glyphicon-download"></span> 下载</button>
+                <button type="button" class="btn btn-warning btn-sm disabled" style="display:none;"  id="case-photo-delete"><span class="glyphicon glyphicon-trash"></span> 删除</button>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row" id="case-photo-content"></div>
+    </div>
+</div>
+<script type="text/javascript">
+url.photoUpload = "{:U('CasePhoto/index',$sample)}";
+url.photoDownload = "{:U('Common/download?ids=__IDS__')}";
+url.photoDelete = "{:U('CasePhoto/delete')}";
+url.photoList = "{:U('Common/getPhotosList')}";
+
+$(function() {
+    // 上传
+    $('#case-photo-upload').on('click', function() {
+        url.photoUpload = url.photoUpload.replace('__CASEID__', $('#case-photo-box').data('caseid'));
+        url.photoUpload = url.photoUpload.replace('__CATE__', $('#case-photo-box').data('cate'));
+        url.photoUpload = url.photoUpload.replace('__IDA__', $('#case-photo-box').data('ida'));
+        url.photoUpload = url.photoUpload.replace('__IDB__', $('#case-photo-box').data('idb'));
+        url.photoUpload = url.photoUpload.replace('__IDC__', $('#case-photo-box').data('idc'));
+        url.photoUpload = url.photoUpload.replace('__IDD__', $('#case-photo-box').data('idd'));
+        url.photoUpload = url.photoUpload.replace('__IDE__', $('#case-photo-box').data('ide'));
+        layer.open({
+            type: 2,
+            title: 0,
+            closeBtn: 0,
+            shadeClose: false,
+            shade: 0.8,
+            scrollbar: false,
+            move: false,
+            area: ['100%', '100%'],
+            content: url.photoUpload,
+            end: loadCasePhotoList
+        });
+    });
+    // 下载
+    $('#case-photo-download').on('click', function() {
+        var ids = new Array();
+        $('#case-photo-content').find('input:checkbox[name="case-photo-selectone"]:enabled:checked').each(function() {
+            ids.push($(this).attr('value'));
+        });
+        if (ids.length <= 0) {
+            layer.alert('请选择下载图片');
+            return false;
+        }
+        window.open(url.photoDownload.replace('__IDS__', ids.join()));
+        $('#case-photo-content').find('input:checkbox[name="case-photo-selectone"]:enabled').prop('checked', false);
+    });
+    // 删除
+    $('#case-photo-delete').on('click', function() {
+        var ids = new Array();
+        $('#case-photo-content').find('input:checkbox[name="case-photo-selectone"]:enabled:checked').each(function() {
+            ids.push($(this).attr('value'));
+        });
+        if (ids.length <= 0) {
+            layer.alert('请选择删除图片');
+            return false;
+        }
+        layer.confirm('确定删除？', function(index) {
+            layer.close(index);
+            $.post(url.photoDelete, {
+                case_id: $('#case-photo-box').data('caseid'),
+                ids: ids
+            }, function(msg) {
+                if (msg.status == 1) {
+                    layer.msg(msg.info, {
+                        shade: 0.1,
+                        shadeClose: true
+                    }, function(index) {
+                        layer.close(index);
+                        loadCasePhotoList();
+                    });
+                } else {
+                    layer.alert(msg.info);
+                }
+            });
+        });
+
+    });
+    // 图片列表
+    var loadCasePhotoList = function() {
+        $.post(url.photoList, {
+            case_id: $('#case-photo-box').data('caseid'),
+            cate: $('#case-photo-box').data('cate'),
+            ext_ida: $('#case-photo-box').data('ida'),
+            ext_idb: $('#case-photo-box').data('idb'),
+            ext_idc: $('#case-photo-box').data('idc'),
+            ext_idd: $('#case-photo-box').data('idd'),
+            ext_ide: $('#case-photo-box').data('ide')
+        }, function(msg) {
+            if (msg.status == 1) {
+                var html = '';
+                $.each(msg.info, function(i, n) {
+                    html += '<div class="col-xs-2"><div class="thumbnail">';
+                    html += '<a href="' + n.image_path + '" target="_blank"><img src="' + n.thumb_path + '"></a>';
+                    html += '<div class="text-center"><input type="checkbox" name="case-photo-selectone" value="' + n.id + '"></div>';
+                    html += '</div></div>';
+                });
+                $('#case-photo-content').html(html);
+            } else {
+                layer.alert(msg.info);
+            }
+        });
+    };
+    $('#case-photo-box').data('photo', loadCasePhotoList);
+    loadCasePhotoList();
+});
+</script>

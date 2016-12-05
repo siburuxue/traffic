@@ -1,0 +1,60 @@
+<extend name="Common/base" />
+<block name="title">重新检验鉴定书面材料</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 面板 -->
+        <div class="panel panel-default form-inline1">
+            <div class="panel-body">
+                <div class="panel panel-default form-inline">
+                    <!-- 面板标题 -->
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-6"><span class="block-title">重新检验鉴定书面材料</span></div>
+                            <div class="col-xs-6 text-right">
+                                <neq name="Think.get.is_cancel" value="1">
+                                <a href="{:U('CasePhoto/index?case_id='.$case_id.'&cate='.$cate.'&ext_ida='.$case_checkup_id_pre.'&ext_idb='.$picCaseCheckupData['id'])}" class="btn btn-primary btn-sm js-open js-end-refresh" id="upload"><span class="glyphicon glyphicon-upload"></span> 上传</a>
+                                <button type="button" class="btn btn-primary btn-sm " id="download"><span class="glyphicon glyphicon-download" ></span> 下载</button>
+                                <a href="javascript:;" class="btn btn-warning btn-sm " id="delete"><span class="glyphicon glyphicon-trash"></span> 删除</a>
+                                </neq>
+                                <button type="button" class="btn btn-danger btn-sm js-close-picnumber"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden"  id="case_id" value="{$case_id}"/>
+                    <!-- 面板内容 -->
+                    <div class="panel-body">
+                        <include file="ReCaseCheckup/checkupAgainPicNumber/photoTable" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.delete = "{:U('CasePhoto/delete')}";
+
+    </script>
+</block>
+<block name="foot.ext">
+
+    <import file="js.ReCaseCheckup.checkupAgainPicNumber?" basepath="{$Think.SRC_MODULE_URL}" />
+    <script type="text/javascript">
+    // 定义URL地址
+    url.photoDownload = "{:U('Common/download?ids=__IDS__')}";
+    var cancel_status = '{$Think.get.cancel}';
+    if(cancel_status==1){
+        $('#upload').attr('disabled','disabled');
+        $('#upload').attr('href','#');
+        $('#upload').removeClass('js-open');
+        $('#upload').attr('id','uploadsss');
+        $('#delete').attr('disabled','disabled');
+        $('#delete').attr('id','deletess');
+    }
+    </script>   
+    <import file="js.CaseCheckup.photoDownload?" basepath="{$Think.SRC_MODULE_URL}" />    
+</block>

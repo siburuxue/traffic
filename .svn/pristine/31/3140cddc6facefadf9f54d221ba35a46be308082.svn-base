@@ -1,0 +1,184 @@
+// 定义全局变量
+var submit;
+// 页面加载完毕
+$(function() {
+    // 创建提交对象
+    submit = $.vmcSubmit();
+    // 注册提交字段
+    $('.post-gather').each(function() {
+        var the = $(this);
+        submit.reg({
+            group: 'gather',
+            name: the.attr('name'),
+            get: function(name) {
+                return the.val();
+            },
+            set: function(name, value, data) {
+                the.val(value);
+            }
+        });
+    });
+
+    // 发送POST请求
+    submit.success = function(data) {
+        var pass = 1;
+        /////////////////////
+        data.road_type_pid = $('input:radio[name="road_type_pid"]:checked').val();
+        $('.select_road_type').each(function(){
+            if($(this).prop('disabled')==false){
+                data.road_type = $(this).val();
+            }
+        });
+
+        data.intersection_type_pid = $('input:radio[name="intersection_type_pid"]:checked').val();
+        $('.select_intersection_type').each(function(){
+            if($(this).prop('disabled')==false){
+                data.intersection_type = $(this).val();
+            }
+        });
+        ///////道路安全隐患类型//////////////
+        var all_hidden_danger = new Array();
+        $('.hidden_danger_pid').each(function() {
+            var hidden_danger = new Array();
+            var target_pid = $(this).val();
+            var rank = $(this).data('rank');
+            if (target_pid) {
+                $('.hidden_danger_id').each(function() {
+                    if ($(this).data('rank') == rank) {
+                        var target_id = $(this).val();
+                        if(target_id){
+                           hidden_danger.push(target_pid, target_id);
+                           all_hidden_danger.push(hidden_danger);                           
+                        }else {
+                            layer.alert('请选择道路安全隐患类型子选项');
+                            pass = 2;
+                        }
+
+                    }
+                });
+            }
+        });
+        //var all_hidden_danger_stri = all_hidden_danger.toString();
+         //all_hidden_danger_stri = JSON.stringify(all_hidden_danger);
+         all_hidden_danger_stri = all_hidden_danger;
+        //console.log(all_hidden_danger_stri); return;     
+        data.hidden_danger_pid = all_hidden_danger_stri;
+        data.hidden_danger_id = all_hidden_danger_stri;
+        //检验是否有未选择的子选项
+        if(pass==2){
+            return false;
+        }
+
+        //////////////////////////////////////
+        $.post(url.update, data, function(msg) {
+            if (msg.status == 1) {
+                layer.msg(msg.info, {
+                    shade: 0.1,
+                    shadeClose: true
+                }, function(index) {
+                    layer.close(index);
+                    window.location.reload();
+                });
+            } else {
+                layer.alert(msg.info, function(index) {
+                    layer.close(index);
+                });
+            }
+        });
+    };
+    // 提交
+    $('#submit').on('click', function() {
+        submit.execute('gather');
+    });
+    // 重置
+    $('#reset').on('click', function() {
+        window.location.reload();
+    });
+});
+
+//道路类型 相关代码
+$(function() {
+    //禁用 道路类型 下拉选框
+    $('.select_road_type').attr('disabled', 'disabled');
+    //获取选中状态的道路类型 激活选项下拉选框
+    var valid_radio_road_type_pid = $('input:radio[name="road_type_pid"]:checked').val();
+    $('.select_road_type_' + valid_radio_road_type_pid).attr('disabled', false);
+    $('input:radio[name="road_type_pid"]').on('change', function() {
+        var rank = $(this).val();
+        $('.select_road_type').attr('disabled', 'disabled');
+        $("select[name='road_type'] option[value='']").attr("selected", true);
+        $('.select_road_type_' + rank).attr('disabled', false);
+    });
+});
+
+//路口路段类型 相关代码
+$(function() {
+    //禁用 路口路段类型 下拉选框
+    $('.select_intersection_type').attr('disabled', 'disabled');
+    //获取选中状态的路口路段类型 激活选项下拉选框
+    var valid_radio_intersection_type_pid = $('input:radio[name="intersection_type_pid"]:checked').val();
+    $('.select_intersection_type_' + valid_radio_intersection_type_pid).attr('disabled', false);
+    $('input:radio[name="intersection_type_pid"]').on('change', function() {
+        var rank = $(this).val();
+        $('.select_intersection_type').attr('disabled', 'disabled');
+        $("select[name='intersection_type'] option[value='']").attr("selected", true);
+        $('.select_intersection_type_' + rank).attr('disabled', false);
+    });
+});
+
+
+
+
+//道路安全隐患类型
+$(function() {
+    $(document).on('click', '.danger_add', function() {
+        var rank = $(this).data('rank');
+        var new_rank = $('.hidden_danger').length;
+        var getHtml = '';
+        getHtml = $('.hidden_danger_box_hidden').html();
+        var reg = new RegExp("default_rank", "g");
+        var newHtml = getHtml.replace(reg, new_rank);
+        $('.hidden_danger_box').append(newHtml);
+    });
+    $(document).on('click', '.danger_delete', function() {
+        var rank = $(this).data('rank');
+        $('.hidden_danger').each(function() {
+            if ($(this).data('rank') == rank) {
+                $(this).remove();
+            }
+        });
+    });
+    $(document).on('change', '.hidden_danger_pid', function() {
+        var rank = $(this).data('rank');
+        var pid = $(this).val();
+        var obj = '';
+        $('.hidden_danger_id').each(function() {
+            if ($(this).data('rank') == rank) {
+                obj = $(this)[0];
+            }
+        });
+        $.post(url.getHiddenDangerId, { 'pid': pid }, function(msg) {
+            //console.log(msg);
+            if (msg.status == 1) {
+
+                if (msg.info) {
+
+                    var allId = msg.info;
+                    obj.options.length = 1;
+                    $.each(allId, function(k, val) {
+                        $.each(val, function(m, n) {
+                            obj.options.add(new Option(n, m));
+                        });
+                    });
+                }
+            }
+        });
+    });
+});
+$(function() {
+
+    $('input').attr('disabled', 'disabled');
+    $('select').each(function() {
+        $(this).attr('disabled', 'disabled');      
+    });
+});

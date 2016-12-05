@@ -1,0 +1,21 @@
+<table class="table table-bordered table-condensed table-custom" style="margin-bottom:0px">
+    <tbody>
+    <tr>
+        <th>短语</th>
+        <th width="50%"><span class="text-danger">*</span>呈请内容</th>
+    </tr>
+    <tr>
+        <td>
+            <php>
+                $data = array(
+                'caseid'=>$case['id'],
+                );
+                W('Short/index', array(35, 'textarea[name="content"]', $data));
+            </php>
+        </td>
+        <td>
+            <textarea type="text" class="form-control input-sm post-gather" name='content' style="height:300px;resize: none">{$stopInfo.content}</textarea>
+        </td>
+    </tr>
+    </tbody>
+</table>

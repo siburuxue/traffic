@@ -1,0 +1,47 @@
+<extend name="Common/base" />
+<block name="title">当事人信息</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 面板 -->
+        <include file="CaseExtClient/add/tab" />
+        <div class="panel panel-default">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">当事人信息</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <include file="CaseExtClient/add/left" />
+                    </div>
+                    <div class="col-xs-10">
+                        <include file="CaseExtClient/add/infoTable" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.insert = "{:U('insert')}";
+    url.update = "{:U('update')}";
+    url.getCaseExtClientData = "{:U('getCaseExtClientData')}";
+    url.getLawChildren = "{:U('getLawChildren')}";
+    url.setTrain = "{:U('setTrain')}";
+    var default_data = '{$data}';
+    var default_caseData = '{$caseDataJson}';
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CaseExtClient.add?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

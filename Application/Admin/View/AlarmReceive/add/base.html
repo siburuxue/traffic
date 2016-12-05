@@ -1,0 +1,49 @@
+<table class="table table-bordered table-condensed table-form">
+    <tbody>
+        <tr>
+            <th width="15%"><span class="text-danger">*</span> 报警时间</th>
+            <td width="35%">
+                <input type="text" class="form-control input-sm post-gather form-datetime" name="alarm_time" maxlength="16" readonly="readonly">
+            </td>
+            <th width="15%"><span class="text-danger">*</span> 案件来源</th>
+            <td>
+                <select name="case_source" class="form-control input-sm post-gather">
+                    <option value="">请选择</option>
+                    <volist name="caseSource" id="vo">
+                        <option value="{$vo.id}">{$vo.name}</option>
+                    </volist>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th><span class="text-danger">*</span> 报警人姓名</th>
+            <td>
+                <input type="text" class="form-control input-sm post-gather" name="alarm_name" maxlength="255">
+            </td>
+            <th><span class="text-danger">*</span> 单位及联系方式</th>
+            <td>
+                <input type="text" class="form-control input-sm post-gather" name="contact" maxlength="255">
+            </td>
+        </tr>
+        <tr>
+            <th>报案人要求保密</th>
+            <td colspan="3">
+                <select name="is_protect" class="form-control input-sm post-gather">
+                    <option value="0">否</option>
+                    <option value="1">是</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th><span class="text-danger">*</span> 事故发生时间</th>
+            <td>
+                <input type="text" class="form-control input-sm post-gather form-datetime" name="accident_time" maxlength="16" readonly="readonly">
+            </td>
+            <th><span class="text-danger">*</span> 事故地点</th>
+            <td>
+                <input type="text" class="form-control input-sm post-gather" name="accident_place" maxlength="255">
+            </td>
+        </tr>
+    </tbody>
+</table>
+<hr>

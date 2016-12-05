@@ -1,0 +1,30 @@
+<extend name="Common/base" />
+<block name="header">
+    <import file="css.album?" basepath="{$Think.SRC_MODULE_URL}" type='css' />
+</block>
+<block name="mainer">
+    <div class="container">
+        <empty name="my.email">
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                尚未设置登录帐号，<a href="{:U('Account/setAccount')}" class="alert-link">点击这里设置</a>
+            </div>
+        </empty>
+        <div class="page-header">
+            <h1>相册首页 <small></small></h1>
+        </div>
+        <div class="row vmc-photo-box">
+            <volist name="list" id="vo">
+                <div class="col-md-4 col-sm-4 col-xs-6 vmc-photo-item">
+                    <div class="thumbnail">
+                        <a href="{:U('Index/classes?id='.$vo['id'])}">
+                            <img src="{$vo.thumb|get_img}" alt="{$vo.imagedes}">
+                        </a>
+                        <div class="caption vmc-photo-name"><a href="{:U('Index/classes?id='.$vo['id'])}">{$vo.name}</a></div>
+                    </div>
+                </div>
+            </volist>
+        </div>
+        {$page}
+    </div>
+</block>

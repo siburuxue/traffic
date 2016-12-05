@@ -1,0 +1,53 @@
+<extend name="Common/base" />
+<block name="title">逃逸事故认定</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 列表面板 -->
+        <div class="panel panel-default">
+            <!-- 面板头 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">逃逸事故认定</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板主体 -->
+            <div class="panel-body">
+                <include file="CaseCognizance/escape/escape_info/base" />
+            </div>
+            <div class="text-left" style="margin:0 0 15px 16px">
+                <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-floppy-disk"></span> 保存</button>
+                <if condition="$info['base_info'] eq ''">
+                    <button disabled class="btn btn-primary js-open js-end-refresh"><span class="glyphicon glyphicon-download"></span> 下发</button>
+                    <else />
+                    <a href="{:U('escapeIssueIndex?case_id='.$case['id'].'&id='.$id)}" class="btn btn-primary js-open js-end-refresh"><span class="glyphicon glyphicon-download"></span> 下发</a>
+                </if>
+
+                <button type="button" <if condition="$info['base_info'] eq ''">disabled</if> class="btn btn-primary" id="print" ><span class="glyphicon glyphicon-print"  ></span> 打印逃逸事故认定书</button>
+                <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+            </div>
+        </div>
+        <input type="hidden" id="case_id" name="case_id" class="post-gather" value="{$case['id']}">
+        <input type="hidden" id="id" name="id" class="post-gather" value="{$id}">
+        {:W('CasePhoto/index', array('事故认定列表',$case['id'],15,$id))}
+    </div>
+    <!-- 页面主体 结束 -->
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+        // 定义URL地址
+        url.photoList = "{:U('photoList')}";
+        url.save = "{:U('saveEscapeInfo')}";
+        //删除图片
+        url.delete = "{:U('CasePhoto/delete')}";
+        url.download = "{:U('Common/download')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CaseCognizance.escapeInfo?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

@@ -1,0 +1,18 @@
+<div class="panel panel-primary">
+    <div class="list-group">
+        <div class="list-group-item">
+            正在进行：<span id="caseStatusText"></span>
+        </div>
+        <div class="list-group-item">
+            <if condition="$timeRs['timestamp'] eq '-'">
+                完成期限：-&nbsp;&nbsp;&nbsp;&nbsp;今天为：-
+            <elseif  condition="$timeRs['timestamp'] eq '已完成'"/>
+                完成期限：{$timeRs['timeLimit']}天&nbsp;&nbsp;&nbsp;&nbsp;今天为：已完成
+            <elseif  condition="$timeRs['timestamp'] eq '已过期'"/>
+                完成期限：{$timeRs['timeLimit']}天&nbsp;&nbsp;&nbsp;&nbsp;今天为：已过期
+            <else />
+                完成期限：{$timeRs['timeLimit']}天&nbsp;&nbsp;&nbsp;&nbsp;今天为：第{$timeRs['timestamp']}天
+            </if>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,103 @@
+<div class="table-responsive">
+	<table class="table table-bordered table-condensed table-form">
+		<tr>
+			<th width="15%">所属大队</th>
+			<td colspan="3">
+				<if condition="false===is_power($myPower,'statistics_checkup_3')">
+					<input type="text" class="form-control input-sm disabled" name="condition_department" readonly="readonly" data-target="#select-department" data-default="{$myBrigade.id}">
+					<else/>
+					<input type="text" class="form-control input-sm" name="condition_department" readonly="readonly" data-target="#select-department">
+				</if>
+			</td>
+		</tr>
+		<tr>
+			<th width="15%">办案人</th>
+			<td width="35%">
+				<if condition="false===is_power($myPower,'statistics_checkup_2,statistics_checkup_3','or')">
+					<input type="text" class="form-control input-sm disabled" name="condition_handle" readonly="readonly" data-target="#select-handle" data-default="{$my.id}">
+					<else/>
+					<input type="text" class="form-control input-sm" name="condition_handle" readonly="readonly" data-target="#select-handle">
+				</if>
+			</td>
+			<th width="15%">被鉴定人（车、物）</th>
+			<td>
+				<input type="text" class="form-control input-sm search-auto" name="condition_obj" maxlength="255">
+			</td>
+		</tr>
+		<tr>
+			<th>事故时间</th>
+			<td>
+				<table width="100%">
+					<tr>
+						<td>
+							<input type="text" class="form-control input-sm search-auto form-datetime" name="condition_start_time" maxlength="16" readonly="readonly">
+						</td>
+						<td width="30" class="text-center">~</td>
+						<td>
+							<input type="text" class="form-control input-sm search-auto form-datetime" name="condition_end_time" maxlength="16" readonly="readonly">
+						</td>
+					</tr>
+				</table>
+			</td>
+			<th>检验鉴定时间</th>
+			<td>
+				<table width="100%">
+					<tr>
+						<td>
+							<input type="text" class="form-control input-sm search-auto form-datetime" name="condition_checkup_start_time" maxlength="16" readonly="readonly">
+						</td>
+						<td width="30" class="text-center">~</td>
+						<td>
+							<input type="text" class="form-control input-sm search-auto form-datetime" name="condition_checkup_end_time" maxlength="16" readonly="readonly">
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<th>鉴定项目</th>
+			<td>
+				<select name="condition_project" class="form-control input-sm search-auto">
+					<option value="">请选择</option>
+					<volist name="checkupOrgItemOption" id="vo">
+						<eq name="vo.disabled" value="1">
+							<option value="{$vo.id}" disabled="disabled" class="text-danger">{$vo.prefix}{$vo.name}</option>
+							<else/>
+							<option value="{$vo.id}">{$vo.prefix}{$vo.name}</option>
+						</eq>
+					</volist>
+				</select>
+			</td>
+			<th>受委托单位</th>
+			<td>
+				<select name="condition_checkup_org_id" class="form-control input-sm search-auto">
+					<option value="">请选择</option>
+					<volist name="checkupOrg" id="vo">
+						<option value="{$vo.id}">{$vo.name}</option>
+					</volist>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>结论做出时间</th>
+			<td>
+				<table width="100%">
+					<tr>
+						<td>
+							<input type="text" class="form-control input-sm search-auto form-datetime" name="condition_result_start_time" maxlength="16" readonly="readonly">
+						</td>
+						<td width="30" class="text-center">~</td>
+						<td>
+							<input type="text" class="form-control input-sm search-auto form-datetime" name="condition_result_end_time" maxlength="16" readonly="readonly">
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td colspan="2">&nbsp;</td>
+		</tr>
+	</table>
+</div>
+<div style="margin-bottom:20px;">
+	<button type="button" class="btn btn-primary" id="search-submit"><span class="glyphicon glyphicon-search"></span> 查询</button>
+	<button type="button" class="btn btn-warning" id="search-reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+</div>

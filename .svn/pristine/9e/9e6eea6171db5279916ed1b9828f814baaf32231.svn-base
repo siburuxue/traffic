@@ -1,0 +1,38 @@
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#toolbar" aria-expanded="false">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{:U('Index/index')}">{$Think.config.custom.sitename}</a>
+        </div>
+        <div class="collapse navbar-collapse" id="toolbar">
+            <ul class="nav navbar-nav navbar-right">
+                <empty name="Think.session.userid">
+                    <li><a href="{:U('Sign/login')}">登录</a></li>
+                    <li><a href="{:U('Sign/reg')}">注册</a></li>
+                    <else/>
+                    <li class="dropdown">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{$my.nickname|default='用户'} <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{:U('Account/index')}">我的帐号</a></li>
+                            <li role="separator" class="divider"></li>
+                            <!--
+                        <notempty name="my.schoolid">
+                            <li><a href="#">我的班级</a></li>
+                        </notempty>
+                        <eq name="my.isadmin" value="1">
+                            <li><a href="{:('Index/index')}">管理</a></li>
+                            <li role="separator" class="divider"></li>
+                        </eq>
+                        -->
+                            <li><a href="{:U('Sign/logout')}">退出</a></li>
+                        </ul>
+                    </li>
+                </empty>
+            </ul>
+        </div>
+    </div>
+</nav>

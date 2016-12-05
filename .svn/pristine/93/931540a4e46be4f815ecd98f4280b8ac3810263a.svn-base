@@ -1,0 +1,14 @@
+<ul class="nav nav-tabs nav-custom">
+    <if condition="is_power($myPower,'leader_my_work')">
+        <li><a href="{:U('CaseCheckLeader/pending')}">待办工作</a></li>
+        <li class="active"><a href="{:U('CaseCheckLeader/completed')}">已完成工作</a></li>
+    </if>
+    <if condition="is_power($myPower,'leader_return')">
+        <li><a href="{:U('CaseClientDetainSupervisor/pending')}">物品返还</a></li>
+    </if>
+    <if condition="is_power($myPower,'leader_bloodtube_search')">
+        <li><a href="{:U('CaseBloodtubeCateSearchSupervisor/index')}">采血管查询</a></li>
+    </if>
+    <li><a href="{:U('CaseStandingBook/index?type=leader')}">交通事故台帐</a></li>
+</ul>
+

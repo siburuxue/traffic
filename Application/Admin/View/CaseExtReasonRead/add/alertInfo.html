@@ -1,0 +1,83 @@
+<div class="panel-body">
+    <table class="table table-bordered table-condensed table-custom">
+        <!--  -->
+        <tr>
+            <th width="25%" colspan="2">接警时间</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm  form-datetime post-gather" id="time-one" name="accept_time" maxlength="16" readonly="readonly" />
+            </td>
+            <th width="25%" colspan="2">出警时间</th>
+            <td width="25%" colspan="2">
+                <input type="text" class="form-control input-sm  form-datetime post-gather" id="time-one" name="out_time" maxlength="16" readonly="readonly" />
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="25%" colspan="2">报警人</th>
+            <td width="75%" colspan="6">
+                <table width="100%">
+                    <tr>
+                        <td width="20%">
+                            <select name="alarm_man_type" class="form-control input-sm post-gather">
+                                <option value="">请选择</option>
+                                <foreach name="case_ext_reason.alarm_man_type" item="vo">
+                                    <option value="{$key}">{$vo}</option>
+                                </foreach>
+                            </select>
+                        </td>
+                        <td>
+                        <input name="alarm_man_other" class="form-control input-sm post-gather" placeholder="请填写其他报警人" style="display:none;border:1px solid #e9c341"/>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="15%" colspan="2">救援到达现场时间</th>
+            <th width="10%">交通警察</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather " name="police_arrive_time"  readonly="readonly"> 
+
+            </td>
+            <th width="12.5%">医护人员</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather " name="doctor_arrive_time"  readonly="readonly">
+
+            </td>
+            <th width="12.5%">消防人员</th>
+            <td width="12.5%">
+                <input type="text" class="form-control input-sm post-gather" name="fireman_arrive_time"   readonly="readonly">
+
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="12.5%" colspan="2">事故现场处置时间</th>
+            <td width="25%" colspan="6">
+                <input type="text" class="form-control input-sm post-gather" name="handle_time" placeholder="(min)" maxlength="255">
+            </td>
+        </tr>
+        <!--  -->
+        <!--  -->
+        <tr>
+            <th width="15%" colspan="2">出警人数</th>
+            <th width="10%">交通警察</th>
+            <td width="12.5%">
+                <input type="number" class="form-control input-sm post-gather" name="police_out_num" placeholder="" maxlength="255"  min="0">
+            </td>
+            <th width="12.5%">交通协管员</th>
+            <td width="12.5%">
+                <input type="number" class="form-control input-sm post-gather" name="traffic_out_num" placeholder="" maxlength="255"  min="0">
+            </td>
+            <th width="12.5%">其他人员</th>
+            <td width="12.5%">
+                <input type="number" class="form-control input-sm post-gather" name="other_out_num" placeholder="" maxlength="255"  min="0">
+            </td>
+        </tr>
+        <!--  -->
+    </table>
+</div>

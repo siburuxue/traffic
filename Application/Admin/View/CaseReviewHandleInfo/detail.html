@@ -1,0 +1,52 @@
+<extend name="Common/base" />
+<block name="title">案件复核详情</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 面板 -->
+        <div class="panel panel-default">
+            <!-- 面板头 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">案件复核详情</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板主体 -->
+            <div class="panel-body">
+                <!-- 步骤 -->
+                <include file="CaseReviewHandleInfo/detail/step" />
+                <div class="row">
+                    <div class="col-xs-4">
+                        <!-- 复核申请 -->
+                        <include file="CaseReviewHandleInfo/detail/apply" />
+                    </div>
+                    <div class="col-xs-4">
+                        <!-- 复核受理 -->
+                        <include file="CaseReviewHandleInfo/detail/accept" />
+                    </div>
+                    <div class="col-xs-4">
+                        <!-- 复核结论 -->
+                        <include file="CaseReviewHandleInfo/detail/result" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 底部 -->
+        <include file="CaseReviewHandleInfo/detail/foot" />
+    </div>
+    <!-- 页面主体 结束 -->
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.getDetailInfo = "{:U('getDetailInfo','id='.$info['caseReview']['id'])}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.CaseReviewHandleInfo.detail?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

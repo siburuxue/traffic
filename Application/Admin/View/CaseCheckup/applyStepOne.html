@@ -1,0 +1,49 @@
+<extend name="Common/base" />
+<block name="title">检验鉴定</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 面板 -->
+        <div class="panel panel-default form-inline1">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">检验鉴定</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- stepstart-->
+
+            <!-- 步骤one -->
+            <include file="CaseCheckup/applyStepOne/partOne"/>
+            <!-- 步骤two -->
+            <include file="CaseCheckup/applyStepOne/partTwo"/> 
+            </div> 
+            <include file="CaseCheckup/applyStepOne/photoUpload"/>
+            <!-- 步骤three -->
+            <include file="CaseCheckup/applyStepOne/partThree"/>
+            <!-- 步骤four -->
+            <include file="CaseCheckup/applyStepOne/partFour"/>
+            <!-- 步骤five -->
+            <include file="CaseCheckup/applyStepOne/partFive"/>
+            <!-- step end-->
+
+    </div>
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.insert = "{:U('applyStepOneInsert')}";
+    url.getTypeChild = "{:U('getTypeChild')}";
+    url.getClient = "{:U('getClient')}";
+    url.getOrgChild = "{:U('getOrgChild')}";
+    </script>
+</block>
+<block name="foot.ext">
+
+    <import file="js.CaseCheckup.applyStepOne?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

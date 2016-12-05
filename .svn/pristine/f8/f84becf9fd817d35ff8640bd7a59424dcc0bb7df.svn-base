@@ -1,0 +1,44 @@
+<extend name="Common/base" />
+<block name="title">查看</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+
+        <!-- 列表面板 -->
+        <div class="panel panel-default">
+            <!-- 面板头 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">查看 : {$info['title']}</span></div>
+                    <div class="col-xs-6 text-right">
+                        <a href="{:U('Files/index?cate=1&ext_ida='.$id)}" class="btn btn-primary btn-sm js-open js-end-refresh" id="upload"><span class="glyphicon glyphicon-upload"></span> 上传</a>
+                        <button type="button" class="btn btn-primary btn-sm " id="download"><span class="glyphicon glyphicon-download"></span> 下载</button>
+                        <a href="javascript:;" class="btn btn-warning btn-sm" id="delete"><span class="glyphicon glyphicon-trash"></span> 删除</a>
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板主体 -->
+            <div class="panel-body">
+                <!-- 表格 -->
+                <div id="table-content"></div>
+            </div>
+        </div>
+        <input type="hidden" id="id" name="id" value="{$id}" class="post-gather">
+        <!-- 表格 结束 -->
+    </div>
+    <!-- 页面主体 结束 -->
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+        // 定义URL地址
+        url.table = "{:U('viewFileTable')}";
+        url.delete = "{:U('Files/delete')}";
+        url.downloadFiles = "{:U('Common/downloadFiles')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.LawRegulation.viewFile?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

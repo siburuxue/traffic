@@ -1,0 +1,11 @@
+<div class="panel panel-primary" style="margin-bottom:0;">
+    <!-- 面板标题 -->
+    <div class="panel-heading">复核结论</div>
+    <!-- 面板内容 -->
+    <div class="list-group" style="height:204px;overflow:auto;" id="caseReviewResultContent">
+        <div class="list-group-item" id="caseReviewResult_0" style="display:none;"><span class="glyphicon glyphicon-th"></span> 待复核结论 </div>
+        <a href="{:U('CaseReviewStopHandleInfo/notice?case_review_id='.$info['caseReview']['id'])}" class="list-group-item js-open js-end-refresh" id="caseReviewResult_1" style="display:none;"><span class="glyphicon glyphicon-new-window"></span> 已终止，查看终止通知书</a>
+        <a href="{:U('CaseReviewCheckHandleInfo/index?case_review_id='.$info['caseReview']['id'])}" class="list-group-item js-open js-end-refresh" id="caseReviewResult_2" style="display:none;"><span class="glyphicon glyphicon-new-window"></span> 查看复核审批/结论</a>
+        <div class="list-group-item" style="display:none;"></div>
+    </div>
+</div>

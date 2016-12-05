@@ -1,0 +1,58 @@
+<extend name="Common/base" />
+<block name="title">新增文件夹</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 基础信息 -->
+        <div class="panel panel-default form-inline1">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">新增文件夹</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed table-custom" style="margin-bottom: 0">
+                    <tbody>
+                    <tr>
+                        <th width="15%">父文件夹</th>
+                        <td>
+                            <select name="pid" class="form-control input-sm post-gather">
+                                <option value="">请选择</option>
+                                <volist name='list' id="vo">
+                                    <option value="{$vo.id}">{$vo._prefix}{$vo.title}</option>
+                                </volist>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><span class="text-danger">*</span> 文件夹名称</th>
+                        <td>
+                            <input type="text" class="form-control input-sm post-gather" name="title" maxlength="255">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-left" style="margin: 0 0 15px 16px">
+                <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-floppy-disk"></span> 保存</button>
+                <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+        // 定义URL地址
+        url.insertFolder = "{:U('insertFolder')}";
+    </script>
+</block>
+<block name="foot.ext">
+    <import file="js.LawRegulation.addFolder?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>

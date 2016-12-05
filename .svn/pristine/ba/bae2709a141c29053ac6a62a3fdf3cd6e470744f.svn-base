@@ -1,0 +1,53 @@
+<h3 class="row">
+    <div class="col-xs-6"><span class="block-title">肇事车辆</span></div>
+    <div class="col-xs-6 text-right">
+        <div class="btn btn-primary btn-sm" id="add-accident-car"><span class="glyphicon glyphicon-plus"></span> 添加</div>
+    </div>
+</h3>
+<table class="table table-bordered table-hover table-condensed table-sheet">
+    <tr>
+        <th width="17%">号牌</th>
+        <th width="17%">车辆类型</th>
+        <th width="80">危险品</th>
+        <th width="17%">危险品描述</th>
+        <th width="80">客运车辆</th>
+        <th width="80">校车</th>
+        <th>备注</th>
+        <th width="80">操作</th>
+    </tr>
+    <tbody class="hide" id="accident-car-template">
+        <tr class="text-center">
+            <td>
+                <input type="text" class="form-control input-sm" name="car_no" maxlength="255">
+            </td>
+            <td>
+                <select name="car_type" class="form-control input-sm">
+                    <option value="">请选择</option>
+                    <volist name="carType" id="vo">
+                        <option value="{$vo.id}">{$vo.name}</option>
+                    </volist>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="is_danger" value="1">
+            </td>
+            <td>
+                <input type="text" class="form-control input-sm" name="danger_info" maxlength="255">
+            </td>
+            <td>
+                <input type="checkbox" name="is_bus" value="1">
+            </td>
+            <td>
+                <input type="checkbox" name="is_school" value="1">
+            </td>
+            <td>
+                <input type="text" class="form-control input-sm" name="remark" maxlength="255">
+            </td>
+            <td>
+                <div class="btn btn-warning btn-sm del-accident-car">删除</div>
+            </td>
+        </tr>
+    </tbody>
+    <tbody id="accident-car-list"></tbody>
+</table>
+<hr>

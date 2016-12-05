@@ -1,0 +1,19 @@
+<div style="margin-bottom:15px;">
+    <div class="btn-group">
+        <eq name="info.apply_status" value="1">
+            <button type="button" class="btn btn-success">复核申请</button>
+            <else/>
+            <button type="button" class="btn btn-default">复核申请</button>
+        </eq>
+        <neq name="info.accept_status" value="0">
+            <button type="button" class="btn btn-success">复核受理</button>
+            <else/>
+            <button type="button" class="btn btn-default">复核受理</button>
+        </neq>
+        <if condition="$info['check_status'] neq 0 or $info['stop_status'] neq 0">
+            <button type="button" class="btn btn-success">复核结论</button>
+            <else/>
+            <button type="button" class="btn btn-default">复核结论</button>
+        </if>
+    </div>
+</div>

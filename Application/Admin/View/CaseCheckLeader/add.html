@@ -1,0 +1,100 @@
+<extend name="Common/base" />
+<block name="title">新增案件</block>
+<block name="main.html">
+    <!-- 页面主体 -->
+    <div class="container-fluid main">
+        <!-- 页头 -->
+        <div class="head-space"></div>
+        <!-- 面板 -->
+        <div class="panel panel-default form-inline">
+            <!-- 面板标题 -->
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6"><span class="block-title">新增案件</span></div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-danger btn-sm js-close"><span class="glyphicon glyphicon-off"></span> 关闭</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 面板内容 -->
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed table-custom">
+                    <tr>
+                        <th width="20%" colspan="2"><span class="text-danger">*</span> 事故发生时间</th>
+                        <td>
+                            <div class="input-group date form-datetime">
+                                <input type="text" class="form-control input-sm post-gather" name="accident_time" maxlength="16" readonly="readonly" value="{:date('Y-m-d H:i',time())}">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan="2"><span class="text-danger">*</span> 事故发生地点</th>
+                        <td>
+                            <input type="text" class="form-control input-sm post-gather" name="accident_place" maxlength="255">
+                            <div class="btn btn-default btn-sm">标记</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="10%" rowspan="3"><span class="text-danger">*</span> 事故后果</th>
+                        <th width="10%">死亡人数</th>
+                        <td>
+                            <input type="text" class="form-control input-sm post-gather js-only-number" name="death_num" maxlength="10">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>受伤人数</th>
+                        <td>
+                            <input type="text" class="form-control input-sm post-gather js-only-number" name="hurt_num" maxlength="10">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>财产损失</th>
+                        <td>
+                            <select name="property_loss" class="form-control input-sm post-gather">
+                                <option value="">请选择</option>
+                                <volist name="propertyLoss" id="vo">
+                                    <option value="{$vo.id}">{$vo.name}</option>
+                                </volist>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan="2"><span class="text-danger">*</span> 事故类型</th>
+                        <td>
+                            <select name="accident_type" class="form-control input-sm post-gather">
+                                <option value="">请选择</option>
+                                <volist name="accidentType" id="vo">
+                                    <option value="{$key}">{$vo}</option>
+                                </volist>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan="2"><span class="text-danger">*</span> 事故初查</th>
+                        <td>
+                            <div class="checkbox">
+                                <volist name="firstCognizance" id="vo">
+                                    <label>
+                                        <input type="checkbox" name="first_cognizance" value="{$vo.id}">{$vo.name}</label>&nbsp;&nbsp;
+                                </volist>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <button type="button" class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-saved"></span> 提交</button>
+                <button type="button" class="btn btn-warning" id="reset"><span class="glyphicon glyphicon-repeat"></span> 重置</button>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="head.ext">
+    <script type="text/javascript">
+    // 定义URL地址
+    url.update = "{:U('insert')}";
+    </script>
+</block>
+<block name="foot.ext">
+
+    <import file="js.CaseCheckLeader.add?" basepath="{$Think.SRC_MODULE_URL}" />
+</block>
